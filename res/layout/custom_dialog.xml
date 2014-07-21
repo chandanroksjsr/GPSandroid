@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@drawable/curve_shap" >
+    android:layout_height="110dp"
+    android:background="@drawable/curve_shap"
+    android:orientation="vertical" >
+
+    <Button android:id="@+id/release" android:layout_width="50dp" android:layout_height="20dp" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_marginBottom="14dp" android:background="@drawable/logout" android:gravity="center"/>
 
     <TextView
         android:id="@+id/errorlog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/release"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="thndra"
+        android:textColor="#ffffff" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:layout_marginLeft="108dp"
-        android:layout_marginTop="60dp"
-         />
-
-    <Button
-        android:id="@+id/release"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/errorlog"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="@string/release" />
+        android:layout_marginLeft="45dp"
+        android:src="@drawable/red_pin" />
   
     </RelativeLayout>

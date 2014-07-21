@@ -4,7 +4,7 @@
       android:id="@+id/layoutt"
     android:layout_height="fill_parent"
   android:background = "@drawable/contactbg"
-   
+    style="@style/AppTheme"
     android:orientation="vertical" >
 
     <EditText
@@ -61,6 +61,7 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:maxLength="13"
         android:inputType="phone"
         android:hint="@string/mobnumb"
         android:padding="5dip" />
@@ -73,12 +74,12 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:maxLines="5"
         android:hint="@string/addrs"
         android:padding="5dip"
-        android:singleLine="false"
+        
         android:gravity="top|left"
-        android:textColor="#999999"
-        android:textSize="14dip" />
+       android:textSize="14dip" />
 
     <EditText
         android:id="@+id/e8"

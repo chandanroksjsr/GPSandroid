@@ -2,26 +2,82 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+     style="@style/AppTheme"
+     android:id="@+id/alertlayout"
     android:background="@drawable/alertmessagepage"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="178dp"
-        android:text="alertmsg" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="110dp"
+        android:layout_height="25dp"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignLeft="@+id/e6"
+        android:background="@drawable/send" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="80dp"
+        android:layout_height="25dp"
+        android:layout_alignRight="@+id/e6"
+        android:layout_below="@+id/e6"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/resetbutton" />
 
     <Button
         android:id="@+id/hmebutton"
         android:layout_width="30dp"
         android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/textView1"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="75dp"
         android:background="@drawable/home" />
+
+    <EditText
+        android:id="@+id/e6"
+        android:layout_width="290dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/roundedtext"
+        android:ems="10"
+        android:gravity="top|left"
+        android:lines="1"
+        android:maxLength="160"
+        android:maxLines="3"
+        android:scrollHorizontally="true"
+        android:textSize="14dip" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/e6"
+        android:layout_below="@+id/hmebutton"
+        android:layout_marginTop="20dp"
+        android:text="@string/welcome"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_marginLeft="14dp"
+        android:textColor="#ffffff"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="" />
+
+    <Button
+        android:id="@+id/logingout"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:layout_alignRight="@+id/e6"
+        android:layout_alignTop="@+id/textView1"
+        android:background="@drawable/logout" />
 
 </RelativeLayout>

@@ -5,18 +5,8 @@
     android:background="@drawable/dashboard"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:layout_alignBaseline="@+id/welcomeusername"
-        android:layout_alignBottom="@+id/welcomeusername"
-        android:layout_alignLeft="@+id/list"
-        android:text="@string/welcome" />
-
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/logout"
         android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_above="@+id/list"
@@ -44,23 +34,33 @@
         android:layout_marginRight="14dp"
         android:background="@drawable/contact" />
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="290dp"
-        android:layout_height="290dp"
-        android:layout_above="@+id/aboutus"
-        android:layout_centerHorizontal="true" >
-    </ListView>
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/logout"
+        android:layout_alignBottom="@+id/logout"
+        android:layout_alignLeft="@+id/list"
+        android:text="@string/welcome"
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/welcomeusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/welcome"
+        android:layout_alignBaseline="@+id/welcome"
+        android:layout_alignBottom="@+id/welcome"
+        android:layout_alignRight="@+id/aboutus"
         android:text="thendral"
         android:textColor="#ffffff" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="290dp"
+        android:layout_height="290dp"
+        android:layout_above="@+id/aboutus"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp" >
+    </ListView>
 
 </RelativeLayout>

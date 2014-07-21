@@ -52,10 +52,13 @@
 
     <ToggleButton
         android1:id="@+id/showmap"
-        android1:layout_width="60dp"
-        android1:layout_height="20dp"
-        android1:layout_alignLeft="@+id/map"
-        android1:layout_below="@+id/signutty"
-        android1:text="ToggleButton" />
+        android1:layout_width="50dp"
+        android1:layout_height="50dp"
+         android1:textOff=""
+            android1:textOn=""
+        android1:layout_alignBottom="@+id/map"
+        android1:layout_toLeftOf="@+id/welcmename"
+        android1:background="@drawable/togglebutton"
+        android1:checked="true" />
 
 </RelativeLayout>
