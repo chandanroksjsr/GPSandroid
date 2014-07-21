@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GPSMobileTracking</string>
+    <string name="action_settings">Settings</string>
+    <string name="release">OK</string>
+    <string name="Username">Username</string>
+    <string name="pswd">Password</string>
+    <string name="signin">Signin</string>
+    <string name="welcome">Welcome  </string>
+    <string name="aboutus">About us</string>
+    <string name="contactus">Contact us</string>
+    <string name="email">Email us</string>
+    <string name="callus">Call us</string>
+    <string name="feedbak">FeedBack</string>
+    <string name="signout">Signout</string>
+    <string name="ariel">Ariel</string>
+    <string name="satellite">Satellite</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="email">Email</string>
+    <string name="orgname">Organization Name</string>
+    <string name="mobnumb">Mobile Number</string>
+    <string name="addrs">Address</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+</resources>

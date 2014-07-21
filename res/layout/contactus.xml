@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+      android:id="@+id/layoutt"
+    android:layout_height="fill_parent"
+  android:background = "@drawable/contactbg"
+   
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/e1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="@string/firstname"
+        android:padding="5dip" />
+
+    <EditText
+        android:id="@+id/e2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="@string/lastname"
+        android:padding="5dip" />
+
+    <EditText
+        android:id="@+id/e3"
+        android:layout_width="wrap_content"
+         android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:padding="5dip" />
+
+    <EditText
+        android:id="@+id/e4"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="@string/orgname"
+        android:padding="5dip" />
+
+    <EditText
+        android:id="@+id/e5"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:inputType="phone"
+        android:hint="@string/mobnumb"
+        android:padding="5dip" />
+
+    <EditText
+        android:id="@+id/e6"
+        android:layout_width="211dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="@string/addrs"
+        android:padding="5dip"
+        android:singleLine="false"
+        android:gravity="top|left"
+        android:textColor="#999999"
+        android:textSize="14dip" />
+
+    <EditText
+        android:id="@+id/e8"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="@string/city"
+        android:padding="5dip" />
+
+    <EditText
+        android:id="@+id/e9"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="@string/state"
+        android:padding="5dip" />
+
+    <RelativeLayout
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="0.01dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="14dp"
+            android:background="@drawable/resetbutton" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="90dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/contact2" />
+
+    </RelativeLayout>
+
+</LinearLayout>
