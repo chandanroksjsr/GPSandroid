@@ -19,10 +19,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.app.AlertDialog;
+
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -112,6 +115,7 @@ public class LiveTrack extends Activity {
 	         e.printStackTrace();
 	      }
 	      tgbutton = (ToggleButton) findViewById(R.id.showmap);
+	      tgbutton.setSelected(true);
 	        tgbutton.setOnClickListener(new OnClickListener() {
 	 
 	            @Override
@@ -124,7 +128,9 @@ public class LiveTrack extends Activity {
 	         	               findFragmentById(R.id.map)).getMap();
 	         	            }
 	         	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-	         	         
+	         	         tgbutton.setBackgroundResource(R.drawable.earth);
+	         	      
+	         	            
 	         	       //  Marker TP = googleMap.addMarker(new MarkerOptions().
 	         	    	         //position(TutorialsPoint).title("TutorialsPoint"));
 
@@ -139,7 +145,7 @@ public class LiveTrack extends Activity {
 	             	               findFragmentById(R.id.map)).getMap();
 	             	            }
 	             	         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-	             	         
+	             	        tgbutton.setBackgroundResource(R.drawable.aerial);
 	             	       //  Marker TP = googleMap.addMarker(new MarkerOptions().
 	             	    	         //position(TutorialsPoint).title("TutorialsPoint"));
 
@@ -243,7 +249,7 @@ public class LiveTrack extends Activity {
     		@Override
     	    protected void onPreExecute() {
     			  cDialog = new ProgressDialog(LiveTrack.this);
-    	          cDialog.setMessage("Fetching Vehicle Details");
+    	          cDialog.setMessage("Please wait...");
     	          cDialog.setIndeterminate(false);
     	          cDialog.setCancelable(false);
     	          cDialog.show();
@@ -312,7 +318,8 @@ public class LiveTrack extends Activity {
     			    cDialog.dismiss();
     				return null;
     			}
-    			@Override
+    			@SuppressWarnings("deprecation")
+				@Override
     			protected void onPostExecute(String file_url) {
     		   
     				 super.onPostExecute(file_url);
@@ -321,19 +328,57 @@ public class LiveTrack extends Activity {
     				System.out.println("vehicle size"+vehiclehistory1.size());
     				if(vehiclehistory1.size()==0)
     				{
-    					final Dialog dialog = new Dialog(context);
-   	       			 dialog.setContentView(R.layout.custom_dialog);
-   	       			 dialog.setTitle("Info!");
-   	       			 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-   	       			  txt.setText("No Location Found.");
-   	       			  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-   	       			  dialogButton.setOnClickListener(new OnClickListener() {
-   	       				  public void onClick(View vd) {
-   	       					   dialog.dismiss();
-   	    				
-   	    				}
-   	       			});
-   	       			  dialog.show();	
+    					AlertDialog alertDialog = new AlertDialog.Builder(
+								LiveTrack.this).create();
+
+						// Setting Dialog Title
+						alertDialog.setTitle("INFO!");
+
+						// Setting Dialog Message
+						alertDialog.setMessage("No location found.");
+
+						// Setting Icon to Dialog
+						alertDialog.setIcon(R.drawable.delete);
+						
+
+						// Setting OK Button
+						alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+									public void onClick(final DialogInterface dialog,
+											final int which) {
+										// Write your code here to execute after dialog
+										// closed
+										
+									}
+								});
+
+						// Showing Alert Message
+						alertDialog.show();
+    					
+    					/*  AlertDialog.Builder builder= new AlertDialog.Builder(LiveTrack.this,R.style.MyTheme );
+  	    		        
+  	    	            builder.setMessage("No location found." )
+  	    	                .setTitle( "INFO!" )
+  	    	                .setIcon( R.drawable.pink_pin )
+  	    	                .setCancelable( false )
+  	    	             
+  	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+  	    	                    {
+  	    	                        public void onClick( DialogInterface dialog, int which )
+  	    	                           {
+  	    	                        	
+  	    	                                dialog.dismiss();
+  	    	                           }
+  	    	                        } 
+  	    	                    );
+  	    	            Dialog dialog = null;
+  	    	            builder.setInverseBackgroundForced(true);
+  	    	            
+  	    	            dialog = builder.create();
+  	    	            dialog.getWindow().setLayout(600, 400); 
+  	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+  	    				dialog.show();
+  		  			*/
     					
     				}
     				sizeminusone=vehiclehistory1.size()-1;

@@ -6,10 +6,15 @@ import java.util.List;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +25,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -40,6 +47,7 @@ public class LoginActivity extends Activity {
 	String enabled;
 	String username1;
 	String password1;
+	 private static final int ALERT_DIALOG = 1;
 	private static final String TAG_SUCCESS1 = "success";
 	private static final String TAG_USERNAME = "username";
 	private static final String TAG_PASSWORD = "password";
@@ -85,7 +93,8 @@ public class LoginActivity extends Activity {
 		signin.setOnClickListener(new View.OnClickListener() {
 				
 	            
-	        	public void onClick(View v) {
+	        	@SuppressWarnings("deprecation")
+				public void onClick(View v) {
 	        		isInternetPresent = cd.isConnectingToInternet();
 System.out.println("is internet present:::"+isInternetPresent);
 	        		 String username=usrname.getText().toString();
@@ -107,72 +116,218 @@ System.out.println("is internet present:::"+isInternetPresent);
 	        			}
 	        		else
 	        		{
-	        			final Dialog dialog = new Dialog(context);
-	        		 	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		       			 dialog.setContentView(R.layout.custom_dialog);
-		       			 dialog.setTitle("Login Failed");
-		       			 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-		       			  txt.setText("No Network Connenction.");
-		       			  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-		       			  dialogButton.setOnClickListener(new OnClickListener() {
-		       				  public void onClick(View vd) {
-		       					   dialog.dismiss();
-		    				
-		    				}
-		       			});
-		       			  dialog.show();
+	        			AlertDialog alertDialog = new AlertDialog.Builder(
+	    						LoginActivity.this).create();
+
+	    				// Setting Dialog Title
+	    				alertDialog.setTitle("INFO!");
+
+	    				// Setting Dialog Message
+	    				alertDialog.setMessage("No network connection.");
+
+	    				// Setting Icon to Dialog
+	    				alertDialog.setIcon(R.drawable.delete);
+	    				
+
+	    				// Setting OK Button
+	    				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+	    							public void onClick(final DialogInterface dialog,
+	    									final int which) {
+	    								// Write your code here to execute after dialog
+	    								// closed
+	    								
+	    							}
+	    						});
+
+	    				// Showing Alert Message
+	    				alertDialog.show();
+	        			/* AlertDialog.Builder builder= new AlertDialog.Builder(LoginActivity.this,R.style.MyTheme );
+		    		        
+		    	            builder.setMessage("No network connection." )
+		    	                .setTitle( "INFO!" )
+		    	                .setIcon( R.drawable.pink_pin )
+		    	                .setCancelable( false )
+		    	             
+		    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+		    	                    {
+		    	                        public void onClick( DialogInterface dialog, int which )
+		    	                           {
+		    	                        	usrname.setText("");
+		    	                    		paswd.setText("");
+		    	                                dialog.dismiss();
+		    	                           }
+		    	                        } 
+		    	                    );
+		    	            Dialog dialog = null;
+		    	            builder.setInverseBackgroundForced(true);
+		    	            
+		    	            dialog = builder.create();
+		    	            dialog.getWindow().setLayout(600, 400); 
+		    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		    				dialog.show();
+		    				*/
 	        		}
 	        		}
 	        		else if(!password.equalsIgnoreCase(""))
 	        		{
-	        			final Dialog dialog = new Dialog(context);
-	        		 	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		       			 dialog.setContentView(R.layout.custom_dialog);
-		       			 dialog.setTitle("Login Failed");
-		       			 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-		       			  txt.setText("Please enter username.");
-		       			  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-		       			  dialogButton.setOnClickListener(new OnClickListener() {
-		       				  public void onClick(View vd) {
-		       					   dialog.dismiss();
-		    				
-		    				}
-		       			});
-		       			  dialog.show();
+	        			AlertDialog alertDialog = new AlertDialog.Builder(
+	    						LoginActivity.this).create();
+
+	    				// Setting Dialog Title
+	    				alertDialog.setTitle("INFO!");
+
+	    				// Setting Dialog Message
+	    				alertDialog.setMessage("Please enter username.");
+
+	    				// Setting Icon to Dialog
+	    				alertDialog.setIcon(R.drawable.delete);
+	    				
+
+	    				// Setting OK Button
+	    				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+	    							public void onClick(final DialogInterface dialog,
+	    									final int which) {
+	    								// Write your code here to execute after dialog
+	    								// closed
+	    								
+	    							}
+	    						});
+
+	    				// Showing Alert Message
+	    				alertDialog.show();
+	        			
+	        			/* AlertDialog.Builder builder= new AlertDialog.Builder(LoginActivity.this,R.style.MyTheme );
+		    		        
+		    	            builder.setMessage("Please enter username." )
+		    	                .setTitle( "INFO!" )
+		    	                .setIcon( R.drawable.pink_pin )
+		    	                .setCancelable( false )
+		    	             
+		    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+		    	                    {
+		    	                        public void onClick( DialogInterface dialog, int which )
+		    	                           {
+		    	                                dialog.dismiss();
+		    	                           }
+		    	                        } 
+		    	                    );
+		    	            Dialog dialog = null;
+		    	            builder.setInverseBackgroundForced(true);
+		    	            
+		    	            dialog = builder.create();
+		    	            dialog.getWindow().setLayout(600, 400); 
+		    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		    				dialog.show();
+		    				*/
 	        		}
 	        		else if(!username.equalsIgnoreCase(""))
 	        		{
-	        			final Dialog dialog = new Dialog(context);
-	        		 	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		       			 dialog.setContentView(R.layout.custom_dialog);
-		       			 dialog.setTitle("Login Failed");
-		       			 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-		       			  txt.setText("Please enter password.");
-		       			  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-		       			  dialogButton.setOnClickListener(new OnClickListener() {
-		       				  public void onClick(View vd) {
-		       					   dialog.dismiss();
-		    				
-		    				}
-		       			});
-		       			  dialog.show();
+	        			AlertDialog alertDialog = new AlertDialog.Builder(
+	    						LoginActivity.this).create();
+
+	    				// Setting Dialog Title
+	    				alertDialog.setTitle("INFO!");
+
+	    				// Setting Dialog Message
+	    				alertDialog.setMessage("Please enter password.");
+
+	    				// Setting Icon to Dialog
+	    				alertDialog.setIcon(R.drawable.delete);
+	    				
+
+	    				// Setting OK Button
+	    				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+	    							public void onClick(final DialogInterface dialog,
+	    									final int which) {
+	    								// Write your code here to execute after dialog
+	    								// closed
+	    							
+	    							}
+	    						});
+
+	    				// Showing Alert Message
+	    				alertDialog.show();
+
+                   /*   AlertDialog.Builder builder= new AlertDialog.Builder(LoginActivity.this,R.style.MyTheme );
+	    		        
+	    	            builder.setMessage("Please enter password." )
+	    	                .setTitle( "INFO!" )
+	    	                .setIcon( R.drawable.pink_pin )
+	    	                .setCancelable( false )
+	    	             
+	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+	    	                    {
+	    	                        public void onClick( DialogInterface dialog, int which )
+	    	                           {
+	    	                                dialog.dismiss();
+	    	                           }
+	    	                        } 
+	    	                    );
+	    	            Dialog dialog = null;
+	    	            builder.setInverseBackgroundForced(true);
+	    	            
+	    	            dialog = builder.create();
+	    	            dialog.getWindow().setLayout(600, 400); 
+	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+	    				dialog.show();
+	        			*/
 	        		}
 	    			else
 	    			{
-	    			final Dialog dialog = new Dialog(context);
-	    		 	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-	       			 dialog.setContentView(R.layout.custom_dialog);
-	       			 dialog.setTitle("Login Failed");
-	       			 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-	       			  txt.setText("Enter login credentials.");
-	       			  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-	       			  dialogButton.setOnClickListener(new OnClickListener() {
-	       				  public void onClick(View vd) {
-	       					   dialog.dismiss();
+	    				AlertDialog alertDialog = new AlertDialog.Builder(
+	    						LoginActivity.this).create();
+
+	    				// Setting Dialog Title
+	    				alertDialog.setTitle("Alert Dialog");
+
+	    				// Setting Dialog Message
+	    				alertDialog.setMessage("Enter login credentials.");
+
+	    				// Setting Icon to Dialog
+	    				alertDialog.setIcon(R.drawable.delete);
 	    				
-	    				}
-	       			});
-	       			  dialog.show();
+
+	    				// Setting OK Button
+	    				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+	    							public void onClick(final DialogInterface dialog,
+	    									final int which) {
+	    								// Write your code here to execute after dialog
+	    								// closed
+	    								
+	    							}
+	    						});
+
+	    				// Showing Alert Message
+	    				alertDialog.show();
+
+	    			/*	AlertDialog.Builder builder= new AlertDialog.Builder(LoginActivity.this,R.style.MyTheme );
+	    		        
+	    	            builder.setMessage("Enter login credentials." )
+	    	                .setTitle( "INFO!" )
+	    	                .setIcon( R.drawable.pink_pin )
+	    	                .setCancelable( false )
+	    	             
+	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+	    	                    {
+	    	                        public void onClick( DialogInterface dialog, int which )
+	    	                           {
+	    	                                dialog.dismiss();
+	    	                           }
+	    	                        } 
+	    	                    );
+	    	            Dialog dialog = null;
+	    	            builder.setInverseBackgroundForced(true);
+	    	            
+	    	            dialog = builder.create();
+	    	            dialog.getWindow().setLayout(600, 400); 
+	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+	    				dialog.show();
+	    				 */
+	    		
 	    			  }
 	        	}
 	        	
@@ -245,6 +400,7 @@ System.out.println("is internet present:::"+isInternetPresent);
 	    			
 	    			return null;
 	    		}
+			@SuppressWarnings("deprecation")
 			@Override
 			 protected void onPostExecute(String file_url) {
 		    	   super.onPostExecute(file_url);
@@ -253,44 +409,109 @@ System.out.println("is internet present:::"+isInternetPresent);
 		          if(JsonParser.jss.equals("empty"))
 		          {
 		       	   System.out.println("json null value");
-		       	 final Dialog dialog = new Dialog(context);
-		     	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-						// final Dialog dialog = new Dialog(context);
-						 dialog.setContentView(R.layout.custom_dialog);
-						// dialog.setTitle("INFO!");
-						 dialog.setCancelable(false);
-						 dialog.setCanceledOnTouchOutside(false);
-						 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-						  txt.setText("Server not connected.");
-						  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-						  dialogButton.setOnClickListener(new OnClickListener() {
-							  public void onClick(View vd) {
-								   dialog.dismiss();
-							
+		       	AlertDialog alertDialog = new AlertDialog.Builder(
+						LoginActivity.this).create();
+
+				// Setting Dialog Title
+				alertDialog.setTitle("INFO!");
+
+				// Setting Dialog Message
+				alertDialog.setMessage("Server not connected.");
+
+				// Setting Icon to Dialog
+				alertDialog.setIcon(R.drawable.delete);
+				
+
+				// Setting OK Button
+				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+							public void onClick(final DialogInterface dialog,
+									final int which) {
+								// Write your code here to execute after dialog
+								// closed
+								
 							}
 						});
-						  dialog.show();
+
+				// Showing Alert Message
+				alertDialog.show();
+		       /*	 AlertDialog.Builder builder= new AlertDialog.Builder(LoginActivity.this,R.style.MyTheme );
+ 		        
+ 	            builder.setMessage("Server not connected." )
+ 	                .setTitle( "INFO!" )
+ 	                .setIcon( R.drawable.pink_pin )
+ 	                .setCancelable( false )
+ 	             
+ 	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+ 	                    {
+ 	                        public void onClick( DialogInterface dialog, int which )
+ 	                           {
+ 	                                dialog.dismiss();
+ 	                           }
+ 	                        } 
+ 	                    );
+ 	            Dialog dialog = null;
+ 	            builder.setInverseBackgroundForced(true);
+ 	            
+ 	            dialog = builder.create();
+ 	            dialog.getWindow().setLayout(600, 400); 
+ 	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+ 				dialog.show();*/
 						  pDialog.dismiss();
 		          }
 		          else if(successL.equalsIgnoreCase("No")){
-		        	   final Dialog dialog = new Dialog(context);
-		           	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		  			 dialog.setContentView(R.layout.custom_dialog);
-		  			// dialog.setTitle("INFO!");
-		  			 dialog.setCancelable(false);
-		  			 dialog.setCanceledOnTouchOutside(false);
-		  			 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-		  			  txt.setText("Invalid username and password.");
-		  			  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-		  			  dialogButton.setOnClickListener(new OnClickListener() {
-		  				  public void onClick(View vd) {
-		  					 LoginActivity.usrname.setText("");
-		   	       			  LoginActivity.paswd.setText("");
-		  					   dialog.dismiss();
-						
-						}
-		  			});
-		  			  dialog.show();
+		        	  AlertDialog alertDialog = new AlertDialog.Builder(
+	    						LoginActivity.this).create();
+
+	    				// Setting Dialog Title
+	    				alertDialog.setTitle("INFO!");
+
+	    				// Setting Dialog Message
+	    				alertDialog.setMessage("Invalid username and password.");
+
+	    				// Setting Icon to Dialog
+	    				alertDialog.setIcon(R.drawable.delete);
+	    				
+
+	    				// Setting OK Button
+	    				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+	    							public void onClick(final DialogInterface dialog,
+	    									final int which) {
+	    								// Write your code here to execute after dialog
+	    								// closed
+	    								usrname.setText("");
+	    	                    		paswd.setText("");
+	    	                                dialog.dismiss();
+	    							}
+	    						});
+
+	    				// Showing Alert Message
+	    				alertDialog.show();
+		        /*	  AlertDialog.Builder builder= new AlertDialog.Builder(LoginActivity.this,R.style.MyTheme );
+	    		        
+	    	            builder.setMessage("Invalid username and password." )
+	    	                .setTitle( "INFO!" )
+	    	                .setIcon( R.drawable.pink_pin )
+	    	                .setCancelable( false )
+	    	             
+	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+	    	                    {
+	    	                        public void onClick( DialogInterface dialog, int which )
+	    	                           {
+	    	                        	usrname.setText("");
+	    	                    		paswd.setText("");
+	    	                                dialog.dismiss();
+	    	                           }
+	    	                        } 
+	    	                    );
+	    	            Dialog dialog = null;
+	    	            builder.setInverseBackgroundForced(true);
+	    	            
+	    	            dialog = builder.create();
+	    	            dialog.getWindow().setLayout(600, 400); 
+	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+	    				dialog.show();*/
 		  			  pDialog.dismiss();
 		           }
 		     
@@ -307,4 +528,44 @@ System.out.println("is internet present:::"+isInternetPresent);
 	     InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 	     in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 	 }
+	 
+	/* @Override
+	    protected Dialog onCreateDialog( int id ){
+	        Dialog dialog = null;
+	        
+	        if ( id == ALERT_DIALOG )
+	        {
+	        	 AlertDialog.Builder builder= new AlertDialog.Builder( this,R.style.MyTheme );
+	        
+	            builder.setMessage( "Hello World" )
+	                .setTitle( "INFO!" )
+	                .setIcon( R.drawable.pink_pin )
+	                .setCancelable( false )
+	             
+	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+	                    {
+	                        public void onClick( DialogInterface dialog, int which )
+	                           {
+	                                dialog.dismiss();
+	                           }
+	                        } 
+	                    );
+	          //  dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+	            builder.setInverseBackgroundForced(true);
+	            
+	            dialog = builder.create();
+	            dialog.getWindow().setLayout(600, 400); 
+	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+	          
+	        }
+	        if ( dialog == null )
+	        {
+	        	
+	            dialog = super.onCreateDialog( id );
+	            dialog.getWindow().setLayout(600, 400); 
+	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+	            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+	        }
+	        return dialog;
+	     }*/
 }

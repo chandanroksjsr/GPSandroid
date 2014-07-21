@@ -28,12 +28,15 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -109,6 +112,7 @@ public class HistoryTrack  extends Activity {
 	         e.printStackTrace();
 	      }
 	      tgbutton = (ToggleButton) findViewById(R.id.showmapdif);
+	      tgbutton.setSelected(true);
 	        tgbutton.setOnClickListener(new OnClickListener() {
 	 
 	            @Override
@@ -121,7 +125,7 @@ public class HistoryTrack  extends Activity {
 	         	               findFragmentById(R.id.map)).getMap();
 	         	            }
 	         	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-	         	         
+	         	        tgbutton.setBackgroundResource(R.drawable.earth);
 	         	    
 
 	         	      } catch (Exception e) {
@@ -135,7 +139,7 @@ public class HistoryTrack  extends Activity {
 	             	               findFragmentById(R.id.map)).getMap();
 	             	            }
 	             	         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-	             	         
+	             	        tgbutton.setBackgroundResource(R.drawable.aerial);
 	             	   
 	             	      } catch (Exception e) {
 	             	         e.printStackTrace();
@@ -228,7 +232,7 @@ public class HistoryTrack  extends Activity {
 	    		@Override
 	    	    protected void onPreExecute() {
 	    			  cDialog = new ProgressDialog(HistoryTrack.this);
-	    	          cDialog.setMessage("Fetching Vehicle Details");
+	    	          cDialog.setMessage("Please wait...");
 	    	          cDialog.setIndeterminate(false);
 	    	          cDialog.setCancelable(false);
 	    	          cDialog.show();
@@ -239,6 +243,7 @@ public class HistoryTrack  extends Activity {
 	    			@Override
 	    			protected String doInBackground(String... args) {
 	    				// TODO Auto-generated method stub
+	    				
 	    				List<NameValuePair> params1 = new ArrayList<NameValuePair>();
 	    				 ArrayList<HashMap<String,String>> vehiclehistory= new ArrayList<HashMap<String,String>>();
 	    	             params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
@@ -298,7 +303,8 @@ public class HistoryTrack  extends Activity {
 	    			    cDialog.dismiss();
 	    				return null;
 	    			}
-	    			@Override
+	    			@SuppressWarnings("deprecation")
+					@Override
 	    			protected void onPostExecute(String file_url) {
 	    		   
 	    				 super.onPostExecute(file_url);
@@ -310,21 +316,61 @@ public class HistoryTrack  extends Activity {
 	    			        polyLineOptions = new PolylineOptions();
 	    			        if(vehiclehistory1.size()==0)
 	        				{
-	        					final Dialog dialog = new Dialog(context);
-	       	       			 dialog.setContentView(R.layout.custom_dialog);
-	       	       			 dialog.setTitle("Info!");
-	       	       			 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-	       	       			  txt.setText("No Location Found.");
-	       	       			  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-	       	       			  dialogButton.setOnClickListener(new OnClickListener() {
-	       	       				  public void onClick(View vd) {
-	       	       					   dialog.dismiss();
-	       	    				
-	       	    				}
-	       	       			});
-	       	       			  dialog.show();	
+	    			        	AlertDialog alertDialog = new AlertDialog.Builder(
+	    								HistoryTrack.this).create();
+
+	    						// Setting Dialog Title
+	    						alertDialog.setTitle("INFO!");
+
+	    						// Setting Dialog Message
+	    						alertDialog.setMessage("No location found.");
+
+	    						// Setting Icon to Dialog
+	    						alertDialog.setIcon(R.drawable.delete);
+	    						
+
+	    						// Setting OK Button
+	    						alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+	    									public void onClick(final DialogInterface dialog,
+	    											final int which) {
+	    										// Write your code here to execute after dialog
+	    										// closed
+	    										
+	    									}
+	    								});
+
+	    						// Showing Alert Message
+	    						alertDialog.show();
+	    			        	/*  AlertDialog.Builder builder= new AlertDialog.Builder(HistoryTrack.this,R.style.MyTheme );
+	    		    		        
+	    		    	            builder.setMessage("No location found." )
+	    		    	                .setTitle( "INFO!" )
+	    		    	                .setIcon( R.drawable.pink_pin )
+	    		    	                .setCancelable( false )
+	    		    	             
+	    		    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+	    		    	                    {
+	    		    	                        public void onClick( DialogInterface dialog, int which )
+	    		    	                           {
+	    		    	                        	
+	    		    	                                dialog.dismiss();
+	    		    	                           }
+	    		    	                        } 
+	    		    	                    );
+	    		    	            Dialog dialog = null;
+	    		    	            builder.setInverseBackgroundForced(true);
+	    		    	            
+	    		    	            dialog = builder.create();
+	    		    	            dialog.getWindow().setLayout(600, 400); 
+	    		    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+	    		    				dialog.show();
+	    			  			 */
+	       	       				
 	        					
 	        				}
+	    			        else
+	    			        {
 	    				 for (int k = 0; k < vehiclehistory1.size(); k++) {
 	    					 System.out.println("k value"+k);
 	    					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory1.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory1.get(k).get(TAG_Longitude+k)));
@@ -349,6 +395,7 @@ public class HistoryTrack  extends Activity {
  				        polyLineOptions.width(2);
  				        polyLineOptions.color(Color.BLUE);
 	    				 googleMap.addPolyline(polyLineOptions);
+	    			        }
 	    			
 	    		} 	
   		

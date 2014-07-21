@@ -13,11 +13,16 @@ import org.apache.http.auth.AuthenticationException;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -51,6 +56,7 @@ public class ContactUs extends Activity {
     String sender_mail;
 	  String secondmail;
 	  String part_id;
+	   EditText mob;
 	 public static String sendmailoption;
     
     
@@ -64,10 +70,42 @@ public class ContactUs extends Activity {
 		 getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		    getActionBar().hide();
 		setContentView(R.layout.contactus);
+		    mob = (EditText)findViewById(R.id.e5);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.layoutt);
         ConnectionDetector cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent= cd.isConnectingToInternet();
-     
+        InputFilter filter = new InputFilter() {
+
+            
+    		@Override
+    		public CharSequence filter(CharSequence source, int start, int end,
+    				Spanned dest, int dstart, int dend) {
+    			
+    			 if (source.length() > 0) {
+
+                     if (!Character.isDigit(source.charAt(0)))
+                         return "";
+                     else {
+                         if (dstart == 3) {
+                             return source + ") ";
+                         } else if (dstart == 0) {
+                             return "(" + source;
+                         } else if ((dstart == 5) || (dstart == 9))
+                             return "-" + source;
+                         else if (dstart >= 14)
+                             return "";
+                     }
+
+                 } else {
+
+                 }
+    			return null;
+    		}
+        };
+		
+            mob.setFilters(new InputFilter[] { filter });
+        
+
         layout.setOnTouchListener(new OnTouchListener()
         {
             @Override
@@ -89,7 +127,7 @@ public class ContactUs extends Activity {
         
      final   EditText organistn = (EditText)findViewById(R.id.e4);
        
-     final   EditText mob = (EditText)findViewById(R.id.e5);
+    
       
      final   EditText add1 = (EditText)findViewById(R.id.e6);
     
@@ -131,6 +169,7 @@ public class ContactUs extends Activity {
              
                   int a;
 			
+				@SuppressWarnings("deprecation")
 				public void onClick(View view)
                     {
                         
@@ -161,118 +200,530 @@ public class ContactUs extends Activity {
 						     System.out.println("state name value::"+state);
 						   
 						    if(fstname.length()>0 && lstname.length()>0 && email1.length()>0&& organistn.length()>0&& mob.length()>0&&add1.length()>0&&city1.length()>0&&state1.length()>0){
-						    
-						    a=1;
-						    if(fstname.length()>0){
-							    if (isValidName(firstname)) {
-							    	//a=1;
-									
-								}
-							    else{
-							    	
-							    	a=0;
-							    	fstname.setError("Invalid Firstname");
-							    	
-							    }}
-						    if(lstname.length()>0){
-							    if (isValidName(lastname)) {
-							    	//a=1;
-									
-								}
-							    else{
-							    	
-							    	a=0;
-							    	lstname.setError("Invalid lastname");
-							    	
-							    }}
-						    
-						    if(email1.length()>0){
-						    if (isValidEmail(email)) {
-						    	//a=1;
+						    	 a=1;
+								   {
+									    if (isValidName(firstname)) {
+									    	{
+											    if (isValidName(lastname)) {
+											    	{
+													    if (isValidEmail(email)) {
+													    	{
+																    if (isValidOther1(organisation)) {
+																    	  
+																	    {
+																		    if (isValidNumber(mobile)) {
+																		    	  
+																			    {
+																				    if (isValidOther(address1)) {
+																				    	 
+																					    {
+																						    if (isValidOther1(city)) {
+																						    	 {
+																									    if (isValidOther1(state)) {
+																									    	a=1;
+																											
+																										}
+																									    else{
+																									    	
+																									    	a=0;
+																									    	AlertDialog alertDialog = new AlertDialog.Builder(
+																													ContactUs.this).create();
+
+																											// Setting Dialog Title
+																											alertDialog.setTitle("INFO!");
+
+																											// Setting Dialog Message
+																											alertDialog.setMessage("Please enter valid state." );
+
+																											// Setting Icon to Dialog
+																											alertDialog.setIcon(R.drawable.delete);
+																											
+
+																											// Setting OK Button
+																											alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+																														public void onClick(final DialogInterface dialog,
+																																final int which) {
+																															// Write your code here to execute after dialog
+																															// closed
+																															
+																														}
+																													});
+
+																											// Showing Alert Message
+																											alertDialog.show();
+																									    /*	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+																						    		        
+																						    	            builder.setMessage("Please enter valid state." )
+																						    	                .setTitle( "INFO!" )
+																						    	                .setIcon( R.drawable.pink_pin )
+																						    	                .setCancelable( false )
+																						    	             
+																						    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+																						    	                    {
+																						    	                        public void onClick( DialogInterface dialog, int which )
+																						    	                           {
+																						    	                                dialog.dismiss();
+																						    	                           }
+																						    	                        } 
+																						    	                    );
+																						    	            Dialog dialog = null;
+																						    	            builder.setInverseBackgroundForced(true);
+																						    	            
+																						    	            dialog = builder.create();
+																						    	            dialog.getWindow().setLayout(600, 400); 
+																						    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+																						    				dialog.show();
+																						    				 */
+																									    	
+																									    }}
+																								
+																							}
+																						    else{
+																						    	
+																						    	a=0;
+																						    	AlertDialog alertDialog = new AlertDialog.Builder(
+																										ContactUs.this).create();
+
+																								// Setting Dialog Title
+																								alertDialog.setTitle("INFO!");
+
+																								// Setting Dialog Message
+																								alertDialog.setMessage("Please enter valid city.");
+
+																								// Setting Icon to Dialog
+																								alertDialog.setIcon(R.drawable.delete);
+																								
+
+																								// Setting OK Button
+																								alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+																											public void onClick(final DialogInterface dialog,
+																													final int which) {
+																												// Write your code here to execute after dialog
+																												// closed
+																												
+																											}
+																										});
+
+																								// Showing Alert Message
+																								alertDialog.show();
+																						  /*  	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+																			    		        
+																			    	            builder.setMessage("Please enter valid city." )
+																			    	                .setTitle( "INFO!" )
+																			    	                .setIcon( R.drawable.pink_pin )
+																			    	                .setCancelable( false )
+																			    	             
+																			    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+																			    	                    {
+																			    	                        public void onClick( DialogInterface dialog, int which )
+																			    	                           {
+																			    	                                dialog.dismiss();
+																			    	                           }
+																			    	                        } 
+																			    	                    );
+																			    	            Dialog dialog = null;
+																			    	            builder.setInverseBackgroundForced(true);
+																			    	            
+																			    	            dialog = builder.create();
+																			    	            dialog.getWindow().setLayout(600, 400); 
+																			    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+																			    				dialog.show();
+																			    			*/	 
+																						    	
+																						    }}
+																						
+																					}
+																				    else{
+																				    	
+																				    	a=0;
+																				    	AlertDialog alertDialog = new AlertDialog.Builder(
+																								ContactUs.this).create();
+
+																						// Setting Dialog Title
+																						alertDialog.setTitle("INFO!");
+
+																						// Setting Dialog Message
+																						alertDialog.setMessage("Please enter valid address." );
+
+																						// Setting Icon to Dialog
+																						alertDialog.setIcon(R.drawable.delete);
+																						
+
+																						// Setting OK Button
+																						alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+																									public void onClick(final DialogInterface dialog,
+																											final int which) {
+																										// Write your code here to execute after dialog
+																										// closed
+																										
+																									}
+																								});
+
+																						// Showing Alert Message
+																						alertDialog.show();
+																				    	/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+																	    		        
+																	    	            builder.setMessage("Please enter valid address." )
+																	    	                .setTitle( "INFO!" )
+																	    	                .setIcon( R.drawable.pink_pin )
+																	    	                .setCancelable( false )
+																	    	             
+																	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+																	    	                    {
+																	    	                        public void onClick( DialogInterface dialog, int which )
+																	    	                           {
+																	    	                                dialog.dismiss();
+																	    	                           }
+																	    	                        } 
+																	    	                    );
+																	    	            Dialog dialog = null;
+																	    	            builder.setInverseBackgroundForced(true);
+																	    	            
+																	    	            dialog = builder.create();
+																	    	            dialog.getWindow().setLayout(600, 400); 
+																	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+																	    				dialog.show();
+																	    				 */
+																				    	
+																				    }}
+																				
+																			}
+																		    else{
+																		    	
+																		    	a=0;
+																		    	AlertDialog alertDialog = new AlertDialog.Builder(
+																						ContactUs.this).create();
+
+																				// Setting Dialog Title
+																				alertDialog.setTitle("INFO!");
+
+																				// Setting Dialog Message
+																				alertDialog.setMessage("Please enter valid mobile number." );
+
+																				// Setting Icon to Dialog
+																				alertDialog.setIcon(R.drawable.delete);
+																				
+
+																				// Setting OK Button
+																				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+																							public void onClick(final DialogInterface dialog,
+																									final int which) {
+																								// Write your code here to execute after dialog
+																								// closed
+																								
+																							}
+																						});
+
+																				// Showing Alert Message
+																				alertDialog.show();
+																		    /*	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+															    		        
+															    	            builder.setMessage("Please enter valid mobile number." )
+															    	                .setTitle( "INFO!" )
+															    	                .setIcon( R.drawable.pink_pin )
+															    	                .setCancelable( false )
+															    	             
+															    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+															    	                    {
+															    	                        public void onClick( DialogInterface dialog, int which )
+															    	                           {
+															    	                                dialog.dismiss();
+															    	                           }
+															    	                        } 
+															    	                    );
+															    	            Dialog dialog = null;
+															    	            builder.setInverseBackgroundForced(true);
+															    	            
+															    	            dialog = builder.create();
+															    	            dialog.getWindow().setLayout(600, 400); 
+															    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+															    				dialog.show();
+															    				 */
+																		    	
+																		    }}
+																		
+																	}
+																    else{
+																    	
+																    	a=0;
+																    	AlertDialog alertDialog = new AlertDialog.Builder(
+																				ContactUs.this).create();
+
+																		// Setting Dialog Title
+																		alertDialog.setTitle("INFO!");
+
+																		// Setting Dialog Message
+																		alertDialog.setMessage("Please enter valid organisation." );
+
+																		// Setting Icon to Dialog
+																		alertDialog.setIcon(R.drawable.delete);
+																		
+
+																		// Setting OK Button
+																		alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+																					public void onClick(final DialogInterface dialog,
+																							final int which) {
+																						// Write your code here to execute after dialog
+																						// closed
+																						
+																					}
+																				});
+
+																		// Showing Alert Message
+																		alertDialog.show();
+																    	/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+													    		        
+													    	            builder.setMessage("Please enter valid organisation." )
+													    	                .setTitle( "INFO!" )
+													    	                .setIcon( R.drawable.pink_pin )
+													    	                .setCancelable( false )
+													    	             
+													    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+													    	                    {
+													    	                        public void onClick( DialogInterface dialog, int which )
+													    	                           {
+													    	                                dialog.dismiss();
+													    	                           }
+													    	                        } 
+													    	                    );
+													    	            Dialog dialog = null;
+													    	            builder.setInverseBackgroundForced(true);
+													    	            
+													    	            dialog = builder.create();
+													    	            dialog.getWindow().setLayout(600, 400); 
+													    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+													    				dialog.show();
+													    				 
+																    	*/
+																    }}
+															
+														}
+													    else{
+													    	
+													    	a=0;
+													    	AlertDialog alertDialog = new AlertDialog.Builder(
+																	ContactUs.this).create();
+
+															// Setting Dialog Title
+															alertDialog.setTitle("INFO!");
+
+															// Setting Dialog Message
+															alertDialog.setMessage("Please enter valid email." );
+
+															// Setting Icon to Dialog
+															alertDialog.setIcon(R.drawable.delete);
+															
+
+															// Setting OK Button
+															alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+																		public void onClick(final DialogInterface dialog,
+																				final int which) {
+																			// Write your code here to execute after dialog
+																			// closed
+																			
+																		}
+																	});
+
+															// Showing Alert Message
+															alertDialog.show();
+													  /*  	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+										    		        
+										    	            builder.setMessage("Please enter valid email." )
+										    	                .setTitle( "INFO!" )
+										    	                .setIcon( R.drawable.pink_pin )
+										    	                .setCancelable( false )
+										    	             
+										    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+										    	                    {
+										    	                        public void onClick( DialogInterface dialog, int which )
+										    	                           {
+										    	                                dialog.dismiss();
+										    	                           }
+										    	                        } 
+										    	                    );
+										    	            Dialog dialog = null;
+										    	            builder.setInverseBackgroundForced(true);
+										    	            
+										    	            dialog = builder.create();
+										    	            dialog.getWindow().setLayout(600, 400); 
+										    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+										    				dialog.show();
+										    				 
+													    	*/
+													    }}
+													
+												}
+											    else{
+											    	
+											    	a=0;
+											    	AlertDialog alertDialog = new AlertDialog.Builder(
+															ContactUs.this).create();
+
+													// Setting Dialog Title
+													alertDialog.setTitle("INFO!");
+
+													// Setting Dialog Message
+													alertDialog.setMessage("Please enter valid lastname." );
+
+													// Setting Icon to Dialog
+													alertDialog.setIcon(R.drawable.delete);
+													
+
+													// Setting OK Button
+													alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+																public void onClick(final DialogInterface dialog,
+																		final int which) {
+																	// Write your code here to execute after dialog
+																	// closed
+																	
+																}
+															});
+
+													// Showing Alert Message
+													alertDialog.show();
+											    	/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+								    		        
+								    	            builder.setMessage("Please enter valid lastname." )
+								    	                .setTitle( "INFO!" )
+								    	                .setIcon( R.drawable.pink_pin )
+								    	                .setCancelable( false )
+								    	             
+								    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+								    	                    {
+								    	                        public void onClick( DialogInterface dialog, int which )
+								    	                           {
+								    	                                dialog.dismiss();
+								    	                           }
+								    	                        } 
+								    	                    );
+								    	            Dialog dialog = null;
+								    	            builder.setInverseBackgroundForced(true);
+								    	            
+								    	            dialog = builder.create();
+								    	            dialog.getWindow().setLayout(600, 400); 
+								    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+								    				dialog.show();
+								    				 */
+											    	
+											    }}
+											
+										}
+									    else{
+									    	
+									    	a=0;
+									    	AlertDialog alertDialog = new AlertDialog.Builder(
+													ContactUs.this).create();
+
+											// Setting Dialog Title
+											alertDialog.setTitle("INFO!");
+
+											// Setting Dialog Message
+											alertDialog.setMessage("Please enter valid firstname." );
+
+											// Setting Icon to Dialog
+											alertDialog.setIcon(R.drawable.delete);
+											
+
+											// Setting OK Button
+											alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+														public void onClick(final DialogInterface dialog,
+																final int which) {
+															// Write your code here to execute after dialog
+															// closed
+															
+														}
+													});
+
+											// Showing Alert Message
+											alertDialog.show();
+									    	/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+						    		        
+						    	            builder.setMessage("Please enter valid firstname." )
+						    	                .setTitle( "INFO!" )
+						    	                .setIcon( R.drawable.pink_pin )
+						    	                .setCancelable( false )
+						    	             
+						    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+						    	                    {
+						    	                        public void onClick( DialogInterface dialog, int which )
+						    	                           {
+						    	                                dialog.dismiss();
+						    	                           }
+						    	                        } 
+						    	                    );
+						    	            Dialog dialog = null;
+						    	            builder.setInverseBackgroundForced(true);
+						    	            
+						    	            dialog = builder.create();
+						    	            dialog.getWindow().setLayout(600, 400); 
+						    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+						    				dialog.show();
+						    				 */
+									    	
+									    }}
+								    
+								    
+								    }
+						    else{
+						    	
+						    	a=0;
+						     	AlertDialog alertDialog = new AlertDialog.Builder(
+										ContactUs.this).create();
+
+								// Setting Dialog Title
+								alertDialog.setTitle("INFO!");
+
+								// Setting Dialog Message
+								alertDialog.setMessage("Please enter all the required fields." );
+
+								// Setting Icon to Dialog
+								alertDialog.setIcon(R.drawable.delete);
 								
-							}
-						    else{
-						    	
-						    	a=0;
-						    	email1.setError("Invalid Email");
-						    	
-						    }}
-						    
-						    if(organistn.length()>0){
-							    if (isValidOther(organisation)) {
-							    	//a=1;
-									
-								}
-							    else{
-							    	
-							    	a=0;
-							    	organistn.setError("Invalid organisation");
-							    	
-							    }}
-						    
-						    if(mob.length()>0){
-							    if (isValidNumber(mobile)) {
-							    	//a=1;
-									
-								}
-							    else{
-							    	
-							    	a=0;
-							    	mob.setError("Invalid mobile");
-							    	
-							    }}
-						    
-						    if(add1.length()>0){
-							    if (isValidOther(address1)) {
-							    	//a=1;
-									
-								}
-							    else{
-							    	
-							    	a=0;
-							    	add1.setError("Invalid address");
-							    	
-							    }}
-						    
-						    if(city1.length()>0){
-							    if (isValidOther(city)) {
-							    	//a=1;
-									
-								}
-							    else{
-							    	
-							    	a=0;
-							    	city1.setError("Invalid city");
-							    	
-							    }}
-						    if(state1.length()>0){
-							    if (isValidOther(state)) {
-							    	//a=1;
-									
-								}
-							    else{
-							    	
-							    	a=0;
-							    	state1.setError("Invalid state");
-							    	
-							    }}}
-						    else{
-						    	a=0;
-						    	final Dialog dialog = new Dialog(context);
-				       			 dialog.setContentView(R.layout.custom_dialog);
-				       			 dialog.setTitle("Enter all the required fields");
-				       			 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-				       			  txt.setText("");
-				       			  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-				       			  dialogButton.setOnClickListener(new OnClickListener()		
-									 {
-				       				  public void onClick(View vd) 
-										{
-				       					   dialog.dismiss();
-				    				
-				    						}
-				       					});
-				       			  dialog.show();
+								
+								// Setting OK Button
+								alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+											public void onClick(final DialogInterface dialog,
+													final int which) {
+												// Write your code here to execute after dialog
+												// closed
+												
+											}
+										});
+
+								// Showing Alert Message
+								alertDialog.show();
+						    /*	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+			    		        
+			    	            builder.setMessage("Please enter all the required fields." )
+			    	                .setTitle( "INFO!" )
+			    	                .setIcon( R.drawable.pink_pin )
+			    	                .setCancelable( false )
+			    	             
+			    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+			    	                    {
+			    	                        public void onClick( DialogInterface dialog, int which )
+			    	                           {
+			    	                                dialog.dismiss();
+			    	                           }
+			    	                        } 
+			    	                    );
+			    	            Dialog dialog = null;
+			    	            builder.setInverseBackgroundForced(true);
+			    	            
+			    	            dialog = builder.create();
+			    	            dialog.getWindow().setLayout(600, 400); 
+			    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			    				dialog.show();
+			    				 */
 						    	
 						    	
 						    }
@@ -288,21 +739,55 @@ public class ContactUs extends Activity {
 					
         			else
         			{
-        			final Dialog dialog = new Dialog(context);
-	       			 dialog.setContentView(R.layout.custom_dialog);
-	       			 dialog.setTitle("Connection Failed");
-	       			 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-	       			  txt.setText("No Network Connenction.");
-	       			  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-	       			  dialogButton.setOnClickListener(new OnClickListener()		
-						 {
-	       				  public void onClick(View vd) 
-							{
-	       					   dialog.dismiss();
-	    				
-	    						}
-	       					});
-	       			  dialog.show();
+        			 	AlertDialog alertDialog = new AlertDialog.Builder(
+        						ContactUs.this).create();
+
+        				// Setting Dialog Title
+        				alertDialog.setTitle("INFO!");
+
+        				// Setting Dialog Message
+        				alertDialog.setMessage("No network connection.");
+
+        				// Setting Icon to Dialog
+        				alertDialog.setIcon(R.drawable.delete);
+        				
+
+        				// Setting OK Button
+        				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+        							public void onClick(final DialogInterface dialog,
+        									final int which) {
+        								
+        								
+        							}
+        						});
+
+        				// Showing Alert Message
+        				alertDialog.show();
+        				
+        				/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+	    		        
+	    	            builder.setMessage("No network connection." )
+	    	                .setTitle( "INFO!" )
+	    	                .setIcon( R.drawable.pink_pin )
+	    	                .setCancelable( false )
+	    	             
+	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+	    	                    {
+	    	                        public void onClick( DialogInterface dialog, int which )
+	    	                           {
+	    	                                dialog.dismiss();
+	    	                           }
+	    	                        } 
+	    	                    );
+	    	            Dialog dialog = null;
+	    	            builder.setInverseBackgroundForced(true);
+	    	            
+	    	            dialog = builder.create();
+	    	            dialog.getWindow().setLayout(600, 400); 
+	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+	    				dialog.show();
+	    				 */
         			}
 
 
@@ -335,7 +820,7 @@ public class ContactUs extends Activity {
 					// TODO Auto-generated method stub
 					
 					
-						String EMAIL_PATTERN = "^[a-zA-Z]*$";
+						String EMAIL_PATTERN = "[a-zA-Z]+[a-zA-Z]*$";
 
 						Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 						Matcher matcher = pattern.matcher(names);
@@ -345,9 +830,9 @@ public class ContactUs extends Activity {
 					// TODO Auto-generated method stub
 					
 					
-						String EMAIL_PATTERN = "[7-9]{1}+\\-[0-9]{10}";
+					String PHONE_REGEX ="\\([1-9]{1}[0-9]{2}\\) [0-9]{3}\\-[0-9]{4}$";
 
-						Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+						Pattern pattern = Pattern.compile(PHONE_REGEX);
 						Matcher matcher = pattern.matcher(number);
 						return matcher.matches();
 					}
@@ -355,13 +840,22 @@ public class ContactUs extends Activity {
 					// TODO Auto-generated method stub
 					
 					
-						String EMAIL_PATTERN = "^[a-zA-Z0-9@_.,-/]*$";
+						String EMAIL_PATTERN = "[a-zA-Z0-9]+[a-zA-Z0-9@_.,-/\n ]*$";
 
 						Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 						Matcher matcher = pattern.matcher(other);
 						return matcher.matches();
 					}
-				
+				private boolean isValidOther1(String names) {
+					// TODO Auto-generated method stub
+					
+					
+						String EMAIL_PATTERN = "[a-zA-Z]+[a-zA-Z ]*$";
+
+						Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+						Matcher matcher = pattern.matcher(names);
+						return matcher.matches();
+					}
 				
                     });
          
@@ -400,39 +894,20 @@ public class ContactUs extends Activity {
 				// TODO Auto-generated method stub
 				if (BuildConfig.DEBUG) Log.v(SendEmailAsyncTask.class.getName(), "doInBackground()");
 		        try {
-		        	/*String  firstname = fstname.getText().toString();
-		        	String  lastname = lstname.getText().toString();
-		        	String  email = email1.getText().toString();
-		        	String  organisation = organistn.getText().toString();
-		        	String  mobile = mob.getText().toString();
-		        	String  address1 = add1.getText().toString();
-		        	String  city = city1.getText().toString();
-		        	String  state = state1.getText().toString();*/
+		        
 		        	
-		        	System.out.println("first name value::"+firstname);
-		        	System.out.println("first name value::"+lastname);
-		        	System.out.println("first name value::"+email);
-		        	System.out.println("first name value::"+organisation);
-		        	System.out.println("first name value::"+mobile);
-		        	System.out.println("first name value::"+address1);
-		        	System.out.println("first name value::"+city);
-		        	System.out.println("first name value::"+state);
+		        	
 		        	
 			
-		       // String	 ack = String.format("Hi "+"%s,\n\n" +"Welcome To GPS!\n\n"+"Your  Details has been Submitted to your respective Provider Successfully.\n\n"+"Keep on Answering your Weekly Assessments.\n\n"
-					    		//+"Thank you!",firstname);
+		       
 		        	 String part_name=String.format("Hi");
 		        	 String part_name1=String.format("Contact Us Information");
-		        	//String part_name = null;
-		        	//String part_name1 = null;
-				    
+		        
 		        	{
 		        		    message=String.format("Hi "+"%s\n\n"+"Thanks for Contacting Us... "+"\n\n"+"Our Sales & Support team will contact you shortly "+"\n\n"+"\n\n",firstname);
 		        		    messageall=String.format("Hi "+"\n\n"+"Below are the details of the contacted person "+"\n\n"+"first Name: "+"%s\n\n"+"last name: "+"%s\n\n"+"Email: "+"%s\n\n"+"Organisation: "+"%s\n\n"+"Mobile: "+"%s\n\n"+"address: "+"%s\n\n"+"city: "+"%s\n\n"+"State: "+"%s"+"\n\n"+"\n\n",firstname,lastname,email,organisation,mobile,address1,city,state);
 		        		    System.out.println(messageall);
-		        		    System.out.println(message);
-		        		  System.out.println("both in email");
-	 //sender.sendMail("Hello",ack,message, "imans.vijay@gmail.com","amskala76@gmail.com")  ;      		  
+		        		         		  
 	 sender.sendMail(part_name,messageall, "deemgpsapp@gmail.com","udayjc@icloud.com")  ;
      sender.sendMail(part_name1,message, "deemgpsapp@gmail.com",email)  ;
      
@@ -530,6 +1005,7 @@ class AttemptLogin extends AsyncTask<String,String,String>{
      				  }
 	 
 	 
+	@SuppressWarnings("deprecation")
 	@Override
 	 protected void onPostExecute(String file_url) {
     	   super.onPostExecute(file_url);
@@ -539,48 +1015,109 @@ class AttemptLogin extends AsyncTask<String,String,String>{
           if(JsonParser.jss.equals("empty"))
           {
        	   System.out.println("json null value");
-       	 final Dialog dialog = new Dialog(context);
-     	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-				// final Dialog dialog = new Dialog(context);
-				 dialog.setContentView(R.layout.custom_dialog);
-				// dialog.setTitle("INFO!");
-				 dialog.setCancelable(false);
-				 dialog.setCanceledOnTouchOutside(false);
-				 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-				  txt.setText("Error connecting Database");
-				  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-				  dialogButton.setOnClickListener(new OnClickListener() {
-					  public void onClick(View vd) {
-						   dialog.dismiss();
-					
+       	AlertDialog alertDialog = new AlertDialog.Builder(
+				ContactUs.this).create();
+
+		// Setting Dialog Title
+		alertDialog.setTitle("INFO!");
+
+		// Setting Dialog Message
+		alertDialog.setMessage("Error connecting database.");
+
+		// Setting Icon to Dialog
+		alertDialog.setIcon(R.drawable.delete);
+		
+
+		// Setting OK Button
+		alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+					public void onClick(final DialogInterface dialog,
+							final int which) {
+						// Write your code here to execute after dialog
+						// closed
+						
 					}
 				});
-				  dialog.show();
-				  pDialog.dismiss();
+
+		// Showing Alert Message
+		alertDialog.show();
+       /*	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+	        
+          builder.setMessage("Error connecting database." )
+              .setTitle( "INFO!" )
+              .setIcon( R.drawable.pink_pin )
+              .setCancelable( false )
+           
+              .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+                  {
+                      public void onClick( DialogInterface dialog, int which )
+                         {
+                      	
+                              dialog.dismiss();
+                         }
+                      } 
+                  );
+          Dialog dialog = null;
+          builder.setInverseBackgroundForced(true);
+          
+          dialog = builder.create();
+          dialog.getWindow().setLayout(600, 400); 
+          dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			dialog.show();*/
           }
           else{
+        	 
+        		AlertDialog alertDialog = new AlertDialog.Builder(
+						ContactUs.this).create();
+
+				// Setting Dialog Title
+				alertDialog.setTitle("INFO!");
+
+				// Setting Dialog Message
+				alertDialog.setMessage("Message Sent.");
+
+				// Setting Icon to Dialog
+				alertDialog.setIcon(R.drawable.tick);
+				
+
+				// Setting OK Button
+				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+							public void onClick(final DialogInterface dialog,
+									final int which) {
+								// Write your code here to execute after dialog
+								// closed
+								
+							}
+						});
+
+				// Showing Alert Message
+				alertDialog.show();
+        	 /* AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
+		        
+	            builder.setMessage("Mail sent." )
+	                .setTitle( "INFO!" )
+	                .setIcon( R.drawable.pink_pin )
+	                .setCancelable( false )
+	             
+	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
+	                    {
+	                        public void onClick( DialogInterface dialog, int which )
+	                           {
+	                        	
+	                                dialog.dismiss();
+	                           }
+	                        } 
+	                    );
+	            Dialog dialog = null;
+	            builder.setInverseBackgroundForced(true);
+	            
+	            dialog = builder.create();
+	            dialog.getWindow().setLayout(600, 400); 
+	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+				dialog.show();
         	  
-        	  final Dialog dialog = new Dialog(context);
-           	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-      				// final Dialog dialog = new Dialog(context);
-      				 dialog.setContentView(R.layout.custom_dialog);
-      				// dialog.setTitle("INFO!");
-      				 dialog.setCancelable(false);
-      				 dialog.setCanceledOnTouchOutside(false);
-      				 TextView txt = (TextView) dialog.findViewById(R.id.errorlog);
-      				  txt.setText("Msg sent");
-      				  Button dialogButton = (Button) dialog.findViewById(R.id.release);
-      				  dialogButton.setOnClickListener(new OnClickListener() {
-      					  public void onClick(View vd) {
-      						   dialog.dismiss();
-      					
-      					}
-      				});
-      				  dialog.show();
-      				  pDialog.dismiss();
-                
-        	  
-        	  
+        	  */
         	  
           }
         

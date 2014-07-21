@@ -37,7 +37,6 @@ public class DashboardActivity extends Activity{
 	public static List<Vehicle> vehicleall= new ArrayList<Vehicle>();
     JSONArray user = null;
     private static final String TAG_VEHICLE_ARRAY = "Vehicle List";
-	//private static final String TAG_SUCCESS = "success";
 	private static final String TAG_SRES= "serviceresponse";
 	private static final String TAG_ORGID= "org_id1";
 	private static final String TAG_Vehicle_regno= "vechicle_reg_no";
@@ -78,7 +77,7 @@ public class DashboardActivity extends Activity{
 		 list2= (ListView) findViewById(R.id.list);
 				aboutus=(Button)findViewById(R.id.aboutus);
 				contactus=(Button)findViewById(R.id.contactus);
-				signout=(Button)findViewById(R.id.button1);
+				signout=(Button)findViewById(R.id.logout);
 				welcomeusername=(TextView)findViewById(R.id.welcomeusername);
 				welcomeusername.setText(LoginActivity.usernamepassed+"!");
 	
@@ -134,7 +133,7 @@ public class DashboardActivity extends Activity{
 		@Override
 	    protected void onPreExecute() {
 			  cDialog = new ProgressDialog(DashboardActivity.this);
-	          cDialog.setMessage("Fetching Vehicle Details");
+	          cDialog.setMessage("Please wait...");
 	          cDialog.setIndeterminate(false);
 	          cDialog.setCancelable(false);
 	          cDialog.show();
