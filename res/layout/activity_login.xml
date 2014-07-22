@@ -3,44 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
      android:id="@+id/relativelay"
-      style="@style/AppTheme"
+   
     android:background="@drawable/loginpage"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity" >
-
-    <EditText
-        android:id="@+id/pswd"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_alignLeft="@+id/username"
-        android:layout_below="@+id/username"
-        android:layout_marginTop="26dp"
-        android:background="#00000000"
-        android:ems="10"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="166dp"
-        android:background="#00000000"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <Button
-        android:id="@+id/signin"
-        android:layout_width="60dp"
-        android:layout_height="25dp"
-        android:layout_alignLeft="@+id/pswd"
-        android:layout_below="@+id/pswd"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/loginbutton" />
 
     <Button
         android:id="@+id/reset"
@@ -50,5 +19,38 @@
         android:layout_alignBottom="@+id/signin"
         android:layout_alignRight="@+id/pswd"
         android:background="@drawable/resetbutton" />
+
+    <Button
+        android:id="@+id/signin"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_alignLeft="@+id/pswd"
+        android:layout_below="@+id/pswd"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/loginbutton" />
+
+    <EditText
+        android:id="@+id/username"
+        style="@style/custom"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:background="#00000000"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/pswd"
+        style="@style/custom"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/username"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="28dp"
+        android:background="#00000000"
+        android:ems="10"
+        android:inputType="textPassword" />
 
 </RelativeLayout>

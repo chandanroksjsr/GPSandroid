@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
       android:id="@+id/layoutt"
     android:layout_height="fill_parent"
-  android:background = "@drawable/contactbg"
-    style="@style/AppTheme"
+  android:background = "@drawable/contactus"
+   
     android:orientation="vertical" >
 
     <EditText
         android:id="@+id/e1"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -16,89 +17,101 @@
         android:layout_marginTop="110dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:hint="@string/firstname"
         android:padding="5dip" />
 
     <EditText
         android:id="@+id/e2"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:hint="@string/lastname"
         android:padding="5dip" />
 
     <EditText
         android:id="@+id/e3"
-        android:layout_width="wrap_content"
-         android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email"
-        android:padding="5dip" />
-
-    <EditText
-        android:id="@+id/e4"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:hint="@string/email"
+        
+        android:inputType="textEmailAddress"
+        android:padding="5dip" />
+
+    <EditText
+        android:id="@+id/e4"
+        style="@style/custom"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+          android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_,"
         android:hint="@string/orgname"
         android:padding="5dip" />
 
     <EditText
         android:id="@+id/e5"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:maxLength="13"
-        android:inputType="phone"
         android:hint="@string/mobnumb"
+        android:inputType="phone"
+        android:maxLength="13"
         android:padding="5dip" />
 
     <EditText
         android:id="@+id/e6"
+        style="@style/custom"
         android:layout_width="211dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:maxLines="5"
-        android:hint="@string/addrs"
-        android:padding="5dip"
-        
         android:gravity="top|left"
-       android:textSize="14dip" />
+        android:hint="@string/addrs"
+        android:maxLines="5"
+        android:padding="5dip"
+        android:textSize="14dip" />
 
     <EditText
         android:id="@+id/e8"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_,"
         android:hint="@string/city"
         android:padding="5dip" />
 
     <EditText
         android:id="@+id/e9"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
         android:hint="@string/state"
         android:padding="5dip" />
 
@@ -129,4 +142,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

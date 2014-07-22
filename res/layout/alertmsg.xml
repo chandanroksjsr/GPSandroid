@@ -36,6 +36,7 @@
 
     <EditText
         android:id="@+id/e6"
+        style="@style/custom"
         android:layout_width="290dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
@@ -79,5 +80,7 @@
         android:layout_alignRight="@+id/e6"
         android:layout_alignTop="@+id/textView1"
         android:background="@drawable/logout" />
+
+    
 
 </RelativeLayout>

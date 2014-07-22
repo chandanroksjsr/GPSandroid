@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    >
+ 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:layout_marginLeft="5px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="5px"
+        android:src="@drawable/ic_launcher" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/veh_reg_no"
+        android:text="then" />
+
+    <TextView
+        android:id="@+id/veh_reg_no"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/label"
+        android:layout_alignBottom="@+id/label"
+        android:layout_toRightOf="@+id/logo"
+        android:text="text" />
+ 
+</RelativeLayout>

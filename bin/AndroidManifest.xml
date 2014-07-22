@@ -90,6 +90,10 @@
             android:name="com.deemsysinc.gpsmobiletracking.ContactUs"
             
             android:label="@string/app_name"  android:screenOrientation="portrait"></activity>
+                <activity
+            android:name="com.deemsysinc.gpsmobiletracking.chumma"
+            
+            android:label="@string/app_name"  android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

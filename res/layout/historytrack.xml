@@ -58,7 +58,7 @@
       android:layout_alignBottom="@+id/map"
       android:layout_alignLeft="@+id/map"
       android:background="@drawable/togglebutton"
-      android:checked="true"
+      android:checked="false"
        android:textOff=""
             android:textOn=""
       android:text="ToggleButton" />

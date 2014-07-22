@@ -59,6 +59,6 @@
         android1:layout_alignBottom="@+id/map"
         android1:layout_toLeftOf="@+id/welcmename"
         android1:background="@drawable/togglebutton"
-        android1:checked="true" />
+        android1:checked="false" />
 
 </RelativeLayout>
