@@ -89,7 +89,7 @@ public class HistoryTrack  extends Activity {
 		String longitude;
 		double latitude1;
 		double longitude1;
-		private static String vehiclehistorysurll = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
+		private static String vehiclehistorysurll = "http://192.168.1.158:8888/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
@@ -433,7 +433,7 @@ public class HistoryTrack  extends Activity {
   protected void onResume() {
       super.onResume();
       System.out.println("in on resume ");
-      initilizeMap();
+      //initilizeMap();
       showDialog(DATE_PICKER_ID);
   }
   @Override

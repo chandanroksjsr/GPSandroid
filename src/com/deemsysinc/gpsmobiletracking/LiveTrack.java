@@ -83,7 +83,7 @@ public class LiveTrack extends Activity {
 		double latitude1;
 		double longitude1;
 		//private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
-	  private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/LiveTrack.php?service=livetrack"; 
+	  private static String vehicleliveurl = "http://192.168.1.158:8888/gpsandroid/service/LiveTrack.php?service=livetrack"; 
 	/** Called when the activity is first created. */
 	  
 	  @Override
@@ -115,7 +115,7 @@ public class LiveTrack extends Activity {
 	         e.printStackTrace();
 	      }
 	      tgbutton = (ToggleButton) findViewById(R.id.showmap);
-	      tgbutton.setSelected(true);
+	    //  tgbutton.setSelected(true);
 	        tgbutton.setOnClickListener(new OnClickListener() {
 	 
 	            @Override

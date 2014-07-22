@@ -14,11 +14,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -34,7 +34,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 public class ContactUs extends Activity {
     
@@ -71,7 +71,7 @@ public class ContactUs extends Activity {
 		    getActionBar().hide();
 		setContentView(R.layout.contactus);
 		    mob = (EditText)findViewById(R.id.e5);
-		LinearLayout layout = (LinearLayout) findViewById(R.id.layoutt);
+		RelativeLayout layout = (RelativeLayout) findViewById(R.id.layoutt);
         ConnectionDetector cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent= cd.isConnectingToInternet();
         InputFilter filter = new InputFilter() {
@@ -948,7 +948,7 @@ class AttemptLogin extends AsyncTask<String,String,String>{
 
 	   private ProgressDialog pDialog;
 	
-	public static final String urlE = "http://192.168.1.158:8888/Android/service/view2.php?service=insert";
+	public static final String urlE = "http://192.168.1.158:8888/gpsandroid/service/Contact.php?service=insert";
 	 
 	  
 	    JSONObject jsonE;
@@ -958,7 +958,7 @@ class AttemptLogin extends AsyncTask<String,String,String>{
          super.onPreExecute();
          pDialog = new ProgressDialog(ContactUs.this);
 
-         pDialog.setMessage("Sending Data.Please wait...");
+         pDialog.setMessage("Please wait...");
          
          pDialog.setIndeterminate(false);
          pDialog.setCancelable(true);

@@ -1,6 +1,7 @@
 package com.deemsysinc.gpsmobiletracking;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -15,12 +16,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,7 +59,7 @@ public class AlertMsg  extends Activity {
 	public static ArrayList<String> mobilenumber= new ArrayList<String>();
 	
 
-	private static String url = "http://192.168.1.71:8080/gpsandroid/service/message.php?service=select"; 
+	private static String url = "http://192.168.1.158:8888/gpsandroid/service/message.php?service=select"; 
 	
     private static final String TAG_VEHICLE_ARRAY = "mobilenumber";
 
@@ -146,8 +147,7 @@ public class AlertMsg  extends Activity {
 	        
 	      btnsend.setOnClickListener(new OnClickListener() {
 	            
-	            private Context context;
-
+	         
 				@SuppressWarnings("deprecation")
 				@Override
 	            public void onClick(View v) {
@@ -177,7 +177,8 @@ public class AlertMsg  extends Activity {
 	  					                            {
 	  					                            	try 
 	  					                            	{
-	  														JSONObject	c = jobject.getJSONObject(TAG_SRES);
+	  					                            		running();
+	  												/*JSONObject	c = jobject.getJSONObject(TAG_SRES);
 	  													
 	  			         					    	
 	  			         						    	mobile = c.getJSONArray(TAG_VEHICLE_ARRAY);
@@ -193,11 +194,11 @@ public class AlertMsg  extends Activity {
 	  			         					    	   System.out.println("mobile number list"+parent_mobile1);
 	  			         					    	   
 	  			         					    
-	  			         					    	  running();
-	  			         						    	}
+	  			         					    	  
+	  			         						    	}*/
 	  			            		        			}
 	  			         						    	
-	  													catch (JSONException e)
+	  													catch (Exception e)
 	  													{
 	  														// TODO Auto-generated catch block
 	  																e.printStackTrace();
@@ -233,30 +234,7 @@ public class AlertMsg  extends Activity {
 
 											// Showing Alert Message
 											alertDialog.show();
-	  					                    /*   AlertDialog.Builder builder= new AlertDialog.Builder(AlertMsg.this,R.style.MyTheme );
- 							    		        
- 							    	            builder.setMessage("Please enter valid message." )
- 							    	                .setTitle( "INFO!" )
- 							    	                .setIcon( R.drawable.pink_pin )
- 							    	                .setCancelable( false )
- 							    	             
- 							    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
- 							    	                    {
- 							    	                        public void onClick( DialogInterface dialog, int which )
- 							    	                           {
- 							    	                        	
- 							    	                                dialog.dismiss();
- 							    	                           }
- 							    	                        } 
- 							    	                    );
- 							    	            Dialog dialog = null;
- 							    	            builder.setInverseBackgroundForced(true);
- 							    	            
- 							    	            dialog = builder.create();
- 							    	            dialog.getWindow().setLayout(600, 400); 
- 							    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
- 							    				dialog.show();*/
-	  					                                
+	  					                  
 	  					                            }
 	  					                          
 	  						                    }else
@@ -287,30 +265,7 @@ public class AlertMsg  extends Activity {
 
 												// Showing Alert Message
 												alertDialog.show();
-	  						                    	/* AlertDialog.Builder builder= new AlertDialog.Builder(AlertMsg.this,R.style.MyTheme );
-	  							    		        
-	  							    	            builder.setMessage("Message should not be empty." )
-	  							    	                .setTitle( "INFO!" )
-	  							    	                .setIcon( R.drawable.pink_pin )
-	  							    	                .setCancelable( false )
-	  							    	             
-	  							    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-	  							    	                    {
-	  							    	                        public void onClick( DialogInterface dialog, int which )
-	  							    	                           {
-	  							    	                        	
-	  							    	                                dialog.dismiss();
-	  							    	                           }
-	  							    	                        } 
-	  							    	                    );
-	  							    	            Dialog dialog = null;
-	  							    	            builder.setInverseBackgroundForced(true);
-	  							    	            
-	  							    	            dialog = builder.create();
-	  							    	            dialog.getWindow().setLayout(600, 400); 
-	  							    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-	  							    				dialog.show();
-	  							    				*/
+	  						                    
 	  						                    }
 	  						           
 											
@@ -346,30 +301,7 @@ public class AlertMsg  extends Activity {
 
 											// Showing Alert Message
 											alertDialog.show();
-	            		        			/*AlertDialog.Builder builder= new AlertDialog.Builder(AlertMsg.this,R.style.MyTheme );
-	            			    		        
-	            			    	            builder.setMessage("No network connection." )
-	            			    	                .setTitle( "INFO!" )
-	            			    	                .setIcon( R.drawable.pink_pin )
-	            			    	                .setCancelable( false )
-	            			    	             
-	            			    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-	            			    	                    {
-	            			    	                        public void onClick( DialogInterface dialog, int which )
-	            			    	                           {
-	            			    	                        
-	            			    	                                dialog.dismiss();
-	            			    	                           }
-	            			    	                        } 
-	            			    	                    );
-	            			    	            Dialog dialog = null;
-	            			    	            builder.setInverseBackgroundForced(true);
-	            			    	            
-	            			    	            dialog = builder.create();
-	            			    	            dialog.getWindow().setLayout(600, 400); 
-	            			    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-	            			    				dialog.show();
-	            			    				*/
+	            		        		
 	            		        		}
 	            		        		}
 
@@ -413,13 +345,14 @@ public class AlertMsg  extends Activity {
 						    	mobile = c.getJSONArray(TAG_VEHICLE_ARRAY);
 						    	Log.i("tagconvertstr1", "["+mobile+"]");
 							    	
-							    	for(i=0;i<mobile.length();i++)
+							    	for(i=0;i<mobilenumber.size();i++)
 							    	{
 						    		System.out.println("forloop1");
 						    		JSONObject c1 = mobile.getJSONObject(i);
 						    		JSONObject c2 = c1.getJSONObject(TAG_SRES);
 						    	 
-						    	    parent_mobile1 = c2.getString(TAG_Parent_mobile1);
+						    	   // parent_mobile1 = c2.getString(TAG_Parent_mobile1);
+						    		parent_mobile1=mobilenumber.get(i);
 						    	    
 						        System.out.println("mobile number list"+parent_mobile1);
 						    	   
@@ -460,7 +393,7 @@ public class AlertMsg  extends Activity {
 						           
 						        }
 							
-						    	
+						    	System.out.println("i value"+i);
 							   }
 							    
 							

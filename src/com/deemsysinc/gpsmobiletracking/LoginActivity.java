@@ -7,25 +7,23 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.app.Dialog;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.view.ContextThemeWrapper;
+
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
+
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -47,7 +45,7 @@ public class LoginActivity extends Activity {
 	String enabled;
 	String username1;
 	String password1;
-	 private static final int ALERT_DIALOG = 1;
+	
 	private static final String TAG_SUCCESS1 = "success";
 	private static final String TAG_USERNAME = "username";
 	private static final String TAG_PASSWORD = "password";
@@ -57,7 +55,7 @@ public class LoginActivity extends Activity {
 	private static final String TAG_ORGID= "org_id";
 
    
-	private static String loginurl = "http://192.168.1.71:8080/gpsandroid/service/Login.php?service=login"; 
+	private static String loginurl = "http://192.168.1.158:8888/gpsandroid/service/Login.php?service=login"; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -341,7 +339,7 @@ System.out.println("is internet present:::"+isInternetPresent);
 	        protected void onPreExecute() {
 	            super.onPreExecute();
 	            pDialog = new ProgressDialog(LoginActivity.this);
-	            pDialog.setMessage("Authenticating");
+	            pDialog.setMessage("Please wait...");
 	            pDialog.setIndeterminate(false);
 	            pDialog.setCancelable(false);
 	            pDialog.show();
@@ -568,4 +566,11 @@ System.out.println("is internet present:::"+isInternetPresent);
 	        }
 	        return dialog;
 	     }*/
+	 
+	 public boolean onCreateOptionsMenu(Menu menu) {
+			// Inflate the menu; this adds items to the action bar if it is present.
+			getMenuInflater().inflate(R.menu.main, menu);
+			return true;
+		}
+
 }
