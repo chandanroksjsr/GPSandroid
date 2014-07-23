@@ -436,9 +436,9 @@ public class HistoryTrack  extends Activity {
 @Override
   protected void onResume() {
       super.onResume();
-      googleMap.clear();
+    
       System.out.println("in on resume ");
-      initilizeMap();
+     // initilizeMap();
       showDialog(DATE_PICKER_ID);
   }
   @Override
