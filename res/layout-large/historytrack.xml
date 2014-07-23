@@ -18,7 +18,7 @@
         android:textOn="" />
 
     <fragment
-        android:id="@+id/map"
+        android:id="@+id/map1"
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="550dp"
         android:layout_height="583dp"

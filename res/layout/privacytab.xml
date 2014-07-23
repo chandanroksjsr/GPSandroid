@@ -8,10 +8,11 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="46dp"
+        android:layout_height="330dp"
+        android:layout_alignParentBottom="false"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
         android:src="@drawable/underconstruction" />
 
 </RelativeLayout>

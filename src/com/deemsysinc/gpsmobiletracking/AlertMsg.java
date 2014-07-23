@@ -1,7 +1,6 @@
 package com.deemsysinc.gpsmobiletracking;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -34,7 +33,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+ 
 
 
 
@@ -59,7 +58,8 @@ public class AlertMsg  extends Activity {
 	public static ArrayList<String> mobilenumber= new ArrayList<String>();
 	
 
-	private static String url = "http://192.168.1.158:8888/gpsandroid/service/message.php?service=select"; 
+	//private static String url = "http://192.168.1.158:8888/gpsandroid/service/message.php?service=select"; 
+	private static String url = "http://192.168.1.71:8080/gpsandroid/service/message.php?service=select"; 
 	
     private static final String TAG_VEHICLE_ARRAY = "mobilenumber";
 
@@ -110,6 +110,8 @@ public class AlertMsg  extends Activity {
 					
 		            
 		        	public void onClick(View v) { 
+		        		LiveTrack.doAsynchronousTask.cancel();
+		        		LiveTrack.timer.cancel();
 		        		LoginActivity.usernamepassed="";
 		       VehichleArrayAdapter.data.clear();
 		       DashboardActivity.vehicleall.clear();
@@ -173,8 +175,7 @@ public class AlertMsg  extends Activity {
 	  						                    {
 	  						       
 	  					                       
-	  					                            if (isValidName(msg))
-	  					                            {
+	  					                           
 	  					                            	try 
 	  					                            	{
 	  					                            		running();
@@ -204,38 +205,8 @@ public class AlertMsg  extends Activity {
 	  																e.printStackTrace();
 	  													}
 	  					                              
-	  					                            }
-	  					                            else{
-	  					                                
-	  					                         a=0;
-	  					                   	AlertDialog alertDialog = new AlertDialog.Builder(
-													AlertMsg.this).create();
-
-											// Setting Dialog Title
-											alertDialog.setTitle("INFO!");
-
-											// Setting Dialog Message
-											alertDialog.setMessage("Please enter valid message.");
-
-											// Setting Icon to Dialog
-											alertDialog.setIcon(R.drawable.delete);
-											
-
-											// Setting OK Button
-											alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
-
-														public void onClick(final DialogInterface dialog,
-																final int which) {
-															// Write your code here to execute after dialog
-															// closed
-															
-														}
-													});
-
-											// Showing Alert Message
-											alertDialog.show();
-	  					                  
-	  					                            }
+	  					                            
+	  					                           
 	  					                          
 	  						                    }else
 	  						                    {
@@ -310,16 +281,7 @@ public class AlertMsg  extends Activity {
 					new messaging().execute();
 				}
 
-				private boolean isValidName(String messagetext2) {
-					// TODO Auto-generated method stub
-					
-					
-					 String other = "^[a-zA-Z0-9@_.,-/\n ]*$";
-		                
-		                Pattern pattern = Pattern.compile(other);
-		                Matcher matcher = pattern.matcher(messagetext2);
-		                return matcher.matches();
-				}
+			
 
 	      });
 	            
@@ -348,10 +310,7 @@ public class AlertMsg  extends Activity {
 							    	for(i=0;i<mobilenumber.size();i++)
 							    	{
 						    		System.out.println("forloop1");
-						    		JSONObject c1 = mobile.getJSONObject(i);
-						    		JSONObject c2 = c1.getJSONObject(TAG_SRES);
-						    	 
-						    	   // parent_mobile1 = c2.getString(TAG_Parent_mobile1);
+						    		
 						    		parent_mobile1=mobilenumber.get(i);
 						    	    
 						        System.out.println("mobile number list"+parent_mobile1);
@@ -406,12 +365,38 @@ public class AlertMsg  extends Activity {
 
 							return null;
 						}
+					@SuppressWarnings("deprecation")
 					@Override
 	    			protected void onPostExecute(String file_url) {
 					
 	    				 super.onPostExecute(file_url);
 	    				pDialog.dismiss();
-	    			
+	    				AlertDialog alertDialog = new AlertDialog.Builder(
+								AlertMsg.this).create();
+
+						// Setting Dialog Title
+						alertDialog.setTitle("INFO!");
+
+						// Setting Dialog Message
+						alertDialog.setMessage("Message Sent.");
+
+						// Setting Icon to Dialog
+						alertDialog.setIcon(R.drawable.tick);
+						
+
+						// Setting OK Button
+						alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+
+									public void onClick(final DialogInterface dialog,
+											final int which) {
+										// Write your code here to execute after dialog
+										// closed
+										
+									}
+								});
+
+						// Showing Alert Message
+						alertDialog.show();
 	 
 							}
 	    					 

@@ -39,6 +39,8 @@
         android:layout_marginTop="180dp"
         android:background="#00000000"
         android:ems="10"
+        android:singleLine = "true"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
         android:inputType="textPersonName" />
 
     <EditText
@@ -51,6 +53,8 @@
         android:layout_marginTop="28dp"
         android:background="#00000000"
         android:ems="10"
+        android:singleLine = "true"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
         android:inputType="textPassword" />
 
 </RelativeLayout>

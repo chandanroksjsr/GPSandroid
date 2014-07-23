@@ -33,12 +33,14 @@
         android:id="@+id/username"
         style="@style/custom"
         android:layout_width="280dp"
+        android:singleLine = "true"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="377dp"
         android:background="#00000000"
         android:ems="10"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
         android:inputType="textPersonName"
         android:text="" >
       
@@ -47,13 +49,15 @@
     <EditText
         android:id="@+id/pswd"
         style="@style/custom"
-        android:layout_width="280dp"
+        android:layout_width="280dp"      
         android:layout_height="40dp"
         android:layout_alignLeft="@+id/username"
         android:layout_below="@+id/username"
         android:layout_marginTop="76dp"
         android:background="#00000000"
         android:ems="10"
+        android:singleLine = "true"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
         android:inputType="textPassword" />
 
 </RelativeLayout>

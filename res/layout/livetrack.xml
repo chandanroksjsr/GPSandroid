@@ -5,21 +5,21 @@
 
     <TextView
         android:id="@+id/textView1"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/map"
-        android:layout_alignLeft="@+id/map"
-        android:layout_marginBottom="28dp"
+        android1:layout_marginLeft="20dp"
+        android1:layout_marginTop="110dp"
         android:text="@string/welcome"
         android:textColor="#ffffff" />
+
     <TextView
         android:id="@+id/welcmename"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_marginLeft="88dp"
+        android1:layout_marginTop="110dp"
         android:text="TextView"
         android:textColor="#ffffff" />
 
@@ -27,37 +27,39 @@
         android:id="@+id/signutty"
         android:layout_width="60dp"
         android:layout_height="20dp"
-        android:layout_alignRight="@+id/map"
-        android:layout_alignTop="@+id/welcmename"
-        android:layout_marginRight="14dp"
+        android1:layout_centerHorizontal="false"
+        android1:layout_marginLeft="228dp"
+        android1:layout_marginTop="110dp"
         android:background="@drawable/logout" />
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_width="290dp"
-        android:layout_height="280dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
+        android:layout_width="294dp"
+        android:layout_height="285dp"
+        android:layout_alignParentBottom="false"
+        android:layout_centerHorizontal="false"
+        android1:layout_alignParentEnd="false"
+        android1:layout_marginLeft="13dp"
+        android1:layout_marginTop="158dp" />
 
     <Button
         android1:id="@+id/homebut"
-        android1:layout_width="30dp"
-        android1:layout_height="20dp"
-        android1:layout_above="@+id/textView1"
-        android1:layout_alignParentLeft="true"
-        android1:layout_marginBottom="22dp"
+        android1:layout_width="40dp"
+        android1:layout_height="35dp"
+        android1:layout_alignParentLeft="false"
+        android1:layout_marginLeft="10dp"
+        android1:layout_marginTop="68dp"
         android1:background="@drawable/home" />
 
     <ToggleButton
         android1:id="@+id/showmap"
         android1:layout_width="50dp"
         android1:layout_height="50dp"
-         android1:textOff=""
-            android1:textOn=""
+        android:textOff=""
+        android:textOn=""
         android1:layout_alignBottom="@+id/map"
-        android1:layout_toLeftOf="@+id/welcmename"
+        android1:layout_alignLeft="@+id/map"
         android1:background="@drawable/togglebutton"
         android1:checked="false" />
 

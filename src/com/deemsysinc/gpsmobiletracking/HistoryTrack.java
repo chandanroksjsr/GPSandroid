@@ -89,7 +89,8 @@ public class HistoryTrack  extends Activity {
 		String longitude;
 		double latitude1;
 		double longitude1;
-		private static String vehiclehistorysurll = "http://192.168.1.158:8888/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
+		//private static String vehiclehistorysurll = "http://192.168.1.158:8888/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
+		private static String vehiclehistorysurll = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
@@ -100,13 +101,15 @@ public class HistoryTrack  extends Activity {
 			welcomeusername.setText(LoginActivity.usernamepassed+"!");
 	      try { 
 	            if (googleMap == null) {
+	            
 	               googleMap = ((MapFragment) getFragmentManager().
-	               findFragmentById(R.id.map)).getMap();
+	               findFragmentById(R.id.map1)).getMap();
 	            }
 	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 	    
-	         googleMap.getUiSettings().setZoomGesturesEnabled(false);
-	     
+	         googleMap.getUiSettings().setZoomGesturesEnabled(true);
+	         googleMap.getUiSettings().setRotateGesturesEnabled(true);
+	         googleMap.getUiSettings().setCompassEnabled(true);
 
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -168,6 +171,7 @@ public class HistoryTrack  extends Activity {
 	       VehichleArrayAdapter.data.clear();
 	       DashboardActivity.vehicleall.clear();
 	       vehiclehistory1.clear();
+	       LiveTrack.doAsynchronousTask.cancel();
 	       HistoryTrack.vehiclehistory1.clear();
 	       LoginActivity.usernamepassed="";
 	        		Intent intentSignUP=new Intent(getApplicationContext(),LoginActivity.class);
@@ -432,8 +436,9 @@ public class HistoryTrack  extends Activity {
 @Override
   protected void onResume() {
       super.onResume();
+      googleMap.clear();
       System.out.println("in on resume ");
-      //initilizeMap();
+      initilizeMap();
       showDialog(DATE_PICKER_ID);
   }
   @Override

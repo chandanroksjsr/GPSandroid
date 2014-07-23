@@ -13,9 +13,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnKeyListener;
 
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
@@ -55,7 +59,8 @@ public class LoginActivity extends Activity {
 	private static final String TAG_ORGID= "org_id";
 
    
-	private static String loginurl = "http://192.168.1.158:8888/gpsandroid/service/Login.php?service=login"; 
+	//private static String loginurl = "http://192.168.1.158:8888/gpsandroid/service/Login.php?service=login"; 
+	private static String loginurl = "http://192.168.1.71:8080/gpsandroid/service/Login.php?service=login"; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,7 @@ public class LoginActivity extends Activity {
 		paswd=(EditText)findViewById(R.id.pswd);
 		signin=(Button)findViewById(R.id.signin);
 		reset=(Button)findViewById(R.id.reset);
+		
 		 layout.setOnTouchListener(new OnTouchListener()
 	        {
 	            @Override

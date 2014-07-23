@@ -69,6 +69,7 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 		 
 		    holder.vehicleregno.setText(user.getvehicle_regno());
 		    holder.drivername.setText(user.getdrivername());
+		    System.out.println("value of driverstatus::"+user.getdriverstatus());
 		    if(user.getdriverstatus().equals("0"))
 		    {
 		    	holder.driverstatus.setImageResource(R.drawable.red_light);
@@ -89,7 +90,10 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 		    	holder.driverstatus.setImageResource(R.drawable.yellow_light);
 
 		    }
-        
+		    else
+		    {
+		    	holder.driverstatus.setImageResource(R.drawable.logo);
+		    }
 		    
 		
 		    return row; 

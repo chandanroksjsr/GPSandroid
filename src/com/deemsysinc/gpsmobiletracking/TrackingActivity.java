@@ -147,6 +147,7 @@ public class TrackingActivity extends TabActivity implements OnTabChangeListener
 		    }
 		    else if(tabHost.getCurrentTab()==1){
 		    	LiveTrack.timer.cancel();
+		    	LiveTrack.doAsynchronousTask.cancel();
 		    	TextView tv = (TextView) tabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
 		        tv.setText("History Track");
 		        System.out.println("timer cancelled");
@@ -154,6 +155,7 @@ public class TrackingActivity extends TabActivity implements OnTabChangeListener
 	           }
 		    else if(tabHost.getCurrentTab()==2){
 		    	LiveTrack.timer.cancel();
+		    	LiveTrack.doAsynchronousTask.cancel();
 		    	TextView tv = (TextView) tabHost.getTabWidget().getChildAt(2).findViewById(android.R.id.title);
 		        tv.setText("Alert Message");
 		        tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab());

@@ -27,6 +27,7 @@
         android:layout_marginTop="400dp"
         android:background="@drawable/rounded_edittext" 
         android:ems="10"
+        android:singleLine = "true"
         android:hint="@string/mobnumb"
         android:inputType="phone"
         android:maxLength="13"
@@ -40,7 +41,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="560dp"
         android:background="@drawable/rounded_edittext"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_,"
+        android:singleLine = "true"
         android:ems="10"
         android:hint="@string/city"
         android:padding="5dip" />
@@ -69,7 +70,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="450dp"
         android:background="@drawable/rounded_edittext"
-        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_,"
+       android:singleLine = "true"
         android:ems="10"
         android:hint="@string/orgname"
         android:padding="5dip" />
@@ -84,6 +85,7 @@
         android:layout_marginTop="350dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:singleLine = "true"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:padding="5dip" />
@@ -96,7 +98,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp"
         android:background="@drawable/rounded_edittext"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+       android:singleLine = "true"
         android:ems="10"
         android:hint="@string/lastname"
         android:padding="5dip" />
@@ -113,8 +115,9 @@
         android:layout_centerInParent="false"
         android:layout_marginTop="250dp"
         android:background="@drawable/rounded_edittext"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      android:singleLine = "true"
         android:ems="10"
+     
         android:hint="@string/firstname"
         android:padding="5dip" />
 
@@ -126,7 +129,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="610dp"
         android:background="@drawable/rounded_edittext"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+       android:singleLine = "true"
         android:ems="10"
         android:hint="@string/state"
         android:padding="5dip" />

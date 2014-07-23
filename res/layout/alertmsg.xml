@@ -27,11 +27,11 @@
 
     <Button
         android:id="@+id/hmebutton"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="75dp"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/home" />
 
     <EditText
@@ -39,15 +39,16 @@
         style="@style/custom"
         android:layout_width="290dp"
         android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="false"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="170dp"
         android:background="@drawable/roundedtext"
         android:ems="10"
         android:gravity="top|left"
-        android:lines="1"
-        android:maxLength="160"
-        android:maxLines="3"
-        android:scrollHorizontally="true"
+       
+        android:maxLines="5"
+        
         android:textSize="14dip" >
 
         <requestFocus />
@@ -55,32 +56,32 @@
 
     <TextView
         android:id="@+id/textView1"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/e6"
-        android:layout_below="@+id/hmebutton"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="false"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="110dp"
         android:text="@string/welcome"
         android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/username"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_marginLeft="14dp"
-        android:textColor="#ffffff"
-        android:layout_toRightOf="@+id/textView1"
-        android:text="" />
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="110dp"
+        android:text=""
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/logingout"
         android:layout_width="60dp"
         android:layout_height="20dp"
-        android:layout_alignRight="@+id/e6"
-        android:layout_alignTop="@+id/textView1"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_marginLeft="228dp"
+        android:layout_marginTop="110dp"
         android:background="@drawable/logout" />
-
-    
 
 </RelativeLayout>

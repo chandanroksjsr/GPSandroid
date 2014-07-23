@@ -38,27 +38,30 @@
         android:id="@+id/logout"
         android:layout_width="80dp"
         android:layout_height="20dp"
-        android:layout_alignRight="@+id/list"
-        android:layout_alignTop="@+id/welcomeusername"
+        android:layout_alignParentBottom="false"
+        android:layout_marginLeft="228dp"
+        android:layout_marginTop="110dp"
         android:background="@drawable/logout" />
 
     <TextView
         android:id="@+id/welcome"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/list"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="15dp"
+        android:layout_alignParentLeft="false"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="110dp"
         android:text="@string/welcome"
         android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/welcomeusername"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/welcome"
-        android:layout_alignBottom="@+id/welcome"
-        android:layout_alignRight="@+id/aboutus"
+        android:layout_centerVertical="false"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="110dp"
         android:text="thendral"
         android:textColor="#ffffff" />
 

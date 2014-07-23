@@ -21,8 +21,10 @@ import android.content.DialogInterface;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -41,8 +43,8 @@ public class ContactUs extends Activity {
    
     Boolean isInternetPresent;
 
-	
-   
+    EditText fstname,organistn,add1,city1,state1;
+    EditText lstname,email1;
     static String firstname;
     static String lastname;
     static String email;
@@ -81,24 +83,57 @@ public class ContactUs extends Activity {
     		public CharSequence filter(CharSequence source, int start, int end,
     				Spanned dest, int dstart, int dend) {
     			
-    			 if (source.length() > 0) {
-
+    			 if (source.length() > 0) 
+    			 {
+if(source.length()<10)
+{
+	
+	
+	
+	
                      if (!Character.isDigit(source.charAt(0)))
                          return "";
                      else {
-                         if (dstart == 3) {
+                        
+                         if(dest.toString().length()>13)
+                         {
+                        	 System.out.println(dest.toString());
+                        	 
+                        	 System.out.println("in first if");
+                        	 System.out.println("in dest condition");
+                        	 return "";
+                         }
+                         else if (dstart == 3) {
                              return source + ") ";
-                         } else if (dstart == 0) {
+                         } else if (dstart == 0)
+                         {
+                        	 System.out.println(source.toString());
+                        	 if(source.toString().equals("7")||source.toString().equals("8")||source.toString().equals("9"))
+                        	 {
                              return "(" + source;
-                         } else if ((dstart == 5) || (dstart == 9))
+                        	 }
+                        	 else
+                        	 {
+                        		 return "";
+                        	 }
+                         } else if ((dstart == 9))
                              return "-" + source;
                          else if (dstart >= 14)
                              return "";
                      }
+}
+else
+{
+	 System.out.println("in first else");
+	return"";
+}
 
                  } else {
-
+                	 System.out.println("in dstart");
+                	 return "";
                  }
+    			
+    			 
     			return null;
     		}
         };
@@ -117,30 +152,249 @@ public class ContactUs extends Activity {
 
 			
         });
-     final EditText fstname = (EditText)findViewById(R.id.e1);
-     
-    
-       
-     final   EditText lstname = (EditText)findViewById(R.id.e2);
-       
-     final   EditText email1 = (EditText)findViewById(R.id.e3);
-        
-     final   EditText organistn = (EditText)findViewById(R.id.e4);
-       
-    
-      
-     final   EditText add1 = (EditText)findViewById(R.id.e6);
-    
-     final  EditText city1 = (EditText)findViewById(R.id.e8);
-     
-     final   EditText state1 = (EditText)findViewById(R.id.e9);
+     fstname = (EditText)findViewById(R.id.e1);
+     lstname = (EditText)findViewById(R.id.e2);
+     email1 = (EditText)findViewById(R.id.e3);
+      organistn = (EditText)findViewById(R.id.e4);
+      add1 = (EditText)findViewById(R.id.e6);
+     city1 = (EditText)findViewById(R.id.e8);
+     state1 = (EditText)findViewById(R.id.e9);
        
    
 		
 		final	Button btn2=(Button)findViewById(R.id.btn2);
 		final	Button btn3=(Button)findViewById(R.id.btn3);
 		
+		fstname.addTextChangedListener(new TextWatcher() {
 
+		    public void onTextChanged(CharSequence s, int start, int before, int count) {
+		    	CharSequence ss = s;
+		    	 String mStr = fstname.getText().toString();
+		    	 String str = s.toString();
+		            if(str.length() > 0 && str.startsWith(" ")){
+		                
+		            	fstname.setText("");
+		            }else{
+		               
+		            }
+
+		    }
+
+		    @Override
+		    public void afterTextChanged(Editable s) {
+		    	
+		    }
+
+		    @Override
+		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		    	
+		        }
+
+			
+		    });
+		
+		lstname.addTextChangedListener(new TextWatcher() {
+
+		    public void onTextChanged(CharSequence s, int start, int before, int count) {
+		    	CharSequence ss = s;
+		    	 String mStr = lstname.getText().toString();
+		    	 String str = s.toString();
+		            if(str.length() > 0 && str.startsWith(" ")){
+		                
+		            	lstname.setText("");
+		            }else{
+		                
+		            }
+
+		    }
+
+		    @Override
+		    public void afterTextChanged(Editable s) {
+		    	
+		    }
+
+		    @Override
+		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		    	
+		        }
+
+			
+		    });
+		email1.addTextChangedListener(new TextWatcher() {
+
+		    public void onTextChanged(CharSequence s, int start, int before, int count) {
+		    	
+		    	 String str = s.toString();
+		            if(str.length() > 0 && str.startsWith(" ")){
+		                
+		            	email1.setText("");
+		            }else{
+		                
+		            }
+
+		    }
+
+		    @Override
+		    public void afterTextChanged(Editable s) {
+		    	
+		    }
+
+		    @Override
+		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		    	
+		        }
+
+			
+		    });
+		
+		organistn.addTextChangedListener(new TextWatcher() {
+
+		    public void onTextChanged(CharSequence s, int start, int before, int count) {
+		    	
+		    	 String str = s.toString();
+		            if(str.length() > 0 && str.startsWith(" ")){
+		                
+		            	organistn.setText("");
+		            }else{
+		               
+		            }
+
+		    }
+
+		    @Override
+		    public void afterTextChanged(Editable s) {
+		    	
+		    }
+
+		    @Override
+		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		    	
+		        }
+
+			
+		    });
+		mob.addTextChangedListener(new TextWatcher() {
+
+		    public void onTextChanged(CharSequence s, int start, int before, int count) {
+		    	
+		    	 String str = s.toString();
+		        
+		          //  if(str.length()>14)
+		         //   {
+		            	 
+		            	// mob.setSelection(mob.getText().length());
+		            /*	System.out.println("sting value"+str);
+		            	int edittextstr=str.length();
+		            	str.substring(0,13);
+		            	System.out.println(str);
+		            	System.out.println(edittextstr);
+		            	mob.setText(str);*/
+		            	//mob.setText(mob.getText().delete(14 ,edittextstr));
+		           // }
+
+		    }
+
+		    @Override
+		    public void afterTextChanged(Editable s) {
+		    /*	if (mob.getText().toString().length() > 14) {
+		    		System.out.println("sting value");
+		    		String subi=mob.getText().toString();
+		    		subi=subi.substring(0,13);
+		    		System.out.println("sting value"+subi);
+		           // mob.setText(mob.getText().toString().subSequence(0, 13));
+		            mob.setText(subi);
+		            mob.setSelection(mob.getText().length());
+		           // mob.setText("Just 10 Number");
+		        }else{
+		           
+		        }*/
+		    }
+
+		    @Override
+		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		    	
+		        }
+
+			
+		    });
+		add1.addTextChangedListener(new TextWatcher() {
+
+		    public void onTextChanged(CharSequence s, int start, int before, int count) {
+		    	
+		    	 String str = s.toString();
+		            if(str.length() > 0 && str.startsWith(" ")){
+		                
+		            	add1.setText("");
+		            }else{
+		                
+		            }
+
+		    }
+
+		    @Override
+		    public void afterTextChanged(Editable s) {
+		    	
+		    }
+
+		    @Override
+		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		    	
+		        }
+
+			
+		    });
+		city1.addTextChangedListener(new TextWatcher() {
+
+		    public void onTextChanged(CharSequence s, int start, int before, int count) {
+		    	
+		    	 String str = s.toString();
+		            if(str.length() > 0 && str.startsWith(" ")){
+		                
+		            	city1.setText("");
+		            }else{
+		                
+		            }
+
+		    }
+
+		    @Override
+		    public void afterTextChanged(Editable s) {
+		    	
+		    }
+
+		    @Override
+		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		    	
+		        }
+
+			
+		    });
+		state1.addTextChangedListener(new TextWatcher() {
+
+		    public void onTextChanged(CharSequence s, int start, int before, int count) {
+		    	
+		    	 String str = s.toString();
+		            if(str.length() > 0 && str.startsWith(" ")){
+		                
+		            	state1.setText("");
+		            }else{
+		               
+		            }
+
+		    }
+
+		    @Override
+		    public void afterTextChanged(Editable s) {
+		    	
+		    }
+
+		    @Override
+		    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		    	
+		        }
+
+			
+		    });
 	
 	btn3.setOnClickListener(new OnClickListener() {
 		 
@@ -201,10 +455,11 @@ public class ContactUs extends Activity {
 						   
 						    if(fstname.length()>0 && lstname.length()>0 && email1.length()>0&& organistn.length()>0&& mob.length()>0&&add1.length()>0&&city1.length()>0&&state1.length()>0){
 						    	 a=1;
+						    	
 								   {
-									    if (isValidName(firstname)) {
+									    if (firstname.length()>3 &&isValidName(firstname)) {
 									    	{
-											    if (isValidName(lastname)) {
+											    if (lastname.length()>3&& isValidName(lastname)) {
 											    	{
 													    if (isValidEmail(email)) {
 													    	{
@@ -214,7 +469,7 @@ public class ContactUs extends Activity {
 																		    if (isValidNumber(mobile)) {
 																		    	  
 																			    {
-																				    if (isValidOther(address1)) {
+																				    if (address1.length()>0) {
 																				    	 
 																					    {
 																						    if (isValidOther1(city)) {
@@ -230,10 +485,10 @@ public class ContactUs extends Activity {
 																													ContactUs.this).create();
 
 																											// Setting Dialog Title
-																											alertDialog.setTitle("INFO!");
+																											alertDialog.setTitle("Invalid state");
 
 																											// Setting Dialog Message
-																											alertDialog.setMessage("Please enter valid state." );
+																											alertDialog.setMessage("State should contain only alphabets." );
 
 																											// Setting Icon to Dialog
 																											alertDialog.setIcon(R.drawable.delete);
@@ -286,10 +541,10 @@ public class ContactUs extends Activity {
 																										ContactUs.this).create();
 
 																								// Setting Dialog Title
-																								alertDialog.setTitle("INFO!");
+																								alertDialog.setTitle("Invalid city");
 
 																								// Setting Dialog Message
-																								alertDialog.setMessage("Please enter valid city.");
+																								alertDialog.setMessage("City should contain only alphabets.");
 
 																								// Setting Icon to Dialog
 																								alertDialog.setIcon(R.drawable.delete);
@@ -342,7 +597,7 @@ public class ContactUs extends Activity {
 																								ContactUs.this).create();
 
 																						// Setting Dialog Title
-																						alertDialog.setTitle("INFO!");
+																						alertDialog.setTitle("Invalid address");
 
 																						// Setting Dialog Message
 																						alertDialog.setMessage("Please enter valid address." );
@@ -398,10 +653,10 @@ public class ContactUs extends Activity {
 																						ContactUs.this).create();
 
 																				// Setting Dialog Title
-																				alertDialog.setTitle("INFO!");
+																				alertDialog.setTitle("Invalid mobile number");
 
 																				// Setting Dialog Message
-																				alertDialog.setMessage("Please enter valid mobile number." );
+																				alertDialog.setMessage("Mobile number should contain only numbers." );
 
 																				// Setting Icon to Dialog
 																				alertDialog.setIcon(R.drawable.delete);
@@ -454,10 +709,10 @@ public class ContactUs extends Activity {
 																				ContactUs.this).create();
 
 																		// Setting Dialog Title
-																		alertDialog.setTitle("INFO!");
+																		alertDialog.setTitle("Invalid organization name");
 
 																		// Setting Dialog Message
-																		alertDialog.setMessage("Please enter valid organisation." );
+																		alertDialog.setMessage("Organization name should contain only alphabets." );
 
 																		// Setting Icon to Dialog
 																		alertDialog.setIcon(R.drawable.delete);
@@ -510,10 +765,10 @@ public class ContactUs extends Activity {
 																	ContactUs.this).create();
 
 															// Setting Dialog Title
-															alertDialog.setTitle("INFO!");
+															alertDialog.setTitle("Invalid email");
 
 															// Setting Dialog Message
-															alertDialog.setMessage("Please enter valid email." );
+															alertDialog.setMessage("Email should contain alphabets,numbers,@ . _" );
 
 															// Setting Icon to Dialog
 															alertDialog.setIcon(R.drawable.delete);
@@ -566,10 +821,10 @@ public class ContactUs extends Activity {
 															ContactUs.this).create();
 
 													// Setting Dialog Title
-													alertDialog.setTitle("INFO!");
+													alertDialog.setTitle("Invalid lastname");
 
 													// Setting Dialog Message
-													alertDialog.setMessage("Please enter valid lastname." );
+													alertDialog.setMessage("Lastname should contain only alphabets,4-16 characters." );
 
 													// Setting Icon to Dialog
 													alertDialog.setIcon(R.drawable.delete);
@@ -622,10 +877,10 @@ public class ContactUs extends Activity {
 													ContactUs.this).create();
 
 											// Setting Dialog Title
-											alertDialog.setTitle("INFO!");
+											alertDialog.setTitle("Invalid Firstname");
 
 											// Setting Dialog Message
-											alertDialog.setMessage("Please enter valid firstname." );
+											alertDialog.setMessage("Firstname should contain only alphabets,4-16 characters." );
 
 											// Setting Icon to Dialog
 											alertDialog.setIcon(R.drawable.delete);
@@ -682,7 +937,7 @@ public class ContactUs extends Activity {
 								alertDialog.setTitle("INFO!");
 
 								// Setting Dialog Message
-								alertDialog.setMessage("Please enter all the required fields." );
+								alertDialog.setMessage("Please enter all fields." );
 
 								// Setting Icon to Dialog
 								alertDialog.setIcon(R.drawable.delete);
@@ -948,7 +1203,8 @@ class AttemptLogin extends AsyncTask<String,String,String>{
 
 	   private ProgressDialog pDialog;
 	
-	public static final String urlE = "http://192.168.1.158:8888/gpsandroid/service/Contact.php?service=insert";
+	//public static final String urlE = "http://192.168.1.158:8888/gpsandroid/service/Contact.php?service=insert";
+	public static final String urlE = "http://192.168.1.71:8080/gpsandroid/service/Contact.php?service=insert";
 	 
 	  
 	    JSONObject jsonE;

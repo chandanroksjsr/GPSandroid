@@ -66,7 +66,8 @@ public class LiveTrack extends Activity {
 	
 	static final LatLng TutorialsPoint = new LatLng(21 , 57);
 	private GoogleMap googleMap;
-	 static Timer timer;
+	 public static Timer timer;
+	 static TimerTask doAsynchronousTask ;
 	    final Context context=this;
 	    private static final String TAG_SRES= "serviceresponse";
 		private static final String TAG_VEHICLE_ARRAY = "VehicleHistory List";
@@ -83,7 +84,8 @@ public class LiveTrack extends Activity {
 		double latitude1;
 		double longitude1;
 		//private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
-	  private static String vehicleliveurl = "http://192.168.1.158:8888/gpsandroid/service/LiveTrack.php?service=livetrack"; 
+	//  private static String vehicleliveurl = "http://192.168.1.158:8888/gpsandroid/service/LiveTrack.php?service=livetrack"; 
+	  private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/LiveTrack.php?service=livetrack"; 
 	/** Called when the activity is first created. */
 	  
 	  @Override
@@ -103,11 +105,13 @@ public class LiveTrack extends Activity {
 		}
 	      try { 
 	            if (googleMap == null) {
+	            	
 	               googleMap = ((MapFragment) getFragmentManager().
 	               findFragmentById(R.id.map)).getMap();
 	            }
 	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-	         
+	         googleMap.getUiSettings().setRotateGesturesEnabled(true);
+	         googleMap.getUiSettings().setCompassEnabled(true);
 	       //  Marker TP = googleMap.addMarker(new MarkerOptions().
 	    	         //position(TutorialsPoint).title("TutorialsPoint"));
 
@@ -162,6 +166,7 @@ public class LiveTrack extends Activity {
 	            
 	        	public void onClick(View v) {
 	        		timer.cancel();
+	        		LiveTrack.doAsynchronousTask.cancel();
 	        		LoginActivity.usernamepassed="";
 	       VehichleArrayAdapter.data.clear();
 	       DashboardActivity.vehicleall.clear();
@@ -212,7 +217,7 @@ public class LiveTrack extends Activity {
 	    //	final Handler handler;
 	    //	 handler = new Handler();
 		       timer = new Timer();
-		      TimerTask doAsynchronousTask = new TimerTask()
+		       doAsynchronousTask = new TimerTask()
 		      {       
 		          @Override
 		          public void run() {
@@ -424,7 +429,7 @@ public class LiveTrack extends Activity {
 	    @Override
 	    protected void onResume() {
 	        super.onResume();
-	     
+	        googleMap.clear();
 	        System.out.println("in resume");
 	        initilizeMap();
 	        timercalling();
@@ -436,6 +441,7 @@ public class LiveTrack extends Activity {
 	    super.onDestroy();  
 	    System.out.println("in destroy");
 	  timer.cancel();
+	  doAsynchronousTask.cancel();
 	    }     
 	    @Override
 		   public void onBackPressed() {
