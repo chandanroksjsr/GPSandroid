@@ -8,6 +8,15 @@
 package com.deemsysinc.gpsmobiletracking;
 
 public final class R {
+    public static final class array {
+        /**  Nav Drawer List Item Icons 
+ Keep them in order as the titles are in 
+         */
+        public static final int nav_drawer_icons=0x7f080001;
+        public static final int nav_drawer_items=0x7f080000;
+        public static final int nav_drawer_items1=0x7f080002;
+        public static final int nav_drawer_items2=0x7f080003;
+    }
     public static final class attr {
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
@@ -141,8 +150,14 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000a;
-        public static final int common_signin_btn_text_light=0x7f04000b;
+        public static final int common_signin_btn_text_dark=0x7f040010;
+        public static final int common_signin_btn_text_light=0x7f040011;
+        public static final int counter_text_bg=0x7f04000e;
+        public static final int counter_text_color=0x7f04000f;
+        public static final int list_background=0x7f04000b;
+        public static final int list_background_pressed=0x7f04000c;
+        public static final int list_divider=0x7f04000d;
+        public static final int list_item_title=0x7f04000a;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -199,79 +214,78 @@ containing a value of this type.
         public static final int histroytrack=0x7f020029;
         public static final int home=0x7f02002a;
         public static final int ic_launcher=0x7f02002b;
-        public static final int livetarck=0x7f02002c;
-        public static final int loginbutton=0x7f02002d;
-        public static final int loginpage=0x7f02002e;
-        public static final int logo=0x7f02002f;
-        public static final int logout=0x7f020030;
-        public static final int pink_pin=0x7f020031;
-        public static final int privacypolicy=0x7f020032;
-        public static final int red_light=0x7f020033;
-        public static final int red_pin=0x7f020034;
-        public static final int resetbutton=0x7f020035;
-        public static final int rounded_edittext=0x7f020036;
-        public static final int roundedtext=0x7f020037;
-        public static final int send=0x7f020038;
-        public static final int splash=0x7f020039;
-        public static final int termsandcondition=0x7f02003a;
-        public static final int termsandconttion=0x7f02003b;
-        public static final int tick=0x7f02003c;
-        public static final int togglebutton=0x7f02003d;
-        public static final int underconstruction=0x7f02003e;
-        public static final int yellow_light=0x7f02003f;
+        public static final int list_item_bg_normal=0x7f02002c;
+        public static final int list_item_bg_pressed=0x7f02002d;
+        public static final int list_selector=0x7f02002e;
+        public static final int livetarck=0x7f02002f;
+        public static final int loginbutton=0x7f020030;
+        public static final int loginpage=0x7f020031;
+        public static final int logo=0x7f020032;
+        public static final int logout=0x7f020033;
+        public static final int pink_pin=0x7f020034;
+        public static final int privacypolicy=0x7f020035;
+        public static final int red_light=0x7f020036;
+        public static final int red_pin=0x7f020037;
+        public static final int resetbutton=0x7f020038;
+        public static final int rounded_edittext=0x7f020039;
+        public static final int roundedtext=0x7f02003a;
+        public static final int send=0x7f02003b;
+        public static final int splash=0x7f02003c;
+        public static final int termsandcondition=0x7f02003d;
+        public static final int termsandconttion=0x7f02003e;
+        public static final int tick=0x7f02003f;
+        public static final int togglebutton=0x7f020040;
+        public static final int underconstruction=0x7f020041;
+        public static final int yellow_light=0x7f020042;
     }
     public static final class id {
-        public static final int aboutus=0x7f05001f;
-        public static final int action_settings=0x7f050032;
+        public static final int aboutus=0x7f05001e;
+        public static final int action_settings=0x7f05002e;
         public static final int alertlayout=0x7f05000b;
-        public static final int btn2=0x7f05001a;
-        public static final int btn3=0x7f050019;
+        public static final int btn2=0x7f050019;
+        public static final int btn3=0x7f050018;
         public static final int button1=0x7f05000c;
         public static final int button2=0x7f05000d;
-        public static final int contactus=0x7f050020;
-        public static final int e1=0x7f05001b;
-        public static final int e2=0x7f050013;
-        public static final int e3=0x7f050014;
-        public static final int e4=0x7f050015;
-        public static final int e5=0x7f050016;
+        public static final int contactus=0x7f05001f;
+        public static final int e1=0x7f05001a;
+        public static final int e2=0x7f050012;
+        public static final int e3=0x7f050013;
+        public static final int e4=0x7f050014;
+        public static final int e5=0x7f050015;
         public static final int e6=0x7f05000e;
-        public static final int e8=0x7f050017;
-        public static final int e9=0x7f050018;
-        public static final int errorlog=0x7f05001e;
-        public static final int hme=0x7f050028;
-        public static final int hmebutton=0x7f05000f;
-        public static final int homebut=0x7f05002d;
+        public static final int e8=0x7f050016;
+        public static final int e9=0x7f050017;
+        public static final int errorlog=0x7f05001d;
         public static final int hybrid=0x7f050004;
         public static final int imageView1=0x7f050005;
-        public static final int label=0x7f050030;
-        public static final int layoutt=0x7f050012;
-        public static final int list=0x7f050021;
-        public static final int logingout=0x7f050011;
-        public static final int logo=0x7f05002f;
-        public static final int logout=0x7f050022;
-        public static final int map=0x7f050027;
-        public static final int map1=0x7f05002a;
+        public static final int label=0x7f05002c;
+        public static final int layoutt=0x7f050011;
+        public static final int list=0x7f050020;
+        public static final int logingout=0x7f050010;
+        public static final int logo=0x7f05002b;
+        public static final int logout=0x7f050021;
+        public static final int map=0x7f050026;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int pswd=0x7f050009;
-        public static final int relativeLayout1=0x7f05001c;
+        public static final int relativeLayout1=0x7f05001b;
         public static final int relativelay=0x7f050006;
-        public static final int release=0x7f05001d;
+        public static final int release=0x7f05001c;
         public static final int reset=0x7f050007;
         public static final int satellite=0x7f050002;
-        public static final int showmap=0x7f05002e;
-        public static final int showmapdif=0x7f050029;
+        public static final int showmap=0x7f05002a;
+        public static final int showmapdif=0x7f050027;
         public static final int signin=0x7f050008;
-        public static final int signoutty=0x7f050026;
-        public static final int signutty=0x7f05002c;
+        public static final int signoutty=0x7f050025;
+        public static final int signutty=0x7f050029;
         public static final int terrain=0x7f050003;
-        public static final int textView1=0x7f050010;
+        public static final int textView1=0x7f05000f;
         public static final int username=0x7f05000a;
-        public static final int veh_reg_no=0x7f050031;
-        public static final int welcmename=0x7f05002b;
-        public static final int welcome=0x7f050023;
-        public static final int welcomename=0x7f050025;
-        public static final int welcomeusername=0x7f050024;
+        public static final int veh_reg_no=0x7f05002d;
+        public static final int welcmename=0x7f050028;
+        public static final int welcome=0x7f050022;
+        public static final int welcomename=0x7f050024;
+        public static final int welcomeusername=0x7f050023;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -290,7 +304,7 @@ containing a value of this type.
         public static final int vehiclelist=0x7f03000d;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
+        public static final int main=0x7f0a0000;
     }
     public static final class string {
         public static final int Username=0x7f060018;
@@ -380,6 +394,8 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f06000e;
         public static final int contactus=0x7f06001d;
+        public static final int drawer_close=0x7f06002d;
+        public static final int drawer_open=0x7f06002c;
         public static final int email=0x7f060025;
         public static final int feedbak=0x7f06001f;
         public static final int firstname=0x7f060023;
@@ -417,13 +433,20 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
          */
-        public static final int AppTheme=0x7f080001;
-        public static final int MyTheme=0x7f080004;
-        public static final int custom=0x7f080002;
-        public static final int dialog=0x7f080003;
+        public static final int AppTheme=0x7f090001;
+        public static final int DropDownItem=0x7f090005;
+        public static final int MyActionBar=0x7f090009;
+        public static final int MyActionBartheme=0x7f090008;
+        public static final int MyTheme=0x7f090007;
+        /**  Here you can set the color and other text attributes 
+         */
+        public static final int YourCustomDropDownItemTextStyle=0x7f090004;
+        public static final int custom=0x7f090002;
+        public static final int dialog=0x7f090006;
+        public static final int dropdown=0x7f090003;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.
