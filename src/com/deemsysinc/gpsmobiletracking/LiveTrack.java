@@ -49,6 +49,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -72,7 +73,7 @@ public class LiveTrack extends Activity {
 	    String userrole;
 	ToggleButton tgbutton;
 	
-	static final LatLng TutorialsPoint = new LatLng(21 , 57);
+	static final LatLng TutorialsPoint = new LatLng(22.3512639,78.9542827);
 	private GoogleMap googleMap;
 	 public static Timer timer;
 	 static TimerTask doAsynchronousTask ;
@@ -189,8 +190,13 @@ System.out.println("item position value"+itemPosition);
 	       
 	         googleMap.getUiSettings().setRotateGesturesEnabled(true);
 	         googleMap.getUiSettings().setCompassEnabled(true);
-	       //  Marker TP = googleMap.addMarker(new MarkerOptions().
-	    	         //position(TutorialsPoint).title("TutorialsPoint"));
+	         Marker marker = googleMap.addMarker(new MarkerOptions().
+	    	         position(TutorialsPoint).title(""));
+	         CameraPosition cameraPosition = new CameraPosition.Builder().target(
+		    		  TutorialsPoint).zoom(4).build();
+	         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+	         marker.remove();
+	         marker.setVisible(false);
 
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -215,9 +221,15 @@ System.out.println("item position value"+itemPosition);
 	         	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 	         	         tgbutton.setBackgroundResource(R.drawable.earth);
 	         	      
-	         	            
-	         	       //  Marker TP = googleMap.addMarker(new MarkerOptions().
-	         	    	         //position(TutorialsPoint).title("TutorialsPoint"));
+	         	        Marker marker = googleMap.addMarker(new MarkerOptions().
+	       	    	         position(TutorialsPoint).title(""));
+	       	         CameraPosition cameraPosition = new CameraPosition.Builder().target(
+	       		    		  TutorialsPoint).zoom(4).build();
+	       	         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+	       	         marker.remove();
+	       	         marker.setVisible(false);
+	       	         marker.setVisible(false);
+
 
 	         	      } catch (Exception e) {
 	         	         e.printStackTrace();
@@ -231,8 +243,13 @@ System.out.println("item position value"+itemPosition);
 	             	            }
 	             	         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 	             	        tgbutton.setBackgroundResource(R.drawable.aerial);
-	             	       //  Marker TP = googleMap.addMarker(new MarkerOptions().
-	             	    	         //position(TutorialsPoint).title("TutorialsPoint"));
+	             	       Marker marker = googleMap.addMarker(new MarkerOptions().
+	          	    	         position(TutorialsPoint).title(""));
+	          	         CameraPosition cameraPosition = new CameraPosition.Builder().target(
+	          		    		  TutorialsPoint).zoom(4).build();
+	          	         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+	          	         marker.remove();
+	          	         marker.setVisible(false);
 
 	             	      } catch (Exception e) {
 	             	         e.printStackTrace();
@@ -398,6 +415,7 @@ System.out.println("item position value"+itemPosition);
     				 super.onPostExecute(file_url);
     				 cDialog.dismiss();
     				int sizeminusone;
+    				
     				 ArrayList<LatLng> points = null;
    			      PolylineOptions polyLineOptions = null;
    			      points = new ArrayList<LatLng>();

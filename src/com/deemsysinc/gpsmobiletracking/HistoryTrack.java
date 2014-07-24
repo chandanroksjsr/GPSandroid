@@ -16,10 +16,12 @@ import org.json.JSONObject;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -88,7 +90,7 @@ public class HistoryTrack  extends Activity {
 		private static final String TAG_bus_tracking_timestamp= "bus_tracking_timestamp";
 		private static final String TAG_address= "address";
 		
-		static final LatLng TutorialsPoint = new LatLng(21 , 57);
+		static final LatLng TutorialsPoint = new LatLng(22.3512639,78.9542827);
 		String orgid,vehicle_reg_no,speed,exceed_speed_limit,bus_tracking_timestamp,address;
 		String latitude;
 		String longitude;
@@ -170,7 +172,15 @@ System.out.println("item position value"+itemPosition);
 	               findFragmentById(R.id.map)).getMap();
 	            }
 	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-	    
+	         Marker marker = googleMap.addMarker(new MarkerOptions().
+	    	         position(TutorialsPoint).title(""));
+	         CameraPosition cameraPosition = new CameraPosition.Builder().target(
+		    		  TutorialsPoint).zoom(4).build();
+	         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+	         marker.remove();
+	         marker.setVisible(false);
+	       
+
 	         googleMap.getUiSettings().setZoomGesturesEnabled(true);
 	         googleMap.getUiSettings().setRotateGesturesEnabled(true);
 	         googleMap.getUiSettings().setCompassEnabled(true);
@@ -475,7 +485,13 @@ System.out.println("item position value"+itemPosition);
       if (googleMap == null) {
           googleMap = ((MapFragment) getFragmentManager().findFragmentById(
                   R.id.map)).getMap();
-
+          Marker marker = googleMap.addMarker(new MarkerOptions().
+	    	         position(TutorialsPoint).title(""));
+	         CameraPosition cameraPosition = new CameraPosition.Builder().target(
+		    		  TutorialsPoint).zoom(4).build();
+	         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+	         marker.remove();
+	         marker.setVisible(false);
           // check if map is created successfully or not
           if (googleMap == null) {
               Toast.makeText(getApplicationContext(),
