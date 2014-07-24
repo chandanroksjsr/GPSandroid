@@ -13,13 +13,18 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 
 import android.app.ProgressDialog;
+import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,9 +34,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
  
 
@@ -59,7 +66,8 @@ public class AlertMsg  extends Activity {
 	
 
 	//private static String url = "http://192.168.1.158:8888/gpsandroid/service/message.php?service=select"; 
-	private static String url = "http://192.168.1.71:8080/gpsandroid/service/message.php?service=select"; 
+//	private static String url = "http://192.168.1.71:8080/gpsandroid/service/message.php?service=select"; 
+	private static String url = "http://208.109.248.89:80/gpsandroid/service/message.php?service=select";
 	
     private static final String TAG_VEHICLE_ARRAY = "mobilenumber";
 
@@ -80,8 +88,70 @@ public class AlertMsg  extends Activity {
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
 	      setContentView(R.layout.alertmsg);
-	      
-	      route= TrackingActivity.routeno;
+	     
+	        ActionBar actions = getActionBar();
+	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0a7dbc")));
+	        actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+	        actions.setDisplayShowTitleEnabled(false);
+	        SpinnerAdapter adapter = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items2,
+	                android.R.layout.simple_spinner_dropdown_item);
+
+	        // Callback
+	        OnNavigationListener callback = new OnNavigationListener() {
+
+	            String[] items = getResources().getStringArray(R.array.nav_drawer_items2); // List items from res
+
+	            @Override
+			    public boolean onNavigationItemSelected(int itemPosition, long id) {
+
+			        // Do stuff when navigation item is selected
+System.out.println("item position value"+itemPosition);
+			        //Log.d("NavigationItemSelected", items[position]); // Debug
+			        Intent myIntent;
+			        if(itemPosition!=0){
+			            if(itemPosition == 0){ //Activity#1 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+			                myIntent = new Intent(AlertMsg.this, AlertMsg.class);
+			                AlertMsg.this.startActivity(myIntent);
+			            } else if (itemPosition == 1){ //Activity#2 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+			                myIntent = new Intent(AlertMsg.this, LiveTrack.class);
+			                myIntent.putExtra("vehicleregnum", LiveTrack.vehicle_reg_no);
+					    	myIntent.putExtra("routenum", LiveTrack.routeno);
+			                AlertMsg.this.startActivity(myIntent);
+			            } else if (itemPosition == 2){ //Activity#3 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+			                myIntent = new Intent(AlertMsg.this, HistoryTrack.class);
+			                AlertMsg.this.startActivity(myIntent);
+			            }
+			            else if (itemPosition == 3){ //Activity#3 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+			            	  VehichleArrayAdapter.data.clear();
+			       	       DashboardActivity.vehicleall.clear();
+			       	       HistoryTrack.vehiclehistory1.clear();
+			       	       HistoryTrack.vehiclehistory1.clear();
+			                myIntent = new Intent(AlertMsg.this, DashboardActivity.class);
+			                AlertMsg.this.startActivity(myIntent);
+			            }
+			          
+			        }
+			        else
+			        {
+			        	
+			        }
+			        return true;
+
+			    }
+
+
+	        };
+	        actions.setListNavigationCallbacks(adapter, callback);
+	      route= LiveTrack.routeno;
+	      System.out.println("alert route numb track veh numb"+route);
 	      orgid=LoginActivity.orgid;
 	      RelativeLayout layout = (RelativeLayout) findViewById(R.id.alertlayout);
 	      layout.setOnTouchListener(new OnTouchListener()
@@ -101,7 +171,7 @@ public class AlertMsg  extends Activity {
 	      btnsend =(Button)findViewById(R.id.button1);
 	      btnclr =(Button)findViewById(R.id.button2);
 	      msgtxt=(EditText)findViewById(R.id.e6);
-	      home=(Button)findViewById(R.id.hmebutton);
+	    
 	      signout=(Button)findViewById(R.id.logingout);
 	  	welcomeusername=(TextView)findViewById(R.id.username);
 		welcomeusername.setText(LoginActivity.usernamepassed+"!");
@@ -121,20 +191,7 @@ public class AlertMsg  extends Activity {
 	  			startActivity(intentSignUP);
 		        	}
 			 });
-			 home.setOnClickListener(new View.OnClickListener() {
-					
-		            
-		        	public void onClick(View v) {
-		        		
-		       VehichleArrayAdapter.data.clear();
-		       DashboardActivity.vehicleall.clear();
-		     
-		       HistoryTrack.vehiclehistory1.clear();
-		      
-		        		Intent intentSignUP=new Intent(getApplicationContext(),DashboardActivity.class);
-				startActivity(intentSignUP);
-		        	}
-			 });
+			
 	      
 	      
 	      btnclr.setOnClickListener(new OnClickListener() {

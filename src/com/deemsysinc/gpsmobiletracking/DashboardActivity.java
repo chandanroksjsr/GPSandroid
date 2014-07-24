@@ -61,7 +61,8 @@ public class DashboardActivity extends Activity{
 	TextView welcomeusername;
 	Button aboutus,contactus,signout;
 	//private static String vehicledetailsurl = "http://192.168.1.158:8888/gpsandroid/service/VehicleDetails.php?service=vehicledetails1"; 
-	private static String vehicledetailsurl = "http://192.168.1.71:8080/gpsandroid/service/VehicleDetails.php?service=vehicledetails1"; 
+	//private static String vehicledetailsurl = "http://192.168.1.71:8080/gpsandroid/service/VehicleDetails.php?service=vehicledetails1"; 
+	private static String vehicledetailsurl = "http://208.109.248.89:80/gpsandroid/service/VehicleDetails.php?service=vehicledetails1"; 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,14 +118,16 @@ public class DashboardActivity extends Activity{
 		
      
        
-         Intent intent = new Intent(DashboardActivity.this, TrackingActivity.class);
+         Intent intent = new Intent(DashboardActivity.this, LiveTrack.class);
          Bundle b=new Bundle();
+     //    System.out.println("Position passed from dashboard activity:::"+vehicle_regno);
+         System.out.println("Position passed from dashboard activity:fghfgh::"+route_num);
+       //  Bundle b1=new Bundle();
          b.putString("vehicleregnum",vehicle_regno);
-        b.putString("routenum", route_num);
-         System.out.println("Position passed from dashboard activity:::"+vehicle_regno);
-         System.out.println("Position passed from dashboard activity:::"+route_num);
+         b.putString("routenum", route_num);
+       
          intent.putExtras(b);
-        
+    //     intent.putExtras(b1);
       
       startActivity(intent);
        
@@ -153,12 +156,15 @@ public class DashboardActivity extends Activity{
 								long arg3) {
 							System.out.println("in item click"+arg2);
 							String item = vehicleall.get(arg2).getvehicle_regno(); 
-							
+							String regno=vehicleall.get(arg2).getroute_num(); 
 					        
 					        
 					         System.out.println("Position passed from dashboard activity:::"+item);
-							 Intent i= new Intent(DashboardActivity.this,TrackingActivity.class);
+					         System.out.println("Position passed from dashboard activity:::"+regno);
+							 Intent i= new Intent(DashboardActivity.this,LiveTrack.class);
+							 
 							  i.putExtra("vehicleregnum", item);
+							  i.putExtra("routenum", regno);
 							 startActivity(i);
 						}
 				        });

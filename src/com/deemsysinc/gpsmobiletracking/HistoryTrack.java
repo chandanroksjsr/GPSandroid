@@ -27,23 +27,28 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -90,20 +95,79 @@ public class HistoryTrack  extends Activity {
 		double latitude1;
 		double longitude1;
 		//private static String vehiclehistorysurll = "http://192.168.1.158:8888/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
-		private static String vehiclehistorysurll = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
+	//	private static String vehiclehistorysurll = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
+		private static String vehiclehistorysurll = "http://208.109.248.89:80/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
 	      setContentView(R.layout.historytrack);
 	      signout=(Button)findViewById(R.id.signoutty);
-	      hmey=(Button)findViewById(R.id.hme);
+	     
+	        ActionBar actions = getActionBar();
+	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0a7dbc")));
+	        actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+	        actions.setDisplayShowTitleEnabled(false);
+	        SpinnerAdapter adapter = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items1,
+	                android.R.layout.simple_spinner_dropdown_item);
+
+	        // Callback
+	        OnNavigationListener callback = new OnNavigationListener() {
+
+	            String[] items = getResources().getStringArray(R.array.nav_drawer_items1); // List items from res
+
+	            @Override
+			    public boolean onNavigationItemSelected(int itemPosition, long id) {
+
+			        // Do stuff when navigation item is selected
+System.out.println("item position value"+itemPosition);
+			        //Log.d("NavigationItemSelected", items[position]); // Debug
+			        Intent myIntent;
+			        if(itemPosition!=0){
+			            if(itemPosition == 0){ //Activity#1 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+			                myIntent = new Intent(HistoryTrack.this, HistoryTrack.class);
+			                HistoryTrack.this.startActivity(myIntent);
+			            } else if (itemPosition == 1){ //Activity#2 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+					    	  myIntent = new Intent(HistoryTrack.this, LiveTrack.class);
+					    	myIntent.putExtra("vehicleregnum", LiveTrack.vehicle_reg_no);
+					    	myIntent.putExtra("routenum", LiveTrack.routeno);
+			                HistoryTrack.this.startActivity(myIntent);
+			            } else if (itemPosition == 2){ //Activity#3 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+			                myIntent = new Intent(HistoryTrack.this, AlertMsg.class);
+			                HistoryTrack.this.startActivity(myIntent);
+			            }
+			            else if (itemPosition == 3){ //Activity#3 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+			                myIntent = new Intent(HistoryTrack.this, DashboardActivity.class);
+			                HistoryTrack.this.startActivity(myIntent);
+			            }
+			          
+			        }
+			        else
+			        {
+			        	
+			        }
+			        return true;
+
+			    }
+
+
+	        };
+	        actions.setListNavigationCallbacks(adapter, callback);
+	    
 			welcomeusername=(TextView)findViewById(R.id.welcomename);
 			welcomeusername.setText(LoginActivity.usernamepassed+"!");
 	      try { 
 	            if (googleMap == null) {
 	            
 	               googleMap = ((MapFragment) getFragmentManager().
-	               findFragmentById(R.id.map1)).getMap();
+	               findFragmentById(R.id.map)).getMap();
 	            }
 	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 	    
@@ -152,7 +216,8 @@ public class HistoryTrack  extends Activity {
 	            }
 	        });
 	 
-	      vehicle_reg_numb=TrackingActivity.vehicle_reg_no;
+	      vehicle_reg_numb=LiveTrack.vehicle_reg_no;
+	      System.out.println("history track veh numb"+vehicle_reg_numb);
 	      cd = new ConnectionDetector(getApplicationContext());
 			 isInternetPresent = cd.isConnectingToInternet();
 	      
@@ -178,20 +243,7 @@ public class HistoryTrack  extends Activity {
   			startActivity(intentSignUP);
 	        	}
 		 });
-	       hmey.setOnClickListener(new View.OnClickListener() {
-				
-	            
-	        	public void onClick(View v) {
-	        		
-	       VehichleArrayAdapter.data.clear();
-	       DashboardActivity.vehicleall.clear();
-	       vehiclehistory1.clear();
-	       HistoryTrack.vehiclehistory1.clear();
 	      
-	        		Intent intentSignUP=new Intent(getApplicationContext(),DashboardActivity.class);
-			startActivity(intentSignUP);
-	        	}
-		 });
 	    }
 	  
 	  @Override
@@ -438,7 +490,7 @@ public class HistoryTrack  extends Activity {
       super.onResume();
     
       System.out.println("in on resume ");
-     // initilizeMap();
+      initilizeMap();
       showDialog(DATE_PICKER_ID);
   }
   @Override

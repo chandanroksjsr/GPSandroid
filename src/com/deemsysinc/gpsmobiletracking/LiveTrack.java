@@ -18,6 +18,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 
+import android.app.ActionBar;
+import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.app.AlertDialog;
 
@@ -25,6 +27,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 
 
 import android.os.AsyncTask;
@@ -35,6 +39,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import android.widget.ArrayAdapter;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -43,6 +49,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -61,7 +68,8 @@ public class LiveTrack extends Activity {
 	String vehicle_reg_numb;
 	TextView welcomeusername;
 	Button signout,home;
-	
+	   static String vehicle_reg_no1,routeno;
+	    String userrole;
 	ToggleButton tgbutton;
 	
 	static final LatLng TutorialsPoint = new LatLng(21 , 57);
@@ -78,22 +86,90 @@ public class LiveTrack extends Activity {
 		private static final String TAG_Exceed_Speed= "exceed_speed_limit";
 		private static final String TAG_bus_tracking_timestamp= "bus_tracking_timestamp";
 		private static final String TAG_address= "address";
-		String orgid,vehicle_reg_no,speed,exceed_speed_limit,bus_tracking_timestamp,address;
+		String orgid;
+		static String vehicle_reg_no;
+		String speed;
+		String exceed_speed_limit;
+		String bus_tracking_timestamp;
+		String address;
 		String latitude;
 		String longitude;
 		double latitude1;
 		double longitude1;
 		//private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 	//  private static String vehicleliveurl = "http://192.168.1.158:8888/gpsandroid/service/LiveTrack.php?service=livetrack"; 
-	  private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/LiveTrack.php?service=livetrack"; 
+	// private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/LiveTrack.php?service=livetrack"; 
+	 private static String vehicleliveurl = "http://208.109.248.89:80/gpsandroid/service/LiveTrack.php?service=livetrack"; 
 	/** Called when the activity is first created. */
 	  
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
 	      setContentView(R.layout.livetrack);
+	     
+	        ActionBar actions = getActionBar();
+	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0a7dbc")));
+	        actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+	        actions.setDisplayShowTitleEnabled(false);
+	        SpinnerAdapter adapter = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items,
+	                android.R.layout.simple_spinner_dropdown_item);
+
+	        // Callback
+	        OnNavigationListener callback = new OnNavigationListener() {
+
+	            String[] items = getResources().getStringArray(R.array.nav_drawer_items); // List items from res
+
+	            @Override
+			    public boolean onNavigationItemSelected(int itemPosition, long id) {
+
+			        // Do stuff when navigation item is selected
+System.out.println("item position value"+itemPosition);
+			        //Log.d("NavigationItemSelected", items[position]); // Debug
+			        Intent myIntent;
+			        if(itemPosition!=0){
+			            if(itemPosition == 0){ //Activity#1 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+			                myIntent = new Intent(LiveTrack.this, LiveTrack.class);
+			                LiveTrack.this.startActivity(myIntent);
+			            } else if (itemPosition == 1){
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();//Activity#2 Selected
+			                myIntent = new Intent(LiveTrack.this, HistoryTrack.class);
+			                LiveTrack.this.startActivity(myIntent);
+			            } else if (itemPosition == 2){
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();//Activity#3 Selected
+			                myIntent = new Intent(LiveTrack.this, AlertMsg.class);
+			                LiveTrack.this.startActivity(myIntent);
+			            }
+			            else if (itemPosition == 3){ //Activity#3 Selected
+			            	LiveTrack.timer.cancel();
+					    	LiveTrack.doAsynchronousTask.cancel();
+			            	  VehichleArrayAdapter.data.clear();
+			       	       DashboardActivity.vehicleall.clear();
+			       	       vehiclehistory1.clear();
+			       	       HistoryTrack.vehiclehistory1.clear();
+			                myIntent = new Intent(LiveTrack.this, DashboardActivity.class);
+			                LiveTrack.this.startActivity(myIntent);
+			            }
+			          
+			        }
+			        else
+			        {
+			        	
+			        }
+			        return true;
+
+			    }
+
+
+	        };
+
+	        actions.setListNavigationCallbacks(adapter, callback);
+	      
 	      signout=(Button)findViewById(R.id.signutty);
-	      home=(Button)findViewById(R.id.homebut);
+	 
 			welcomeusername=(TextView)findViewById(R.id.welcmename);
 			welcomeusername.setText(LoginActivity.usernamepassed+"!");
 		
@@ -110,6 +186,7 @@ public class LiveTrack extends Activity {
 	               findFragmentById(R.id.map)).getMap();
 	            }
 	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+	       
 	         googleMap.getUiSettings().setRotateGesturesEnabled(true);
 	         googleMap.getUiSettings().setCompassEnabled(true);
 	       //  Marker TP = googleMap.addMarker(new MarkerOptions().
@@ -118,6 +195,10 @@ public class LiveTrack extends Activity {
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
+	      userrole=LoginActivity.role;
+	      
+	     
+	    
 	      tgbutton = (ToggleButton) findViewById(R.id.showmap);
 	    //  tgbutton.setSelected(true);
 	        tgbutton.setOnClickListener(new OnClickListener() {
@@ -160,7 +241,7 @@ public class LiveTrack extends Activity {
 	                    }
 	            }
 	        });
-	 
+	      
 	     signout.setOnClickListener(new View.OnClickListener() {
 				
 	            
@@ -177,20 +258,7 @@ public class LiveTrack extends Activity {
    			startActivity(intentSignUP);
 	        	}
 		 });
-	     home.setOnClickListener(new View.OnClickListener() {
-				
-	            
-	        	public void onClick(View v) {
-	        		timer.cancel();
-	       VehichleArrayAdapter.data.clear();
-	       DashboardActivity.vehicleall.clear();
-	       vehiclehistory1.clear();
-	       HistoryTrack.vehiclehistory1.clear();
-	      
-	        		Intent intentSignUP=new Intent(getApplicationContext(),DashboardActivity.class);
-			startActivity(intentSignUP);
-	        	}
-		 });
+	    
 	     
 	   //  timercalling();
 	    }
@@ -268,7 +336,7 @@ public class LiveTrack extends Activity {
     				List<NameValuePair> params1 = new ArrayList<NameValuePair>();
     				 ArrayList<HashMap<String,String>> vehiclehistory= new ArrayList<HashMap<String,String>>();
     	             params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
-    	             params1.add(new BasicNameValuePair("vechicle_reg_no", TrackingActivity.vehicle_reg_no));
+    	             params1.add(new BasicNameValuePair("vechicle_reg_no", vehicle_reg_no));
     	          
     	           
     	             jArray = jsonParser.makeHttpRequest(vehicleliveurl, "POST", params1);
@@ -330,6 +398,10 @@ public class LiveTrack extends Activity {
     				 super.onPostExecute(file_url);
     				 cDialog.dismiss();
     				int sizeminusone;
+    				 ArrayList<LatLng> points = null;
+   			      PolylineOptions polyLineOptions = null;
+   			      points = new ArrayList<LatLng>();
+   			        polyLineOptions = new PolylineOptions();
     				System.out.println("vehicle size"+vehiclehistory1.size());
     				if(vehiclehistory1.size()==0)
     				{
@@ -360,30 +432,7 @@ public class LiveTrack extends Activity {
 						// Showing Alert Message
 						alertDialog.show();
     					
-    					/*  AlertDialog.Builder builder= new AlertDialog.Builder(LiveTrack.this,R.style.MyTheme );
-  	    		        
-  	    	            builder.setMessage("No location found." )
-  	    	                .setTitle( "INFO!" )
-  	    	                .setIcon( R.drawable.pink_pin )
-  	    	                .setCancelable( false )
-  	    	             
-  	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-  	    	                    {
-  	    	                        public void onClick( DialogInterface dialog, int which )
-  	    	                           {
-  	    	                        	
-  	    	                                dialog.dismiss();
-  	    	                           }
-  	    	                        } 
-  	    	                    );
-  	    	            Dialog dialog = null;
-  	    	            builder.setInverseBackgroundForced(true);
-  	    	            
-  	    	            dialog = builder.create();
-  	    	            dialog.getWindow().setLayout(600, 400); 
-  	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-  	    				dialog.show();
-  		  			*/
+    					
     					
     				}
     				sizeminusone=vehiclehistory1.size()-1;
@@ -392,7 +441,7 @@ public class LiveTrack extends Activity {
     					 System.out.println("value of index::"+vehiclehistory1.get(k));
     					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory1.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory1.get(k).get(TAG_Longitude+k)));
     					 System.out.println("pin location"+pinLocation);
-    					
+    					 points.add(pinLocation);
     					 String titlevalue=vehiclehistory1.get(k).get(TAG_address+k)+vehiclehistory1.get(k).get(TAG_Speed+k);
     					 if(sizeminusone==k)
     					 {
@@ -421,7 +470,10 @@ public class LiveTrack extends Activity {
     					 }
                          
     				 }
-    				
+    				 polyLineOptions.addAll(points);
+				        polyLineOptions.width(2);
+				        polyLineOptions.color(Color.BLUE);
+	    				 googleMap.addPolyline(polyLineOptions);
 
     			
     			}
@@ -429,11 +481,17 @@ public class LiveTrack extends Activity {
 	    @Override
 	    protected void onResume() {
 	        super.onResume();
-	        googleMap.clear();
+	        //googleMap.clear();
+	        vehicle_reg_no = getIntent().getExtras().getString("vehicleregnum");
+		      routeno= getIntent().getExtras().getString("routenum");
+		      System.out.println("vehicle reg num from dashboard::"+vehicle_reg_no);
+		      System.out.println("vehicle route num from dashboard::"+routeno);
 	        System.out.println("in resume");
-	        initilizeMap();
+	       // initilizeMap();
 	        timercalling();
 	    }
+	   
+	    
 	    @Override
 	    protected void onDestroy()
 	    {

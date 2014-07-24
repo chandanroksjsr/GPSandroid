@@ -171,7 +171,8 @@ else
 		    	CharSequence ss = s;
 		    	 String mStr = fstname.getText().toString();
 		    	 String str = s.toString();
-		            if(str.length() > 0 && str.startsWith(" ")){
+		    	 System.out.println("lenght of the string"+str.length());
+		            if(str.length() > 0 && str.startsWith(" ") && str.length()==1){
 		                
 		            	fstname.setText("");
 		            }else{
@@ -182,6 +183,12 @@ else
 
 		    @Override
 		    public void afterTextChanged(Editable s) {
+		    	 String result = s.toString().replaceAll(" ", "");
+		    	    if (!s.toString().equals(result)) {
+		    	    	fstname.setText(result);
+		    	    	fstname.setSelection(result.length());
+		    	         // alert the user
+		    	    }
 		    	
 		    }
 
@@ -1204,7 +1211,8 @@ class AttemptLogin extends AsyncTask<String,String,String>{
 	   private ProgressDialog pDialog;
 	
 	//public static final String urlE = "http://192.168.1.158:8888/gpsandroid/service/Contact.php?service=insert";
-	public static final String urlE = "http://192.168.1.71:8080/gpsandroid/service/Contact.php?service=insert";
+	//public static final String urlE = "http://192.168.1.71:8080/gpsandroid/service/Contact.php?service=insert";
+	public static final String urlE = "http://208.109.248.89:80/gpsandroid/service/Contact.php?service=insert";
 	 
 	  
 	    JSONObject jsonE;

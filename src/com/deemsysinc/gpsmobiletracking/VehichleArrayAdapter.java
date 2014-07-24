@@ -92,7 +92,7 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 		    }
 		    else
 		    {
-		    	holder.driverstatus.setImageResource(R.drawable.logo);
+		    	holder.driverstatus.setImageResource(R.drawable.red_light);
 		    }
 		    
 		
