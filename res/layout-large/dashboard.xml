@@ -55,7 +55,8 @@
         android:layout_alignBaseline="@+id/aboutus"
         android:layout_alignBottom="@+id/aboutus"
         android:layout_alignRight="@+id/logout"
-        android:layout_marginRight="26dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="400dp"
         android:background="@drawable/contact" />
 
     <ListView

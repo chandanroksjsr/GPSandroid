@@ -24,4 +24,37 @@
     <string name="city">City</string>
     <string name="state">State</string>
     <string name="info">INFO!</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+     <string-array name="nav_drawer_items">
+        <item >Live Track</item>
+        <item >History Track</item>
+        <item >Alert Message</item>
+         <item >Dashboard</item>
+       
+    </string-array>
+    
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/livetarck</item>
+        <item>@drawable/histroytrack</item>
+        <item>@drawable/alertmessagepage</item>
+      
+    </array>
+     <string-array name="nav_drawer_items1">
+          <item >History Track</item>
+        <item >Live Track</item>
+        <item >Alert Message</item>
+         <item >Dashboard</item>
+       
+    </string-array>
+     <string-array name="nav_drawer_items2">
+          <item >Alert Message</item>
+        <item >Live Track</item>
+        <item >History Track</item>
+         <item >Dashboard</item>
+       
+       
+    </string-array>
 </resources>

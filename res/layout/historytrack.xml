@@ -42,16 +42,6 @@
       android:layout_marginLeft="13dp"
       android:layout_marginTop="158dp" />
 
-  <Button
-      android:id="@+id/hme"
-      android:layout_width="40dp"
-      android:layout_height="35dp"
-      android:layout_alignParentLeft="false"
-      android:layout_marginBottom="24dp"
-      android:layout_marginLeft="10dp"
-      android:layout_marginTop="68dp"
-      android:background="@drawable/home" />
-
   <ToggleButton
       android:id="@+id/showmapdif"
       android:layout_width="50dp"

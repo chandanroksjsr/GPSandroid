@@ -2,6 +2,17 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
       <style name="MyTheme" parent="@android:style/Theme.Dialog">
         <item name="android:alertDialogStyle">@style/dialog</item>
+        <item name="android:dropDownSelector">@style/dropdown</item>
           
    </style>
+   
+  <style name="MyActionBartheme">
+        <item name="android:background">#0a7dbc</item>
+      <item name="android:dropDownListViewStyle">@style/DropDownItem</item>
+        
+    </style>
+     <style name="MyActionBar" parent="android:Widget.Holo.ActionBar" >
+        <item name="android:background">#ffffff</item>
+  
+</style>
 </resources>

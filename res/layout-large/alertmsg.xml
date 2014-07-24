@@ -17,15 +17,6 @@
         android:layout_marginTop="200dp"
         android:background="@drawable/logout" />
 
-    <Button
-        android:id="@+id/hmebutton"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/home" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -51,17 +42,18 @@
     <EditText
         android:id="@+id/e6"
         style="@style/custom"
-        android:layout_width="550dp"
-        android:layout_height="210dp"
+        android:layout_width="535dp"
+        android:layout_height="195dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="335dp"
-        android:background="@drawable/roundedtext"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="345dp"
+        android:background="#ffffff"
         android:ems="10"
         android:gravity="top|left"
-        android:lines="1"
         android:maxLength="160"
-        android:maxLines="3"
         android:scrollHorizontally="true"
+        android:shadowRadius="5"
         android:textSize="14dip" >
 
         <requestFocus />
@@ -84,5 +76,7 @@
         android:layout_marginRight="36dp"
         android:layout_marginTop="51dp"
         android:background="@drawable/resetbutton" />
+
+    
 
 </RelativeLayout>

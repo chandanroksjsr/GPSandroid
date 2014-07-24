@@ -4,21 +4,8 @@
     android:layout_height="fill_parent"
     android:background="@drawable/histroytrack" >
 
-    <ToggleButton
-        android:id="@+id/showmapdif"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentEnd="false"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="830dp"
-        android:background="@drawable/togglebutton"
-        android:checked="false"
-        android:text="ToggleButton"
-        android:textOff=""
-        android:textOn="" />
-
     <fragment
-        android:id="@+id/map1"
+        android:id="@+id/map"
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="550dp"
         android:layout_height="583dp"
@@ -47,14 +34,6 @@
         android:layout_marginTop="200dp"
         android:background="@drawable/logout" />
 
-    <Button
-        android:id="@+id/hme"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="false"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/home" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -65,5 +44,19 @@
         android:text="@string/welcome"
         android:textColor="#ffffff"
         android:textSize="20dp" />
+
+    <ToggleButton
+        android:id="@+id/showmapdif"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="830dp"
+        android:background="@drawable/togglebutton"
+        android:checked="false"
+        android:text="ToggleButton"
+        android:textOff=""
+        android:textOn="" />
 
 </RelativeLayout>

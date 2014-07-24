@@ -14,7 +14,8 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-      
+       <item name="android:actionBarStyle">@style/MyActionBar</item>
+       <item name="android:colorBackground">@android:color/black</item>
  		
 
     </style>
@@ -26,8 +27,23 @@
         <item name="android:textStyle">normal</item>
         
     </style>
+ <style name="dropdown" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+    
+     <item name="android:textColor">#ffffff</item>
+      <item name="android:background">#0a7dbc</item>
+    
+</style>
 
-
+ <style name="YourCustomDropDownItemTextStyle" parent="@android:style/Widget">
+    <item name="android:textColor">#ffffff</item>
+    <!-- Here you can set the color and other text attributes -->
+</style>
+<style name="DropDownItem" >
+    <item name="android:textAppearance">?android:attr/textAppearanceInverse</item>
+     <item name="android:textColor">#ffffff</item>
+      <item name="android:background">#0a7dbc</item>
+    
+</style>
   
    <style name="dialog">
        <item name="android:background">#2b6397</item>

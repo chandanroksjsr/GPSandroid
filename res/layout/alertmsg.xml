@@ -25,15 +25,6 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/resetbutton" />
 
-    <Button
-        android:id="@+id/hmebutton"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
-        android:layout_alignParentTop="false"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="68dp"
-        android:background="@drawable/home" />
-
     <EditText
         android:id="@+id/e6"
         style="@style/custom"

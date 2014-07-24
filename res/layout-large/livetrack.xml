@@ -61,12 +61,4 @@
         android1:textColor="#ffffff"
         android1:textSize="20dp" />
 
-    <Button
-        android1:id="@+id/homebut"
-        android1:layout_width="80dp"
-        android1:layout_height="60dp"
-        android1:layout_alignParentLeft="false"
-        android1:layout_marginTop="140dp"
-        android1:background="@drawable/home" />
-
 </RelativeLayout>
