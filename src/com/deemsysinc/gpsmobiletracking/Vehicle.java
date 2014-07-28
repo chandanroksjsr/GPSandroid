@@ -11,7 +11,35 @@ public class Vehicle {
 	 String driver_license;
 	 String license_expiry;
 	 String route_num;
-	 
+	 String timestamp;
+	 String address;
+	 String speed;
+	 public String gettimestamp() {
+			return this.timestamp;
+		    }
+
+		 
+		    public void settimestamp(String timestamp) {
+			this.timestamp = timestamp;
+		    }
+		    public String getaddress() {
+				return this.address;
+			    }
+
+			 
+			    public void setaddress(String address) {
+				this.address = address;
+			    }
+			    
+			    public String getspeed() {
+					return this.speed;
+				    }
+
+				 
+				    public void setspeed(String speed) {
+					this.speed = speed;
+				    }
+				    
 	 
 	
 	 public String getdriverstatus() {
@@ -97,7 +125,7 @@ public class Vehicle {
 			}
 
 	public Vehicle(String vehicle_regno, String name, String drivernamenum, String body, String date,
-			String route_num,String driverstatus) {
+			String route_num,String driverstatus,String timestamp,String address,String speed) {
 	
 		 this._driverstatus=driverstatus;
 		 this.vehicle_regno = vehicle_regno;

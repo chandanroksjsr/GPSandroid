@@ -171,24 +171,17 @@ else
 		    	CharSequence ss = s;
 		    	 String mStr = fstname.getText().toString();
 		    	 String str = s.toString();
-		    	 System.out.println("lenght of the string"+str.length());
-		            if(str.length() > 0 && str.startsWith(" ") && str.length()==1){
+		            if(str.length() > 0 && str.startsWith(" ")){
 		                
 		            	fstname.setText("");
 		            }else{
-		               
+		                
 		            }
 
 		    }
 
 		    @Override
 		    public void afterTextChanged(Editable s) {
-		    	 String result = s.toString().replaceAll(" ", "");
-		    	    if (!s.toString().equals(result)) {
-		    	    	fstname.setText(result);
-		    	    	fstname.setSelection(result.length());
-		    	         // alert the user
-		    	    }
 		    	
 		    }
 
@@ -199,7 +192,6 @@ else
 
 			
 		    });
-		
 		lstname.addTextChangedListener(new TextWatcher() {
 
 		    public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -1082,7 +1074,7 @@ else
 					// TODO Auto-generated method stub
 					
 					
-						String EMAIL_PATTERN = "[a-zA-Z]+[a-zA-Z]*$";
+						String EMAIL_PATTERN = "[a-zA-Z]+[a-zA-Z ]*$";
 
 						Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 						Matcher matcher = pattern.matcher(names);
@@ -1338,7 +1330,7 @@ class AttemptLogin extends AsyncTask<String,String,String>{
 				alertDialog.setTitle("INFO!");
 
 				// Setting Dialog Message
-				alertDialog.setMessage("Message Sent.");
+				alertDialog.setMessage("Message sent.");
 
 				// Setting Icon to Dialog
 				alertDialog.setIcon(R.drawable.tick);

@@ -435,7 +435,7 @@ System.out.println("item position value"+itemPosition);
 						alertDialog.setTitle("INFO!");
 
 						// Setting Dialog Message
-						alertDialog.setMessage("Message Sent.");
+						alertDialog.setMessage("Message sent successfully.");
 
 						// Setting Icon to Dialog
 						alertDialog.setIcon(R.drawable.tick);

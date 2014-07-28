@@ -60,7 +60,7 @@ public class LoginActivity extends Activity {
 
    
 	//private static String loginurl = "http://192.168.1.158:8888/gpsandroid/service/Login.php?service=login"; 
-	//private static String loginurl = "http://192.168.1.71:8080/gpsandroid/service/Login.php?service=login";
+//	private static String loginurl = "http://192.168.1.71:8080/gpsandroid/service/Login.php?service=login";
 	private static String loginurl = "http://208.109.248.89:80/gpsandroid/service/Login.php?service=login";
 
 	@Override
@@ -91,6 +91,8 @@ public class LoginActivity extends Activity {
 			
             
         	public void onClick(View v) {
+        		//Intent intentSignUP=new Intent(getApplicationContext(),Aboutus.class);
+    			//startActivity(intentSignUP);
         		usrname.setText("");
         		paswd.setText("");
         	}
@@ -472,7 +474,7 @@ System.out.println("is internet present:::"+isInternetPresent);
 	    				alertDialog.setTitle("INFO!");
 
 	    				// Setting Dialog Message
-	    				alertDialog.setMessage("Server not connected.");
+	    				alertDialog.setMessage("Invalid username and password.");
 
 	    				// Setting Icon to Dialog
 	    				alertDialog.setIcon(R.drawable.delete);

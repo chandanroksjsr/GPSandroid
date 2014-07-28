@@ -31,7 +31,7 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 	
 	class UserHolder {
 	    TextView drivername;
-	    TextView vehicleregno;
+	    TextView vehicleregno,timestamp,address,speed;
 	  
 	    ImageView driverstatus;
 	
@@ -55,9 +55,9 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 			holder = new UserHolder();
 			holder.vehicleregno = (TextView) row.findViewById(R.id.veh_reg_no);
 			holder.drivername = (TextView) row.findViewById(R.id.label);
-			
 			holder.driverstatus=(ImageView) row.findViewById(R.id.logo);
-			
+			holder.address = (TextView) row.findViewById(R.id.addrstext);
+			holder.speed=(TextView) row.findViewById(R.id.speedtxt);
 			row.setTag(holder);
 		    } else {
 			holder = (UserHolder) row.getTag();
@@ -68,7 +68,11 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 		   
 		 
 		    holder.vehicleregno.setText(user.getvehicle_regno());
-		    holder.drivername.setText(user.getdrivername());
+		    holder.drivername.setText(user.gettimestamp());
+		    holder.address.setText(user.getaddress());
+		    holder.speed.setText(user.getspeed());
+		    System.out.println("value of timestamp"+user.gettimestamp());
+		    System.out.println("value in textview"+holder.drivername.getText());
 		    System.out.println("value of driverstatus::"+user.getdriverstatus());
 		    if(user.getdriverstatus().equals("0"))
 		    {

@@ -390,6 +390,7 @@ System.out.println("item position value"+itemPosition);
     			        	 map.put(TAG_Speed+i, speed);
     			        	 map.put(TAG_Exceed_Speed+i, exceed_speed_limit);
     			        	 map.put(TAG_address+i, address);
+    			        	 map.put(TAG_bus_tracking_timestamp, bus_tracking_timestamp);
     			        	
     			        	
     			        	vehiclehistory.add(i,map);
@@ -430,7 +431,7 @@ System.out.println("item position value"+itemPosition);
 						alertDialog.setTitle("INFO!");
 
 						// Setting Dialog Message
-						alertDialog.setMessage("No location found.");
+						alertDialog.setMessage("No location's found.");
 
 						// Setting Icon to Dialog
 						alertDialog.setIcon(R.drawable.delete);
@@ -460,12 +461,15 @@ System.out.println("item position value"+itemPosition);
     					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory1.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory1.get(k).get(TAG_Longitude+k)));
     					 System.out.println("pin location"+pinLocation);
     					 points.add(pinLocation);
-    					 String titlevalue=vehiclehistory1.get(k).get(TAG_address+k)+vehiclehistory1.get(k).get(TAG_Speed+k);
+    					 String titlevalue="Speed:"+vehiclehistory1.get(k).get(TAG_Speed+k)+"km/hr "+"Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
+    					 String snippetval="Address:"+vehiclehistory1.get(k).get(TAG_address+k);
+    					 String date="Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
+    					 // String titlevalue="Speed:"+vehiclehistory1.get(k).get(TAG_address+k)+vehiclehistory1.get(k).get(TAG_Speed+k);
     					 if(sizeminusone==k)
     					 {
     						 System.out.println("k value"+k);
     						 System.out.println("if index and size is same asc");
-    						  MarkerOptions marker = new MarkerOptions().position(pinLocation).title(titlevalue);
+    						  MarkerOptions marker = new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
         					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin));
         				      googleMap.addMarker(marker);
         				      
@@ -490,7 +494,7 @@ System.out.println("item position value"+itemPosition);
     				 }
     				 polyLineOptions.addAll(points);
 				        polyLineOptions.width(2);
-				        polyLineOptions.color(Color.BLUE);
+				        polyLineOptions.color(Color.RED);
 	    				 googleMap.addPolyline(polyLineOptions);
 
     			

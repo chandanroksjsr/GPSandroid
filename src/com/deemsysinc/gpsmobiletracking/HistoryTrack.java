@@ -97,8 +97,8 @@ public class HistoryTrack  extends Activity {
 		double latitude1;
 		double longitude1;
 		//private static String vehiclehistorysurll = "http://192.168.1.158:8888/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
-	//	private static String vehiclehistorysurll = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
-		private static String vehiclehistorysurll = "http://208.109.248.89:80/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
+		//private static String vehiclehistorysurll = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
+	private static String vehiclehistorysurll = "http://208.109.248.89:80/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
@@ -351,6 +351,7 @@ System.out.println("item position value"+itemPosition);
 	    			        	 map.put(TAG_Longitude+i,longitude);
 	    			        	 map.put(TAG_Speed+i, speed);
 	    			        	 map.put(TAG_address+i, address);
+	    			        	 map.put(TAG_bus_tracking_timestamp+i, bus_tracking_timestamp);
 	    			        	
 	    			        	
 	    			        	vehiclehistory.add(i,map);
@@ -389,7 +390,7 @@ System.out.println("item position value"+itemPosition);
 	    						alertDialog.setTitle("INFO!");
 
 	    						// Setting Dialog Message
-	    						alertDialog.setMessage("No location found.");
+	    						alertDialog.setMessage("No location's found.");
 
 	    						// Setting Icon to Dialog
 	    						alertDialog.setIcon(R.drawable.delete);
@@ -442,8 +443,11 @@ System.out.println("item position value"+itemPosition);
 	    					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory1.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory1.get(k).get(TAG_Longitude+k)));
 	    					 System.out.println("pin location"+pinLocation);
 	    					 points.add(pinLocation);
-	    					 String titlevalue=vehiclehistory1.get(k).get(TAG_address+k)+vehiclehistory1.get(k).get(TAG_Speed+k);
-	    					 MarkerOptions marker = new MarkerOptions().position(pinLocation).title(titlevalue);
+	    					 String titlevalue="Speed:"+vehiclehistory1.get(k).get(TAG_Speed+k)+"km/hr "+"Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
+	    					 String snippetval="Address:"+vehiclehistory1.get(k).get(TAG_address+k);
+	    					 String date="Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
+	    					// String titlevalue=vehiclehistory1.get(k).get(TAG_address+k)+vehiclehistory1.get(k).get(TAG_Speed+k);
+	    					 MarkerOptions marker = new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
        					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
        				      googleMap.addMarker(marker);
 	    					
@@ -459,7 +463,7 @@ System.out.println("item position value"+itemPosition);
 	    				 }
 	    				 polyLineOptions.addAll(points);
  				        polyLineOptions.width(2);
- 				        polyLineOptions.color(Color.BLUE);
+ 				        polyLineOptions.color(Color.RED);
 	    				 googleMap.addPolyline(polyLineOptions);
 	    			        }
 	    			

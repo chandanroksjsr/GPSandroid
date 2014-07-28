@@ -46,6 +46,9 @@ public class DashboardActivity extends Activity{
 	private static final String TAG_licence_expdate= "driver_licence_exp_date";
 	private static final String TAG_route_no= "route_no";
 	private static final String TAG_driver_status= "device_status";
+	private static final String TAG_Date= "bus_tracking_timestamp";
+	private static final String TAG_ADDRS= "address";
+	private static final String TAG_SPEED= "speed";
 	public ProgressDialog cDialog;
 	String org;
 	static String vehicle_regno;
@@ -55,6 +58,9 @@ public class DashboardActivity extends Activity{
 	String license_expiry;
 	String route_num;
 	String driverstatus;
+	String timestamp;
+	String address;
+	String speed;
 	ListView lstvw;
 	Context context=this;
 	ListView list2;
@@ -204,12 +210,15 @@ public class DashboardActivity extends Activity{
 			    	    org = c2.getString(TAG_ORGID);
 			    		
 			            vehicle_regno = c2.getString(TAG_Vehicle_regno);
-			            device_ime= c2.getString(TAG_Device_imei);
-			        	drivername = c2.getString(TAG_drivername);
-			        	driver_license = c2.getString(TAG_driver_license_no);
-			        	license_expiry=c2.getString(TAG_licence_expdate);
+			          //  device_ime= c2.getString(TAG_Device_imei);
+			        	//drivername = c2.getString(TAG_drivername);
+			        	//driver_license = c2.getString(TAG_driver_license_no);
+			        	//license_expiry=c2.getString(TAG_licence_expdate);
 			        	route_num = c2.getString(TAG_route_no);
 			        	driverstatus=c2.getString(TAG_driver_status);
+			        	timestamp=c2.getString(TAG_Date);
+			        	address=c2.getString(TAG_ADDRS);
+			        	speed=c2.getString(TAG_SPEED);
 			        	
 			        	vehiclelist.add(vehicle_regno);
 			        	//vehiclelist.add(device_ime);
@@ -218,14 +227,17 @@ public class DashboardActivity extends Activity{
 			        	//vehiclelist.add(license_expiry);
 			        	//vehiclelist.add(route_num);
 			        	vehiclelist.add(driverstatus);
-			        	 Vehicle cnt = new Vehicle(vehicle_regno, device_ime, drivername, driver_license, license_expiry, route_num, driverstatus);
+			        	 Vehicle cnt = new Vehicle(vehicle_regno, device_ime, drivername, driver_license, license_expiry, route_num, driverstatus,timestamp,address,speed);
 						    cnt.setvehicle_regno(vehicle_regno);
-						    cnt.setdevice_ime(device_ime);
-						    cnt.setdrivername(drivername);
-						    cnt.setdriver_license(driver_license);
+						    //cnt.setdevice_ime(device_ime);
+						   // cnt.setdrivername(drivername);
+						   // cnt.setdriver_license(driver_license);
 						    cnt.setroute_num(route_num);
-						    cnt.setdate(license_expiry);
+						    //cnt.setdate(license_expiry);
 						    cnt.setdriverstatus(driverstatus);
+						    cnt.setaddress(address);
+						    cnt.settimestamp(timestamp);
+						    cnt.setspeed(speed);
 			               vehicleall.add(cnt);
 			    		//int a=vehiclelist.size();
 			    		System.out.println("size of aray list"+vehicleall);

@@ -77,15 +77,19 @@
               <activity
             android:name="com.deemsysinc.gpsmobiletracking.AboutusTab"
             
-            android:label="@string/app_name"  android:screenOrientation="portrait"></activity>
+            android:label="@string/app_name"  android:screenOrientation="portrait">
+                 
+              </activity>
               <activity
             android:name="com.deemsysinc.gpsmobiletracking.PrivacyAndPolicyTab"
            
-            android:label="@string/app_name"  android:screenOrientation="portrait"></activity>
+            android:label="@string/app_name"  android:screenOrientation="portrait">
+             
+              </activity>
               <activity
             android:name="com.deemsysinc.gpsmobiletracking.TermsAndConditionTab"
             
-            android:label="@string/app_name"  android:screenOrientation="portrait"></activity>
+            android:label="@string/app_name"  android:screenOrientation="portrait"> </activity>
               <activity
             android:name="com.deemsysinc.gpsmobiletracking.ContactUs"
             
