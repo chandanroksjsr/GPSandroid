@@ -315,7 +315,7 @@ System.out.println("item position value"+itemPosition);
 	    	             params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
 	    	             params1.add(new BasicNameValuePair("vechicle_reg_no", vehicle_reg_numb));
 	    	             params1.add(new BasicNameValuePair("date",checkdate ));
-	    	             System.out.println("vehicle date no.fdfsd ."+checkdate);
+	    	             System.out.println("vehicle ddfgate no.fdfsd ."+checkdate);
 	    	            // params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
 	    	           
 	    	             jArray = jsonParser.makeHttpRequest(vehiclehistorysurll, "POST", params1);
@@ -463,7 +463,7 @@ System.out.println("item position value"+itemPosition);
 	    				 }
 	    				 polyLineOptions.addAll(points);
  				        polyLineOptions.width(2);
- 				        polyLineOptions.color(Color.RED);
+ 				        polyLineOptions.color(Color.BLACK);
 	    				 googleMap.addPolyline(polyLineOptions);
 	    			        }
 	    			

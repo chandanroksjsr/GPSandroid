@@ -227,33 +227,16 @@ System.out.println("item position value"+itemPosition);
 	            		        			 	
 	            		        			 	  msg = msgtxt.getText().toString();
 	            		        			 	  
-	            		        			 	 a=1;
-	  						                    if(msgtxt.length()>0)
+	            		        			 	
+	  						                    if(msg.length()>0)
 	  						                    {
 	  						       
 	  					                       
 	  					                           
 	  					                            	try 
 	  					                            	{
-	  					                            		running();
-	  												/*JSONObject	c = jobject.getJSONObject(TAG_SRES);
-	  													
-	  			         					    	
-	  			         						    	mobile = c.getJSONArray(TAG_VEHICLE_ARRAY);
-	  			         						    	Log.i("tagconvertstrxx", "["+mobile+"]");
-	  			         						    	
-	  			         						    	for(int i=0;i<mobile.length();i++)
-	  			         						    	{
-	  			         					    		
-	  			         					    		JSONObject c1 = mobile.getJSONObject(i);
-	  			         					    		JSONObject c2 = c1.getJSONObject(TAG_SRES);
-	  			         					    	 
-	  			         					    	    parent_mobile1 = c2.getString(TAG_Parent_mobile1);
-	  			         					    	   System.out.println("mobile number list"+parent_mobile1);
-	  			         					    	   
-	  			         					    
-	  			         					    	  
-	  			         						    	}*/
+	  					                            		new messaging().execute();
+	  											
 	  			            		        			}
 	  			         						    	
 	  													catch (Exception e)
@@ -333,11 +316,7 @@ System.out.println("item position value"+itemPosition);
 	            		        		}
 	            		        		}
 
-				public void running() {
-					// TODO Auto-generated method stub
-					new messaging().execute();
-				}
-
+				
 			
 
 	      });
@@ -353,8 +332,9 @@ System.out.println("item position value"+itemPosition);
 					protected String doInBackground(String... args) {
 						// TODO Auto-generated method stub
 						
-						int i;
-						
+						int l;
+					
+						System.out.println("size of mobile nunber:::"+mobilenumber.size());
 						    try
 						    {
 						    	System.out.println("json value::"+jobject);
@@ -364,11 +344,11 @@ System.out.println("item position value"+itemPosition);
 						    	mobile = c.getJSONArray(TAG_VEHICLE_ARRAY);
 						    	Log.i("tagconvertstr1", "["+mobile+"]");
 							    	
-							    	for(i=0;i<mobilenumber.size();i++)
+							    	for(l=0;l<mobilenumber.size();l++)
 							    	{
 						    		System.out.println("forloop1");
-						    		
-						    		parent_mobile1=mobilenumber.get(i);
+						    		System.out.println("size of mobile nunber:::"+mobilenumber.size());
+						    		parent_mobile1=mobilenumber.get(l);
 						    	    
 						        System.out.println("mobile number list"+parent_mobile1);
 						    	   
@@ -387,13 +367,14 @@ System.out.println("item position value"+itemPosition);
 							 	
 					    	   
 						    	
-							 
+						
 						 	
-						 	String url= "http://api.cutesms.in/sms.aspx?a=submit&un="+username+"&pw="+password+"&to="+number+"&msg="+resultString+"";
-							System.out.println("url:"+url);
-							System.out.println("url length"+url.length());
+						String url1= "http://api.cutesms.in/sms.aspx?a=submit&un="+username+"&pw="+password+"&to="+number+"&msg="+resultString+"";
+						System.out.println("url printing::"+url1);	 
+							System.out.println("url:"+url1);
+							System.out.println("url length"+url1.length());
 						 	DefaultHttpClient mClient= new DefaultHttpClient();
-							 HttpGet get = new HttpGet(url);
+							 HttpGet get = new HttpGet(url1);
 
 						        
 							 try {
@@ -409,7 +390,7 @@ System.out.println("item position value"+itemPosition);
 						           
 						        }
 							
-						    	System.out.println("i value"+i);
+						    	System.out.println("i value"+l);
 							   }
 							    
 							
@@ -521,7 +502,7 @@ System.out.println("item position value"+itemPosition);
 					    	    
 					        System.out.println("mobile number list"+parent_mobile1);
 					    	   
-					    	  
+					    	mobilenumber.clear();
 					      mobilenumber.add(parent_mobile1);
 					    	    
 					    
@@ -574,30 +555,7 @@ System.out.println("item position value"+itemPosition);
 
 					// Showing Alert Message
 					alertDialog.show();
-    			/*	 AlertDialog.Builder builder= new AlertDialog.Builder(AlertMsg.this,R.style.MyTheme );
-	    		        
-	    	            builder.setMessage("No mobile numbers available." )
-	    	                .setTitle( "INFO!" )
-	    	                .setIcon( R.drawable.pink_pin )
-	    	                .setCancelable( false )
-	    	             
-	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-	    	                    {
-	    	                        public void onClick( DialogInterface dialog, int which )
-	    	                           {
-	    	                        	
-	    	                                dialog.dismiss();
-	    	                           }
-	    	                        } 
-	    	                    );
-	    	            Dialog dialog = null;
-	    	            builder.setInverseBackgroundForced(true);
-	    	            
-	    	            dialog = builder.create();
-	    	            dialog.getWindow().setLayout(600, 400); 
-	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-	    				dialog.show();
-	    				*/
+    			
     			}
  
 						}
