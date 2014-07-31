@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+
 import com.google.android.gms.maps.MapsInitializer;
 
 import android.app.ActionBar;
@@ -56,7 +56,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class LiveTrack extends Activity implements OnMarkerClickListener{
+public class LiveTrack extends Activity {
 	public static ArrayList<HashMap<String, String>> vehiclehistory1= new ArrayList<HashMap<String,String>>();
 	 ArrayList<HashMap<String,String>> vehiclehistory= new ArrayList<HashMap<String,String>>();
 	HashMap<String, String> map = new HashMap<String, String>();
@@ -71,7 +71,7 @@ public class LiveTrack extends Activity implements OnMarkerClickListener{
 	String vehicle_reg_numb;
 	TextView welcomeusername;
 	Button signout,home;
-	int forcheck=0;
+	
 	String succy;
 	   static String vehicle_reg_no1,routeno;
 	    String userrole;
@@ -196,7 +196,7 @@ System.out.println("item position value"+itemPosition);
 	               findFragmentById(R.id.map)).getMap();
 	            }
 	         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-	         googleMap.setOnMarkerClickListener(this);
+	       //  googleMap.setOnMarkerClickListener(this);
 	         googleMap.getUiSettings().setRotateGesturesEnabled(true);
 	         googleMap.getUiSettings().setCompassEnabled(true);
 	         Marker marker = googleMap.addMarker(new MarkerOptions().
@@ -466,6 +466,7 @@ System.out.println("item position value"+itemPosition);
     				 ArrayList<LatLng> points = null;
       			      PolylineOptions polyLineOptions = null;
       			      points = new ArrayList<LatLng>();
+      			      googleMap.clear();
       			        polyLineOptions = new PolylineOptions();
        				System.out.println("vehicle size"+vehiclehistory1.size());
     				 System.out.println("size of vehicle history in post execute"+vehiclehistory.size());
@@ -483,30 +484,32 @@ System.out.println("item position value"+itemPosition);
    					 String titlevalue="Speed:"+vehiclehistory1.get(k).get(TAG_Speed+k)+"km/hr "+"Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
    					 String snippetval="Address:"+vehiclehistory1.get(k).get(TAG_address+k);
    					 String date="Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
-   				 //MarkerOptions marker1 = new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
-					 // marker1.icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin));
-				     // googleMap.addMarker(marker1);
-				      
+   				
    					if(sizeminusone!=k)
    					{
-   						forcheck=0;
    						
-   	   					  expmarker = new MarkerOptions().position(pinLocation).title(titlevalue);
-   	   					  expmarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
-   	   				      googleMap.addMarker(expmarker);
+   					 System.out.println("if index and size is not same");
+   	   					  marker = new MarkerOptions().position(pinLocation).title(titlevalue);
+   	   				 marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.click));
+   	   					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
+   	   				// marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.click));
+   	   				      googleMap.addMarker(marker);
+   	   				      //callone();
    	   				      
    	   					 
    					}
    					 else if(sizeminusone==k)
    					 {
-   						 forcheck=1;
+   						 
    						 System.out.println("k value"+k);
    						 System.out.println("if index and size is same asc");
+   						
    						  marker= new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
-   						  
+   						
    						  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin));
        				      googleMap.addMarker(marker);
-       				      
+       				     
+       				
        				      CameraPosition cameraPosition = new CameraPosition.Builder().target(
        				    		  pinLocation).zoom(18).build();
        				 
@@ -517,7 +520,7 @@ System.out.println("item position value"+itemPosition);
    					 if(vehiclehistory1.get(k).get(TAG_Exceed_Speed+k).equals("1"))
    					 {
    						 marker = new MarkerOptions().position(pinLocation).title(titlevalue);
-   						forcheck=0;
+   						
       					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.pink_pin));
       				      googleMap.addMarker(marker); 
    					 }
@@ -593,23 +596,6 @@ System.out.println("item position value"+itemPosition);
 		   public void onBackPressed() {
 		   }
 
-		@Override
-		public boolean onMarkerClick(Marker marker) {
-			// TODO Auto-generated method stub
-			  //marker = new MarkerOptions();
-			System.out.println("inside marker click forcheck value::"+forcheck);
-			System.out.println("inside marker click");
-			  if(forcheck==1){
-				  marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
-			  }
-			  else
-			  {
-				  marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.click));
-			  }
-			     //googleMap.addMarker(marker);
-		        
-			// 
-			return false;
-		}
-
+	
+	
 	}
