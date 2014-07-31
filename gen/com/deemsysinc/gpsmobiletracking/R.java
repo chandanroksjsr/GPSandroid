@@ -233,12 +233,13 @@ containing a value of this type.
         public static final int roundedtext=0x7f02003c;
         public static final int send=0x7f02003d;
         public static final int splash=0x7f02003e;
-        public static final int termsandcondition=0x7f02003f;
-        public static final int termsandconttion=0x7f020040;
-        public static final int tick=0x7f020041;
-        public static final int togglebutton=0x7f020042;
-        public static final int underconstruction=0x7f020043;
-        public static final int yellow_light=0x7f020044;
+        public static final int submit=0x7f02003f;
+        public static final int termsandcondition=0x7f020040;
+        public static final int termsandconttion=0x7f020041;
+        public static final int tick=0x7f020042;
+        public static final int togglebutton=0x7f020043;
+        public static final int underconstruction=0x7f020044;
+        public static final int yellow_light=0x7f020045;
     }
     public static final class id {
         public static final int aboutus=0x7f050038;

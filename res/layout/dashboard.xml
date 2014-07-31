@@ -23,7 +23,7 @@
         android:layout_alignRight="@+id/list"
         android:layout_marginBottom="14dp"
         android:layout_marginRight="14dp"
-        android:background="@drawable/contact" />
+        android:background="@drawable/contact2" />
 
     <ListView
         android:id="@+id/list"

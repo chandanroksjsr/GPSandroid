@@ -113,6 +113,8 @@ public class LiveTrack extends Activity {
 	      setContentView(R.layout.livetrack);
 	     
 	        ActionBar actions = getActionBar();
+	       int height= actions.getHeight();
+	       System.out.println("height value::"+height);
 	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0a7dbc")));
 	        actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 	        actions.setDisplayShowTitleEnabled(false);
@@ -128,7 +130,7 @@ public class LiveTrack extends Activity {
 			    public boolean onNavigationItemSelected(int itemPosition, long id) {
 
 			        // Do stuff when navigation item is selected
-System.out.println("item position value"+itemPosition);
+//System.out.println("item position value"+itemPosition);
 			        //Log.d("NavigationItemSelected", items[position]); // Debug
 			        Intent myIntent;
 			        if(itemPosition!=0){
@@ -322,7 +324,7 @@ System.out.println("item position value"+itemPosition);
 		                      {
 		                    	  new VehiclePath().execute();
 		                    	  // task.execute();
-		                    	  System.out.println("I am thendral");
+		                    	//  System.out.println("I am thendral");
 		                    	  //LiveTrack myActivity = new LiveTrack();
 		                    	 // AsyncTask<String, String, String> task = myActivity.new VehiclePath();
 			                     //  task.execute();
@@ -370,7 +372,7 @@ System.out.println("item position value"+itemPosition);
     	           
     	             jArray = jsonParser.makeHttpRequest(vehicleliveurl, "POST", params1);
     			
-    			    Log.i("tagconvertstr", "["+jArray+"]");
+    			 //   Log.i("tagconvertstr", "["+jArray+"]");
     			    
     			    try
     			    {
@@ -379,8 +381,8 @@ System.out.println("item position value"+itemPosition);
     			    	JSONObject c = jArray.getJSONObject(TAG_SRES);
     			    	//Log.i("tagconvertstr", "["+c+"]");
     			    	user = c.getJSONArray(TAG_VEHICLE_ARRAY);
-    			    	Log.i("tagconvertstr1", "["+user+"]");
-    			    	System.out.println("size of user lenght"+user.length());
+    			    	//Log.i("tagconvertstr1", "["+user+"]");
+    			    	//System.out.println("size of user lenght"+user.length());
     			    	if(user.length()==0)
     			    	{
     			    		succy="fail";
@@ -392,7 +394,7 @@ System.out.println("item position value"+itemPosition);
     			    	for(int i=0;i<user.length();i++)
     			    	{
     			    		int p=vehiclehistory.size();
-    			    		System.out.println("value of p"+p);
+    			    	//	System.out.println("value of p"+p);
     			    		JSONObject c1 = user.getJSONObject(i);
     			    		JSONObject c2 = c1.getJSONObject(TAG_SRES);
     			    		
@@ -415,11 +417,11 @@ System.out.println("item position value"+itemPosition);
     			        	
     			        	
     			        	vehiclehistory.add(p,map);
-    			        	 vehiclehistory1=vehiclehistory;
+    			        	// vehiclehistory1=vehiclehistory;
     			        	
-    			        	System.out.println("map values"+map);
-    			    		System.out.println("Values for vehiclehistory list"+vehiclehistory1);
-    			    		 System.out.println("size of arraylist::"+vehiclehistory1.size());
+    			       // 	System.out.println("map values"+map);
+    			    	//	System.out.println("Values for vehiclehistory list"+vehiclehistory1);
+    			    		// System.out.println("size of arraylist::"+vehiclehistory1.size());
     			    		
     			    	}
     			    	
@@ -468,28 +470,28 @@ System.out.println("item position value"+itemPosition);
       			      points = new ArrayList<LatLng>();
       			      googleMap.clear();
       			        polyLineOptions = new PolylineOptions();
-       				System.out.println("vehicle size"+vehiclehistory1.size());
-    				 System.out.println("size of vehicle history in post execute"+vehiclehistory.size());
+       			//	System.out.println("vehicle size"+vehiclehistory1.size());
+    				// System.out.println("size of vehicle history in post execute"+vehiclehistory.size());
     				 cDialog.dismiss();
     				int sizeminusone;
     				sizeminusone=vehiclehistory.size()-1;
-    				System.out.println("size of vehicle history in post execute"+vehiclehistory.size());
+    			//	System.out.println("size of vehicle history in post execute"+vehiclehistory.size());
     				for (int k = 0; k < vehiclehistory.size(); k++)
     				{
-   					 System.out.println("k value"+k);
-   					 System.out.println("value of index::"+vehiclehistory.get(k));
-   					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory1.get(k).get(TAG_Longitude+k)));
-   					 System.out.println("pin location"+pinLocation);
+   					// System.out.println("k value"+k);
+   					// System.out.println("value of index::"+vehiclehistory.get(k));
+   					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory.get(k).get(TAG_Longitude+k)));
+   					// System.out.println("pin location"+pinLocation);
    					 points.add(pinLocation);
-   					 String titlevalue="Speed:"+vehiclehistory1.get(k).get(TAG_Speed+k)+"km/hr "+"Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
-   					 String snippetval="Address:"+vehiclehistory1.get(k).get(TAG_address+k);
-   					 String date="Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
+   					 String titlevalue="Speed:"+vehiclehistory.get(k).get(TAG_Speed+k)+"km/hr "+"Date:"+vehiclehistory.get(k).get(TAG_bus_tracking_timestamp+k);
+   					 String snippetval="Address:"+vehiclehistory.get(k).get(TAG_address+k);
+   					 String date="Date:"+vehiclehistory.get(k).get(TAG_bus_tracking_timestamp+k);
    				
    					if(sizeminusone!=k)
    					{
    						
-   					 System.out.println("if index and size is not same");
-   	   					  marker = new MarkerOptions().position(pinLocation).title(titlevalue);
+   					// System.out.println("if index and size is not same");
+   	   					  marker = new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
    	   				 marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.click));
    	   					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
    	   				// marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.click));
@@ -501,8 +503,8 @@ System.out.println("item position value"+itemPosition);
    					 else if(sizeminusone==k)
    					 {
    						 
-   						 System.out.println("k value"+k);
-   						 System.out.println("if index and size is same asc");
+   						// System.out.println("k value"+k);
+   						// System.out.println("if index and size is same asc");
    						
    						  marker= new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
    						
@@ -517,9 +519,9 @@ System.out.println("item position value"+itemPosition);
 
    					 }
    					 
-   					 if(vehiclehistory1.get(k).get(TAG_Exceed_Speed+k).equals("1"))
+   					 if(vehiclehistory.get(k).get(TAG_Exceed_Speed+k).equals("1"))
    					 {
-   						 marker = new MarkerOptions().position(pinLocation).title(titlevalue);
+   						 marker = new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
    						
       					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.pink_pin));
       				      googleMap.addMarker(marker); 
@@ -575,9 +577,9 @@ System.out.println("item position value"+itemPosition);
 	        //googleMap.clear();
 	        vehicle_reg_no = getIntent().getExtras().getString("vehicleregnum");
 		      routeno= getIntent().getExtras().getString("routenum");
-		      System.out.println("vehicle reg num from dashboard::"+vehicle_reg_no);
-		      System.out.println("vehicle route num from dashboard::"+routeno);
-	        System.out.println("in resume");
+		    //  System.out.println("vehicle reg num from dashboard::"+vehicle_reg_no);
+		    //  System.out.println("vehicle route num from dashboard::"+routeno);
+	       // System.out.println("in resume");
 	       // initilizeMap();
 	        timercalling();
 	    }
@@ -588,7 +590,7 @@ System.out.println("item position value"+itemPosition);
 	    {
 
 	    super.onDestroy();  
-	    System.out.println("in destroy");
+	  //  System.out.println("in destroy");
 	  timer.cancel();
 	  doAsynchronousTask.cancel();
 	    }     

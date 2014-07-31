@@ -76,9 +76,9 @@ public class JsonParser {
                 HttpEntity httpEntity = httpResponse.getEntity();
                 is = httpEntity.getContent();
                 
-                System.out.println(is);
+               // System.out.println(is);
                 
-                System.out.println("getting the content");
+              //  System.out.println("getting the content");
  
             }else if(method.equalsIgnoreCase("GET")){
             
@@ -136,7 +136,7 @@ public class JsonParser {
         		jss= "not empty";
         		System.out.println("json is not equal to null");
         	jsonObject = new JSONObject(json);
-        	  System.out.println("json object parse finished");
+        	//  System.out.println("json object parse finished");
         	
         	//Log.i("tagconvertstr2","["+json+"]");
         	    	
@@ -144,9 +144,9 @@ public class JsonParser {
         	
         	else
         	{
-        		System.out.println(" it is null value ");
+        	//	System.out.println(" it is null value ");
         		jss= "empty";
-        		System.out.println("jss value is" +jss);
+        	//	System.out.println("jss value is" +jss);
         		
         	}
             
@@ -156,7 +156,7 @@ public class JsonParser {
         }
         
         
-        System.out.println("jsson object is" + json);
+     //   System.out.println("jsson object is" + json);
        
         return jsonObject;
  
@@ -210,16 +210,16 @@ public JSONObject getJSONFromUrl(String url) {
 		        	}
 		        	else
 		        	{
-		        		System.out.println(" it is null value ");
+		        	//	System.out.println(" it is null value ");
 		        		jss1= "empty";
-		        		System.out.println("jss1 value is" +jss1);
+		        		//System.out.println("jss1 value is" +jss1);
 		        		
 		        	}
 		        } catch (JSONException e) {
 		            Log.e("JSON Parser", "Error parsing data " + e.toString());
 		        }
 		 
-		     System.out.println("json object is");
+		   //  System.out.println("json object is");
 		        return jsonObject;  
 		
 	}

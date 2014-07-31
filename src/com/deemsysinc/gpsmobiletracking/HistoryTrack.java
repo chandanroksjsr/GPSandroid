@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
+
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -121,7 +121,7 @@ public class HistoryTrack  extends Activity {
 			    public boolean onNavigationItemSelected(int itemPosition, long id) {
 
 			        // Do stuff when navigation item is selected
-System.out.println("item position value"+itemPosition);
+//System.out.println("item position value"+itemPosition);
 			        //Log.d("NavigationItemSelected", items[position]); // Debug
 			        Intent myIntent;
 			        if(itemPosition!=0){
@@ -227,7 +227,7 @@ System.out.println("item position value"+itemPosition);
 	        });
 	 
 	      vehicle_reg_numb=LiveTrack.vehicle_reg_no;
-	      System.out.println("history track veh numb"+vehicle_reg_numb);
+	    //System.out.println("history track veh numb"+vehicle_reg_numb);
 	      cd = new ConnectionDetector(getApplicationContext());
 			 isInternetPresent = cd.isConnectingToInternet();
 	      
@@ -236,7 +236,7 @@ System.out.println("item position value"+itemPosition);
 	        month = c.get(Calendar.MONTH);
 	        day   = c.get(Calendar.DAY_OF_MONTH);
 	       
-	       System.out.println("in history track:::::::");
+	     //  System.out.println("in history track:::::::");
 	   
 	       signout.setOnClickListener(new View.OnClickListener() {
 				
@@ -315,7 +315,7 @@ System.out.println("item position value"+itemPosition);
 	    	             params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
 	    	             params1.add(new BasicNameValuePair("vechicle_reg_no", vehicle_reg_numb));
 	    	             params1.add(new BasicNameValuePair("date",checkdate ));
-	    	             System.out.println("vehicle ddfgate no.fdfsd ."+checkdate);
+	    	           //  System.out.println("vehicle ddfgate no.fdfsd ."+checkdate);
 	    	            // params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
 	    	           
 	    	             jArray = jsonParser.makeHttpRequest(vehiclehistorysurll, "POST", params1);
@@ -329,11 +329,11 @@ System.out.println("item position value"+itemPosition);
 	    			    	JSONObject c = jArray.getJSONObject(TAG_SRES);
 	    			    	//Log.i("tagconvertstr", "["+c+"]");
 	    			    	user = c.getJSONArray(TAG_VEHICLE_ARRAY);
-	    			    	Log.i("tagconvertstr1", "["+user+"]");
+	    			    //	Log.i("tagconvertstr1", "["+user+"]");
 	    			    	
 	    			    	for(int i=0;i<user.length();i++)
 	    			    	{
-	    			    		System.out.println("forloop i valuie"+i);
+	    			    		//System.out.println("forloop i valuie"+i);
 	    			    		JSONObject c1 = user.getJSONObject(i);
 	    			    		JSONObject c2 = c1.getJSONObject(TAG_SRES);
 	    			    		
@@ -355,9 +355,9 @@ System.out.println("item position value"+itemPosition);
 	    			        	
 	    			        	
 	    			        	vehiclehistory.add(i,map);
-	    			        	System.out.println("map values"+map);
-	    			    		System.out.println("Values for vehiclehistory list"+vehiclehistory.get(i));
-	    			    		 System.out.println("size of arraylist::"+vehiclehistory.size());
+	    			      //  	System.out.println("map values"+map);
+	    			    		//System.out.println("Values for vehiclehistory list"+vehiclehistory.get(i));
+	    			    		// System.out.println("size of arraylist::"+vehiclehistory.size());
 	    			    		
 	    			    	}
 	    			    	
@@ -439,9 +439,9 @@ System.out.println("item position value"+itemPosition);
 	    			        else
 	    			        {
 	    				 for (int k = 0; k < vehiclehistory1.size(); k++) {
-	    					 System.out.println("k value"+k);
+	    					// System.out.println("k value"+k);
 	    					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory1.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory1.get(k).get(TAG_Longitude+k)));
-	    					 System.out.println("pin location"+pinLocation);
+	    					// System.out.println("pin location"+pinLocation);
 	    					 points.add(pinLocation);
 	    					 String titlevalue="Speed:"+vehiclehistory1.get(k).get(TAG_Speed+k)+"km/hr "+"Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
 	    					 String snippetval="Address:"+vehiclehistory1.get(k).get(TAG_address+k);
@@ -451,7 +451,7 @@ System.out.println("item position value"+itemPosition);
        					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
        				      googleMap.addMarker(marker);
 	    					
-	    					 System.out.println("titlevalue of respective pinlocation"+titlevalue);
+	    					// System.out.println("titlevalue of respective pinlocation"+titlevalue);
 	    					 int sizeminusone=vehiclehistory1.size()-1;
 	    					 if(sizeminusone==k)
 	    					 {
@@ -509,7 +509,7 @@ System.out.println("item position value"+itemPosition);
   protected void onResume() {
       super.onResume();
     
-      System.out.println("in on resume ");
+  //    System.out.println("in on resume ");
       initilizeMap();
       showDialog(DATE_PICKER_ID);
   }
