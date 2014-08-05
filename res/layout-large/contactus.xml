@@ -152,6 +152,6 @@
         android:layout_alignBottom="@+id/btn2"
         android:layout_alignRight="@+id/e9"
         android:layout_marginRight="36dp"
-        android:background="@drawable/resetbutton" />
+        android:background="@drawable/clear" />
 
 </RelativeLayout>

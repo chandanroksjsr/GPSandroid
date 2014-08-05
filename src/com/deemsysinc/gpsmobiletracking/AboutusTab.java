@@ -43,7 +43,7 @@ public class AboutusTab extends Activity
 	      String text = "<a href='http://www.mygps.technology'> www.mygps.technology </a>";
 	      mygps.setText(Html.fromHtml(text));
 	      
-	      support.setTextColor(Color.parseColor("#33CCFF"));
+	      support.setTextColor(Color.parseColor("#fda74a"));
 	             
 	      support.setOnClickListener(new OnClickListener() {               
 	          public void onClick(View arg0) {

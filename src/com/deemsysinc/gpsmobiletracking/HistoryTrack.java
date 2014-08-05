@@ -14,10 +14,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.deemsysinc.gpsmobiletracking.LiveTrack.MyInfoWindowAdapter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
+import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -58,7 +61,7 @@ import android.widget.ToggleButton;
 
 
 @SuppressLint("SimpleDateFormat")
-public class HistoryTrack  extends Activity {
+public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 	    private int year;
 	    private int month;
 	    private int day;
@@ -99,7 +102,34 @@ public class HistoryTrack  extends Activity {
 		//private static String vehiclehistorysurll = "http://192.168.1.158:8888/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 		//private static String vehiclehistorysurll = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 	private static String vehiclehistorysurll = "http://208.109.248.89:80/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
-	  @Override
+	
+	class MyInfoWindowAdapter implements InfoWindowAdapter{
+
+        private final View myContentsView;
+  
+  MyInfoWindowAdapter(){
+   myContentsView = getLayoutInflater().inflate(R.layout.custom_onfo_window, null);
+  }
+  
+  @Override
+  public View getInfoContents(Marker marker) {
+   TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
+   tvTitle.setText(marker.getTitle());
+   TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
+   tvSnippet.setText(marker.getSnippet());
+            
+
+   
+   return myContentsView;
+  }
+  @Override
+  public View getInfoWindow(Marker marker) {
+   // TODO Auto-generated method stub
+   return null;
+  }
+ } 
+	
+	@Override
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
 	      setContentView(R.layout.historytrack);
@@ -177,6 +207,7 @@ public class HistoryTrack  extends Activity {
 	         CameraPosition cameraPosition = new CameraPosition.Builder().target(
 		    		  TutorialsPoint).zoom(4).build();
 	         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+	         googleMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
 	         marker.remove();
 	         marker.setVisible(false);
 	       
@@ -516,6 +547,12 @@ public class HistoryTrack  extends Activity {
   @Override
   public void onBackPressed() {
   }
+
+@Override
+public void onMapLongClick(LatLng point) {
+	// TODO Auto-generated method stub
+	
+}
 
 
 }

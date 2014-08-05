@@ -87,6 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="130dp"
+                android:textColorLink="#fda74a"
                 android:layout_marginTop="270dp"
                 android:text="@string/weblink" />
 
@@ -118,6 +119,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="false"
                 android:layout_marginLeft="130dp"
+                android:textColor="#fda74a"
                 android:layout_marginTop="330dp"
                 android:text="@string/emailidd" />
  <TextView

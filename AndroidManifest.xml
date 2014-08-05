@@ -7,6 +7,12 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
+    <supports-screens android:smallScreens="true" 
+          android:normalScreens="true" 
+          android:largeScreens="true"
+          android:xlargeScreens="true"
+          android:resizeable="true"
+          android:anyDensity="true" />
      <permission
       android:name="com.example.googlemaps.permission.MAPS_RECEIVE"
       android:protectionLevel="signature" />
@@ -39,11 +45,11 @@
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.NoTitleBar"
             android:screenOrientation="portrait">
-            <intent-filter>
+             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter> 
         </activity>
           <activity
             android:name="com.deemsysinc.gpsmobiletracking.LoginActivity"
@@ -95,9 +101,15 @@
             
             android:label="@string/app_name"  android:screenOrientation="portrait"></activity>
                 <activity
-            android:name="com.deemsysinc.gpsmobiletracking.NavigationSliderActivity"
+            android:name="com.deemsysinc.gpsmobiletracking.Sample"
             
-            android:label="@string/app_name"  android:screenOrientation="portrait"></activity>
+            android:label="@string/app_name"  android:screenOrientation="portrait">
+                  <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> --> 
+                </activity>
     </application>
 
 </manifest>

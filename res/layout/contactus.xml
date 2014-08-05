@@ -125,13 +125,13 @@
 
         <Button
             android:id="@+id/btn3"
-            android:layout_width="80dp"
+            android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="false"
             android:layout_alignParentTop="false"
             android:layout_marginLeft="190dp"
             android:layout_marginTop="435dp"
-            android:background="@drawable/resetbutton" />
+            android:background="@drawable/clear" />
 
         <Button
             android:id="@+id/btn2"

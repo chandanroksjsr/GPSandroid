@@ -16,6 +16,8 @@ import org.json.JSONObject;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
+import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 
 import com.google.android.gms.maps.MapsInitializer;
 
@@ -41,6 +43,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +59,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class LiveTrack extends Activity {
+public class LiveTrack extends Activity implements OnMapLongClickListener{
 	public static ArrayList<HashMap<String, String>> vehiclehistory1= new ArrayList<HashMap<String,String>>();
 	 ArrayList<HashMap<String,String>> vehiclehistory= new ArrayList<HashMap<String,String>>();
 	HashMap<String, String> map = new HashMap<String, String>();
@@ -106,7 +109,32 @@ public class LiveTrack extends Activity {
 	// private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/LiveTrack.php?service=livetrack"; 
 	 private static String vehicleliveurl = "http://208.109.248.89:80/gpsandroid/service/LiveTrack.php?service=livetrack"; 
 	/** Called when the activity is first created. */
+	 class MyInfoWindowAdapter implements InfoWindowAdapter{
+
+	        private final View myContentsView;
 	  
+	  MyInfoWindowAdapter(){
+	   myContentsView = getLayoutInflater().inflate(R.layout.custom_onfo_window, null);
+	  }
+	  
+	  @Override
+	  public View getInfoContents(Marker marker) {
+	   TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
+	   tvTitle.setText(marker.getTitle());
+	   TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
+	   tvSnippet.setText(marker.getSnippet());
+	            
+	
+	   
+	   return myContentsView;
+	  }
+	  @Override
+	  public View getInfoWindow(Marker marker) {
+	   // TODO Auto-generated method stub
+	   return null;
+	  }
+	 } 
+
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
@@ -201,6 +229,7 @@ public class LiveTrack extends Activity {
 	       //  googleMap.setOnMarkerClickListener(this);
 	         googleMap.getUiSettings().setRotateGesturesEnabled(true);
 	         googleMap.getUiSettings().setCompassEnabled(true);
+	         googleMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
 	         Marker marker = googleMap.addMarker(new MarkerOptions().
 	    	         position(TutorialsPoint).title(""));
 	         CameraPosition cameraPosition = new CameraPosition.Builder().target(
@@ -597,6 +626,12 @@ public class LiveTrack extends Activity {
 	    @Override
 		   public void onBackPressed() {
 		   }
+
+		@Override
+		public void onMapLongClick(LatLng arg0) {
+			// TODO Auto-generated method stub
+			
+		}
 
 	
 	

@@ -32,29 +32,31 @@
     <EditText
         android:id="@+id/username"
         style="@style/custom"
-        android:layout_width="150dp"
+        android:layout_width="190dp"
         android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="182dp"
         android:background="#00000000"
-        android:ems="10"
-        android:singleLine = "true"
         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
-        android:inputType="textPersonName" />
+        android:ems="10"
+        android:hint="@string/Username"
+        android:inputType="textPersonName"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/pswd"
         style="@style/custom"
-        android:layout_width="150dp"
+        android:layout_width="190dp"
         android:layout_height="30dp"
-        android:layout_alignLeft="@+id/username"
-        android:layout_below="@+id/username"
-        android:layout_marginTop="28dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="220dp"
         android:background="#00000000"
-        android:ems="10"
-        android:singleLine = "true"
         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
-        android:inputType="textPassword" />
+        android:ems="10"
+        android:hint="@string/pswd"
+        android:inputType="textPassword"
+        android:singleLine="true" />
 
 </RelativeLayout>

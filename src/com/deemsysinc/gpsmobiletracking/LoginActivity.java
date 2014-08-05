@@ -95,6 +95,7 @@ public class LoginActivity extends Activity {
     			//startActivity(intentSignUP);
         		usrname.setText("");
         		paswd.setText("");
+        		 
         	}
         	});
 		signin.setOnClickListener(new View.OnClickListener() {

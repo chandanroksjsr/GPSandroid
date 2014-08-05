@@ -18,12 +18,12 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="80dp"
+        android:layout_width="110dp"
         android:layout_height="25dp"
         android:layout_alignRight="@+id/e6"
         android:layout_below="@+id/e6"
         android:layout_marginTop="40dp"
-        android:background="@drawable/resetbutton" />
+        android:background="@drawable/clear" />
 
     <EditText
         android:id="@+id/e6"
