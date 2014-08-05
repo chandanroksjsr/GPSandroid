@@ -52,7 +52,7 @@ public class AlertMsg  extends Activity {
 	ConnectionDetector cd;
 	Boolean isInternetPresent = false;
 	public ProgressDialog pDialog;
-	EditText msgtxt;
+	static EditText msgtxt;
 	String sendmsg;
 	JsonParser jsonParser = new JsonParser();
 	JSONObject jobject;
@@ -167,7 +167,7 @@ System.out.println("item position value"+itemPosition);
 	        });
 	      cd = new ConnectionDetector(getApplicationContext());
 	      Button btnsend,btnclr;
-	      final EditText msgtxt;
+	     
 	      btnsend =(Button)findViewById(R.id.button1);
 	      btnclr =(Button)findViewById(R.id.button2);
 	      msgtxt=(EditText)findViewById(R.id.e6);
@@ -408,13 +408,13 @@ System.out.println("item position value"+itemPosition);
 	    			protected void onPostExecute(String file_url) {
 					
 	    				 super.onPostExecute(file_url);
-	    				pDialog.dismiss();
+	    				AlertMsg.msgtxt.setText("");
 	    				AlertDialog alertDialog = new AlertDialog.Builder(
 								AlertMsg.this).create();
 
 						// Setting Dialog Title
 						alertDialog.setTitle("INFO!");
-
+alertDialog.setCancelable(false);
 						// Setting Dialog Message
 						alertDialog.setMessage("Message sent successfully.");
 
@@ -427,9 +427,10 @@ System.out.println("item position value"+itemPosition);
 
 									public void onClick(final DialogInterface dialog,
 											final int which) {
+										
 										// Write your code here to execute after dialog
 										// closed
-										
+										pDialog.dismiss();
 									}
 								});
 

@@ -1,0 +1,232 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:orientation="vertical"
+    android:background="@drawable/privacypolicy" >
+
+  <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="820dp"
+           
+            android:orientation="vertical" >
+
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="330dp"
+                 android:layout_weight="1" >
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="820dp"
+        android:layout_marginTop="110dp"
+        android:layout_weight="1" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="0dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/custom"
+                android:layout_width="540dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentTop="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="1dp"
+                android:text="@string/privacypolicy" />
+
+            <TextView
+                android:id="@+id/useof"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="330dp"
+                android:text="@string/useof" />
+
+            <TextView
+                android:id="@+id/collection"
+                style="@style/custom"
+                android:layout_width="540dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="360dp"
+                android:text="@string/collection" />
+
+            <TextView
+                android:id="@+id/thisprivacy"
+                style="@style/custom"
+                android:layout_width="540dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="390dp"
+                android:text="@string/thisprivacy" />
+
+            <TextView
+                android:id="@+id/youack"
+                style="@style/custom"
+                android:layout_width="540dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="480dp"
+                android:text="@string/youack" />
+
+    <TextView
+        android:id="@+id/except"
+        style="@style/custom"
+        android:layout_width="540dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="620dp"
+        android:text="@string/except" />
+      <TextView
+        android:id="@+id/storage"
+        style="@style/custom"
+        android:layout_width="540dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="700dp"
+        android:text="@string/storage" />
+       <TextView
+        android:id="@+id/wemay"
+        style="@style/custom"
+        android:layout_width="540dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="730dp"
+        android:text="@string/wemay" />
+
+        <TextView
+            android:id="@+id/weuse"
+            style="@style/custom"
+            android:layout_width="540dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="910dp"
+            android:text="@string/weuse" />
+        <TextView
+            android:id="@+id/someof"
+            style="@style/custom"
+            android:layout_width="540dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="950dp"
+            android:text="@string/someof" />
+
+        <TextView
+            android:id="@+id/howwe"
+            style="@style/custom"
+            android:layout_width="540dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="1300dp"
+            android:text="@string/howwe" />
+
+          <TextView
+              android:id="@+id/wherever"
+              style="@style/custom"
+              android:layout_width="540dp"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="35dp"
+              android:layout_marginTop="1340dp"
+              android:text="@string/wherever" />
+
+            <TextView
+                android:id="@+id/access"
+                style="@style/custom"
+                android:layout_width="540dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="1490dp"
+                android:text="@string/access" />
+
+             <TextView
+                 android:id="@+id/youhave"
+                 style="@style/custom"
+                 android:layout_width="540dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="35dp"
+                 android:layout_marginTop="1530dp"
+                 android:text="@string/youhave" />
+
+             <TextView
+                 android:id="@+id/ifyou"
+                 style="@style/custom"
+                 android:layout_width="540dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="35dp"
+                 android:layout_marginTop="1610dp"
+                 android:text="@string/ifyou" />
+
+              <TextView
+                  android:id="@+id/thirdparty"
+                  style="@style/custom"
+                  android:layout_width="540dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="35dp"
+                  android:layout_marginTop="1720dp"
+                  android:text="@string/thirdparty" />
+
+                <TextView
+                    android:id="@+id/linkson"
+                    style="@style/custom"
+                    android:layout_width="540dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="1760dp"
+                    android:text="@string/linkson" />
+
+                    <TextView
+                        android:id="@+id/changesto"
+                        style="@style/custom"
+                        android:layout_width="540dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="2000dp"
+                        android:text="@string/changesto" />
+
+                    <TextView
+            android:id="@+id/wereserve"
+            style="@style/custom"
+            android:layout_width="540dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="2050dp"
+            android:text="@string/wereserve" />
+            
+              <ImageView
+                  android:id="@+id/imageView1"
+                  style="@style/custom"
+                  android:layout_width="80dp"
+                  android:layout_height="80dp"
+                  android:layout_alignParentBottom="false"
+                  android:layout_centerHorizontal="true"
+                  android:layout_marginTop="2270dp"
+                  android:cropToPadding="false"
+                  android:src="@drawable/deemgpslog" />
+
+            <TextView
+                android:id="@+id/copyright"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imageView1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2300dp"
+                android:text="@string/copyright" />
+
+        </RelativeLayout>
+     
+    </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

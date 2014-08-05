@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/histroytrack" >
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="550dp"
+        android:layout_height="583dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="327dp" />
+
+    <TextView
+        android:id="@+id/welcomename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="121dp"
+        android:layout_marginTop="210dp"
+        android:text="TextView"
+        android:textColor="#ffffff"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/signoutty"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="false"
+        android:layout_marginLeft="450dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/logout" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="false"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="210dp"
+        android:text="@string/welcome"
+        android:textColor="#ffffff"
+        android:textSize="20dp" />
+
+    <ToggleButton
+        android:id="@+id/showmapdif"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="830dp"
+        android:background="@drawable/togglebutton"
+        android:checked="false"
+        android:text="ToggleButton"
+        android:textOff=""
+        android:textOn="" />
+
+</RelativeLayout>

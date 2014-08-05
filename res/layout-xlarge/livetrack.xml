@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/livetarck" >
+
+    <Button
+        android1:id="@+id/signutty"
+        android1:layout_width="110dp"
+        android1:layout_height="40dp"
+        android1:layout_alignParentRight="false"
+        android1:layout_alignParentTop="false"
+        android1:layout_marginLeft="450dp"
+        android1:layout_marginTop="200dp"
+        android1:background="@drawable/logout" />
+
+    <fragment
+        android1:id="@+id/map"
+        android1:name="com.google.android.gms.maps.MapFragment"
+        android1:layout_width="550dp"
+        android1:layout_height="583dp"
+        android1:layout_alignParentBottom="false"
+        android1:layout_alignParentLeft="false"
+        android1:layout_alignParentRight="false"
+        android1:layout_marginLeft="26dp"
+        android1:layout_marginTop="327dp" />
+
+    <ToggleButton
+        android1:id="@+id/showmap"
+        android1:layout_width="80dp"
+        android1:layout_height="80dp"
+        android1:layout_alignParentBottom="false"
+        android1:layout_alignParentLeft="false"
+        android1:layout_centerHorizontal="false"
+        android1:layout_marginLeft="27dp"
+        android1:layout_marginTop="830dp"
+        android:textOff=""
+        android:textOn=""
+        android1:background="@drawable/togglebutton"
+        android1:checked="false" />
+
+    <TextView
+        android1:id="@+id/textView1"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignParentLeft="false"
+        android1:layout_marginLeft="24dp"
+        android1:layout_marginTop="210dp"
+        android1:text="@string/welcome"
+        android1:textColor="#ffffff"
+        android1:textSize="20dp" />
+
+    <TextView
+        android1:id="@+id/welcmename"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_marginLeft="121dp"
+        android1:layout_marginTop="210dp"
+        android1:text="TextView"
+        android1:textColor="#ffffff"
+        android1:textSize="20dp" />
+
+</RelativeLayout>

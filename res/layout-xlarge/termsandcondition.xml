@@ -1,0 +1,356 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:orientation="vertical"
+    android:background="@drawable/termsandcondition" >
+  <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="820dp"
+           
+            android:orientation="vertical" >
+
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="430dp"
+                 android:layout_weight="1" >
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="820dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/deemsysreturn"
+                style="@style/custom"
+                android:layout_width="540dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentTop="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/deemgpsreturn" />
+
+            <TextView
+                android:id="@+id/deemsysreturnstatement"
+                style="@style/custom"
+                android:layout_width="520dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/deemgpsreturnstate" />
+
+            <TextView
+                android:id="@+id/refundpolicy"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="130dp"
+                android:text="@string/deemgpsrefund" />
+
+            <TextView
+                android:id="@+id/refundstatement"
+                style="@style/custom"
+                android:layout_width="520dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="155dp"
+                android:text="@string/deemgpsrefundstate" />
+
+            <TextView
+                android:id="@+id/refundstate1"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="325dp"
+                android:text="@string/deemgpsrefundstate1" />
+
+            <TextView
+                android:id="@+id/deemgpswaranty"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="390dp"
+                android:text="@string/deemgpswaranty" />
+
+            <TextView
+                android:id="@+id/warantyrepair"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="420dp"
+                android:text="@string/warantyrepair" />
+
+            <TextView
+                android:id="@+id/warantyrepair1"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="450dp"
+                android:text="@string/warantyrepair1" />
+
+            <TextView
+                android:id="@+id/warantyrepair2"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="510dp"
+                android:text="@string/warantyrepair2" />
+
+            <TextView
+                android:id="@+id/warantyrepair3"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="540dp"
+                android:text="@string/warantyrepair3" />
+
+            <TextView
+                android:id="@+id/warantyrepair4"
+                style="@style/custom"
+                android:layout_width="520dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="570dp"
+                android:text="@string/warantyrepair4" />
+
+            <TextView
+                android:id="@+id/proofofpurchase"
+                style="@style/custom"
+                android:layout_width="520dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="640dp"
+                android:text="@string/proofofpurchase" />
+
+            <TextView
+                android:id="@+id/proofofpurchase1"
+                style="@style/custom"
+                android:layout_width="520dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="670dp"
+                android:text="@string/proofofpurchase1" />
+            
+            <TextView
+                android:id="@+id/outofwaranty"
+                style="@style/custom"
+                android:layout_width="520dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="830dp"
+                android:text="@string/outofwaranty" />
+
+            <TextView
+                android:id="@+id/outofwaranty1"
+                style="@style/custom"
+                android:layout_width="520dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="860dp"
+                android:text="@string/outofwaranty1" />
+
+            <TextView
+                android:id="@+id/brokerndisplay"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="950dp"
+                android:text="@string/brokerndisplay" />
+
+  <TextView
+      android:id="@+id/brokerndisplay1"
+      style="@style/custom"
+      android:layout_width="520dp"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="35dp"
+      android:layout_marginTop="980dp"
+      android:text="@string/brokerndisplay1" />
+            
+              <TextView
+                  android:id="@+id/productreturnship"
+                  style="@style/custom"
+                  android:layout_width="520dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="35dp"
+                  android:layout_marginTop="1120dp"
+                  android:text="@string/productreturnship" />
+              
+              <TextView
+                  android:id="@+id/productreturnship1"
+                  style="@style/custom"
+                  android:layout_width="520dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="35dp"
+                  android:layout_marginTop="1150dp"
+                  android:text="@string/productreturnship1" />
+
+              <TextView
+                  android:id="@+id/shipinstruc"
+                  style="@style/custom"
+                  android:layout_width="520dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="35dp"
+                  android:layout_marginTop="1310dp"
+                  android:text="@string/shipinstruc" />
+              
+                <TextView
+                    android:id="@+id/shipinstruc1"
+                    style="@style/custom"
+                    android:layout_width="520dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="1340dp"
+                    android:text="@string/shipinstruc1" />
+              
+              <TextView
+                  android:id="@+id/deemsysindianaddrs"
+                  style="@style/custom"
+                  android:layout_width="520dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="35dp"
+                  android:layout_marginTop="1500dp"
+                  android:text="@string/deemsysindianaddrs" />
+
+             <TextView
+                 android:id="@+id/addrsone"
+                 style="@style/custom"
+                 android:layout_width="220dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="35dp"
+                 android:layout_marginTop="1530dp"
+                 android:text="@string/addressdeem" />
+
+            <TextView
+                android:id="@+id/addrsone0"
+                style="@style/custom"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="1560dp"
+                android:text="@string/addrs1" />
+
+            <TextView
+                android:id="@+id/addrsone1"
+                style="@style/custom"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="1590dp"
+                android:text="@string/addrs2" />
+
+            <TextView
+                android:id="@+id/addrsone2"
+                style="@style/custom"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="1620dp"
+                android:text="@string/addrs3" />
+            
+            <TextView
+                android:id="@+id/addrsone2t"
+                style="@style/custom"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="1650dp"
+                android:text="@string/addrs5" />
+
+            <TextView
+                android:id="@+id/addrsone3"
+                style="@style/custom"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="1680dp"
+                android:text="@string/addrs4" />
+
+              <TextView
+                  android:id="@+id/note"
+                  style="@style/custom"
+                  android:layout_width="520dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="35dp"
+                  android:layout_marginTop="1720dp"
+                  android:text="@string/note" />
+              
+              <TextView
+                  android:id="@+id/warantydisclaimer"
+                  style="@style/custom"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="35dp"
+                  android:layout_marginTop="1840dp"
+                  android:text="@string/warantydisclaimer" />
+
+              <TextView
+                  android:id="@+id/warantydisclaimer1"
+                  style="@style/custom"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="35dp"
+                  android:layout_marginTop="1960dp"
+                  android:text="@string/warantydisclaimer1" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                style="@style/custom"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="false"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2090dp"
+                android:cropToPadding="false"
+                android:src="@drawable/deemgpslog" />
+
+            <TextView
+                android:id="@+id/copyright"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imageView1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2050dp"
+                android:text="@string/copyright" />
+
+            <TextView
+                android:id="@+id/warantydisclaimer2"
+                style="@style/custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="2020dp"
+                android:text="@string/warantydisclaimer2" />
+
+        </RelativeLayout>
+      
+    </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

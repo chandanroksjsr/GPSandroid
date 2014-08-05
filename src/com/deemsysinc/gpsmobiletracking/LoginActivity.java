@@ -475,7 +475,7 @@ System.out.println("is internet present:::"+isInternetPresent);
 	    				alertDialog.setTitle("INFO!");
 
 	    				// Setting Dialog Message
-	    				alertDialog.setMessage("Invalid username and password.");
+	    				alertDialog.setMessage("Invalid username or password.");
 
 	    				// Setting Icon to Dialog
 	    				alertDialog.setIcon(R.drawable.delete);
