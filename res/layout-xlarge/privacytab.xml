@@ -3,16 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
      android:orientation="vertical"
-    android:background="@drawable/privacylarge" >
+    android:background="@drawable/privacyxtra" >
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="900dp"
+      android:layout_height="1100dp"
       android:orientation="vertical" >
 
              <RelativeLayout
                  android:layout_width="match_parent"
-                 android:layout_height="172dp"
+                 android:layout_height="70dp"
                  android:layout_weight="1" >
 
     </RelativeLayout>
@@ -33,11 +33,11 @@
             <TextView
                 android:id="@+id/textView1"
                 style="@style/custom"
-                android:layout_width="540dp"
+                android:layout_width="700dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentTop="false"
-                android:layout_marginLeft="35dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="6dp"
                 android:text="@string/privacypolicy" />
 
@@ -47,115 +47,115 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="false"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="330dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="300dp"
                 android:text="@string/useof" />
 
             <TextView
                 android:id="@+id/collection"
                 style="@style/custom"
-                android:layout_width="540dp"
+                android:layout_width="700dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="false"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="360dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="340dp"
                 android:text="@string/collection" />
 
             <TextView
                 android:id="@+id/thisprivacy"
                 style="@style/custom"
-                android:layout_width="540dp"
+                android:layout_width="700dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="390dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="380dp"
                 android:text="@string/thisprivacy" />
 
             <TextView
                 android:id="@+id/youack"
                 style="@style/custom"
-                android:layout_width="540dp"
+                android:layout_width="700dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="480dp"
                 android:text="@string/youack" />
 
     <TextView
         android:id="@+id/except"
         style="@style/custom"
-        android:layout_width="540dp"
+        android:layout_width="700dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="610dp"
         android:text="@string/except" />
 
       <TextView
           android:id="@+id/storage"
           style="@style/custom"
-          android:layout_width="540dp"
+          android:layout_width="700dp"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="35dp"
-          android:layout_marginTop="690dp"
+          android:layout_marginLeft="50dp"
+          android:layout_marginTop="700dp"
           android:text="@string/storage" />
 
        <TextView
-        android:id="@+id/wemay"
-        style="@style/custom"
-        android:layout_width="540dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="730dp"
-        android:text="@string/wemay" />
+           android:id="@+id/wemay"
+           style="@style/custom"
+           android:layout_width="700dp"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="50dp"
+           android:layout_marginTop="750dp"
+           android:text="@string/wemay" />
 
         <TextView
             android:id="@+id/weuse"
             style="@style/custom"
-            android:layout_width="540dp"
+            android:layout_width="700dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="910dp"
             android:text="@string/weuse" />
         <TextView
             android:id="@+id/someof"
             style="@style/custom"
-            android:layout_width="540dp"
+            android:layout_width="700dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="950dp"
             android:text="@string/someof" />
 
         <TextView
             android:id="@+id/howwe"
             style="@style/custom"
-            android:layout_width="540dp"
+            android:layout_width="700dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="1280dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="1260dp"
             android:text="@string/howwe" />
 
           <TextView
               android:id="@+id/wherever"
               style="@style/custom"
-              android:layout_width="540dp"
+              android:layout_width="700dp"
               android:layout_height="wrap_content"
-              android:layout_marginLeft="35dp"
+              android:layout_marginLeft="50dp"
               android:layout_marginTop="1310dp"
               android:text="@string/wherever" />
 
             <TextView
                 android:id="@+id/access"
                 style="@style/custom"
-                android:layout_width="540dp"
+                android:layout_width="700dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="1460dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="1450dp"
                 android:text="@string/access" />
 
              <TextView
                  android:id="@+id/youhave"
                  style="@style/custom"
-                 android:layout_width="540dp"
+                 android:layout_width="700dp"
                  android:layout_height="wrap_content"
-                 android:layout_marginLeft="35dp"
+                 android:layout_marginLeft="50dp"
                  android:layout_marginTop="1500dp"
                  android:text="@string/youhave" />
 
@@ -164,52 +164,52 @@
     style="@style/custom"
     android:layout_width="260dp"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="35dp"
-    android:layout_marginTop="1580dp"
+    android:layout_marginLeft="50dp"
+    android:layout_marginTop="1560dp"
     android:text="@string/complaintspro" />
 
              <TextView
                  android:id="@+id/ifyou"
                  style="@style/custom"
-                 android:layout_width="540dp"
+                 android:layout_width="700dp"
                  android:layout_height="wrap_content"
-                 android:layout_marginLeft="35dp"
+                 android:layout_marginLeft="50dp"
                  android:layout_marginTop="1610dp"
                  android:text="@string/ifyou" />
 
               <TextView
                   android:id="@+id/thirdparty"
                   style="@style/custom"
-                  android:layout_width="540dp"
+                  android:layout_width="700dp"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="35dp"
+                  android:layout_marginLeft="50dp"
                   android:layout_marginTop="1720dp"
                   android:text="@string/thirdparty" />
 
                 <TextView
                     android:id="@+id/linkson"
                     style="@style/custom"
-                    android:layout_width="540dp"
+                    android:layout_width="700dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginLeft="50dp"
                     android:layout_marginTop="1760dp"
                     android:text="@string/linkson" />
 
                     <TextView
                         android:id="@+id/changesto"
                         style="@style/custom"
-                        android:layout_width="540dp"
+                        android:layout_width="700dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginLeft="50dp"
                         android:layout_marginTop="1990dp"
                         android:text="@string/changesto" />
 
                     <TextView
                         android:id="@+id/wereserve"
                         style="@style/custom"
-                        android:layout_width="540dp"
+                        android:layout_width="700dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginLeft="50dp"
                         android:layout_marginTop="2030dp"
                         android:text="@string/wereserve" />
             

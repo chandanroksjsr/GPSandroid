@@ -14,7 +14,7 @@
         android:id="@+id/signin"
         android:layout_width="100dp"
         android:layout_height="35dp"
-        android:layout_marginLeft="100dip"
+        android:layout_marginLeft="110dp"
         android:layout_marginTop="550dip"
         android:background="@drawable/loginbutlarge" />
 
@@ -22,7 +22,7 @@
         android:id="@+id/reset"
         android:layout_width="100dp"
         android:layout_height="35dp"
-        android:layout_marginLeft="330dp"
+        android:layout_marginLeft="340dp"
         android:layout_marginTop="550dip"
         android:background="@drawable/resetbutlarge" />
 

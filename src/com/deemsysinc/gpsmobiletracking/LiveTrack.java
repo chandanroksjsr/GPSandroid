@@ -405,7 +405,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
     	             jArray = jsonParser.makeHttpRequest(vehicleliveurl, "POST", params1);
     			
     			   Log.i("tagconvertstr", "["+jArray+"]");
-    			    
+    			   succy="fail";
     			    try
     			    {
     			    	if(jArray != null){
@@ -509,8 +509,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
     				 ArrayList<LatLng> points = null;
       			      PolylineOptions polyLineOptions = null;
       			      points = new ArrayList<LatLng>();
-      			      googleMap.clear();
-      			        polyLineOptions = new PolylineOptions();
+      			     googleMap.clear();
+      			        polyLineOptions = new PolylineOptions(); 
        			//	System.out.println("vehicle size"+vehiclehistory1.size());
     				// System.out.println("size of vehicle history in post execute"+vehiclehistory.size());
     				 cDialog.dismiss();

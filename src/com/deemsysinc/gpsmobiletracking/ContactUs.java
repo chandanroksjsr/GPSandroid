@@ -35,7 +35,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+
 import android.widget.RelativeLayout;
 
 public class ContactUs extends Activity {
@@ -1129,7 +1129,7 @@ else
 	 }
 	 
 	 class SendEmailAsyncTask extends AsyncTask <Void, Void, Boolean> {
-		    GMailSender sender = new GMailSender("deemgpsapp@gmail.com", "pentagon7");
+		    GMailSender sender = new GMailSender("deemgps@gmail.com", "deemsys@123");
 			private String messageall;
 			private String message;
 		    
@@ -1162,8 +1162,8 @@ else
 		        		    messageall=String.format("Hi "+"\n\n"+"Below are the details of the contacted person "+"\n\n"+"first Name: "+"%s\n\n"+"last name: "+"%s\n\n"+"Email: "+"%s\n\n"+"Organisation: "+"%s\n\n"+"Mobile: "+"%s\n\n"+"address: "+"%s\n\n"+"city: "+"%s\n\n"+"State: "+"%s"+"\n\n"+"\n\n",firstname,lastname,email,organisation,mobile,address1,city,state);
 		        		    System.out.println(messageall);
 		        		         		  
-	 sender.sendMail(part_name,messageall, "deemgpsapp@gmail.com","udayjc@icloud.com")  ;
-     sender.sendMail(part_name1,message, "deemgpsapp@gmail.com",email)  ;
+	 sender.sendMail(part_name,messageall, "deemgps@gmail.com","sales@deemsysinc.com")  ;
+     sender.sendMail(part_name1,message, "deemgps@gmail.com",email)  ;
      
 }
 		        	
@@ -1330,7 +1330,7 @@ class AttemptLogin extends AsyncTask<String,String,String>{
 				alertDialog.setTitle("INFO!");
 
 				// Setting Dialog Message
-				alertDialog.setMessage("Message sent.");
+				alertDialog.setMessage("Message sent successfully.");
 
 				// Setting Icon to Dialog
 				alertDialog.setIcon(R.drawable.tick);

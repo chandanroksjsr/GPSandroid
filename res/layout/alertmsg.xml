@@ -33,7 +33,7 @@
         android:layout_alignWithParentIfMissing="true"
         android:layout_marginLeft="228dp"
         android:layout_marginTop="80dp"
-        android:background="@drawable/logout" />
+        android:background="@drawable/logoutbutnor" />
 
     <Button
         android:id="@+id/button2"

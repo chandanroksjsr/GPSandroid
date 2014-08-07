@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="120dp" >
+    android:layout_height="200dp" >
  
     <ImageView
         android:id="@+id/logo"
@@ -10,46 +10,46 @@
         android:layout_marginLeft="5px"
         android:layout_marginRight="20px"
         android:layout_marginTop="5px"
-        android:src="@drawable/ic_launcher" >
+        android:src="@drawable/logo" >
     </ImageView>
 
     <TextView
         android:id="@+id/label"
-         style="@style/custom"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="false"
-        android:layout_marginLeft="225dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="265dp"
+        android:layout_marginTop="27dp"
         android:text="then" />
 
     <TextView
         android:id="@+id/veh_reg_no"
-         style="@style/custom"
+        style="@style/custom"
         android:layout_width="100dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="225dp"
+        android:layout_marginLeft="265dp"
         android:layout_marginTop="2dp"
         android:text="text" />
 
     <TextView
         android:id="@+id/addrstext"
-         style="@style/custom"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
-        android:layout_marginLeft="225dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginLeft="265dp"
+        android:layout_marginTop="77dp"
         android:text="adres" />
 
     <TextView
         android:id="@+id/speedtxt"
-         style="@style/custom"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="false"
-        android:layout_marginLeft="225dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginLeft="265dp"
+        android:layout_marginTop="52dp"
         android:text="TextView" />
 
     <TextView
@@ -63,31 +63,31 @@
 
     <TextView
         android:id="@+id/textView2"
-         style="@style/custom"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="27dp"
         android:text="@string/lastupdate" />
 
     <TextView
         android:id="@+id/textView3"
-         style="@style/custom"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="false"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="77dp"
         android:text="@string/curloc" />
 
     <TextView
         android:id="@+id/textView4"
-         style="@style/custom"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="52dp"
         android:text="@string/curspeed" />
  
 </RelativeLayout>

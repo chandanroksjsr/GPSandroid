@@ -2,17 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dashlarge"
+    android:background="@drawable/dashxtra"
     android:orientation="vertical" >
 
     <TextView
         android:id="@+id/welcomeusername"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/welcome"
         android:layout_alignBottom="@+id/welcome"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="265dp"
         android:layout_toRightOf="@+id/welcome"
         android:text="thendral"
         android:textColor="#000000"
@@ -20,12 +21,13 @@
 
     <TextView
         android:id="@+id/welcome"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="false"
         android:layout_marginBottom="28dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="265dp"
         android:text="@string/welcome"
         android:textColor="#000000"
         android:textSize="20dp" />
@@ -33,36 +35,36 @@
     <Button
         android:id="@+id/logout"
         android:layout_width="125dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:layout_alignParentRight="false"
-        android:layout_marginLeft="420dp"
-        android:layout_marginTop="215dp"
-        android:background="@drawable/logoutbutlarge" />
+        android:layout_marginLeft="600dp"
+        android:layout_marginTop="265dp"
+        android:background="@drawable/logoutextrabut" />
 
     <Button
         android:id="@+id/aboutus"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/welcomeusername"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/aboutusbutlarge" />
+        android:background="@drawable/aboutxtrabut" />
 
     <Button
         android:id="@+id/contactus"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_alignBaseline="@+id/aboutus"
         android:layout_alignBottom="@+id/aboutus"
         android:layout_alignRight="@+id/logout"
         android:layout_marginLeft="75dp"
         android:layout_marginTop="400dp"
-        android:background="@drawable/contactbutlarge" />
+        android:background="@drawable/contactxtrabut" />
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="550dp"
-        android:layout_height="600dp"
+        android:layout_width="750dp"
+        android:layout_height="710dp"
         android:layout_below="@+id/welcome"
         android:layout_centerHorizontal="true" >
     </ListView>

@@ -4,7 +4,7 @@
    
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/contactlarge"
+    android:background="@drawable/contactusxtra"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -24,7 +24,7 @@
         android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="680dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/mobnumb"
@@ -39,7 +39,7 @@
         android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="560dp"
+        android:layout_marginTop="870dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/city"
@@ -47,28 +47,12 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/e6"
-        style="@style/customcontact"
-        android:layout_width="355dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:gravity="top|left"
-        android:hint="@string/addrs"
-        android:maxLines="5"
-        android:padding="5dip"
-        android:textSize="14dip" />
-
-    <EditText
         android:id="@+id/e4"
         style="@style/customcontact"
         android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="610dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/orgname"
@@ -82,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="540dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/email"
@@ -96,7 +80,7 @@
         android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="470dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/lastname"
@@ -113,7 +97,7 @@
         android:layout_alignParentTop="false"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="false"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="400dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/firstname"
@@ -126,7 +110,7 @@
         android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="610dp"
+        android:layout_marginTop="940dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/state"
@@ -135,22 +119,36 @@
 
     <Button
         android:id="@+id/btn2"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/e9"
-        android:layout_marginLeft="132dp"
+        android:layout_marginLeft="222dp"
         android:layout_marginTop="46dp"
-        android:background="@drawable/sendbutlarge" />
+        android:background="@drawable/sendextrabut" />
 
     <Button
         android:id="@+id/btn3"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_alignBaseline="@+id/btn2"
         android:layout_alignBottom="@+id/btn2"
         android:layout_alignRight="@+id/e9"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/clearbutlarge" />
+        android:background="@drawable/clearmessageextrabut" />
+
+    <EditText
+        android:id="@+id/e6"
+        style="@style/customcontact"
+        android:layout_width="355dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="750dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:gravity="top|left"
+        android:hint="@string/addrs"
+        android:maxLines="5"
+        android:padding="5dip"
+        android:textSize="16sp" />
 
 </RelativeLayout>
