@@ -64,7 +64,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	 ArrayList<HashMap<String,String>> vehiclehistory= new ArrayList<HashMap<String,String>>();
 	HashMap<String, String> map = new HashMap<String, String>();
     HashMap<String, Double> map1 = new HashMap<String, Double>();
-
+    AlertDialog alertDialog;
 	Boolean isInternetPresent = false;
 	ConnectionDetector cd;
 	public ProgressDialog cDialog;
@@ -104,6 +104,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 		String longitude;
 		double latitude1;
 		double longitude1;
+		Boolean alertcheck;
 		//private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 	//  private static String vehicleliveurl = "http://192.168.1.158:8888/gpsandroid/service/LiveTrack.php?service=livetrack"; 
 	// private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/LiveTrack.php?service=livetrack"; 
@@ -143,12 +144,14 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	        ActionBar actions = getActionBar();
 	       int height= actions.getHeight();
 	       System.out.println("height value::"+height);
-	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0a7dbc")));
+	       actions.setIcon(R.drawable.liveicon);
+	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#93aac3")));
 	        actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 	        actions.setDisplayShowTitleEnabled(false);
 	        SpinnerAdapter adapter = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items,
 	                android.R.layout.simple_spinner_dropdown_item);
-
+	        alertDialog = new AlertDialog.Builder(
+					LiveTrack.this).create();
 	        // Callback
 	        OnNavigationListener callback = new OnNavigationListener() {
 
@@ -401,7 +404,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
     	           
     	             jArray = jsonParser.makeHttpRequest(vehicleliveurl, "POST", params1);
     			
-    			 //   Log.i("tagconvertstr", "["+jArray+"]");
+    			   Log.i("tagconvertstr", "["+jArray+"]");
     			    
     			    try
     			    {
@@ -457,10 +460,18 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
     			    	}
     			    	
     			    	}catch (JSONException e) {
-    			    		AlertDialog alertDialog = new AlertDialog.Builder(
+    			    		
+    			    		alertcheck=alertDialog.isShowing();
+        					
+    			    		if(alertcheck.booleanValue()==true)
+    			    		{
+    			    			System.out.println("alert check value::"+alertcheck);
+    			    			alertDialog.dismiss();
+    			    		}
+    			    		alertDialog = new AlertDialog.Builder(
     								LiveTrack.this).create();
-
     						// Setting Dialog Title
+    						
     						alertDialog.setTitle("INFO!");
 
     						// Setting Dialog Message
@@ -492,7 +503,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
     			//@SuppressWarnings("deprecation")
 				@Override
     			protected void onPostExecute(String file_url) {
-    		   
+				
+					
     				 super.onPostExecute(file_url);
     				 ArrayList<LatLng> points = null;
       			      PolylineOptions polyLineOptions = null;
@@ -566,9 +578,15 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
     				 
     				if(succy.equalsIgnoreCase("fail"))
     				{
-    					AlertDialog alertDialog = new AlertDialog.Builder(
+    					alertcheck=alertDialog.isShowing();
+    					
+			    		if(alertcheck.booleanValue()==true)
+			    		{
+			    			System.out.println("alert check value::"+alertcheck);
+			    			alertDialog.dismiss();
+			    		}
+			    		alertDialog = new AlertDialog.Builder(
 								LiveTrack.this).create();
-
 						// Setting Dialog Title
 						alertDialog.setTitle("INFO!");
 
@@ -593,7 +611,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 						// Showing Alert Message
 						alertDialog.show();
     					
-    					
+    				
     					
     				}
     				

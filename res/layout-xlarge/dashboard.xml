@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dashboard"
+    android:background="@drawable/dashlarge"
     android:orientation="vertical" >
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginTop="220dp"
         android:layout_toRightOf="@+id/welcome"
         android:text="thendral"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="20dp" />
 
     <TextView
@@ -27,37 +27,37 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="220dp"
         android:text="@string/welcome"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textSize="20dp" />
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="110dp"
+        android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="false"
-        android:layout_marginLeft="450dp"
-        android:layout_marginTop="210dp"
-        android:background="@drawable/logout" />
+        android:layout_marginLeft="420dp"
+        android:layout_marginTop="215dp"
+        android:background="@drawable/logoutbutlarge" />
 
     <Button
         android:id="@+id/aboutus"
-        android:layout_width="110dp"
+        android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/welcomeusername"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/about" />
+        android:background="@drawable/aboutusbutlarge" />
 
     <Button
         android:id="@+id/contactus"
-        android:layout_width="110dp"
+        android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_alignBaseline="@+id/aboutus"
         android:layout_alignBottom="@+id/aboutus"
         android:layout_alignRight="@+id/logout"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="75dp"
         android:layout_marginTop="400dp"
-        android:background="@drawable/contact2" />
+        android:background="@drawable/contactbutlarge" />
 
     <ListView
         android:id="@+id/list"

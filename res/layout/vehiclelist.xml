@@ -15,6 +15,7 @@
 
     <TextView
         android:id="@+id/label"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="false"
@@ -24,6 +25,7 @@
 
     <TextView
         android:id="@+id/veh_reg_no"
+        style="@style/custom"
         android:layout_width="100dp"
         android:layout_height="20dp"
         android:layout_marginLeft="170dp"
@@ -32,6 +34,7 @@
 
     <TextView
         android:id="@+id/addrstext"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
@@ -41,6 +44,7 @@
 
     <TextView
         android:id="@+id/speedtxt"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="false"
@@ -50,6 +54,7 @@
 
     <TextView
         android:id="@+id/textView1"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -58,6 +63,7 @@
 
     <TextView
         android:id="@+id/textView2"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
@@ -67,6 +73,7 @@
 
     <TextView
         android:id="@+id/textView3"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="false"
@@ -76,6 +83,7 @@
 
     <TextView
         android:id="@+id/textView4"
+        style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"

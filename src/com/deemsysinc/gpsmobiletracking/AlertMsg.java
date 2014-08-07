@@ -90,7 +90,8 @@ public class AlertMsg  extends Activity {
 	      setContentView(R.layout.alertmsg);
 	     
 	        ActionBar actions = getActionBar();
-	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0a7dbc")));
+	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#93aac3")));
+	        actions.setIcon(R.drawable.alerticon);
 	        actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 	        actions.setDisplayShowTitleEnabled(false);
 	        SpinnerAdapter adapter = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items2,

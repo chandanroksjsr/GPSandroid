@@ -136,7 +136,8 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 	      signout=(Button)findViewById(R.id.signoutty);
 	     
 	        ActionBar actions = getActionBar();
-	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0a7dbc")));
+	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#93aac3")));
+	        actions.setIcon(R.drawable.historyicon);
 	        actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 	        actions.setDisplayShowTitleEnabled(false);
 	        SpinnerAdapter adapter = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items1,

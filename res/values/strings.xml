@@ -57,7 +57,7 @@
        
        
     </string-array>
-    <string name="aboutusdeem">About Deemsys:</string>
+    <string name="aboutusdeem">About Deemsys</string>
     <string name="vehicleno">Vehicle No</string>
     <string name="lastupdate">Last Updated</string>
     <string name="curloc">Current Location</string>
@@ -65,24 +65,24 @@
     <string name="aboutusfirst">Deemsys offers the best-in-class Application maintenance solutions that relieve the companies from the cumbersome and tedious task of managing their technology landscape. </string>
     <string name="aboutusfirst1">Our team with wide range of experience is capable of understanding complex applications to identify issues and design the right fixes. Their speedy identification of issues and resolution reduces turnaround time.</string>
     <string name="corpweb">Corporate Website:</string>
-    <string name="corpweblink"><u>www.deemsysinc.com</u></string>
-    <string name="deemgpsapp">About DeemGPS APP:</string>
+    <string name="corpweblink">www.deemsysinc.com</string>
+    <string name="deemgpsapp">About DeemGPS APP</string>
      <string name="deemgpsapp1">DeemGPS tracking systems offer the best way for schools, colleges and other businesses to have real-time information about the location and use of their vehicles and other assets. </string>
     <string name="deemgpsapp2">Using DeemGPS, schools, colleges and businesses can save money on fuel, cell-phone bills and other operational costs, increase productivity, and prevent loss or theft of vehicles and precious assets.</string>
     <string name="deemgpsapp3">DeemGPS Website:</string>
-     <string name="weblink"><u>www.mygps.technology</u></string>
-    <string name="oudevice">Our devices:</string>
+     <string name="weblink">www.mygps.technology</string>
+    <string name="oudevice">Our Devices</string>
     <string name="ourdevice1">DGPS507B &amp; DGPS504 Vehicle Tracker</string>
     <string name="ourdevice2">DGPS502 Personal Tracker</string>
     <string name="ourdevice3">DGPS501 Watch Tracker</string>
-    <string name="emailrajan"><u>rajan@deemsysinc.com</u></string>
-    <string name="emailsales"><u>sales@deemsysinc.com</u></string>
+    <string name="emailrajan">rajan@deemsysinc.com</string>
+    <string name="emailsales">sales@deemsysinc.com</string>
     <string name="emailabout">Email:</string>
     <string name="websit">Website :</string>
     <string name="version">Application Version: 1.0</string>
     <string name="helpsup">Help/Support: </string>
-    <string name="emailidd"><u>support@deemsysinc.com</u></string>
-    <string name="addressdeem">Plot No-21,152/33</string>
+    <string name="emailidd">support@deemsysinc.com</string>
+    <string name="addressdeem">Plot No-21,</string>
     <string name="usdeem">800 Cross Pointe road</string>
     <string name="devby">Designed &amp; Developed by</string>
     <string name="deemname">Deemsys Inc</string>
@@ -90,8 +90,10 @@
     <string name="addrs2">Kailash Nagar 1st street,</string>
     <string name="addrs3">Perumbakkam,</string>
     <string name="addrs4">Tel: +91-9841122989</string>
-    <string name="addrs1">Manoharan Flats,</string>
+    <string name="addrs1">152/33 Manoharan Flats,</string>
     <string name="addrs5">Chennai-600100.</string>
+      <string name="addrs51">Chennai-600100,</string>
+       <string name="addrs6">India.</string>
     <string name="deemus">OH 43230</string>
     <string name="deemus0">Tel: 614-322-9928</string>
     <string name="deemus1">Fax: 614-322-9945</string>
@@ -101,7 +103,7 @@
     
     <!-- Terms and Condition page -->
     <string name="deemgpsreturn">DeemGPS Return Policy</string>
-    <string name="deemgpsreturnstate">You will need a Return Authorization (RA) number prior to shipping your product to DeemGPS for repair. Please contact our technical support group by calling or emailing us. Click Here for Contact Information.</string>
+    <string name="deemgpsreturnstate">You will need a Return Authorization (RA) number prior to shipping your product to DeemGPS for repair. Please contact our technical support group by calling or emailing us.</string>
     <string name="deemgpsrefund">DeemGPS Refund Policy</string>
     <string name="deemgpsrefundstate">The DeemGPS Return/Refund Policy only applies to hardware and software goods purchased from the DeemGPS website or a telephone order.In order to return an item for refund you will need a Return Authorization. Please contact DeemGPS by phone or email to obtain a Return Authorization.</string>
     <string name="deemgpsrefundstate1">We accept returns of devices and accessories within 7 days of purchase.</string>
@@ -112,29 +114,32 @@
     <string name="warantyrepair3">● 1 month  from the date of purchase for reconditioned GPS receivers</string>     
     <string name="warantyrepair4">● The greater of 1 month or the remainder of the original warranty for GPS receivers exchanged by DeemGPS as part of in-warranty servicing.</string>
     <string name="warantyrepair5">DeemGPS as part of in-warranty servicing.</string>
-    <string name="proofofpurchase">In-warranty Services require a valid Proof-of Purchase.</string>
+    <string name="proofofpurchase">In-Warranty Services Require a Valid Proof-of Purchase</string>
     <string name="proofofpurchase1">If returned within the applicable warranty period, DeemGPS will, at its sole discretion and at no cost to the customer, replace the defective GPS receiver with a reconditioned unit of the same model, as available. If the same model is not available, a different reconditioned model GPS receiver will be used for the exchange.
 This warranty does not cover failures due to abuse, misuse, accident or unauthorized alterations or repairs.</string> 
     <string name="outofwaranty">Out of Warranty Repairs</string>
     <string name="outofwaranty1">DeemGPS does not service products. For receivers returned after the warranty period or for damage not covered by the warranty, customers may purchase a new unit at a reduced cost or reconditioned unit also at a reduced cost.</string>
     <string name="brokerndisplay">Broken Displays</string>
     <string name="brokerndisplay1">DeemGPS will replace receivers with a broken display returned within the warranty period with a reconditioned unit of the same or comparable model at a reduced cost to customer. Customers with a broken display unit returned outside the warranty period will be given the opportunity to purchase a new unit at a reduced cost or reconditioned unit also at a reduced cost.</string>      
-    <string name="productreturnship">Product Return Shipping Instructions:</string>
+    <string name="productreturnship">Product Return Shipping Instructions</string>
     <string name="productreturnship1">You will need a Return Authorization (RA) number prior to shipping your product to DeemGPS for repair. Please contact our technical support group at the phone numbers listed above. Any package that is sent into our repair facilities without an RA number will be rejected and sent back at the owner\'s expense and will be assessed a INR 500.00 service charge fee prior to returning the item. </string>
-    <string name="shipinstruc">Shipping instructions:</string>
+    <string name="shipinstruc">Shipping Instructions</string>
     <string name="shipinstruc1">After obtaining your Return Authorization number from Deemsys Inc we strongly suggest you ship your product back to our service center via a trackable shipping method, and clearly write your Return Authorization number on the 2nd line of the address label as well as on three sides of the box you are shipping your product back in. Please note that the Repair Authorization number is only valid for 30 Days. </string>
-    <string name="deemsysindianaddrs">DEEMSYS INDIAN ADDRESS:</string>
+    <string name="deemsysindianaddrs">DEEMSYS INDIAN ADDRESS</string>
     <string name="deemsysindianaddrs1">Plot No-21,
 152/33 Manoharan Flats,				
 Kailash Nagar 1st street,					
 Perumbakkam,						
-Chennai-600100.					
+Chennai-600100,
+India.					
 Tel: +91-9841122989
 </string>
     <string name="note">Note: We strongly recommend shipping your product using a reliable and trackable shipping method . This will help keep track of your product as it\'s delivered, and signed for at our facility. Please insure the package at cost value as Deemsys Inc is not responsible for lost or damaged product during transit.</string>
-    <string name="warantydisclaimer">WARRANTY DISCLAIMER: DeemGPS will, at its sole discretion and at no cost to the customer replace the defective GPS receiver with a reconditioned unit of the same model, as available. If the same model is not available, a comparable model GPS receiver will be used for the exchange. </string>
+    <string name="warantydisclaimer">DeemGPS will, at its sole discretion and at no cost to the customer replace the defective GPS receiver with a reconditioned unit of the same model, as available. If the same model is not available, a comparable model GPS receiver will be used for the exchange. </string>
     <string name="warantydisclaimer1">The warranty does not cover failures due to abuse, misuse, accident, unauthorized alterations and/or repairs. </string>
-    <string name="warantydisclaimer2">Expected Turn Around Time: Customer(s) can expect to receive their replacement product back within 7-10 days after the returned product has been received at our Service Center.</string>
+    <string name="warantydisclaimer2">Customer(s) can expect to receive their replacement product back within 7-10 days after the returned product has been received at our Service Center.</string>
+   <string name="warantydisclaimera">Warranty Disclaimer</string>
+    <string name="warantydisclaimerturn">Expected Turn Around Time</string>
     <!-- Privacy Policy page -->
     
     
@@ -145,18 +150,18 @@ Tel: +91-9841122989
     <string name="privacypolicy">By submitting your personal information through Deemsys Inc ("DEEMSYS INC")\'s website, you hereby give your consent to the handling of your personal data in the manner described in this statement.
 This privacy statement is to inform you of our online information practiced and the choices available regarding the collection and use of your personal information via this website.
 You acknowledge and agree that this statement has the same effect as a written consent. By accessing or using this website or providing information to DEEMSYS INC through this website, you acknowledge that you have reviewed the content of this statement and consent to the practices described in this statement.Except this statement, DEEMSYS INC might provide different or additional information or terms for specific products, discounts, areas, services, or activities.</string>
-    <string name="useof">Use of your Personal Information </string>
-    <string name="collection">Collection of Personal Information:</string>
+    <string name="useof">Use of Your Personal Information </string>
+    <string name="collection">Collection of Personal Information</string>
     <string name="thisprivacy">This privacy statement is to inform you of our online information practiced and the choices available regarding the collection and use of your personal information via this website.</string>
     <string name="youack">You acknowledge and agree that this statement has the same effect as a written consent. By accessing or using this website or providing information to DeemGPS through this website, you acknowledge that you have reviewed the content of this statement and consent to the practices described in this statement.</string>
     <string name="except">Except this statement, DeemGPS might provide different or additional information or terms for specific products, discounts, areas, services, or activities.</string>
-    <string name="storage">Storage of Personal Information: </string>
+    <string name="storage">Storage of Personal Information</string>
     <string name="wemay">We may hold and process your Personal Information in your home country or overseas, and on our own information technology systems or on systems owned by third parties that may hold and process your Personal Information on our behalf.  The DeemGPS entity that holds your Personal Information is the entity set out in the Contact Details section applicable to the country in which you acquired the relevant product or Service.</string>
     <string name="weuse">We Use Cookies</string>
     <string name="someof">Some of our web pages utilize "cookies" and other tracking technologies. A "cookie" is a small text file that may be used to collect information about web site activity. Some cookies and other technologies may recall personal information previously provided by a web user. Most browsers allow you to control cookies, including whether or not to accept them and how to remove them. You may set most browsers to notify you if you receive a cookie or you may choose to block cookies with your browser. Tracking technologies record information such as Internet domain and host names; Internet protocol (IP) addresses; browser software and operating system types; clickstream patterns; and dates and times that our site is accessed. We use cookies and other tracking technologies so that we can improve our web site and your web experience. We may also analyze information for trends and statistics. We do not generate e-mail lists from cookies.</string>
     <string name="howwe">How We Secure Your Information</string>
     <string name="wherever">Wherever your information may be held within DeemGPS or on its behalf, we intend to take reasonable and appropriate steps to protect the personal information that you share with us from unauthorized access or disclosure. We use firewalls, encryption technologies (such as SSL) and physical security measures in order to prevent unauthorized use of personal information. </string>
-    <string name="access">Access and correction of Personal Information</string>
+    <string name="access">Access and Correction of Personal Information</string>
     <string name="youhave">You have the right to access and correct the Personal Information that we keep about you.  To do so, please contact us in writing at the address below.</string>
     <string name="complaintpro">Complaints procedure</string>
     <string name="ifyou">If you think we have breached applicable privacy laws, please write to us at the address below.  We will investigate any complaint and will notify you of the making of a decision in relation to your complaint as soon as is practicable after it has been made.</string>
@@ -165,5 +170,5 @@ You acknowledge and agree that this statement has the same effect as a written c
     <string name="changesto">Changes to this Privacy Policy  </string>
     <string name="wereserve">We reserve the right to change and update this Privacy Policy at any time. Any such changes will be posted at this website. The date of the latest update to the Privacy Policy is set out at the top of the Privacy Policy. Changes to the Privacy Policy are effective at the time they are posted to this website, and your continued use of a Service shall signify your acceptance of, and agreement to be bound by, those changes.  We recommend you check this website regularly for changes to the Privacy Policy.</string>
     <string name="effectivedate">Effective date: 2014/07/14</string>
-    <string name="complaintspro">Complaints procedure</string>
+    <string name="complaintspro">Complaints Procedure</string>
 </resources>

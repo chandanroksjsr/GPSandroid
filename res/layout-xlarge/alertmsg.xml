@@ -4,21 +4,22 @@
     android:layout_height="match_parent"
     
      android:id="@+id/alertlayout"
-    android:background="@drawable/alertmessagepage"
+    android:background="@drawable/alertlarge"
     android:orientation="vertical" >
 
     <Button
         android:id="@+id/logingout"
-        android:layout_width="110dp"
+        android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="false"
         android:layout_marginLeft="450dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="200dp"
-        android:background="@drawable/logout" />
+        android:background="@drawable/logoutbutlarge" />
 
     <TextView
         android:id="@+id/textView1"
+         style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="false"
@@ -26,10 +27,11 @@
         android:layout_marginTop="210dp"
         android:text="@string/welcome"
         android:textSize="20dp"
-        android:textColor="#ffffff" />
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/username"
+         style="@style/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="false"
@@ -37,21 +39,19 @@
         android:layout_marginTop="210dp"
         android:text="thendral"
           android:textSize="20dp"
-        android:textColor="#ffffff" />
+        android:textColor="#000000" />
 
     <EditText
         android:id="@+id/e6"
         style="@style/custom"
-        android:layout_width="535dp"
-        android:layout_height="195dp"
+        android:layout_width="550dp"
+        android:layout_height="225dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="345dp"
-        android:background="#ffffff"
+        android:layout_marginTop="285dp"
+        android:background="@drawable/roundedtext"
         android:ems="10"
         android:gravity="top|left"
-        android:maxLength="160"
         android:scrollHorizontally="true"
         android:shadowRadius="5"
         android:textSize="14dip" >
@@ -61,22 +61,21 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="140dp"
+        android:layout_width="125dp"
         android:layout_height="40dp"
-        android:layout_alignTop="@+id/button2"
-        android:layout_toRightOf="@+id/textView1"
-        android:background="@drawable/send" />
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignRight="@+id/username"
+        android:background="@drawable/sendbutlarge" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="110dp"
-        android:layout_height="45dp"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
         android:layout_alignRight="@+id/logingout"
         android:layout_below="@+id/e6"
-        android:layout_marginRight="36dp"
+        android:layout_marginRight="53dp"
         android:layout_marginTop="51dp"
-        android:background="@drawable/clear" />
-
-    
+        android:background="@drawable/clearbutlarge" />
 
 </RelativeLayout>

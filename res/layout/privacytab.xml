@@ -3,24 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
      android:orientation="vertical"
-    android:background="@drawable/privacypolicy" >
+    android:background="@drawable/privacynormal" >
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="400dp"
+      android:layout_height="439dp"
       android:orientation="vertical" >
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="430dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="115dp"
         android:layout_weight="1" >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_height="2500dp"
+            android:layout_marginTop="14dp"
             android:orientation="vertical" >
 
             <TextView
@@ -120,7 +120,7 @@
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="26dp"
-            android:layout_marginTop="1310dp"
+            android:layout_marginTop="1313dp"
             android:text="@string/howwe" />
 
           <TextView
@@ -201,27 +201,34 @@
                         android:layout_marginLeft="26dp"
                         android:layout_marginTop="2080dp"
                         android:text="@string/wereserve" />
-            
-              <ImageView
-                  android:id="@+id/imageView1"
-                  style="@style/custom"
-                  android:layout_width="80dp"
-                  android:layout_height="80dp"
-                  android:layout_alignParentBottom="false"
-                  android:layout_centerHorizontal="true"
-                  android:layout_marginTop="2290dp"
-                  android:cropToPadding="false"
-                  android:src="@drawable/deemgpslog" />
+             <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="2270dp"
+                android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/copyright"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imageView1"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="2330dp"
-                android:text="@string/copyright" />
+                <ImageView
+                    android:id="@+id/imageView1"
+                    style="@style/custom"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="120dp"
+                    android:cropToPadding="false"
+                    android:src="@drawable/deemgpslogoo" />
+
+                <TextView
+                    android:id="@+id/TextView01"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="70dp"
+                    android:text="@string/copyright" />
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
      

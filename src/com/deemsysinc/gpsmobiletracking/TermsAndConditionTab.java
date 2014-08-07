@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class TermsAndConditionTab extends Activity{
-	TextView deemgpsreturn,deemgpsrefund,deemgpswarranty,inwarantyrepairs,inwarantyservice,outofwaranty,brokendisplay,shippingins,shipins,deemsindianaddrs;
+	TextView warantydis,expect,deemgpsreturn,deemgpsrefund,deemgpswarranty,inwarantyrepairs,inwarantyservice,outofwaranty,brokendisplay,shippingins,shipins,deemsindianaddrs;
 	 @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState);
@@ -21,6 +21,8 @@ public class TermsAndConditionTab extends Activity{
 	      shippingins=(TextView)findViewById(R.id.productreturnship);
 	      shipins=(TextView)findViewById(R.id.shipinstruc);
 	      deemsindianaddrs=(TextView)findViewById(R.id.deemsysindianaddrs);
+	      warantydis=(TextView)findViewById(R.id.warantydisclaimera);
+	      expect=(TextView)findViewById(R.id.warantydisclaimerturn);
 	      
 	      deemgpsreturn.setTypeface(null, Typeface.BOLD);
 	      deemgpsrefund.setTypeface(null, Typeface.BOLD);
@@ -32,5 +34,7 @@ public class TermsAndConditionTab extends Activity{
 	      shippingins.setTypeface(null, Typeface.BOLD);
 	      shipins.setTypeface(null, Typeface.BOLD);
 	      deemsindianaddrs.setTypeface(null, Typeface.BOLD);
+	      warantydis.setTypeface(null, Typeface.BOLD);
+	      expect.setTypeface(null, Typeface.BOLD);
 	    }
 }

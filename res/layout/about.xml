@@ -3,24 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
      android:orientation="vertical"
-    android:background="@drawable/aboutuspage" >
+    android:background="@drawable/aboutusnormal" >
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="400dp"
+      android:layout_height="439dp"
       android:orientation="vertical" >
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:layout_marginTop="110dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="115dp"
         android:layout_weight="1" >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="vertical" >
 
 <TextView
@@ -63,7 +63,7 @@
      android:layout_height="wrap_content"
      android:layout_centerVertical="false"
      android:layout_marginLeft="26dp"
-     android:layout_marginTop="190dp"
+     android:layout_marginTop="205dp"
      android:text="@string/corpweb" />
 
   <TextView
@@ -72,8 +72,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_centerVertical="false"
-      android:layout_marginLeft="150dp"
-      android:layout_marginTop="190dp"
+      android:layout_marginLeft="140dp"
+      android:layout_marginTop="205dp"
       android:text="@string/corpweblink"
       android:textColorLink="#fda74a" />
 
@@ -84,7 +84,7 @@
       android:layout_height="wrap_content"
       android:layout_centerVertical="false"
       android:layout_marginLeft="26dp"
-      android:layout_marginTop="210dp"
+      android:layout_marginTop="230dp"
       android:text="@string/deemgpsapp" />
 
    <TextView
@@ -94,7 +94,7 @@
        android:layout_height="wrap_content"
        android:layout_centerVertical="false"
        android:layout_marginLeft="26dp"
-       android:layout_marginTop="230dp"
+       android:layout_marginTop="255dp"
        android:text="@string/deemgpsapp1" />
 
    <TextView
@@ -104,7 +104,7 @@
        android:layout_height="wrap_content"
        android:layout_centerVertical="false"
        android:layout_marginLeft="26dp"
-       android:layout_marginTop="300dp"
+       android:layout_marginTop="330dp"
        android:text="@string/deemgpsapp2" />
 
    <TextView
@@ -114,7 +114,7 @@
        android:layout_height="wrap_content"
        android:layout_centerVertical="false"
        android:layout_marginLeft="26dp"
-       android:layout_marginTop="380dp"
+       android:layout_marginTop="420dp"
        android:text="@string/deemgpsapp3" />
 
     <TextView
@@ -123,8 +123,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="false"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="420dp"
         android:text="@string/weblink"
         android:textColorLink="#fda74a" />
             
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="false"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="400dp"
+                android:layout_marginTop="450dp"
                 android:text="@string/oudevice" />
 
             <TextView
@@ -145,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="false"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="420dp"
+                android:layout_marginTop="470dp"
                 android:text="@string/ourdevice1" />
 
             <TextView
@@ -154,7 +154,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="440dp"
+                android:layout_marginTop="490dp"
                 android:text="@string/ourdevice2" />
 
             <TextView
@@ -163,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="460dp"
+                android:layout_marginTop="510dp"
                 android:text="@string/ourdevice3" />
 
             <TextView
@@ -174,7 +174,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="false"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="480dp"
+                android:layout_marginTop="530dp"
                 android:text="@string/version" />
 
             <TextView
@@ -183,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="500dp"
+                android:layout_marginTop="550dp"
                 android:text="@string/helpsup" />
 
             <TextView
@@ -193,8 +193,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="false"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="500dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="550dp"
                 android:text="@string/emailidd"
                 android:textColor="#fda74a" />
 
@@ -204,7 +204,7 @@
      android:layout_width="175dp"
      android:layout_height="wrap_content"
      android:layout_marginLeft="26dp"
-     android:layout_marginTop="530dp"
+     android:layout_marginTop="580dp"
      android:text="@string/deemsysaddresss" />
 
             <TextView
@@ -213,16 +213,16 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="550dp"
+                android:layout_marginTop="600dp"
                 android:text="@string/addressdeem" />
 
             <TextView
                 android:id="@+id/addrsone0"
                 style="@style/custom"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="570dp"
+                android:layout_marginTop="620dp"
                 android:text="@string/addrs1" />
 
             <TextView
@@ -231,7 +231,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="590dp"
+                android:layout_marginTop="640dp"
                 android:text="@string/addrs2" />
 
             <TextView
@@ -240,7 +240,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="610dp"
+                android:layout_marginTop="660dp"
                 android:text="@string/addrs3" />
             
             <TextView
@@ -249,7 +249,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="630dp"
+                android:layout_marginTop="680dp"
                 android:text="@string/addrs5" />
 
             <TextView
@@ -258,7 +258,7 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="650dp"
+                android:layout_marginTop="700dp"
                 android:text="@string/addrs4" />
 
             <TextView
@@ -267,7 +267,7 @@
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="670dp"
+                android:layout_marginTop="720dp"
                 android:text="@string/emailabout" />
 
             <TextView
@@ -275,8 +275,8 @@
                 style="@style/custom"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="135dp"
-                android:layout_marginTop="670dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="720dp"
                 android:text="@string/emailsales" />
 
  <TextView
@@ -285,7 +285,7 @@
      android:layout_width="175dp"
      android:layout_height="wrap_content"
      android:layout_marginLeft="26dp"
-     android:layout_marginTop="700dp"
+     android:layout_marginTop="750dp"
      android:text="@string/headoffice" />
 
             <TextView
@@ -294,7 +294,7 @@
                 android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="720dp"
+                android:layout_marginTop="770dp"
                 android:text="@string/usdeem" />
 
   <TextView
@@ -303,7 +303,7 @@
       android:layout_width="175dp"
       android:layout_height="wrap_content"
       android:layout_marginLeft="26dp"
-      android:layout_marginTop="740dp"
+      android:layout_marginTop="790dp"
       android:text="@string/deemus5" />
             
               <TextView
@@ -312,7 +312,7 @@
                   android:layout_width="175dp"
                   android:layout_height="wrap_content"
                   android:layout_marginLeft="26dp"
-                  android:layout_marginTop="760dp"
+                  android:layout_marginTop="810dp"
                   android:text="@string/deemus" />
               
               <TextView
@@ -321,7 +321,7 @@
                   android:layout_width="175dp"
                   android:layout_height="wrap_content"
                   android:layout_marginLeft="26dp"
-                  android:layout_marginTop="780dp"
+                  android:layout_marginTop="830dp"
                   android:text="@string/deemus0" />
 
               <TextView
@@ -330,7 +330,7 @@
                   android:layout_width="175dp"
                   android:layout_height="wrap_content"
                   android:layout_marginLeft="26dp"
-                  android:layout_marginTop="800dp"
+                  android:layout_marginTop="850dp"
                   android:text="@string/deemus1" />
 
  <TextView
@@ -339,7 +339,7 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:layout_marginLeft="26dp"
-     android:layout_marginTop="820dp"
+     android:layout_marginTop="870dp"
      android:text="@string/emailabout" />
 
               <TextView
@@ -347,8 +347,8 @@
                   style="@style/custom"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="135dp"
-                  android:layout_marginTop="820dp"
+                  android:layout_marginLeft="70dp"
+                  android:layout_marginTop="870dp"
                   android:text="@string/emailrajan" />
 
                <TextView
@@ -358,7 +358,7 @@
                    android:layout_height="wrap_content"
                    android:layout_centerInParent="false"
                    android:layout_marginLeft="26dp"
-                   android:layout_marginTop="840dp"
+                   android:layout_marginTop="900dp"
                    android:text="@string/devby" />
 
             <TextView
@@ -367,31 +367,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
-                android:layout_marginTop="860dp"
+                android:layout_marginTop="920dp"
                 android:text="@string/deemname" />
 
-            <ImageView
-                android:id="@+id/imageView1"
-                style="@style/custom"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_alignParentBottom="false"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="900dp"
-                android:cropToPadding="false"
-                android:src="@drawable/deemgpslog" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="930dp"
+                android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/copyright"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imageView1"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="920dp"
-                android:text="@string/copyright" />
+                <ImageView
+                    android:id="@+id/imageView1"
+                    style="@style/custom"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="120dp"
+                    android:cropToPadding="false"
+                    android:src="@drawable/deemgpslogoo" />
 
-           
+                <TextView
+                    android:id="@+id/TextView01"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="70dp"
+                    android:text="@string/copyright" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
      
