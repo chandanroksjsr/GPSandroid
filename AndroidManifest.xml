@@ -3,16 +3,15 @@
     package="com.deemsysinc.gpsmobiletracking"
     android:versionCode="1"
     android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="17" />
-    <supports-screens android:smallScreens="true" 
+     <supports-screens
           android:normalScreens="true" 
           android:largeScreens="true"
           android:xlargeScreens="true"
-          android:resizeable="true"
           android:anyDensity="true" />
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="17" />
+   
      <permission
       android:name="com.example.googlemaps.permission.MAPS_RECEIVE"
       android:protectionLevel="signature" />
