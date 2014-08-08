@@ -409,7 +409,7 @@ else
 		  
 		    city1.setText("");
 		    state1.setText("");
-		   firstname="1";
+		 //  firstname="1";
 		    
 		}
 	});
@@ -1343,7 +1343,15 @@ class AttemptLogin extends AsyncTask<String,String,String>{
 									final int which) {
 								// Write your code here to execute after dialog
 								// closed
-								
+								  fstname.setText("");
+								    lstname.setText("");
+								    email1.setText("");
+								    organistn.setText("");
+								    mob.setText("");
+								    add1.setText("");
+								  
+								    city1.setText("");
+								    state1.setText("");
 							}
 						});
 
