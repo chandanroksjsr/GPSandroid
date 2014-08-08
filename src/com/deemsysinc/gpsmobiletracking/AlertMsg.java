@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 
 import android.os.AsyncTask;
@@ -61,7 +62,7 @@ public class AlertMsg  extends Activity {
     JSONArray number = null;
     JSONArray mobile = null;
     Button home,signout;
-    TextView welcomeusername;
+    TextView welcomeusername,welcome;
 	public static ArrayList<String> mobilenumber= new ArrayList<String>();
 	
 
@@ -174,8 +175,11 @@ System.out.println("item position value"+itemPosition);
 	      msgtxt=(EditText)findViewById(R.id.e6);
 	    
 	      signout=(Button)findViewById(R.id.logingout);
+	  	welcome=(TextView)findViewById(R.id.textView1);
 	  	welcomeusername=(TextView)findViewById(R.id.username);
 		welcomeusername.setText(LoginActivity.usernamepassed+"!");
+		  welcomeusername.setTypeface(null, Typeface.BOLD);
+	      welcome.setTypeface(null, Typeface.BOLD);
 			new SendMessage().execute();
 			  signout.setOnClickListener(new View.OnClickListener() {
 					

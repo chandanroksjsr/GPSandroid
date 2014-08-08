@@ -17,6 +17,7 @@ import android.app.ProgressDialog;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.AdapterView;
@@ -51,6 +52,7 @@ public class DashboardActivity extends Activity{
 	private static final String TAG_SPEED= "speed";
 	public ProgressDialog cDialog;
 	String org;
+	TextView welcome;
 	static String vehicle_regno;
 	String device_ime;
 	String drivername;
@@ -87,8 +89,11 @@ public class DashboardActivity extends Activity{
 				contactus=(Button)findViewById(R.id.contactus);
 				signout=(Button)findViewById(R.id.logout);
 				welcomeusername=(TextView)findViewById(R.id.welcomeusername);
+				welcome=(TextView)findViewById(R.id.welcome);
 				welcomeusername.setText(LoginActivity.usernamepassed+"!");
-	
+				// ourdevice.setTypeface(null, Typeface.BOLD);
+			      welcomeusername.setTypeface(null, Typeface.BOLD);
+			      welcome.setTypeface(null, Typeface.BOLD);
 		 signout.setOnClickListener(new View.OnClickListener() {
 				
 	            

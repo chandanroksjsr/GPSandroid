@@ -31,6 +31,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 
 
@@ -74,7 +75,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	String vehicle_reg_numb;
 	TextView welcomeusername;
 	Button signout,home;
-	
+	TextView welcome;
 	String succy;
 	   static String vehicle_reg_no1,routeno;
 	    String userrole;
@@ -212,10 +213,11 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	        actions.setListNavigationCallbacks(adapter, callback);
 	      
 	      signout=(Button)findViewById(R.id.signutty);
-	 
+	      welcome=(TextView)findViewById(R.id.textView1);
 			welcomeusername=(TextView)findViewById(R.id.welcmename);
 			welcomeusername.setText(LoginActivity.usernamepassed+"!");
-		
+			 welcomeusername.setTypeface(null, Typeface.BOLD);
+		      welcome.setTypeface(null, Typeface.BOLD);
 	      try {
 			MapsInitializer.initialize(getApplicationContext());
 		} catch (GooglePlayServicesNotAvailableException e1) {
@@ -524,15 +526,15 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
    					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory.get(k).get(TAG_Longitude+k)));
    					// System.out.println("pin location"+pinLocation);
    					 points.add(pinLocation);
-   					 String titlevalue="Speed:"+vehiclehistory.get(k).get(TAG_Speed+k)+"km/hr "+"Date:"+vehiclehistory.get(k).get(TAG_bus_tracking_timestamp+k);
-   					 String snippetval="Address:"+vehiclehistory.get(k).get(TAG_address+k);
+   					 String titlevalue="Speed:"+vehiclehistory.get(k).get(TAG_Speed+k)+" km/hr "+"Date:"+vehiclehistory.get(k).get(TAG_bus_tracking_timestamp+k);
+   					 String snippetval=titlevalue+"\n"+"Address:"+vehiclehistory.get(k).get(TAG_address+k);
    					 String date="Date:"+vehiclehistory.get(k).get(TAG_bus_tracking_timestamp+k);
    				
    					if(sizeminusone!=k)
    					{
    						
    					// System.out.println("if index and size is not same");
-   	   					  marker = new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
+   	   					  marker = new MarkerOptions().position(pinLocation).snippet(snippetval);
    	   				 marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.click));
    	   					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
    	   				// marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.click));
@@ -547,7 +549,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
    						// System.out.println("k value"+k);
    						// System.out.println("if index and size is same asc");
    						
-   						  marker= new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
+   						  marker= new MarkerOptions().position(pinLocation).snippet(snippetval);
    						
    						  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin));
        				      googleMap.addMarker(marker);
@@ -562,7 +564,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
    					 
    					 if(vehiclehistory.get(k).get(TAG_Exceed_Speed+k).equals("1"))
    					 {
-   						 marker = new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
+   						 marker = new MarkerOptions().position(pinLocation).snippet(snippetval);
    						
       					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.pink_pin));
       				      googleMap.addMarker(marker); 

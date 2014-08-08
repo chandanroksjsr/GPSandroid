@@ -43,6 +43,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 
 import android.os.AsyncTask;
@@ -76,7 +77,7 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 		JSONObject jArray;
 		JSONArray user = null;
 		private GoogleMap googleMap;
-		TextView welcomeusername;
+		TextView welcomeusername,welcome;
 		Button signout,hmey;
 		ToggleButton tgbutton;
 		final Context context=this;
@@ -193,9 +194,11 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 
 	        };
 	        actions.setListNavigationCallbacks(adapter, callback);
-	    
+	        welcome=(TextView)findViewById(R.id.textView1);
 			welcomeusername=(TextView)findViewById(R.id.welcomename);
 			welcomeusername.setText(LoginActivity.usernamepassed+"!");
+			 welcomeusername.setTypeface(null, Typeface.BOLD);
+		      welcome.setTypeface(null, Typeface.BOLD);
 	      try { 
 	            if (googleMap == null) {
 	            
@@ -475,11 +478,11 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 	    					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory1.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory1.get(k).get(TAG_Longitude+k)));
 	    					// System.out.println("pin location"+pinLocation);
 	    					 points.add(pinLocation);
-	    					 String titlevalue="Speed:"+vehiclehistory1.get(k).get(TAG_Speed+k)+"km/hr "+"Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
-	    					 String snippetval="Address:"+vehiclehistory1.get(k).get(TAG_address+k);
+	    					 String titlevalue="Speed:"+vehiclehistory1.get(k).get(TAG_Speed+k)+" km/hr "+"Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
+	    					 String snippetval=titlevalue+"\n"+"Address:"+vehiclehistory1.get(k).get(TAG_address+k);
 	    					 String date="Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
 	    					// String titlevalue=vehiclehistory1.get(k).get(TAG_address+k)+vehiclehistory1.get(k).get(TAG_Speed+k);
-	    					 MarkerOptions marker = new MarkerOptions().position(pinLocation).title(titlevalue).snippet(snippetval);
+	    					 MarkerOptions marker = new MarkerOptions().position(pinLocation).snippet(snippetval);
        					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
        				      googleMap.addMarker(marker);
 	    					

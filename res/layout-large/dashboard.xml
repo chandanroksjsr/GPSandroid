@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/welcome"
         android:layout_alignBottom="@+id/welcome"
-        android:layout_marginLeft="21dp"
+        android:layout_marginLeft="17dp"
         android:layout_marginTop="220dp"
         android:layout_toRightOf="@+id/welcome"
         android:text="thendral"
