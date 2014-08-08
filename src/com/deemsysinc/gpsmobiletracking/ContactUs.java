@@ -1159,7 +1159,7 @@ else
 		        
 		        	{
 		        		    message=String.format("Hi "+"%s\n\n"+"Thanks for Contacting Us... "+"\n\n"+"Our Sales & Support team will contact you shortly "+"\n\n"+"\n\n",firstname);
-		        		    messageall=String.format("Hi "+"\n\n"+"Below are the details of the contacted person "+"\n\n"+"first Name: "+"%s\n\n"+"last name: "+"%s\n\n"+"Email: "+"%s\n\n"+"Organisation: "+"%s\n\n"+"Mobile: "+"%s\n\n"+"address: "+"%s\n\n"+"city: "+"%s\n\n"+"State: "+"%s"+"\n\n"+"\n\n",firstname,lastname,email,organisation,mobile,address1,city,state);
+		        		    messageall=String.format("Hi "+"\n\n"+"Below are the details of the contacted person "+"\n\n"+"FirstName : "+"%s\n\n"+"LastName : "+"%s\n\n"+"Email-ID : "+"%s\n\n"+"Organisation Name : "+"%s\n\n"+"Mobile Number : "+"%s\n\n"+"Address : "+"%s\n\n"+"City : "+"%s\n\n"+"State : "+"%s"+"\n\n"+"\n\n",firstname,lastname,email,organisation,mobile,address1,city,state);
 		        		    System.out.println(messageall);
 		        		         		  
 	 sender.sendMail(part_name,messageall, "deemgps@gmail.com","sales@deemsysinc.com")  ;
