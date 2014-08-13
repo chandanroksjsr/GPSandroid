@@ -506,29 +506,7 @@ else
 
 																											// Showing Alert Message
 																											alertDialog.show();
-																									    /*	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-																						    		        
-																						    	            builder.setMessage("Please enter valid state." )
-																						    	                .setTitle( "INFO!" )
-																						    	                .setIcon( R.drawable.pink_pin )
-																						    	                .setCancelable( false )
-																						    	             
-																						    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-																						    	                    {
-																						    	                        public void onClick( DialogInterface dialog, int which )
-																						    	                           {
-																						    	                                dialog.dismiss();
-																						    	                           }
-																						    	                        } 
-																						    	                    );
-																						    	            Dialog dialog = null;
-																						    	            builder.setInverseBackgroundForced(true);
-																						    	            
-																						    	            dialog = builder.create();
-																						    	            dialog.getWindow().setLayout(600, 400); 
-																						    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-																						    				dialog.show();
-																						    				 */
+																									  
 																									    	
 																									    }}
 																								
@@ -562,29 +540,7 @@ else
 
 																								// Showing Alert Message
 																								alertDialog.show();
-																						  /*  	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-																			    		        
-																			    	            builder.setMessage("Please enter valid city." )
-																			    	                .setTitle( "INFO!" )
-																			    	                .setIcon( R.drawable.pink_pin )
-																			    	                .setCancelable( false )
-																			    	             
-																			    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-																			    	                    {
-																			    	                        public void onClick( DialogInterface dialog, int which )
-																			    	                           {
-																			    	                                dialog.dismiss();
-																			    	                           }
-																			    	                        } 
-																			    	                    );
-																			    	            Dialog dialog = null;
-																			    	            builder.setInverseBackgroundForced(true);
-																			    	            
-																			    	            dialog = builder.create();
-																			    	            dialog.getWindow().setLayout(600, 400); 
-																			    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-																			    				dialog.show();
-																			    			*/	 
+																					 
 																						    	
 																						    }}
 																						
@@ -618,29 +574,7 @@ else
 
 																						// Showing Alert Message
 																						alertDialog.show();
-																				    	/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-																	    		        
-																	    	            builder.setMessage("Please enter valid address." )
-																	    	                .setTitle( "INFO!" )
-																	    	                .setIcon( R.drawable.pink_pin )
-																	    	                .setCancelable( false )
-																	    	             
-																	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-																	    	                    {
-																	    	                        public void onClick( DialogInterface dialog, int which )
-																	    	                           {
-																	    	                                dialog.dismiss();
-																	    	                           }
-																	    	                        } 
-																	    	                    );
-																	    	            Dialog dialog = null;
-																	    	            builder.setInverseBackgroundForced(true);
-																	    	            
-																	    	            dialog = builder.create();
-																	    	            dialog.getWindow().setLayout(600, 400); 
-																	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-																	    				dialog.show();
-																	    				 */
+																				    	
 																				    	
 																				    }}
 																				
@@ -674,29 +608,7 @@ else
 
 																				// Showing Alert Message
 																				alertDialog.show();
-																		    /*	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-															    		        
-															    	            builder.setMessage("Please enter valid mobile number." )
-															    	                .setTitle( "INFO!" )
-															    	                .setIcon( R.drawable.pink_pin )
-															    	                .setCancelable( false )
-															    	             
-															    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-															    	                    {
-															    	                        public void onClick( DialogInterface dialog, int which )
-															    	                           {
-															    	                                dialog.dismiss();
-															    	                           }
-															    	                        } 
-															    	                    );
-															    	            Dialog dialog = null;
-															    	            builder.setInverseBackgroundForced(true);
-															    	            
-															    	            dialog = builder.create();
-															    	            dialog.getWindow().setLayout(600, 400); 
-															    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-															    				dialog.show();
-															    				 */
+																		  
 																		    	
 																		    }}
 																		
@@ -730,30 +642,7 @@ else
 
 																		// Showing Alert Message
 																		alertDialog.show();
-																    	/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-													    		        
-													    	            builder.setMessage("Please enter valid organisation." )
-													    	                .setTitle( "INFO!" )
-													    	                .setIcon( R.drawable.pink_pin )
-													    	                .setCancelable( false )
-													    	             
-													    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-													    	                    {
-													    	                        public void onClick( DialogInterface dialog, int which )
-													    	                           {
-													    	                                dialog.dismiss();
-													    	                           }
-													    	                        } 
-													    	                    );
-													    	            Dialog dialog = null;
-													    	            builder.setInverseBackgroundForced(true);
-													    	            
-													    	            dialog = builder.create();
-													    	            dialog.getWindow().setLayout(600, 400); 
-													    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-													    				dialog.show();
-													    				 
-																    	*/
+																    
 																    }}
 															
 														}
@@ -786,30 +675,7 @@ else
 
 															// Showing Alert Message
 															alertDialog.show();
-													  /*  	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-										    		        
-										    	            builder.setMessage("Please enter valid email." )
-										    	                .setTitle( "INFO!" )
-										    	                .setIcon( R.drawable.pink_pin )
-										    	                .setCancelable( false )
-										    	             
-										    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-										    	                    {
-										    	                        public void onClick( DialogInterface dialog, int which )
-										    	                           {
-										    	                                dialog.dismiss();
-										    	                           }
-										    	                        } 
-										    	                    );
-										    	            Dialog dialog = null;
-										    	            builder.setInverseBackgroundForced(true);
-										    	            
-										    	            dialog = builder.create();
-										    	            dialog.getWindow().setLayout(600, 400); 
-										    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-										    				dialog.show();
-										    				 
-													    	*/
+													
 													    }}
 													
 												}
@@ -842,29 +708,7 @@ else
 
 													// Showing Alert Message
 													alertDialog.show();
-											    	/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-								    		        
-								    	            builder.setMessage("Please enter valid lastname." )
-								    	                .setTitle( "INFO!" )
-								    	                .setIcon( R.drawable.pink_pin )
-								    	                .setCancelable( false )
-								    	             
-								    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-								    	                    {
-								    	                        public void onClick( DialogInterface dialog, int which )
-								    	                           {
-								    	                                dialog.dismiss();
-								    	                           }
-								    	                        } 
-								    	                    );
-								    	            Dialog dialog = null;
-								    	            builder.setInverseBackgroundForced(true);
-								    	            
-								    	            dialog = builder.create();
-								    	            dialog.getWindow().setLayout(600, 400); 
-								    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-								    				dialog.show();
-								    				 */
+											    
 											    	
 											    }}
 											
@@ -898,29 +742,7 @@ else
 
 											// Showing Alert Message
 											alertDialog.show();
-									    	/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-						    		        
-						    	            builder.setMessage("Please enter valid firstname." )
-						    	                .setTitle( "INFO!" )
-						    	                .setIcon( R.drawable.pink_pin )
-						    	                .setCancelable( false )
-						    	             
-						    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-						    	                    {
-						    	                        public void onClick( DialogInterface dialog, int which )
-						    	                           {
-						    	                                dialog.dismiss();
-						    	                           }
-						    	                        } 
-						    	                    );
-						    	            Dialog dialog = null;
-						    	            builder.setInverseBackgroundForced(true);
-						    	            
-						    	            dialog = builder.create();
-						    	            dialog.getWindow().setLayout(600, 400); 
-						    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-						    				dialog.show();
-						    				 */
+									    
 									    	
 									    }}
 								    
@@ -955,29 +777,7 @@ else
 
 								// Showing Alert Message
 								alertDialog.show();
-						    /*	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-			    		        
-			    	            builder.setMessage("Please enter all the required fields." )
-			    	                .setTitle( "INFO!" )
-			    	                .setIcon( R.drawable.pink_pin )
-			    	                .setCancelable( false )
-			    	             
-			    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-			    	                    {
-			    	                        public void onClick( DialogInterface dialog, int which )
-			    	                           {
-			    	                                dialog.dismiss();
-			    	                           }
-			    	                        } 
-			    	                    );
-			    	            Dialog dialog = null;
-			    	            builder.setInverseBackgroundForced(true);
-			    	            
-			    	            dialog = builder.create();
-			    	            dialog.getWindow().setLayout(600, 400); 
-			    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-			    				dialog.show();
-			    				 */
+						 
 						    	
 						    	
 						    }
@@ -1019,29 +819,7 @@ else
         				// Showing Alert Message
         				alertDialog.show();
         				
-        				/*AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-	    		        
-	    	            builder.setMessage("No network connection." )
-	    	                .setTitle( "INFO!" )
-	    	                .setIcon( R.drawable.pink_pin )
-	    	                .setCancelable( false )
-	    	             
-	    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-	    	                    {
-	    	                        public void onClick( DialogInterface dialog, int which )
-	    	                           {
-	    	                                dialog.dismiss();
-	    	                           }
-	    	                        } 
-	    	                    );
-	    	            Dialog dialog = null;
-	    	            builder.setInverseBackgroundForced(true);
-	    	            
-	    	            dialog = builder.create();
-	    	            dialog.getWindow().setLayout(600, 400); 
-	    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-	    				dialog.show();
-	    				 */
+        				
         			}
 
 
@@ -1297,29 +1075,7 @@ class AttemptLogin extends AsyncTask<String,String,String>{
 
 		// Showing Alert Message
 		alertDialog.show();
-       /*	AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-	        
-          builder.setMessage("Error connecting database." )
-              .setTitle( "INFO!" )
-              .setIcon( R.drawable.pink_pin )
-              .setCancelable( false )
-           
-              .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-                  {
-                      public void onClick( DialogInterface dialog, int which )
-                         {
-                      	
-                              dialog.dismiss();
-                         }
-                      } 
-                  );
-          Dialog dialog = null;
-          builder.setInverseBackgroundForced(true);
-          
-          dialog = builder.create();
-          dialog.getWindow().setLayout(600, 400); 
-          dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-			dialog.show();*/
+     
           }
           else{
         	 
@@ -1357,31 +1113,7 @@ class AttemptLogin extends AsyncTask<String,String,String>{
 
 				// Showing Alert Message
 				alertDialog.show();
-        	 /* AlertDialog.Builder builder= new AlertDialog.Builder(ContactUs.this,R.style.MyTheme );
-		        
-	            builder.setMessage("Mail sent." )
-	                .setTitle( "INFO!" )
-	                .setIcon( R.drawable.pink_pin )
-	                .setCancelable( false )
-	             
-	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-	                    {
-	                        public void onClick( DialogInterface dialog, int which )
-	                           {
-	                        	
-	                                dialog.dismiss();
-	                           }
-	                        } 
-	                    );
-	            Dialog dialog = null;
-	            builder.setInverseBackgroundForced(true);
-	            
-	            dialog = builder.create();
-	            dialog.getWindow().setLayout(600, 400); 
-	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-				dialog.show();
-        	  
-        	  */
+        	
         	  
           }
         

@@ -13,19 +13,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
+
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnKeyListener;
+
 
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 
@@ -69,7 +68,7 @@ public class LoginActivity extends Activity {
 		  getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		    getActionBar().hide();
 		setContentView(R.layout.activity_login);
-		RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativelay);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.relativelay);
 		 cd = new ConnectionDetector(getApplicationContext());
         usrname=(EditText)findViewById(R.id.username);
 		paswd=(EditText)findViewById(R.id.pswd);
@@ -289,7 +288,7 @@ System.out.println("is internet present:::"+isInternetPresent);
 	    						LoginActivity.this).create();
 
 	    				// Setting Dialog Title
-	    				alertDialog.setTitle("Alert Dialog");
+	    				alertDialog.setTitle("INFO!");
 
 	    				// Setting Dialog Message
 	    				alertDialog.setMessage("Enter login credentials.");

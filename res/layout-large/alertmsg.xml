@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     
      android:id="@+id/alertlayout"
-    android:background="@drawable/alertlarge"
+    android:background="@drawable/bg"
     android:orientation="vertical" >
 
     <Button

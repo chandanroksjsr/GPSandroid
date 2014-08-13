@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
      style="@style/AppTheme"
      android:id="@+id/alertlayout"
-    android:background="@drawable/alertnormal"
+    android:background="@drawable/bg"
     android:orientation="vertical" >
 
     <Button

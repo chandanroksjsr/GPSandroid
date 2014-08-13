@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+      <string name="login">LOG IN</string>
+    <string name="reset">RESET</string>
+    
+    
+    
+    
     <string name="app_name">DeemGPS</string>
     <string name="action_settings">Settings</string>
     <string name="release">OK</string>
     <string name="Username">Username</string>
     <string name="pswd">Password</string>
     <string name="signin">Signin</string>
-    <string name="welcome">Welcome  </string>
+    <string name="welcome">Welcome     </string>
     <string name="aboutus">About us</string>
     <string name="contactus">Contact us</string>
     <string name="callus">Call us</string>
