@@ -35,6 +35,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import android.widget.RelativeLayout;
 
@@ -73,7 +74,7 @@ public class ContactUs extends Activity {
 		    getActionBar().hide();
 		setContentView(R.layout.contactus);
 		    mob = (EditText)findViewById(R.id.e5);
-		RelativeLayout layout = (RelativeLayout) findViewById(R.id.layoutt);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.layoutt);
         ConnectionDetector cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent= cd.isConnectingToInternet();
         InputFilter filter = new InputFilter() {
@@ -1091,7 +1092,7 @@ class AttemptLogin extends AsyncTask<String,String,String>{
 				// Setting Icon to Dialog
 				alertDialog.setIcon(R.drawable.tick);
 				
-
+alertDialog.setCancelable(false);
 				// Setting OK Button
 				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
 

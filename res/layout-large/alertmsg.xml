@@ -1,81 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    
+     style="@style/AppTheme"
      android:id="@+id/alertlayout"
-    android:background="@drawable/bg"
+    android:background="@drawable/loginbg"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/logingout"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="false"
-        android:layout_marginLeft="450dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="200dp"
-        android:background="@drawable/logoutbutlarge" />
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="200dp"
+    android:gravity="center_vertical|center_horizontal|center"
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-         style="@style/custom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="false"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="210dp"
-        android:text="@string/welcome"
-        android:textSize="20dp"
-        android:textColor="#000000" />
+      <ImageView
+          android:id="@+id/avatar"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:scaleType="fitStart"
+          android:src="@drawable/deemgpsicon" />
 
-    <TextView
-        android:id="@+id/username"
-         style="@style/custom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="false"
-        android:layout_marginLeft="121dp"
-        android:layout_marginTop="210dp"
-        android:text="thendral"
-          android:textSize="20dp"
-        android:textColor="#000000" />
+ </LinearLayout>
+ 
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="5dp"
+    android:paddingRight="20dp" >
 
-    <EditText
-        android:id="@+id/e6"
-        style="@style/custom"
-        android:layout_width="550dp"
-        android:layout_height="225dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="285dp"
-        android:background="@drawable/roundedtext"
-        android:ems="10"
-        android:gravity="top|left"
-        android:scrollHorizontally="true"
-        android:shadowRadius="5"
-        android:textSize="14dip" >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/welcome"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/username"
+            style="@style/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/textView1"
+            android:text="thendral"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/logingout"
+            style="@style/custom"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/logoutbutlarge"
+            android:paddingRight="5dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="250dp"
+    android:orientation="horizontal"
+    android:paddingBottom="5dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="15dp" >
+
+  <EditText
+      android:id="@+id/e6"
+      style="@style/custom"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:background="@drawable/listbg"
+      android:ems="10"
+      android:gravity="top|left"
+      android:scrollHorizontally="true"
+      android:shadowRadius="5" >
 
         <requestFocus />
     </EditText>
+</LinearLayout>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="125dp"
-        android:layout_height="35dp"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignRight="@+id/username"
-        android:background="@drawable/sendbutlarge" />
+<View
+    android:layout_width="fill_parent"
+    android:layout_height="40dp" >
+
+</View>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center_vertical|center_horizontal|center"
+    android:orientation="horizontal" >
+
+  <Button
+      android:id="@+id/button1"
+      android:layout_width="125dp"
+      android:layout_height="35dp"
+      android:background="@drawable/sendbutlarge" />
+
+<View
+    android:layout_width="85dp"
+    android:layout_height="1dp" >
+
+</View>
 
     <Button
         android:id="@+id/button2"
         android:layout_width="125dp"
         android:layout_height="35dp"
-        android:layout_alignRight="@+id/logingout"
-        android:layout_below="@+id/e6"
-        android:layout_marginRight="53dp"
-        android:layout_marginTop="51dp"
         android:background="@drawable/clearbutlarge" />
 
-</RelativeLayout>
+   </LinearLayout>
+
+
+  
+
+</LinearLayout>

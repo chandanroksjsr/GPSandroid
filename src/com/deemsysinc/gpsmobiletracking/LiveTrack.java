@@ -357,11 +357,6 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 		                      try
 		                      {
 		                    	  new VehiclePath().execute();
-		                    	  // task.execute();
-		                    	//  System.out.println("I am thendral");
-		                    	  //LiveTrack myActivity = new LiveTrack();
-		                    	 // AsyncTask<String, String, String> task = myActivity.new VehiclePath();
-			                     //  task.execute();
 		                    	
 		                    	  
 		                    
@@ -387,7 +382,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
     			  cDialog = new ProgressDialog(LiveTrack.this);
     	          cDialog.setMessage("Please wait...");
     	          cDialog.setIndeterminate(false);
-    	          cDialog.setCancelable(false);
+    	          //cDialog.setCancelable(true);
     	          cDialog.show();
     		}
     			

@@ -38,6 +38,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -155,7 +156,7 @@ System.out.println("item position value"+itemPosition);
 	      route= LiveTrack.routeno;
 	      System.out.println("alert route numb track veh numb"+route);
 	      orgid=LoginActivity.orgid;
-	      RelativeLayout layout = (RelativeLayout) findViewById(R.id.alertlayout);
+	      LinearLayout layout = (LinearLayout) findViewById(R.id.alertlayout);
 	      layout.setOnTouchListener(new OnTouchListener()
 	        {
 	            @Override
