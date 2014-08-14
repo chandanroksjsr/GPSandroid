@@ -323,7 +323,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 		 });
 	    
 	     
-	   //  timercalling();
+	     timercalling();
 	    }
 	 
 	    /**
@@ -621,11 +621,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	        //googleMap.clear();
 	        vehicle_reg_no = getIntent().getExtras().getString("vehicleregnum");
 		      routeno= getIntent().getExtras().getString("routenum");
-		    //  System.out.println("vehicle reg num from dashboard::"+vehicle_reg_no);
-		    //  System.out.println("vehicle route num from dashboard::"+routeno);
-	       // System.out.println("in resume");
-	       // initilizeMap();
-	        timercalling();
+		   
+	   
 	    }
 	   
 	    
@@ -634,7 +631,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	    {
 
 	    super.onDestroy();  
-	  //  System.out.println("in destroy");
+	  System.out.println("in destroy");
 	  timer.cancel();
 	  doAsynchronousTask.cancel();
 	    }     
