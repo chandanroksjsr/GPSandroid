@@ -199,6 +199,7 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 			welcomeusername.setText(LoginActivity.usernamepassed+"!");
 			 welcomeusername.setTypeface(null, Typeface.BOLD);
 		      welcome.setTypeface(null, Typeface.BOLD);
+		      
 	      try { 
 	            if (googleMap == null) {
 	            
@@ -288,7 +289,8 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
   			startActivity(intentSignUP);
 	        	}
 		 });
-	      
+	       initilizeMap();
+		      showDialog(DATE_PICKER_ID);
 	    }
 	  
 	  @Override
@@ -545,8 +547,7 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
       super.onResume();
     
   //    System.out.println("in on resume ");
-      initilizeMap();
-      showDialog(DATE_PICKER_ID);
+     
   }
   @Override
   public void onBackPressed() {

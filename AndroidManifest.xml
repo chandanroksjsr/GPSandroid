@@ -6,7 +6,7 @@
        <supports-screens
           android:normalScreens="true" 
           android:largeScreens="true"
-          android:xlargeScreens="true"
+          android:xlargeScreens="false"
           android:anyDensity="true" />
           
           <compatible-screens>
@@ -26,11 +26,7 @@
     <screen android:screenSize="large" android:screenDensity="hdpi" />
     <screen android:screenSize="large" android:screenDensity="xhdpi" />
 
-    <!-- all xlarge size screens -->
-    <screen android:screenSize="xlarge" android:screenDensity="ldpi" />
-    <screen android:screenSize="xlarge" android:screenDensity="mdpi" />
-    <screen android:screenSize="xlarge" android:screenDensity="hdpi" />
-    <screen android:screenSize="xlarge" android:screenDensity="xhdpi" />
+   
 
     <!-- Special case for Nexus 7 -->
     <screen android:screenSize="large" android:screenDensity="213" />
