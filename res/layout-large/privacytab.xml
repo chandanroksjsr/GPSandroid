@@ -42,7 +42,7 @@
           android:layout_height="wrap_content"
           android:paddingLeft="40dp"
           android:scaleType="fitStart"
-          android:src="@drawable/dashboardheader" />
+          android:src="@drawable/privacyicon" />
 
  </LinearLayout>
 
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentTop="false"
-                android:layout_marginLeft="35dp"
+             
                 android:layout_marginTop="6dp"
                 android:text="@string/privacypolicy" />
 
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="false"
-                android:layout_marginLeft="35dp"
+             
                 android:layout_marginTop="330dp"
                 android:text="@string/useof" />
 
@@ -103,7 +103,7 @@
                 android:layout_width="540dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="false"
-                android:layout_marginLeft="35dp"
+             
                 android:layout_marginTop="360dp"
                 android:text="@string/collection" />
 
@@ -112,7 +112,7 @@
                 style="@style/custom"
                 android:layout_width="540dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+             
                 android:layout_marginTop="390dp"
                 android:text="@string/thisprivacy" />
 
@@ -121,7 +121,7 @@
                 style="@style/custom"
                 android:layout_width="540dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+             
                 android:layout_marginTop="480dp"
                 android:text="@string/youack" />
 
@@ -130,7 +130,7 @@
         style="@style/custom"
         android:layout_width="540dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
+     
         android:layout_marginTop="610dp"
         android:text="@string/except" />
 
@@ -139,7 +139,7 @@
           style="@style/custom"
           android:layout_width="540dp"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="35dp"
+       
           android:layout_marginTop="690dp"
           android:text="@string/storage" />
 
@@ -148,7 +148,7 @@
         style="@style/custom"
         android:layout_width="540dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
+     
         android:layout_marginTop="730dp"
         android:text="@string/wemay" />
 
@@ -157,7 +157,7 @@
             style="@style/custom"
             android:layout_width="540dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
+         
             android:layout_marginTop="910dp"
             android:text="@string/weuse" />
         <TextView
@@ -165,7 +165,7 @@
             style="@style/custom"
             android:layout_width="540dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
+         
             android:layout_marginTop="950dp"
             android:text="@string/someof" />
 
@@ -174,8 +174,7 @@
             style="@style/custom"
             android:layout_width="540dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="1280dp"
+            android:layout_marginTop="1300dp"
             android:text="@string/howwe" />
 
           <TextView
@@ -183,8 +182,7 @@
               style="@style/custom"
               android:layout_width="540dp"
               android:layout_height="wrap_content"
-              android:layout_marginLeft="35dp"
-              android:layout_marginTop="1310dp"
+              android:layout_marginTop="1330dp"
               android:text="@string/wherever" />
 
             <TextView
@@ -192,8 +190,7 @@
                 style="@style/custom"
                 android:layout_width="540dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="1460dp"
+                android:layout_marginTop="1470dp"
                 android:text="@string/access" />
 
              <TextView
@@ -201,7 +198,7 @@
                  style="@style/custom"
                  android:layout_width="540dp"
                  android:layout_height="wrap_content"
-                 android:layout_marginLeft="35dp"
+              
                  android:layout_marginTop="1500dp"
                  android:text="@string/youhave" />
 
@@ -210,7 +207,7 @@
     style="@style/custom"
     android:layout_width="260dp"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="35dp"
+ 
     android:layout_marginTop="1580dp"
     android:text="@string/complaintspro" />
 
@@ -219,7 +216,7 @@
                  style="@style/custom"
                  android:layout_width="540dp"
                  android:layout_height="wrap_content"
-                 android:layout_marginLeft="35dp"
+              
                  android:layout_marginTop="1610dp"
                  android:text="@string/ifyou" />
 
@@ -228,8 +225,7 @@
                   style="@style/custom"
                   android:layout_width="540dp"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="35dp"
-                  android:layout_marginTop="1720dp"
+                  android:layout_marginTop="1730dp"
                   android:text="@string/thirdparty" />
 
                 <TextView
@@ -237,7 +233,7 @@
                     style="@style/custom"
                     android:layout_width="540dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                 
                     android:layout_marginTop="1760dp"
                     android:text="@string/linkson" />
 
@@ -246,8 +242,7 @@
                         style="@style/custom"
                         android:layout_width="540dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginTop="1990dp"
+                        android:layout_marginTop="2010dp"
                         android:text="@string/changesto" />
 
                     <TextView
@@ -255,8 +250,7 @@
                         style="@style/custom"
                         android:layout_width="540dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginTop="2030dp"
+                        android:layout_marginTop="2040dp"
                         android:text="@string/wereserve" />
             
               <ImageView

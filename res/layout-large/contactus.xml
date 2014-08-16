@@ -44,7 +44,7 @@
           android:layout_height="wrap_content"
           android:paddingLeft="40dp"
           android:scaleType="fitStart"
-          android:src="@drawable/dashboardheader" />
+          android:src="@drawable/contacticon" />
 
  </LinearLayout>
 

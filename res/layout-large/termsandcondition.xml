@@ -42,7 +42,7 @@
           android:layout_height="wrap_content"
           android:paddingLeft="40dp"
           android:scaleType="fitStart"
-          android:src="@drawable/dashboardheader" />
+          android:src="@drawable/termsicon" />
 
  </LinearLayout>
 
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentTop="false"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="15dp"
                 android:text="@string/deemgpsreturn" />
 
@@ -93,7 +93,7 @@
                 android:layout_width="520dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="false"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="45dp"
                 android:text="@string/deemgpsreturnstate" />
 
@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="false"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="135dp"
                 android:text="@string/deemgpsrefund" />
 
@@ -112,7 +112,7 @@
                 style="@style/custom"
                 android:layout_width="520dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="165dp"
                 android:text="@string/deemgpsrefundstate" />
 
@@ -121,7 +121,7 @@
                 style="@style/custom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="290dp"
                 android:text="@string/deemgpsrefundstate1" />
 
@@ -130,7 +130,7 @@
                 style="@style/custom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="360dp"
                 android:text="@string/deemgpswaranty" />
 
@@ -139,7 +139,7 @@
                 style="@style/custom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="400dp"
                 android:text="@string/warantyrepair" />
 
@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="false"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="450dp"
                 android:text="@string/warantyrepair1" />
 
@@ -159,7 +159,7 @@
                 style="@style/custom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="510dp"
                 android:text="@string/warantyrepair2" />
 
@@ -170,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="false"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="540dp"
                 android:text="@string/warantyrepair3" />
 
@@ -179,8 +179,7 @@
                 style="@style/custom"
                 android:layout_width="520dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="570dp"
+                android:layout_marginTop="580dp"
                 android:text="@string/warantyrepair4" />
 
             <TextView
@@ -188,7 +187,7 @@
                 style="@style/custom"
                 android:layout_width="520dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="660dp"
                 android:text="@string/proofofpurchase" />
 
@@ -197,7 +196,7 @@
                 style="@style/custom"
                 android:layout_width="520dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="710dp"
                 android:text="@string/proofofpurchase1" />
             
@@ -206,7 +205,7 @@
                 style="@style/custom"
                 android:layout_width="520dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="885dp"
                 android:text="@string/outofwaranty" />
 
@@ -215,7 +214,7 @@
                 style="@style/custom"
                 android:layout_width="520dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="925dp"
                 android:text="@string/outofwaranty1" />
 
@@ -224,7 +223,7 @@
                 style="@style/custom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="1040dp"
                 android:text="@string/brokerndisplay" />
 
@@ -233,7 +232,7 @@
       style="@style/custom"
       android:layout_width="520dp"
       android:layout_height="wrap_content"
-      android:layout_marginLeft="35dp"
+     
       android:layout_marginTop="1080dp"
       android:text="@string/brokerndisplay1" />
             
@@ -242,8 +241,7 @@
                   style="@style/custom"
                   android:layout_width="520dp"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="35dp"
-                  android:layout_marginTop="1220dp"
+                  android:layout_marginTop="1240dp"
                   android:text="@string/productreturnship" />
               
               <TextView
@@ -251,8 +249,7 @@
                   style="@style/custom"
                   android:layout_width="520dp"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="35dp"
-                  android:layout_marginTop="1260dp"
+                  android:layout_marginTop="1270dp"
                   android:text="@string/productreturnship1" />
 
               <TextView
@@ -260,7 +257,7 @@
                   style="@style/custom"
                   android:layout_width="520dp"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="35dp"
+                 
                   android:layout_marginTop="1430dp"
                   android:text="@string/shipinstruc" />
               
@@ -269,7 +266,7 @@
                     style="@style/custom"
                     android:layout_width="520dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                   
                     android:layout_marginTop="1470dp"
                     android:text="@string/shipinstruc1" />
               
@@ -278,7 +275,7 @@
                   style="@style/custom"
                   android:layout_width="520dp"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="35dp"
+                 
                   android:layout_marginTop="1650dp"
                   android:text="@string/deemsysindianaddrs" />
 
@@ -287,7 +284,7 @@
                  style="@style/custom"
                  android:layout_width="220dp"
                  android:layout_height="wrap_content"
-                 android:layout_marginLeft="35dp"
+                
                  android:layout_marginTop="1680dp"
                  android:text="@string/addressdeem" />
 
@@ -296,7 +293,7 @@
                 style="@style/custom"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="1710dp"
                 android:text="@string/addrs1" />
 
@@ -305,7 +302,7 @@
                 style="@style/custom"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="1740dp"
                 android:text="@string/addrs2" />
 
@@ -314,7 +311,7 @@
                 style="@style/custom"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="1770dp"
                 android:text="@string/addrs3" />
             
@@ -323,7 +320,7 @@
                 style="@style/custom"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="1800dp"
                 android:text="@string/addrs5" />
 
@@ -332,7 +329,7 @@
     style="@style/custom"
     android:layout_width="220dp"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="35dp"
+   
     android:layout_marginTop="1830dp"
     android:text="@string/addrs6" />
 
@@ -341,7 +338,7 @@
                 style="@style/custom"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="1860dp"
                 android:text="@string/addrs4" />
 
@@ -350,7 +347,7 @@
                   style="@style/custom"
                   android:layout_width="520dp"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="35dp"
+                 
                   android:layout_marginTop="1900dp"
                   android:text="@string/note" />
 
@@ -359,7 +356,7 @@
                    style="@style/custom"
                    android:layout_width="260dp"
                    android:layout_height="wrap_content"
-                   android:layout_marginLeft="35dp"
+                  
                    android:layout_marginTop="2030dp"
                    android:text="@string/warantydisclaimera" />
 
@@ -368,7 +365,7 @@
                   style="@style/custom"
                   android:layout_width="520dp"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="35dp"
+                 
                   android:layout_marginTop="2070dp"
                   android:text="@string/warantydisclaimer" />
 
@@ -377,7 +374,7 @@
     style="@style/custom"
     android:layout_width="250dp"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="35dp"
+   
     android:layout_marginTop="2250dp"
     android:text="@string/warantydisclaimerturn" />
 
@@ -386,7 +383,7 @@
                   style="@style/custom"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="35dp"
+                 
                   android:layout_marginTop="2190dp"
                   android:text="@string/warantydisclaimer1" />
 
@@ -417,7 +414,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="false"
-                android:layout_marginLeft="35dp"
+               
                 android:layout_marginTop="2290dp"
                 android:text="@string/warantydisclaimer2" />
 
