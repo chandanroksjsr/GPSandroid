@@ -58,6 +58,38 @@
        
        
     </string-array>
+    
+     
+     
+     
+     
+      <string-array name="nav_drawer_items_withoutalert">
+        <item >Live Track</item>
+        <item >Tracking History</item>
+      
+         <item >Dashboard</item>
+       
+    </string-array>
+    
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+  
+     <string-array name="nav_drawer_items1_withoutalert">
+          <item >Tracking History</item>
+        <item >Live Track</item>
+       
+         <item >Dashboard</item>
+       
+    </string-array>
+     <string-array name="nav_drawer_items2_withoutalert">
+        
+        <item >Live Track</item>
+        <item >Tracking History</item>
+         <item >Dashboard</item>
+       
+       
+    </string-array>
+     
     <string name="aboutusdeem">About Deemsys</string>
     <string name="vehicleno">Vehicle No</string>
     <string name="lastupdate">Last Updated</string>

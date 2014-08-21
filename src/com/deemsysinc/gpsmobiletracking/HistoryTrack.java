@@ -141,6 +141,64 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 	        actions.setIcon(R.drawable.historyicon);
 	        actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 	        actions.setDisplayShowTitleEnabled(false);
+	        if(LoginActivity.role.equalsIgnoreCase("ROLE_FCLIENT"))
+	        {
+	        	 SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items1_withoutalert,
+	 	                android.R.layout.simple_spinner_dropdown_item);
+	        	 
+	        	 
+	 	       
+	 	        OnNavigationListener callback = new OnNavigationListener() {
+
+	 	            String[] items = getResources().getStringArray(R.array.nav_drawer_items); // List items from res
+
+	 	            @Override
+	 			    public boolean onNavigationItemSelected(int itemPosition, long id) {
+
+	 			     
+	 			        Intent myIntent;
+	 			       if(itemPosition!=0){
+				            if(itemPosition == 0){ //Activity#1 Selected
+				            	LiveTrack.timer.cancel();
+						    	LiveTrack.doAsynchronousTask.cancel();
+				                myIntent = new Intent(HistoryTrack.this, HistoryTrack.class);
+				                HistoryTrack.this.startActivity(myIntent);
+				            } else if (itemPosition == 1){ //Activity#2 Selected
+				            	LiveTrack.timer.cancel();
+						    	LiveTrack.doAsynchronousTask.cancel();
+						    	  myIntent = new Intent(HistoryTrack.this, LiveTrack.class);
+						    	myIntent.putExtra("vehicleregnum", LiveTrack.vehicle_reg_no);
+						    	myIntent.putExtra("routenum", LiveTrack.routeno);
+				                HistoryTrack.this.startActivity(myIntent);
+				            } else if (itemPosition == 2){ //Activity#3 Selected
+				            	LiveTrack.timer.cancel();
+						    	LiveTrack.doAsynchronousTask.cancel();
+				                myIntent = new Intent(HistoryTrack.this, DashboardActivity.class);
+				                HistoryTrack.this.startActivity(myIntent);
+				            }
+				            else if (itemPosition == 3){ //Activity#3 Selected
+				            
+				            }
+	 			          
+	 			          
+	 			        }
+	 			        else
+	 			        {
+	 			        	
+	 			        }
+	 			        return true;
+
+	 			    }
+
+
+	 	        };
+
+	 	        actions.setListNavigationCallbacks(adapter1, callback);
+	        }
+	        else
+	        {
+	        	
+	       
 	        SpinnerAdapter adapter = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items1,
 	                android.R.layout.simple_spinner_dropdown_item);
 
@@ -194,6 +252,7 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 
 	        };
 	        actions.setListNavigationCallbacks(adapter, callback);
+	        }
 	        welcome=(TextView)findViewById(R.id.textView1);
 			welcomeusername=(TextView)findViewById(R.id.welcomename);
 			welcomeusername.setText(LoginActivity.usernamepassed+"!");

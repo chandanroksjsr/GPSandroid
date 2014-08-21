@@ -14,7 +14,13 @@ public final class R {
  Keep them in order as the titles are in 
          */
         public static final int nav_drawer_items1=0x7f080001;
+        /**  Nav Drawer List Item Icons 
+ Keep them in order as the titles are in 
+         */
+        public static final int nav_drawer_items1_withoutalert=0x7f080004;
         public static final int nav_drawer_items2=0x7f080002;
+        public static final int nav_drawer_items2_withoutalert=0x7f080005;
+        public static final int nav_drawer_items_withoutalert=0x7f080003;
     }
     public static final class attr {
         /** <p>Must be a floating point value, such as "<code>1.2</code>".

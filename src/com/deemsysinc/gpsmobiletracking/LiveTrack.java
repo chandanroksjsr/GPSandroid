@@ -149,6 +149,66 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	        actions.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#93aac3")));
 	        actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 	        actions.setDisplayShowTitleEnabled(false);
+	        if(LoginActivity.role.equalsIgnoreCase("ROLE_FCLIENT"))
+	        {
+	        	 SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items_withoutalert,
+	 	                android.R.layout.simple_spinner_dropdown_item);
+	        	 
+	        	 
+	 	        alertDialog = new AlertDialog.Builder(
+	 					LiveTrack.this).create();
+	 	        // Callback
+	 	        OnNavigationListener callback = new OnNavigationListener() {
+
+	 	            String[] items = getResources().getStringArray(R.array.nav_drawer_items); // List items from res
+
+	 	            @Override
+	 			    public boolean onNavigationItemSelected(int itemPosition, long id) {
+
+	 			     
+	 			        Intent myIntent;
+	 			        if(itemPosition!=0){
+	 			            if(itemPosition == 0){ //Activity#1 Selected
+	 			            	LiveTrack.timer.cancel();
+	 					    	LiveTrack.doAsynchronousTask.cancel();
+	 			                myIntent = new Intent(LiveTrack.this, LiveTrack.class);
+	 			                LiveTrack.this.startActivity(myIntent);
+	 			            } else if (itemPosition == 1){
+	 			            	LiveTrack.timer.cancel();
+	 			            	 vehiclehistory.clear();
+	 			            	 vehiclehistory1.clear();
+	 					    	LiveTrack.doAsynchronousTask.cancel();//Activity#2 Selected
+	 			                myIntent = new Intent(LiveTrack.this, HistoryTrack.class);
+	 			                LiveTrack.this.startActivity(myIntent);
+	 			            } else if (itemPosition == 2){
+	 			            	LiveTrack.timer.cancel();
+	 					    	LiveTrack.doAsynchronousTask.cancel();
+	 			            	  VehichleArrayAdapter.data.clear();
+	 			       	       DashboardActivity.vehicleall.clear();
+	 			       	       vehiclehistory1.clear();
+	 			       	       vehiclehistory.clear();
+	 			       	       HistoryTrack.vehiclehistory1.clear();
+	 			                myIntent = new Intent(LiveTrack.this, DashboardActivity.class);
+	 			                LiveTrack.this.startActivity(myIntent);
+	 			            }
+	 			          
+	 			          
+	 			        }
+	 			        else
+	 			        {
+	 			        	
+	 			        }
+	 			        return true;
+
+	 			    }
+
+
+	 	        };
+
+	 	        actions.setListNavigationCallbacks(adapter1, callback);
+	        }
+	        else
+	        {
 	        SpinnerAdapter adapter = ArrayAdapter.createFromResource(getActionBar().getThemedContext(), R.array.nav_drawer_items,
 	                android.R.layout.simple_spinner_dropdown_item);
 	        alertDialog = new AlertDialog.Builder(
@@ -161,9 +221,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	            @Override
 			    public boolean onNavigationItemSelected(int itemPosition, long id) {
 
-			        // Do stuff when navigation item is selected
-//System.out.println("item position value"+itemPosition);
-			        //Log.d("NavigationItemSelected", items[position]); // Debug
+			     
 			        Intent myIntent;
 			        if(itemPosition!=0){
 			            if(itemPosition == 0){ //Activity#1 Selected
@@ -211,7 +269,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	        };
 
 	        actions.setListNavigationCallbacks(adapter, callback);
-	      
+	        }
 	      signout=(Button)findViewById(R.id.signutty);
 	      welcome=(TextView)findViewById(R.id.textView1);
 			welcomeusername=(TextView)findViewById(R.id.welcmename);
