@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.deemsysinc.gpsmobiletracking"
-    android:versionCode="4"
-    android:versionName="1.0.3" >
+    android:versionCode="5"
+    android:versionName="1.0.4" >
        <supports-screens
           android:normalScreens="true" 
           android:largeScreens="true"
@@ -61,7 +61,7 @@
         
         <meta-data
     android:name="com.google.android.maps.v2.API_KEY"
-    android:value="AIzaSyBv4Y7___dAlBlFFwf8bqK3rzxmCLtkQFY"/>
+    android:value="AIzaSyDZgRjLy4BiUjBh_a7P-cGORTpiize4KUg"/>
         
         <activity
             android:name="com.deemsysinc.gpsmobiletracking.SplashActivity"
