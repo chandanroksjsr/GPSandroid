@@ -446,6 +446,7 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 	    			        	 map.put(TAG_Latitude+i,latitude);
 	    			        	 map.put(TAG_Longitude+i,longitude);
 	    			        	 map.put(TAG_Speed+i, speed);
+	    			        	 map.put(TAG_Exceed_Speed+i, exceed_speed_limit);
 	    			        	 map.put(TAG_address+i, address);
 	    			        	 map.put(TAG_bus_tracking_timestamp+i, bus_tracking_timestamp);
 	    			        	
@@ -505,49 +506,33 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 
 	    						// Showing Alert Message
 	    						alertDialog.show();
-	    			        	/*  AlertDialog.Builder builder= new AlertDialog.Builder(HistoryTrack.this,R.style.MyTheme );
-	    		    		        
-	    		    	            builder.setMessage("No location found." )
-	    		    	                .setTitle( "INFO!" )
-	    		    	                .setIcon( R.drawable.pink_pin )
-	    		    	                .setCancelable( false )
-	    		    	             
-	    		    	                .setPositiveButton( "OK", new DialogInterface.OnClickListener()
-	    		    	                    {
-	    		    	                        public void onClick( DialogInterface dialog, int which )
-	    		    	                           {
-	    		    	                        	
-	    		    	                                dialog.dismiss();
-	    		    	                           }
-	    		    	                        } 
-	    		    	                    );
-	    		    	            Dialog dialog = null;
-	    		    	            builder.setInverseBackgroundForced(true);
-	    		    	            
-	    		    	            dialog = builder.create();
-	    		    	            dialog.getWindow().setLayout(600, 400); 
-	    		    	            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-	    		    				dialog.show();
-	    			  			 */
-	       	       				
+	    			        	
 	        					
 	        				}
 	    			        else
 	    			        {
+	    			        	//System.out.println("vehicle history list size"+vehiclehistory1.size());
 	    				 for (int k = 0; k < vehiclehistory1.size(); k++) {
-	    					// System.out.println("k value"+k);
+	    					
 	    					 LatLng pinLocation = new LatLng(Double.parseDouble(vehiclehistory1.get(k).get(TAG_Latitude+k)), Double.parseDouble(vehiclehistory1.get(k).get(TAG_Longitude+k)));
-	    					// System.out.println("pin location"+pinLocation);
+	    					 MarkerOptions marker;
 	    					 points.add(pinLocation);
 	    					 String titlevalue="Speed:"+vehiclehistory1.get(k).get(TAG_Speed+k)+" km/hr "+"Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
 	    					 String snippetval=titlevalue+"\n"+"Address:"+vehiclehistory1.get(k).get(TAG_address+k);
-	    					 String date="Date:"+vehiclehistory1.get(k).get(TAG_bus_tracking_timestamp+k);
-	    					// String titlevalue=vehiclehistory1.get(k).get(TAG_address+k)+vehiclehistory1.get(k).get(TAG_Speed+k);
-	    					 MarkerOptions marker = new MarkerOptions().position(pinLocation).snippet(snippetval);
+	    					 if(vehiclehistory1.get(k).get(TAG_Exceed_Speed+k).equals("1"))
+	       					 {
+	       						 marker = new MarkerOptions().position(pinLocation).snippet(snippetval);
+	       						
+	          					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.pink_pin));
+	          				      googleMap.addMarker(marker); 
+	       					 }
+	    					 else
+	    					 {
+	    					 marker = new MarkerOptions().position(pinLocation).snippet(snippetval);
        					  marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
        				      googleMap.addMarker(marker);
-	    					
-	    					// System.out.println("titlevalue of respective pinlocation"+titlevalue);
+	    					 
+	    					 }
 	    					 int sizeminusone=vehiclehistory1.size()-1;
 	    					 if(sizeminusone==k)
 	    					 {
@@ -555,6 +540,8 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 	    					  CameraPosition cameraPosition = new CameraPosition.Builder().target(pinLocation).zoom(12).build();
 	    					  googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 	    					 }
+	    					// System.out.println("vehicle histroy value::"+vehiclehistory1.get(k).get(TAG_Exceed_Speed+k));
+	    					
 	    					
 	    				 }
 	    				 polyLineOptions.addAll(points);
