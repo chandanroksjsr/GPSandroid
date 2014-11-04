@@ -70,7 +70,7 @@ public class DashboardActivity extends Activity{
 	Button aboutus,contactus,signout;
 	//private static String vehicledetailsurl = "http://192.168.1.158:8888/gpsandroid/service/VehicleDetails.php?service=vehicledetails1"; 
 	//private static String vehicledetailsurl = "http://192.168.1.71:8080/gpsandroid/service/VehicleDetails.php?service=vehicledetails1"; 
-	private static String vehicledetailsurl = "http://208.109.248.89:80/gpsandroid/service/VehicleDetails.php?service=vehicledetails1"; 
+	private static String vehicledetailsurl = Config.ServerUrl+"VehicleDetails.php?service=vehicledetails1"; 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-      <string name="login">LOG IN</string>
+    <string name="login">LOG IN</string>
     <string name="reset">RESET</string>
-    
-    
-    
-    
     <string name="app_name">DeemGPS</string>
     <string name="action_settings">Settings</string>
     <string name="release">OK</string>
@@ -32,64 +28,58 @@
     <string name="info">INFO!</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
-     <string-array name="nav_drawer_items">
-        <item >Live Track</item>
-        <item >Tracking History</item>
-        <item >Alert Message</item>
-         <item >Dashboard</item>
-       
+
+    <string-array name="nav_drawer_items">
+        <item>Live Track</item>
+        <item>Tracking History</item>
+        <item>Alert Message</item>
+        <item>Dashboard</item>
     </string-array>
-    
+
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
-  
-     <string-array name="nav_drawer_items1">
-          <item >Tracking History</item>
-        <item >Live Track</item>
-        <item >Alert Message</item>
-         <item >Dashboard</item>
-       
+
+    <string-array name="nav_drawer_items1">
+        <item>Tracking History</item>
+        <item>Live Track</item>
+        <item>Alert Message</item>
+        <item>Dashboard</item>
     </string-array>
-     <string-array name="nav_drawer_items2">
-          <item >Alert Message</item>
-        <item >Live Track</item>
-        <item >Tracking History</item>
-         <item >Dashboard</item>
-       
-       
+    <string-array name="nav_drawer_items2">
+        <item>Alert Message</item>
+        <item>Live Track</item>
+        <item>Tracking History</item>
+        <item>Dashboard</item>
     </string-array>
-    
-     
-     
-     
-     
-      <string-array name="nav_drawer_items_withoutalert">
-        <item >Live Track</item>
-        <item >Tracking History</item>
-      
-         <item >Dashboard</item>
-       
+    <string-array name="nav_drawer_items_withoutalert">
+        <item>Live Track</item>
+        <item>Tracking History</item>
+        <item>Theft Alarm</item>
+        <item>Dashboard</item>
     </string-array>
-    
+
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
-  
-     <string-array name="nav_drawer_items1_withoutalert">
-          <item >Tracking History</item>
-        <item >Live Track</item>
-       
-         <item >Dashboard</item>
-       
+
+    <string-array name="nav_drawer_items1_withoutalert">
+        <item>Tracking History</item>
+        <item>Live Track</item>
+        <item>Theft Alarm</item>
+        <item>Dashboard</item>
     </string-array>
-     <string-array name="nav_drawer_items2_withoutalert">
-        
-        <item >Live Track</item>
-        <item >Tracking History</item>
-         <item >Dashboard</item>
-       
-       
+    <string-array name="nav_drawer_items2_withoutalert">
+        <item>Theft Alarm</item>
+        <item>Live Track</item>
+        <item>Tracking History</item>
+        <item>Dashboard</item>
     </string-array>
-     
+    <string-array name="nav_drawer_items3_withoutalert">
+        <item>Theft Alarm</item>
+        <item>Live Track</item>
+        <item>Tracking History</item>
+        <item>Dashboard</item>
+    </string-array>
+
     <string name="aboutusdeem">About Deemsys</string>
     <string name="vehicleno">Vehicle No</string>
     <string name="lastupdate">Last Updated</string>
@@ -100,10 +90,10 @@
     <string name="corpweb">Corporate Website:</string>
     <string name="corpweblink">www.deemsysinc.com</string>
     <string name="deemgpsapp">About DeemGPS APP</string>
-     <string name="deemgpsapp1">DeemGPS tracking systems offer the best way for schools, colleges and other businesses to have real-time information about the location and use of their vehicles and other assets. </string>
+    <string name="deemgpsapp1">DeemGPS tracking systems offer the best way for schools, colleges and other businesses to have real-time information about the location and use of their vehicles and other assets. </string>
     <string name="deemgpsapp2">Using DeemGPS, schools, colleges and businesses can save money on fuel, cell-phone bills and other operational costs, increase productivity, and prevent loss or theft of vehicles and precious assets.</string>
     <string name="deemgpsapp3">DeemGPS Website:</string>
-     <string name="weblink">www.mygps.technology</string>
+    <string name="weblink">www.mygps.technology</string>
     <string name="oudevice">Our Devices</string>
     <string name="ourdevice1">DGPS507B &amp; DGPS504 Vehicle Tracker</string>
     <string name="ourdevice2">DGPS502 Personal Tracker</string>
@@ -125,15 +115,15 @@
     <string name="addrs4">Tel: +91-9841122989</string>
     <string name="addrs1">152/33 Manoharan Flats,</string>
     <string name="addrs5">Chennai-600100.</string>
-      <string name="addrs51">Chennai-600100,</string>
-       <string name="addrs6">India.</string>
+    <string name="addrs51">Chennai-600100,</string>
+    <string name="addrs6">India.</string>
     <string name="deemus">OH 43230</string>
     <string name="deemus0">Tel: 614-322-9928</string>
     <string name="deemus1">Fax: 614-322-9945</string>
     <string name="deemus5">Suite A Gahanna,</string>
     <string name="deemsysaddresss">Offshore Office</string>
     <string name="headoffice">Head Office</string>
-    
+
     <!-- Terms and Condition page -->
     <string name="deemgpsreturn">DeemGPS Return Policy</string>
     <string name="deemgpsreturnstate">You will need a Return Authorization (RA) number prior to shipping your product to DeemGPS for repair. Please contact our technical support group by calling or emailing us.</string>
@@ -144,16 +134,16 @@
     <string name="warantyrepair">In-Warranty Repairs</string>
     <string name="warantyrepair1">All DeemGPS products are warranted to be free from defects in materials or workmanship for:</string>
     <string name="warantyrepair2">● 1 month from the date of purchase for new GPS receivers</string>
-    <string name="warantyrepair3">● 1 month  from the date of purchase for reconditioned GPS receivers</string>     
+    <string name="warantyrepair3">● 1 month  from the date of purchase for reconditioned GPS receivers</string>
     <string name="warantyrepair4">● The greater of 1 month or the remainder of the original warranty for GPS receivers exchanged by DeemGPS as part of in-warranty servicing.</string>
     <string name="warantyrepair5">DeemGPS as part of in-warranty servicing.</string>
     <string name="proofofpurchase">In-Warranty Services Require a Valid Proof-of Purchase</string>
     <string name="proofofpurchase1">If returned within the applicable warranty period, DeemGPS will, at its sole discretion and at no cost to the customer, replace the defective GPS receiver with a reconditioned unit of the same model, as available. If the same model is not available, a different reconditioned model GPS receiver will be used for the exchange.
-This warranty does not cover failures due to abuse, misuse, accident or unauthorized alterations or repairs.</string> 
+This warranty does not cover failures due to abuse, misuse, accident or unauthorized alterations or repairs.</string>
     <string name="outofwaranty">Out of Warranty Repairs</string>
     <string name="outofwaranty1">DeemGPS does not service products. For receivers returned after the warranty period or for damage not covered by the warranty, customers may purchase a new unit at a reduced cost or reconditioned unit also at a reduced cost.</string>
     <string name="brokerndisplay">Broken Displays</string>
-    <string name="brokerndisplay1">DeemGPS will replace receivers with a broken display returned within the warranty period with a reconditioned unit of the same or comparable model at a reduced cost to customer. Customers with a broken display unit returned outside the warranty period will be given the opportunity to purchase a new unit at a reduced cost or reconditioned unit also at a reduced cost.</string>      
+    <string name="brokerndisplay1">DeemGPS will replace receivers with a broken display returned within the warranty period with a reconditioned unit of the same or comparable model at a reduced cost to customer. Customers with a broken display unit returned outside the warranty period will be given the opportunity to purchase a new unit at a reduced cost or reconditioned unit also at a reduced cost.</string>
     <string name="productreturnship">Product Return Shipping Instructions</string>
     <string name="productreturnship1">You will need a Return Authorization (RA) number prior to shipping your product to DeemGPS for repair. Please contact our technical support group at the phone numbers listed above. Any package that is sent into our repair facilities without an RA number will be rejected and sent back at the owner\'s expense and will be assessed a INR 500.00 service charge fee prior to returning the item. </string>
     <string name="shipinstruc">Shipping Instructions</string>
@@ -165,21 +155,15 @@ Kailash Nagar 1st street,
 Perumbakkam,						
 Chennai-600100,
 India.					
-Tel: +91-9841122989
-</string>
+Tel: +91-9841122989</string>
     <string name="note">Note: We strongly recommend shipping your product using a reliable and trackable shipping method . This will help keep track of your product as it\'s delivered, and signed for at our facility. Please insure the package at cost value as Deemsys Inc is not responsible for lost or damaged product during transit.</string>
     <string name="warantydisclaimer">DeemGPS will, at its sole discretion and at no cost to the customer replace the defective GPS receiver with a reconditioned unit of the same model, as available. If the same model is not available, a comparable model GPS receiver will be used for the exchange. </string>
     <string name="warantydisclaimer1">The warranty does not cover failures due to abuse, misuse, accident, unauthorized alterations and/or repairs. </string>
     <string name="warantydisclaimer2">Customer(s) can expect to receive their replacement product back within 7-10 days after the returned product has been received at our Service Center.</string>
-   <string name="warantydisclaimera">Warranty Disclaimer</string>
+    <string name="warantydisclaimera">Warranty Disclaimer</string>
     <string name="warantydisclaimerturn">Expected Turn Around Time</string>
     <!-- Privacy Policy page -->
-    
-    
-    
-    
-    
-    
+
     <string name="privacypolicy">By submitting your personal information through Deemsys Inc ("DEEMSYS INC")\'s website, you hereby give your consent to the handling of your personal data in the manner described in this statement.
 This privacy statement is to inform you of our online information practiced and the choices available regarding the collection and use of your personal information via this website.
 You acknowledge and agree that this statement has the same effect as a written consent. By accessing or using this website or providing information to DEEMSYS INC through this website, you acknowledge that you have reviewed the content of this statement and consent to the practices described in this statement.Except this statement, DEEMSYS INC might provide different or additional information or terms for specific products, discounts, areas, services, or activities.</string>
@@ -204,4 +188,6 @@ You acknowledge and agree that this statement has the same effect as a written c
     <string name="wereserve">We reserve the right to change and update this Privacy Policy at any time. Any such changes will be posted at this website. The date of the latest update to the Privacy Policy is set out at the top of the Privacy Policy. Changes to the Privacy Policy are effective at the time they are posted to this website, and your continued use of a Service shall signify your acceptance of, and agreement to be bound by, those changes.  We recommend you check this website regularly for changes to the Privacy Policy.</string>
     <string name="effectivedate">Effective date: 2014/07/14</string>
     <string name="complaintspro">Complaints Procedure</string>
+        <string name="thefttext">Turn On/Off Theft Alarm:</string>
+
 </resources>

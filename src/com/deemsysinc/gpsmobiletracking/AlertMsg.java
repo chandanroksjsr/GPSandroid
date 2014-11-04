@@ -69,7 +69,7 @@ public class AlertMsg  extends Activity {
 
 	//private static String url = "http://192.168.1.158:8888/gpsandroid/service/message.php?service=select"; 
 //	private static String url = "http://192.168.1.71:8080/gpsandroid/service/message.php?service=select"; 
-	private static String url = "http://208.109.248.89:80/gpsandroid/service/message.php?service=select";
+	private static String url = Config.ServerUrl+"message.php?service=select";
 	
     private static final String TAG_VEHICLE_ARRAY = "mobilenumber";
 

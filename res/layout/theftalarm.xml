@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     style="@style/AppTheme"
+     android:id="@+id/alertlayout"
+    android:background="@drawable/loginbg"
+    android:orientation="vertical" >
+<LinearLayout
+     android:layout_width="fill_parent"
+     android:layout_height="100dp"
+     android:gravity="center_vertical|center_horizontal|center"
+     android:orientation="vertical" >
+
+      <ImageView
+          android:id="@+id/avatar"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:scaleType="fitStart"
+          android:src="@drawable/deemgpsicon" />
+
+ </LinearLayout>
+ 
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="5dp"
+    android:paddingRight="20dp" >
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/welcome"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/username"
+            style="@style/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/textView1"
+            android:text="thendral"
+            android:textColor="#000000" />
+
+        </RelativeLayout>
+    </LinearLayout>
+<View
+    android:layout_width="fill_parent"
+    android:layout_height="25dp" >
+
+</View>
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center_vertical|center_horizontal|center"
+    android:orientation="vertical" >
+
+<TextView
+            android:id="@+id/textView1"
+            style="@style/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/thefttext"
+            android:textColor="#000000" />
+  <RadioGroup
+      android:id="@+id/radioGroup1"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="10dp"
+      android:gravity="center"
+      android:orientation="horizontal" >
+      
+        <RadioButton
+            android:id="@+id/radiosubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="On"
+            android:textColor="@drawable/rbtn_textcolor_selector" />
+
+        <RadioButton
+            android:id="@+id/radiocourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Off"
+            android:textColor="@drawable/rbtn_textcolor_selector" />
+
+    </RadioGroup>
+
+   </LinearLayout>
+
+
+  
+
+</LinearLayout>

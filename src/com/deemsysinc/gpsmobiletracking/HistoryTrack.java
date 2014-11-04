@@ -102,7 +102,7 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 		double longitude1;
 		//private static String vehiclehistorysurll = "http://192.168.1.158:8888/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 		//private static String vehiclehistorysurll = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
-	private static String vehiclehistorysurll = "http://208.109.248.89:80/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
+	private static String vehiclehistorysurll = Config.ServerUrl+"HistoryTrack.php?service=vehiclehistory"; 
 	
 	class MyInfoWindowAdapter implements InfoWindowAdapter{
 
@@ -173,11 +173,14 @@ public class HistoryTrack  extends Activity implements OnMapLongClickListener{
 				            } else if (itemPosition == 2){ //Activity#3 Selected
 				            	LiveTrack.timer.cancel();
 						    	LiveTrack.doAsynchronousTask.cancel();
-				                myIntent = new Intent(HistoryTrack.this, DashboardActivity.class);
+				                myIntent = new Intent(HistoryTrack.this, TheftAlarm.class);
 				                HistoryTrack.this.startActivity(myIntent);
 				            }
 				            else if (itemPosition == 3){ //Activity#3 Selected
-				            
+				            	LiveTrack.timer.cancel();
+						    	LiveTrack.doAsynchronousTask.cancel();
+				                myIntent = new Intent(HistoryTrack.this, DashboardActivity.class);
+				                HistoryTrack.this.startActivity(myIntent);
 				            }
 	 			          
 	 			          

@@ -109,7 +109,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 		//private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory"; 
 	//  private static String vehicleliveurl = "http://192.168.1.158:8888/gpsandroid/service/LiveTrack.php?service=livetrack"; 
 	// private static String vehicleliveurl = "http://192.168.1.71:8080/gpsandroid/service/LiveTrack.php?service=livetrack"; 
-	 private static String vehicleliveurl = "http://208.109.248.89:80/gpsandroid/service/LiveTrack.php?service=livetrack"; 
+	 private static String vehicleliveurl = Config.ServerUrl+"LiveTrack.php?service=livetrack"; 
 	/** Called when the activity is first created. */
 	 class MyInfoWindowAdapter implements InfoWindowAdapter{
 
@@ -181,6 +181,17 @@ public class LiveTrack extends Activity implements OnMapLongClickListener{
 	 			                myIntent = new Intent(LiveTrack.this, HistoryTrack.class);
 	 			                LiveTrack.this.startActivity(myIntent);
 	 			            } else if (itemPosition == 2){
+	 			            	LiveTrack.timer.cancel();
+	 					    	LiveTrack.doAsynchronousTask.cancel();
+	 			            	  VehichleArrayAdapter.data.clear();
+	 			       	       DashboardActivity.vehicleall.clear();
+	 			       	       vehiclehistory1.clear();
+	 			       	       vehiclehistory.clear();
+	 			       	       HistoryTrack.vehiclehistory1.clear();
+	 			                myIntent = new Intent(LiveTrack.this, TheftAlarm.class);
+	 			                LiveTrack.this.startActivity(myIntent);
+	 			            }
+	 			           else if (itemPosition == 3){
 	 			            	LiveTrack.timer.cancel();
 	 					    	LiveTrack.doAsynchronousTask.cancel();
 	 			            	  VehichleArrayAdapter.data.clear();

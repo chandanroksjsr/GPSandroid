@@ -20,6 +20,7 @@ public final class R {
         public static final int nav_drawer_items1_withoutalert=0x7f080004;
         public static final int nav_drawer_items2=0x7f080002;
         public static final int nav_drawer_items2_withoutalert=0x7f080005;
+        public static final int nav_drawer_items3_withoutalert=0x7f080006;
         public static final int nav_drawer_items_withoutalert=0x7f080003;
     }
     public static final class attr {
@@ -245,36 +246,38 @@ containing a value of this type.
         public static final int privacyicon=0x7f020043;
         public static final int pswdicon=0x7f020044;
         public static final int pwdicon=0x7f020045;
-        public static final int red_light=0x7f020046;
-        public static final int red_pin=0x7f020047;
-        public static final int resetbutlarge=0x7f020048;
-        public static final int resetbutnormal=0x7f020049;
-        public static final int rounded_edittext=0x7f02004a;
-        public static final int roundedtext=0x7f02004b;
-        public static final int sendbutlarge=0x7f02004c;
-        public static final int sendbutnormal=0x7f02004d;
-        public static final int splashlarge=0x7f02004e;
-        public static final int splashnormal=0x7f02004f;
-        public static final int termsicon=0x7f020050;
-        public static final int textbg=0x7f020051;
-        public static final int tick=0x7f020052;
-        public static final int togglebutton=0x7f020053;
-        public static final int usericon=0x7f020054;
-        public static final int usicon=0x7f020055;
-        public static final int yellow_light=0x7f020056;
+        public static final int rbtn_selector=0x7f020046;
+        public static final int rbtn_textcolor_selector=0x7f020047;
+        public static final int red_light=0x7f020048;
+        public static final int red_pin=0x7f020049;
+        public static final int resetbutlarge=0x7f02004a;
+        public static final int resetbutnormal=0x7f02004b;
+        public static final int rounded_edittext=0x7f02004c;
+        public static final int roundedtext=0x7f02004d;
+        public static final int sendbutlarge=0x7f02004e;
+        public static final int sendbutnormal=0x7f02004f;
+        public static final int splashlarge=0x7f020050;
+        public static final int splashnormal=0x7f020051;
+        public static final int termsicon=0x7f020052;
+        public static final int textbg=0x7f020053;
+        public static final int tick=0x7f020054;
+        public static final int togglebutton=0x7f020055;
+        public static final int usericon=0x7f020056;
+        public static final int usicon=0x7f020057;
+        public static final int yellow_light=0x7f020058;
     }
     public static final class id {
         public static final int TextView01=0x7f05002c;
         public static final int aboutus=0x7f05004b;
         public static final int access=0x7f050063;
-        public static final int action_settings=0x7f05008f;
+        public static final int action_settings=0x7f050092;
         public static final int addrsone=0x7f050019;
         public static final int addrsone0=0x7f05001a;
         public static final int addrsone1=0x7f05001b;
         public static final int addrsone2=0x7f05001c;
         public static final int addrsone2t=0x7f05001d;
         public static final int addrsone3=0x7f05001e;
-        public static final int addrstext=0x7f05008a;
+        public static final int addrstext=0x7f05008d;
         public static final int addrstwo=0x7f050022;
         public static final int addrstwo1=0x7f050024;
         public static final int addrstwo2=0x7f050025;
@@ -334,12 +337,12 @@ containing a value of this type.
         public static final int imageView1=0x7f05002b;
         public static final int imageView1sd=0x7f050030;
         public static final int imageVigdew1sd=0x7f050056;
-        public static final int label=0x7f050088;
+        public static final int label=0x7f05008b;
         public static final int layoutt=0x7f050039;
         public static final int linkson=0x7f050068;
         public static final int list=0x7f05004a;
         public static final int logingout=0x7f050035;
-        public static final int logo=0x7f050087;
+        public static final int logo=0x7f05008a;
         public static final int logout=0x7f050049;
         public static final int map=0x7f05004f;
         public static final int none=0x7f050000;
@@ -352,6 +355,9 @@ containing a value of this type.
         public static final int proofofpurchase=0x7f050076;
         public static final int proofofpurchase1=0x7f050077;
         public static final int pswd=0x7f050031;
+        public static final int radioGroup1=0x7f050087;
+        public static final int radiocourse=0x7f050089;
+        public static final int radiosubject=0x7f050088;
         public static final int refundpolicy=0x7f05006d;
         public static final int refundstate1=0x7f05006f;
         public static final int refundstatement=0x7f05006e;
@@ -369,13 +375,13 @@ containing a value of this type.
         public static final int signutty=0x7f050052;
         public static final int snippet=0x7f050046;
         public static final int someof=0x7f050060;
-        public static final int speedtxt=0x7f05008b;
+        public static final int speedtxt=0x7f05008e;
         public static final int storage=0x7f05005d;
         public static final int terrain=0x7f050003;
         public static final int textView1=0x7f050009;
-        public static final int textView2=0x7f05008c;
-        public static final int textView3=0x7f05008d;
-        public static final int textView4=0x7f05008e;
+        public static final int textView2=0x7f05008f;
+        public static final int textView3=0x7f050090;
+        public static final int textView4=0x7f050091;
         public static final int textq34View1=0x7f050008;
         public static final int textqView1=0x7f050007;
         public static final int thirdparty=0x7f050067;
@@ -385,7 +391,7 @@ containing a value of this type.
         public static final int usdeemsys1=0x7f050018;
         public static final int useof=0x7f050058;
         public static final int username=0x7f05002f;
-        public static final int veh_reg_no=0x7f050089;
+        public static final int veh_reg_no=0x7f05008c;
         public static final int version=0x7f050015;
         public static final int warantydisclaimer=0x7f050083;
         public static final int warantydisclaimer1=0x7f050085;
@@ -424,8 +430,9 @@ containing a value of this type.
         public static final int privacytab=0x7f03000b;
         public static final int splash=0x7f03000c;
         public static final int termsandcondition=0x7f03000d;
-        public static final int tracking=0x7f03000e;
-        public static final int vehiclelist=0x7f03000f;
+        public static final int theftalarm=0x7f03000e;
+        public static final int tracking=0x7f03000f;
+        public static final int vehiclelist=0x7f030010;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -609,6 +616,7 @@ containing a value of this type.
         public static final int someof=0x7f060082;
         public static final int state=0x7f06002c;
         public static final int storage=0x7f06007f;
+        public static final int thefttext=0x7f06008f;
         public static final int thirdparty=0x7f060089;
         public static final int thisprivacy=0x7f06007c;
         public static final int usdeem=0x7f06004a;

@@ -25,7 +25,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+
 
 
 import org.apache.http.NameValuePair;
@@ -59,9 +59,7 @@ public class LoginActivity extends Activity {
 
    
 	//private static String loginurl = "http://192.168.1.158:8888/gpsandroid/service/Login.php?service=login"; 
-//	private static String loginurl = "http://192.168.1.71:8080/gpsandroid/service/Login.php?service=login";
-	private static String loginurl = "http://208.109.248.89:80/gpsandroid/service/Login.php?service=login";
-
+	private static String loginurl=Config.ServerUrl+"Login.php?service=login";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
