@@ -81,10 +81,14 @@ public class TheftAlarm extends Activity {
 				RadioButton rb = (RadioButton) v;
 				String selectedid = rb.getText().toString();
 				if (selectedid.equalsIgnoreCase("on")) {
+					on.setEnabled(false);
+					off.setEnabled(true);
 					if (isInternetPresent) {
 						new insertTheftAlarm().execute();
 					}
 				} else {
+					on.setEnabled(true);
+					off.setEnabled(false);
 					if (isInternetPresent) {
 						new updateTheftAlarm().execute();
 					}
