@@ -138,9 +138,17 @@ public class TheftAlarm extends Activity {
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
+									OverSpeed.class);
+							TheftAlarm.this.startActivity(myIntent);
+						}
+						else if (itemPosition == 4) { // Activity#3 Selected
+							LiveTrack.timer.cancel();
+							LiveTrack.doAsynchronousTask.cancel();
+							myIntent = new Intent(TheftAlarm.this,
 									DashboardActivity.class);
 							TheftAlarm.this.startActivity(myIntent);
 						}
+
 
 					} else {
 

@@ -136,7 +136,7 @@ public class DashboardActivity extends Activity{
        //  Bundle b1=new Bundle();
          b.putString("vehicleregnum",vehicle_regno);
          b.putString("routenum", route_num);
-       
+     
          intent.putExtras(b);
     //     intent.putExtras(b1);
       
@@ -168,14 +168,16 @@ public class DashboardActivity extends Activity{
 							System.out.println("in item click"+arg2);
 							String item = vehicleall.get(arg2).getvehicle_regno(); 
 							String regno=vehicleall.get(arg2).getroute_num(); 
-					        
+					        String driver_name=vehicleall.get(arg2).getdrivername(); 
 					        
 					         System.out.println("Position passed from dashboard activity:::"+item);
 					         System.out.println("Position passed from dashboard activity:::"+regno);
+					         System.out.println("Position passed from dashboard activity:::"+driver_name);
 							 Intent i= new Intent(DashboardActivity.this,LiveTrack.class);
 							 
 							  i.putExtra("vehicleregnum", item);
 							  i.putExtra("routenum", regno);
+							  i.putExtra("drivername", driver_name);
 							 startActivity(i);
 						}
 				        });
@@ -216,7 +218,7 @@ public class DashboardActivity extends Activity{
 			    		
 			            vehicle_regno = c2.getString(TAG_Vehicle_regno);
 			          //  device_ime= c2.getString(TAG_Device_imei);
-			        	//drivername = c2.getString(TAG_drivername);
+			        	drivername = c2.getString(TAG_drivername);
 			        	//driver_license = c2.getString(TAG_driver_license_no);
 			        	//license_expiry=c2.getString(TAG_licence_expdate);
 			        	route_num = c2.getString(TAG_route_no);
@@ -235,7 +237,7 @@ public class DashboardActivity extends Activity{
 			        	 Vehicle cnt = new Vehicle(vehicle_regno, device_ime, drivername, driver_license, license_expiry, route_num, driverstatus,timestamp,address,speed);
 						    cnt.setvehicle_regno(vehicle_regno);
 						    //cnt.setdevice_ime(device_ime);
-						   // cnt.setdrivername(drivername);
+						    cnt.setdrivername(drivername);
 						   // cnt.setdriver_license(driver_license);
 						    cnt.setroute_num(route_num);
 						    //cnt.setdate(license_expiry);
