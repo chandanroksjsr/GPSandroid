@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.deemsysinc.gpsmobiletracking.LiveTrack.MyInfoWindowAdapter;
+import com.deemsysinc.gpsmobiletracking.OverSpeed.CompareAsync;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
@@ -35,6 +36,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.ActionBar.OnNavigationListener;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -52,6 +54,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -60,9 +63,11 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 	private int year;
 	private int month;
 	private int day;
-	String checkdate;
+	String checkdate="empty";
 	String vehicle_reg_numb;
 	static final int DATE_PICKER_ID = 1111;
+	static final int TIME_PICKER_ID = 100;
+	static final int TIME_PICKER_ID1 = 101;
 	StringBuilder date;
 	Boolean isInternetPresent = false;
 	ConnectionDetector cd;
@@ -74,6 +79,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 	TextView welcomeusername, welcome;
 	Button signout, hmey;
 	ToggleButton tgbutton;
+	Button fromtime, totime, submit;
 	final Context context = this;
 	public static ArrayList<HashMap<String, String>> vehiclehistory1 = new ArrayList<HashMap<String, String>>();
 	HashMap<String, String> map = new HashMap<String, String>();
@@ -95,6 +101,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 	String longitude;
 	double latitude1;
 	double longitude1;
+	private int pHour;
+	private int pMinute;
 	// private static String vehiclehistorysurll =
 	// "http://192.168.1.158:8888/gpsandroid/service/HistoryTrack.php?service=vehiclehistory";
 	// private static String vehiclehistorysurll =
@@ -172,6 +180,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 									LiveTrack.class);
 							myIntent.putExtra("vehicleregnum",
 									LiveTrack.vehicle_reg_no);
+							myIntent.putExtra("drivername", LiveTrack.driver_name);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							HistoryTrack.this.startActivity(myIntent);
 						} else if (itemPosition == 2) { // Activity#3 Selected
@@ -241,6 +250,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 							myIntent.putExtra("vehicleregnum",
 									LiveTrack.vehicle_reg_no);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
+							myIntent.putExtra("drivername", LiveTrack.driver_name);
 							HistoryTrack.this.startActivity(myIntent);
 						} else if (itemPosition == 2) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
@@ -266,6 +276,125 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 			};
 			actions.setListNavigationCallbacks(adapter, callback);
 		}
+		fromtime = (Button) findViewById(R.id.fromdate);
+		totime = (Button) findViewById(R.id.todate);
+		fromtime.setOnClickListener(new View.OnClickListener() {
+
+			@SuppressWarnings("deprecation")
+			public void onClick(View v) {
+				showDialog(TIME_PICKER_ID);
+			}
+		});
+		totime.setOnClickListener(new View.OnClickListener() {
+
+			@SuppressWarnings("deprecation")
+			public void onClick(View v) {
+				showDialog(TIME_PICKER_ID1);
+			}
+		});
+		submit = (Button) findViewById(R.id.submit);
+		submit.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				if (!checkdate.equalsIgnoreCase("empty")) {
+					if (!fromtime.getText().toString()
+							.equalsIgnoreCase("From time")) {
+						if (!totime.getText().toString()
+								.equalsIgnoreCase("To time")) {
+							new VehiclePath().execute();
+						} else {
+							AlertDialog alertDialog = new AlertDialog.Builder(
+									HistoryTrack.this).create();
+
+							// Setting Dialog Title
+							alertDialog.setTitle("INFO!");
+
+							// Setting Dialog Message
+							alertDialog.setMessage("Select to time.");
+
+							// Setting Icon to Dialog
+							alertDialog.setIcon(R.drawable.delete);
+
+							// Setting OK Button
+							alertDialog.setButton("OK",
+									new DialogInterface.OnClickListener() {
+
+										public void onClick(
+												final DialogInterface dialog,
+												final int which) {
+											// Write your code here to execute
+											// after dialog
+											// closed
+
+										}
+									});
+
+							// Showing Alert Message
+							alertDialog.show();
+						}
+					} else {
+						AlertDialog alertDialog = new AlertDialog.Builder(
+								HistoryTrack.this).create();
+
+						// Setting Dialog Title
+						alertDialog.setTitle("INFO!");
+
+						// Setting Dialog Message
+						alertDialog.setMessage("Select from time.");
+
+						// Setting Icon to Dialog
+						alertDialog.setIcon(R.drawable.delete);
+
+						// Setting OK Button
+						alertDialog.setButton("OK",
+								new DialogInterface.OnClickListener() {
+
+									public void onClick(
+											final DialogInterface dialog,
+											final int which) {
+										// Write your code here to execute after
+										// dialog
+										// closed
+
+									}
+								});
+
+						// Showing Alert Message
+						alertDialog.show();
+
+					}
+				} else {
+					AlertDialog alertDialog = new AlertDialog.Builder(
+							HistoryTrack.this).create();
+
+					// Setting Dialog Title
+					alertDialog.setTitle("INFO!");
+
+					// Setting Dialog Message
+					alertDialog.setMessage("Select date.");
+
+					// Setting Icon to Dialog
+					alertDialog.setIcon(R.drawable.delete);
+
+					// Setting OK Button
+					alertDialog.setButton("OK",
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(
+										final DialogInterface dialog,
+										final int which) {
+									// Write your code here to execute after
+									// dialog
+									// closed
+
+								}
+							});
+
+					// Showing Alert Message
+					alertDialog.show();
+				}
+			}
+		});
 		welcome = (TextView) findViewById(R.id.textView1);
 		welcomeusername = (TextView) findViewById(R.id.welcomename);
 		welcomeusername.setText(LoginActivity.usernamepassed + "!");
@@ -342,6 +471,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 		year = c.get(Calendar.YEAR);
 		month = c.get(Calendar.MONTH);
 		day = c.get(Calendar.DAY_OF_MONTH);
+		pHour = c.get(Calendar.HOUR_OF_DAY);
+		pMinute = c.get(Calendar.MINUTE);
 
 		// System.out.println("in history track:::::::");
 
@@ -370,10 +501,38 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 		case DATE_PICKER_ID:
 
 			return new DatePickerDialog(this, pickerListener, year, month, day);
+		case TIME_PICKER_ID:
+
+			return new TimePickerDialog(this, mTimeSetListener, pHour, pMinute,
+					false);
+
+		case TIME_PICKER_ID1:
+
+			return new TimePickerDialog(this, mTimeSetListener1, pHour,
+					pMinute, false);
+
 		}
 		return null;
 	}
 
+	private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+			pHour = hourOfDay;
+			pMinute = minute;
+			String time = pHour + ":" + pMinute;
+			fromtime.setText(time);
+
+		}
+	};
+	private TimePickerDialog.OnTimeSetListener mTimeSetListener1 = new TimePickerDialog.OnTimeSetListener() {
+		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+			pHour = hourOfDay;
+			pMinute = minute;
+			String time = pHour + ":" + pMinute;
+			totime.setText(time);
+
+		}
+	};
 	private DatePickerDialog.OnDateSetListener pickerListener = new DatePickerDialog.OnDateSetListener() {
 
 		@Override
@@ -388,10 +547,12 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 				String date1 = year + "-" + checkDigit(month + 1) + "-"
 						+ checkDigit(day);
 				checkdate = date1.toString();
-				if (isInternetPresent) {
-					new VehiclePath().execute();
-				}
+				// if (isInternetPresent) {
+				// new VehiclePath().execute();
+				// }
 
+			} else {
+				checkdate = "empty";
 			}
 		}
 
@@ -420,7 +581,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					vehicle_reg_numb));
-			params1.add(new BasicNameValuePair("date", checkdate));
+			params1.add(new BasicNameValuePair("date1", checkdate+" "+fromtime.getText().toString()));
+			params1.add(new BasicNameValuePair("date2", checkdate+" "+totime.getText().toString()));
 			// System.out.println("vehicle ddfgate no.fdfsd ."+checkdate);
 			// params1.add(new BasicNameValuePair("org_id",
 			// LoginActivity.orgid));
@@ -487,6 +649,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 			PolylineOptions polyLineOptions = null;
 			points = new ArrayList<LatLng>();
 			polyLineOptions = new PolylineOptions();
+			googleMap.clear();
 			if (vehiclehistory1.size() == 0) {
 				AlertDialog alertDialog = new AlertDialog.Builder(
 						HistoryTrack.this).create();

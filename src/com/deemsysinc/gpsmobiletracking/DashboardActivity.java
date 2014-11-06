@@ -172,7 +172,7 @@ public class DashboardActivity extends Activity{
 					        
 					         System.out.println("Position passed from dashboard activity:::"+item);
 					         System.out.println("Position passed from dashboard activity:::"+regno);
-					         System.out.println("Position passed from dashboard activity:::"+driver_name);
+					         System.out.println("Position passed from dashboard activity driver name:::"+driver_name);
 							 Intent i= new Intent(DashboardActivity.this,LiveTrack.class);
 							 
 							  i.putExtra("vehicleregnum", item);

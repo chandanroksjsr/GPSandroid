@@ -20,16 +20,22 @@ import android.content.DialogInterface;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SpinnerAdapter;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
@@ -47,13 +53,16 @@ public class TheftAlarm extends Activity {
 	JSONArray number = null;
 	JSONArray mobile = null;
 	RadioButton on, off;
-
-	private RadioGroup radioGroup1;
+	Button signout;
+	Runnable runnable;
+	TextView welcomeusername, welcome, txt;
 	String succ;
+	Animation anim;
 	private static final String TAG_SRES = "serviceresponse";
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_STATUS = "status";
 	static final String TAG_Vechicle_REG = "vechicle_reg_no";
+	final Handler handler = new Handler();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,12 +75,36 @@ public class TheftAlarm extends Activity {
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
 		cd = new ConnectionDetector(getApplicationContext());
+		txt = (TextView) findViewById(R.id.alerttext);
+		txt.setTypeface(null, Typeface.BOLD);
+		txt.setVisibility(View.INVISIBLE);
 		isInternetPresent = cd.isConnectingToInternet();
 		if (isInternetPresent) {
 			new CheckTheftAlarm().execute();
 		}
+		anim = new AlphaAnimation(0.0f, 1.0f);
+		signout = (Button) findViewById(R.id.signutty);
+		welcome = (TextView) findViewById(R.id.TextView01);
+		welcomeusername = (TextView) findViewById(R.id.welcmename);
+		welcomeusername.setText(LoginActivity.usernamepassed + "!");
+		welcomeusername.setTypeface(null, Typeface.BOLD);
+		welcome.setTypeface(null, Typeface.BOLD);
+		signout.setOnClickListener(new View.OnClickListener() {
 
-		radioGroup1 = (RadioGroup) findViewById(R.id.radioGroup1);
+			public void onClick(View v) {
+
+				LiveTrack.doAsynchronousTask.cancel();
+				LoginActivity.usernamepassed = "";
+				VehichleArrayAdapter.data.clear();
+				DashboardActivity.vehicleall.clear();
+
+				HistoryTrack.vehiclehistory1.clear();
+				LoginActivity.usernamepassed = "";
+				Intent intentSignUP = new Intent(getApplicationContext(),
+						LoginActivity.class);
+				startActivity(intentSignUP);
+			}
+		});
 		on = (RadioButton) findViewById(R.id.radiosubject);
 		off = (RadioButton) findViewById(R.id.radiocourse);
 
@@ -86,9 +119,14 @@ public class TheftAlarm extends Activity {
 					if (isInternetPresent) {
 						new insertTheftAlarm().execute();
 					}
+
 				} else {
 					on.setEnabled(true);
 					off.setEnabled(false);
+					anim.cancel();
+					anim.reset();
+
+				
 					if (isInternetPresent) {
 						new updateTheftAlarm().execute();
 					}
@@ -126,6 +164,8 @@ public class TheftAlarm extends Activity {
 									LiveTrack.class);
 							myIntent.putExtra("vehicleregnum",
 									LiveTrack.vehicle_reg_no);
+							myIntent.putExtra("drivername",
+									LiveTrack.driver_name);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							TheftAlarm.this.startActivity(myIntent);
 						} else if (itemPosition == 2) { // Activity#3 Selected
@@ -140,15 +180,13 @@ public class TheftAlarm extends Activity {
 							myIntent = new Intent(TheftAlarm.this,
 									OverSpeed.class);
 							TheftAlarm.this.startActivity(myIntent);
-						}
-						else if (itemPosition == 4) { // Activity#3 Selected
+						} else if (itemPosition == 4) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
 									DashboardActivity.class);
 							TheftAlarm.this.startActivity(myIntent);
 						}
-
 
 					} else {
 
@@ -247,16 +285,62 @@ public class TheftAlarm extends Activity {
 
 			if (status.equalsIgnoreCase("1")) {
 				on.setChecked(true);
-				// radioGroup1.check(R.id.radiosubject);
+				on.setEnabled(false);
+				txt.setVisibility(View.INVISIBLE);
+
 			} else if (status.equalsIgnoreCase("0")) {
 				off.setChecked(true);
-				// radioGroup1.check(R.id.radiocourse);
+				txt.setVisibility(View.INVISIBLE);
+				off.setEnabled(false);
+
+			} else if (status.equalsIgnoreCase("2")) {
+				on.setChecked(true);
+				on.setEnabled(false);
+				blink();
+
 			} else {
+				txt.setVisibility(View.INVISIBLE);
 				off.setChecked(true);
+				off.setEnabled(false);
 			}
 
 		}
 
+	}
+
+	private void blink() {
+		// System.out.println("in blink meth");
+
+		
+		anim.setDuration(50); // You can manage the time of the blink with this
+								// parameter
+		anim.setStartOffset(20);
+		anim.setRepeatMode(Animation.REVERSE);
+		anim.setRepeatCount(Animation.INFINITE);
+		txt.startAnimation(anim);
+
+		// new Thread(new Runnable() {
+		// @Override
+		// public void run() {
+		// int timeToBlink = 500; // in milissegunds
+		// try {
+		// Thread.sleep(timeToBlink);
+		// } catch (Exception e) {
+		// }
+		// handler.post(new Runnable() {
+		// @Override
+		// public void run() {
+		//
+		// if (txt.getVisibility() == View.VISIBLE) {
+		// txt.setVisibility(View.INVISIBLE);
+		// } else {
+		// txt.setVisibility(View.VISIBLE);
+		// }
+		// blink();
+		// }
+		// });
+		// }
+		// }).start();
 	}
 
 	class updateTheftAlarm extends AsyncTask<String, String, String> {
@@ -302,6 +386,7 @@ public class TheftAlarm extends Activity {
 			return null;
 		}
 
+		@SuppressWarnings("deprecation")
 		@Override
 		protected void onPostExecute(String file_url) {
 			super.onPostExecute(file_url);
@@ -390,6 +475,9 @@ public class TheftAlarm extends Activity {
 			super.onPostExecute(file_url);
 			pDialog.dismiss();
 			if (succ.equalsIgnoreCase("No")) {
+				off.setChecked(true);
+				off.setEnabled(false);
+				on.setEnabled(true);
 				AlertDialog alertDialog = new AlertDialog.Builder(
 						TheftAlarm.this).create();
 
@@ -411,7 +499,9 @@ public class TheftAlarm extends Activity {
 									final int which) {
 								// Write your code here to execute after dialog
 								// closed
-
+								off.setChecked(true);
+								off.setEnabled(false);
+								on.setEnabled(true);
 							}
 						});
 

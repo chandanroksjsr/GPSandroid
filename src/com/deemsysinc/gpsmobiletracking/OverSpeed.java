@@ -26,6 +26,7 @@ import android.content.DialogInterface;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -54,12 +55,12 @@ public class OverSpeed extends Activity {
 	JSONArray number = null;
 	JSONArray mobile = null;
 	TextView overspeed,drivername,reg_number;
-	Button fromdate, todate, submit;
+	Button fromdate, todate, submit,signout;
 	static final int DATE_PICKER_ID = 1111;
 	static final int DATE_PICKER_ID1 = 1112;
 	String succ;
 	private static final String TAG_SRES = "serviceresponse";
-
+	TextView welcomeusername,welcome;
 	private static final String TAG_Count_BT_DATES = "overspeed_count";
 	static final String TAG_Count = "overspeed_count";
 	private int year;
@@ -89,6 +90,7 @@ public class OverSpeed extends Activity {
 		reg_number = (TextView) findViewById(R.id.veg_reg_no);
 		reg_number.setText(LiveTrack.vehicle_reg_no);
 		drivername.setText(LiveTrack.driver_name);
+		System.out.println("driver name over speed"+LiveTrack.driver_name);
 		fromdate = (Button) findViewById(R.id.fromdate);
 		todate = (Button) findViewById(R.id.todate);
 		submit = (Button) findViewById(R.id.submit);
@@ -103,13 +105,35 @@ public class OverSpeed extends Activity {
 				showDialog(DATE_PICKER_ID);
 			}
 		});
+		signout = (Button) findViewById(R.id.signutty);
+		welcome = (TextView) findViewById(R.id.TextView01);
+		welcomeusername = (TextView) findViewById(R.id.welcmename);
+		welcomeusername.setText(LoginActivity.usernamepassed + "!");
+		welcomeusername.setTypeface(null, Typeface.BOLD);
+		welcome.setTypeface(null, Typeface.BOLD);
+		signout.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+			
+				LiveTrack.doAsynchronousTask.cancel();
+				LoginActivity.usernamepassed = "";
+				VehichleArrayAdapter.data.clear();
+				DashboardActivity.vehicleall.clear();
+				
+				HistoryTrack.vehiclehistory1.clear();
+				LoginActivity.usernamepassed = "";
+				Intent intentSignUP = new Intent(getApplicationContext(),
+						LoginActivity.class);
+				startActivity(intentSignUP);
+			}
+		});
 		submit.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				if (!fromdate.getText().toString()
-						.equalsIgnoreCase("Select date")) {
+						.equalsIgnoreCase("From date")) {
 					if (!todate.getText().toString()
-							.equalsIgnoreCase("Select date")) {
+							.equalsIgnoreCase("To date")) {
 						new CompareAsync().execute();
 					}
 					else{
@@ -182,7 +206,7 @@ public class OverSpeed extends Activity {
 		if (LoginActivity.role.equalsIgnoreCase("ROLE_FCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
-					R.array.nav_drawer_items2_withoutalert,
+					R.array.nav_drawer_items3_withoutalert,
 					android.R.layout.simple_spinner_dropdown_item);
 
 			OnNavigationListener callback = new OnNavigationListener() {
@@ -206,6 +230,7 @@ public class OverSpeed extends Activity {
 									LiveTrack.class);
 							myIntent.putExtra("vehicleregnum",
 									LiveTrack.vehicle_reg_no);
+							myIntent.putExtra("drivername", LiveTrack.driver_name);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							OverSpeed.this.startActivity(myIntent);
 						} else if (itemPosition == 2) { // Activity#3 Selected

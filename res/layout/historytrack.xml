@@ -4,11 +4,12 @@
    android:background="@drawable/loginbg"
    android:orientation="vertical"
    android:layout_height="fill_parent" >
+
 <LinearLayout
-     android:layout_width="fill_parent"
-     android:layout_height="100dp"
-     android:gravity="center_vertical|center_horizontal|center"
-     android:orientation="vertical" >
+    android:layout_width="fill_parent"
+    android:layout_height="90dp"
+    android:gravity="center_vertical|center_horizontal|center"
+    android:orientation="vertical" >
 
       <ImageView
           android:id="@+id/avatar"
@@ -67,6 +68,30 @@
         </RelativeLayout>
     </LinearLayout>
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical|center_horizontal" >
+
+            <Button
+                android:id="@+id/fromdate"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="From Time" />
+
+            <Button
+                android:id="@+id/todate"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="To Time" />
+
+            <Button
+                android:id="@+id/submit"
+            
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Search" />
+        </LinearLayout>
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"

@@ -695,7 +695,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		vehicle_reg_no = getIntent().getExtras().getString("vehicleregnum");
 		routeno = getIntent().getExtras().getString("routenum");
 		driver_name = getIntent().getExtras().getString("drivername");
-		System.out.println("value of driver name:::"+driver_name);
+		System.out.println("value of driver name:::" + driver_name);
 
 	}
 

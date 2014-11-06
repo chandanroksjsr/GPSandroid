@@ -4,7 +4,7 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@drawable/loginbg"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -22,54 +22,117 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="20dp" >
 
         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="20dp" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp" >
+
+                <TextView
+                    android:id="@+id/TextView01"
+                    style="@style/welcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/welcome"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/welcmename"
+                    style="@style/welcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="70dp"
+                    android:layout_toRightOf="@id/welcome"
+                    android:text="thendral"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/signutty"
+                    style="@style/custom"
+                    android:layout_width="75dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="0dp"
+                    android:background="@drawable/logoutbutnor"
+                    android:paddingRight="5dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal" >
+            android:paddingLeft="15dp" >
 
             <TextView
                 android:id="@+id/textView1"
+                style="@style/welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="From Date" />
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/welcome"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/username"
+                style="@style/welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/textView1"
+                android:text="thendral"
+                android:textColor="#000000" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
             <Button
                 android:id="@+id/fromdate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Date" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="To Date" />
+                android:layout_height="40dp"
+                android:text="From Date" />
 
             <Button
                 android:id="@+id/todate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Date" />
+                android:layout_height="40dp"
+                android:text="To Date" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Search" />
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/submit"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Search" />
 
     <View
         android:layout_width="fill_parent"
@@ -78,82 +141,98 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="130dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/listbg"
+        android:orientation="horizontal"
         android:paddingLeft="5dp"
-        android:paddingRight="20dp" >
-<LinearLayout
-            android:layout_width="match_parent"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal" >
+            android:gravity="left"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/drivernametext"
+                style="@style/welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Driver Name" />
+                android:text="Driver Name"
+                android:textColor="#ffffff" />
 
             <View
-                android:layout_width="20dp"
-                android:layout_height="match_parent" >
+                android:layout_width="fill_parent"
+                android:layout_height="5dp" >
             </View>
-
-            <TextView
-                android:id="@+id/drivername"
-                  android:text=""
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal" >
 
             <TextView
                 android:id="@+id/veg_reg_notext"
-                android:layout_width="wrap_content"
+                style="@style/welcome"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Vehicle Registration Number" />
+                android:text="Vehicle Registration Number"
+                android:textColor="#ffffff" />
 
             <View
-                android:layout_width="20dp"
-                android:layout_height="match_parent" >
+                android:layout_width="fill_parent"
+                android:layout_height="5dp" >
             </View>
-
-            <TextView
-                android:id="@+id/veg_reg_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal" >
 
             <TextView
                 android:id="@+id/overspeedtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Over Speed" />
+                android:text="Over Speed Count"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/drivername"
+                style="@style/welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#ffffff" />
 
             <View
-                android:layout_width="20dp"
-                android:layout_height="match_parent" >
+                android:layout_width="fill_parent"
+                android:layout_height="15dp" >
+            </View>
+
+            <TextView
+                android:id="@+id/veg_reg_no"
+                style="@style/welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#ffffff" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="8dp" >
             </View>
 
             <TextView
                 android:id="@+id/overspeed"
+                style="@style/welcome"
                 android:layout_width="wrap_content"
-                  android:text=""
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:text=""
+                android:textColor="#ffffff" />
+
         </LinearLayout>
     </LinearLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="25dp" >
-    </View>
 
 </LinearLayout>
