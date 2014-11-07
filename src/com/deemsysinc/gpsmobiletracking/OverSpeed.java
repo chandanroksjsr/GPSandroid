@@ -54,13 +54,13 @@ public class OverSpeed extends Activity {
 	String status;
 	JSONArray number = null;
 	JSONArray mobile = null;
-	TextView overspeed,drivername,reg_number;
-	Button fromdate, todate, submit,signout;
+	TextView overspeed, drivername, reg_number;
+	Button fromdate, todate, submit, signout;
 	static final int DATE_PICKER_ID = 1111;
 	static final int DATE_PICKER_ID1 = 1112;
 	String succ;
 	private static final String TAG_SRES = "serviceresponse";
-	TextView welcomeusername,welcome;
+	TextView welcomeusername, welcome;
 	private static final String TAG_Count_BT_DATES = "overspeed_count";
 	static final String TAG_Count = "overspeed_count";
 	private int year;
@@ -82,15 +82,15 @@ public class OverSpeed extends Activity {
 		actions.setDisplayShowTitleEnabled(false);
 		cd = new ConnectionDetector(getApplicationContext());
 		isInternetPresent = cd.isConnectingToInternet();
-//		if (isInternetPresent) {
-//			new GetAsync().execute();
-//		}
+		// if (isInternetPresent) {
+		// new GetAsync().execute();
+		// }
 		overspeed = (TextView) findViewById(R.id.overspeed);
 		drivername = (TextView) findViewById(R.id.drivername);
 		reg_number = (TextView) findViewById(R.id.veg_reg_no);
 		reg_number.setText(LiveTrack.vehicle_reg_no);
 		drivername.setText(LiveTrack.driver_name);
-		System.out.println("driver name over speed"+LiveTrack.driver_name);
+		System.out.println("driver name over speed" + LiveTrack.driver_name);
 		fromdate = (Button) findViewById(R.id.fromdate);
 		todate = (Button) findViewById(R.id.todate);
 		submit = (Button) findViewById(R.id.submit);
@@ -114,12 +114,12 @@ public class OverSpeed extends Activity {
 		signout.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-			
+
 				LiveTrack.doAsynchronousTask.cancel();
 				LoginActivity.usernamepassed = "";
 				VehichleArrayAdapter.data.clear();
 				DashboardActivity.vehicleall.clear();
-				
+
 				HistoryTrack.vehiclehistory1.clear();
 				LoginActivity.usernamepassed = "";
 				Intent intentSignUP = new Intent(getApplicationContext(),
@@ -135,64 +135,66 @@ public class OverSpeed extends Activity {
 					if (!todate.getText().toString()
 							.equalsIgnoreCase("To date")) {
 						new CompareAsync().execute();
-					}
-					else{
+					} else {
 						AlertDialog alertDialog = new AlertDialog.Builder(
-	    						OverSpeed.this).create();
+								OverSpeed.this).create();
 
-	    				// Setting Dialog Title
-	    				alertDialog.setTitle("INFO!");
+						// Setting Dialog Title
+						alertDialog.setTitle("INFO!");
 
-	    				// Setting Dialog Message
-	    				alertDialog.setMessage("Select to date.");
+						// Setting Dialog Message
+						alertDialog.setMessage("Select to date.");
 
-	    				// Setting Icon to Dialog
-	    				alertDialog.setIcon(R.drawable.delete);
-	    				
+						// Setting Icon to Dialog
+						alertDialog.setIcon(R.drawable.delete);
 
-	    				// Setting OK Button
-	    				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+						// Setting OK Button
+						alertDialog.setButton("OK",
+								new DialogInterface.OnClickListener() {
 
-	    							public void onClick(final DialogInterface dialog,
-	    									final int which) {
-	    								// Write your code here to execute after dialog
-	    								// closed
-	    								
-	    							}
-	    						});
+									public void onClick(
+											final DialogInterface dialog,
+											final int which) {
+										// Write your code here to execute after
+										// dialog
+										// closed
 
-	    				// Showing Alert Message
-	    				alertDialog.show();
+									}
+								});
+
+						// Showing Alert Message
+						alertDialog.show();
 					}
-				}else
-				{
+				} else {
 					AlertDialog alertDialog = new AlertDialog.Builder(
-    						OverSpeed.this).create();
+							OverSpeed.this).create();
 
-    				// Setting Dialog Title
-    				alertDialog.setTitle("INFO!");
+					// Setting Dialog Title
+					alertDialog.setTitle("INFO!");
 
-    				// Setting Dialog Message
-    				alertDialog.setMessage("Select from date.");
+					// Setting Dialog Message
+					alertDialog.setMessage("Select from date.");
 
-    				// Setting Icon to Dialog
-    				alertDialog.setIcon(R.drawable.delete);
-    				
+					// Setting Icon to Dialog
+					alertDialog.setIcon(R.drawable.delete);
 
-    				// Setting OK Button
-    				alertDialog.setButton("OK",	new DialogInterface.OnClickListener() {
+					// Setting OK Button
+					alertDialog.setButton("OK",
+							new DialogInterface.OnClickListener() {
 
-    							public void onClick(final DialogInterface dialog,
-    									final int which) {
-    								// Write your code here to execute after dialog
-    								// closed
-    								
-    							}
-    						});
+								public void onClick(
+										final DialogInterface dialog,
+										final int which) {
+									// Write your code here to execute after
+									// dialog
+									// closed
 
-    				// Showing Alert Message
-    				alertDialog.show();
-					
+								}
+							});
+
+					// Showing Alert Message
+					alertDialog.show();
+
 				}
 			}
 		});
@@ -230,7 +232,8 @@ public class OverSpeed extends Activity {
 									LiveTrack.class);
 							myIntent.putExtra("vehicleregnum",
 									LiveTrack.vehicle_reg_no);
-							myIntent.putExtra("drivername", LiveTrack.driver_name);
+							myIntent.putExtra("drivername",
+									LiveTrack.driver_name);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							OverSpeed.this.startActivity(myIntent);
 						} else if (itemPosition == 2) { // Activity#3 Selected
@@ -386,7 +389,7 @@ public class OverSpeed extends Activity {
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					LiveTrack.vehicle_reg_no));
 			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
-			
+
 			JsonParser jLogin = new JsonParser();
 
 			JSONObject json = jLogin.makeHttpRequest(Config.ServerUrl

@@ -63,7 +63,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 	private int year;
 	private int month;
 	private int day;
-	String checkdate="empty";
+	String checkdate = "empty";
 	String vehicle_reg_numb;
 	static final int DATE_PICKER_ID = 1111;
 	static final int TIME_PICKER_ID = 100;
@@ -180,7 +180,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 									LiveTrack.class);
 							myIntent.putExtra("vehicleregnum",
 									LiveTrack.vehicle_reg_no);
-							myIntent.putExtra("drivername", LiveTrack.driver_name);
+							myIntent.putExtra("drivername",
+									LiveTrack.driver_name);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							HistoryTrack.this.startActivity(myIntent);
 						} else if (itemPosition == 2) { // Activity#3 Selected
@@ -250,7 +251,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 							myIntent.putExtra("vehicleregnum",
 									LiveTrack.vehicle_reg_no);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
-							myIntent.putExtra("drivername", LiveTrack.driver_name);
+							myIntent.putExtra("drivername",
+									LiveTrack.driver_name);
 							HistoryTrack.this.startActivity(myIntent);
 						} else if (itemPosition == 2) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
@@ -581,8 +583,10 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					vehicle_reg_numb));
-			params1.add(new BasicNameValuePair("date1", checkdate+" "+fromtime.getText().toString()));
-			params1.add(new BasicNameValuePair("date2", checkdate+" "+totime.getText().toString()));
+			params1.add(new BasicNameValuePair("date1", checkdate + " "
+					+ fromtime.getText().toString()));
+			params1.add(new BasicNameValuePair("date2", checkdate + " "
+					+ totime.getText().toString()));
 			// System.out.println("vehicle ddfgate no.fdfsd ."+checkdate);
 			// params1.add(new BasicNameValuePair("org_id",
 			// LoginActivity.orgid));

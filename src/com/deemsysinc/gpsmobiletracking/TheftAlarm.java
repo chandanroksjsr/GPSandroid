@@ -126,7 +126,6 @@ public class TheftAlarm extends Activity {
 					anim.cancel();
 					anim.reset();
 
-				
 					if (isInternetPresent) {
 						new updateTheftAlarm().execute();
 					}
@@ -311,7 +310,6 @@ public class TheftAlarm extends Activity {
 	private void blink() {
 		// System.out.println("in blink meth");
 
-		
 		anim.setDuration(50); // You can manage the time of the blink with this
 								// parameter
 		anim.setStartOffset(20);
