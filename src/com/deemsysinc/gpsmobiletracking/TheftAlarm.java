@@ -2,12 +2,16 @@ package com.deemsysinc.gpsmobiletracking;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.deemsysinc.gpsmobiletracking.LiveTrack.VehiclePath;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -22,6 +26,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -63,6 +70,8 @@ public class TheftAlarm extends Activity {
 	private static final String TAG_STATUS = "status";
 	static final String TAG_Vechicle_REG = "vechicle_reg_no";
 	final Handler handler = new Handler();
+	public static Timer timer;
+	static TimerTask doAsynchronousTask;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -116,16 +125,21 @@ public class TheftAlarm extends Activity {
 				if (selectedid.equalsIgnoreCase("on")) {
 					on.setEnabled(false);
 					off.setEnabled(true);
+				
+//					handler.post(timedTask);
 					if (isInternetPresent) {
 						new insertTheftAlarm().execute();
 					}
 
 				} else {
+					// handler.removeCallbacks(timedTask);
+
+					 TheftAlarm.timer.cancel();
+					 TheftAlarm.doAsynchronousTask.cancel();
 					on.setEnabled(true);
 					off.setEnabled(false);
 					anim.cancel();
 					anim.reset();
-
 					if (isInternetPresent) {
 						new updateTheftAlarm().execute();
 					}
@@ -159,6 +173,8 @@ public class TheftAlarm extends Activity {
 						} else if (itemPosition == 1) { // Activity#2 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
+							TheftAlarm.timer.cancel();
+							TheftAlarm.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
 									LiveTrack.class);
 							myIntent.putExtra("vehicleregnum",
@@ -172,18 +188,24 @@ public class TheftAlarm extends Activity {
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
 									HistoryTrack.class);
+							TheftAlarm.timer.cancel();
+							TheftAlarm.doAsynchronousTask.cancel();
 							TheftAlarm.this.startActivity(myIntent);
 						} else if (itemPosition == 3) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
 									OverSpeed.class);
+							TheftAlarm.timer.cancel();
+							TheftAlarm.doAsynchronousTask.cancel();
 							TheftAlarm.this.startActivity(myIntent);
 						} else if (itemPosition == 4) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
 									DashboardActivity.class);
+							TheftAlarm.timer.cancel();
+							TheftAlarm.doAsynchronousTask.cancel();
 							TheftAlarm.this.startActivity(myIntent);
 						}
 
@@ -227,10 +249,10 @@ public class TheftAlarm extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(TheftAlarm.this);
-			pDialog.setMessage("Please wait...");
+			pDialog.setMessage("Please wait... 1");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
-			pDialog.show();
+			// pDialog.show();
 
 		}
 
@@ -285,6 +307,8 @@ public class TheftAlarm extends Activity {
 			if (status.equalsIgnoreCase("1")) {
 				on.setChecked(true);
 				on.setEnabled(false);
+				timercalling();
+				// handler.post(timedTask);
 				txt.setVisibility(View.INVISIBLE);
 
 			} else if (status.equalsIgnoreCase("0")) {
@@ -295,13 +319,25 @@ public class TheftAlarm extends Activity {
 			} else if (status.equalsIgnoreCase("2")) {
 				on.setChecked(true);
 				on.setEnabled(false);
+				try {
+					Uri notification = RingtoneManager
+							.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+					Ringtone r = RingtoneManager.getRingtone(
+							getApplicationContext(), notification);
+					r.play();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				// handler.post(timedTask);
+				timercalling();
 				blink();
-
-			} else {
-				txt.setVisibility(View.INVISIBLE);
-				off.setChecked(true);
-				off.setEnabled(false);
 			}
+
+			// } else {
+			// txt.setVisibility(View.INVISIBLE);
+			// off.setChecked(true);
+			// off.setEnabled(false);
+			// }
 
 		}
 
@@ -346,9 +382,9 @@ public class TheftAlarm extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(TheftAlarm.this);
-			pDialog.setMessage("Please wait...");
+			pDialog.setMessage("Please wait... upd");
 			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(false);
+			pDialog.setCancelable(true);
 			pDialog.show();
 
 		}
@@ -389,6 +425,7 @@ public class TheftAlarm extends Activity {
 		protected void onPostExecute(String file_url) {
 			super.onPostExecute(file_url);
 			pDialog.dismiss();
+			
 			AlertDialog alertDialog = new AlertDialog.Builder(TheftAlarm.this)
 					.create();
 
@@ -423,10 +460,10 @@ public class TheftAlarm extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(TheftAlarm.this);
-			pDialog.setMessage("Please wait...");
+			pDialog.setMessage("Please wait... ins");
 			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(false);
-			pDialog.show();
+			pDialog.setCancelable(true);
+			// pDialog.show();
 
 		}
 
@@ -472,6 +509,7 @@ public class TheftAlarm extends Activity {
 		protected void onPostExecute(String file_url) {
 			super.onPostExecute(file_url);
 			pDialog.dismiss();
+			timercalling();
 			if (succ.equalsIgnoreCase("No")) {
 				off.setChecked(true);
 				off.setEnabled(false);
@@ -534,5 +572,55 @@ public class TheftAlarm extends Activity {
 				alertDialog.show();
 			}
 		}
+	}
+
+	private Runnable timedTask = new Runnable() {
+
+		@Override
+		public void run() {
+			try {
+				if (isInternetPresent) {
+					new CheckTheftAlarm().execute();
+				}
+
+			} catch (Exception e) {
+
+			}
+			// TODO Auto-generated method stub
+			// cnt++;
+			// counter.setText(String.valueOf(cnt));
+			handler.postDelayed(timedTask, 300000);
+		}
+	};
+
+	public void timercalling() {
+		// final Handler handler;
+		// handler = new Handler();
+		 TheftAlarm.timer = new Timer();
+		
+		 TheftAlarm.doAsynchronousTask = new TimerTask() {
+			@Override
+			public void run()
+			{
+				runOnUiThread(new Runnable() 
+				{
+					public void run() 
+					{
+						try
+						{
+							if (isInternetPresent) 
+							{
+								new CheckTheftAlarm().execute();
+							}
+
+						} catch (Exception e) 
+						{
+
+						}
+					}
+				});
+			}
+		};
+		 TheftAlarm.timer.schedule(TheftAlarm.doAsynchronousTask, 120000);	
 	}
 }
