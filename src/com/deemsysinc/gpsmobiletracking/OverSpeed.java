@@ -1,7 +1,10 @@
 package com.deemsysinc.gpsmobiletracking;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -10,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.deemsysinc.gpsmobiletracking.HistoryTrack.VehiclePath;
 import com.deemsysinc.gpsmobiletracking.TheftAlarm.CheckTheftAlarm;
 
 import android.app.ActionBar;
@@ -129,13 +133,58 @@ public class OverSpeed extends Activity {
 		});
 		submit.setOnClickListener(new View.OnClickListener() {
 
+			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
 				if (!fromdate.getText().toString()
 						.equalsIgnoreCase("From date")) {
 					if (!todate.getText().toString()
 							.equalsIgnoreCase("To date")) {
-						new CompareAsync().execute();
-					} else {
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			            try {
+							Date date1 = sdf.parse(fromdate.getText().toString());
+							Date date2 = sdf.parse(todate.getText().toString());
+							
+							if(date1.compareTo(date2)>0){
+								AlertDialog alertDialog = new AlertDialog.Builder(
+										OverSpeed.this).create();
+
+								// Setting Dialog Title
+								alertDialog.setTitle("INFO!");
+
+								// Setting Dialog Message
+								alertDialog.setMessage("To date must greater than from date.");
+
+								// Setting Icon to Dialog
+								alertDialog.setIcon(R.drawable.delete);
+
+								// Setting OK Button
+								alertDialog.setButton("OK",
+										new DialogInterface.OnClickListener() {
+
+											public void onClick(
+													final DialogInterface dialog,
+													final int which) {
+												// Write your code here to execute
+												// after dialog
+												// closed
+
+											}
+										});
+
+								// Showing Alert Message
+								alertDialog.show();
+				            }else if(date1.compareTo(date2)<0){
+				            	new CompareAsync().execute();
+				            }else if(date1.compareTo(date2)==0){
+				            	new CompareAsync().execute();
+				            }else{
+				                System.out.println("How to get here?");
+				            }
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			            } else {
 						AlertDialog alertDialog = new AlertDialog.Builder(
 								OverSpeed.this).create();
 

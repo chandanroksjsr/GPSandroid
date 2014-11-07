@@ -1,7 +1,10 @@
 package com.deemsysinc.gpsmobiletracking;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import java.util.HashMap;
 import java.util.List;
@@ -297,13 +300,61 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 		submit = (Button) findViewById(R.id.submit);
 		submit.setOnClickListener(new View.OnClickListener() {
 
+			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
 				if (!checkdate.equalsIgnoreCase("empty")) {
 					if (!fromtime.getText().toString()
 							.equalsIgnoreCase("From time")) {
 						if (!totime.getText().toString()
 								.equalsIgnoreCase("To time")) {
-							new VehiclePath().execute();
+							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				            try {
+								Date date1 = sdf.parse(checkdate+" "+fromtime.getText().toString());
+								Date date2 = sdf.parse(checkdate+" "+totime.getText().toString());
+								
+								System.out.println("date values 1"+date1);
+								System.out.println("date values 2"+date2);
+								if(date1.compareTo(date2)>0){
+									AlertDialog alertDialog = new AlertDialog.Builder(
+											HistoryTrack.this).create();
+
+									// Setting Dialog Title
+									alertDialog.setTitle("INFO!");
+
+									// Setting Dialog Message
+									alertDialog.setMessage("To time must greater than from time.");
+
+									// Setting Icon to Dialog
+									alertDialog.setIcon(R.drawable.delete);
+
+									// Setting OK Button
+									alertDialog.setButton("OK",
+											new DialogInterface.OnClickListener() {
+
+												public void onClick(
+														final DialogInterface dialog,
+														final int which) {
+													// Write your code here to execute
+													// after dialog
+													// closed
+
+												}
+											});
+
+									// Showing Alert Message
+									alertDialog.show();
+					            }else if(date1.compareTo(date2)<0){
+					            	new VehiclePath().execute();
+					            }else if(date1.compareTo(date2)==0){
+					            	new VehiclePath().execute();
+					            }else{
+					                System.out.println("How to get here?");
+					            }
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						
 						} else {
 							AlertDialog alertDialog = new AlertDialog.Builder(
 									HistoryTrack.this).create();
