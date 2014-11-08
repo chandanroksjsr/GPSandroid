@@ -249,10 +249,10 @@ public class TheftAlarm extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(TheftAlarm.this);
-			pDialog.setMessage("Please wait... 1");
+			pDialog.setMessage("Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
-			// pDialog.show();
+			 pDialog.show();
 
 		}
 
@@ -382,7 +382,7 @@ public class TheftAlarm extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(TheftAlarm.this);
-			pDialog.setMessage("Please wait... upd");
+			pDialog.setMessage("Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
 			pDialog.show();
@@ -460,10 +460,10 @@ public class TheftAlarm extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(TheftAlarm.this);
-			pDialog.setMessage("Please wait... ins");
+			pDialog.setMessage("Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
-			// pDialog.show();
+			 pDialog.show();
 
 		}
 
