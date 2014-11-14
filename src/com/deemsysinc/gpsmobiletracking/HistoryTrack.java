@@ -43,6 +43,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -153,7 +154,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 		actions.setIcon(R.drawable.historyicon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
-		if (LoginActivity.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items1_withoutalert,
@@ -450,7 +451,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 		});
 		welcome = (TextView) findViewById(R.id.textView1);
 		welcomeusername = (TextView) findViewById(R.id.welcomename);
-		welcomeusername.setText(LoginActivity.usernamepassed + "!");
+		welcomeusername.setText(Config.username + "!");
 		welcomeusername.setTypeface(null, Typeface.BOLD);
 		welcome.setTypeface(null, Typeface.BOLD);
 
@@ -532,13 +533,17 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 		signout.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				LoginActivity.usernamepassed = "";
+				Config.username= "";
 				VehichleArrayAdapter.data.clear();
 				DashboardActivity.vehicleall.clear();
 				vehiclehistory1.clear();
 				LiveTrack.doAsynchronousTask.cancel();
 				HistoryTrack.vehiclehistory1.clear();
-				LoginActivity.usernamepassed = "";
+			
+				SharedPreferences settings = getApplicationContext()
+						.getSharedPreferences("MyPrefs0",
+								getApplicationContext().MODE_PRIVATE);
+				settings.edit().clear().commit();
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
@@ -631,7 +636,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 
 			List<NameValuePair> params1 = new ArrayList<NameValuePair>();
 			ArrayList<HashMap<String, String>> vehiclehistory = new ArrayList<HashMap<String, String>>();
-			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
+			params1.add(new BasicNameValuePair("org_id", Config.org_id));
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					vehicle_reg_numb));
 			params1.add(new BasicNameValuePair("date1", checkdate + " "

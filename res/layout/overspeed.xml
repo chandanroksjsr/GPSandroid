@@ -74,10 +74,12 @@
                     android:paddingRight="5dp" />
             </RelativeLayout>
         </LinearLayout>
-<View
-        android:layout_width="fill_parent"
-        android:layout_height="25dp" >
-    </View>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="25dp" >
+        </View>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

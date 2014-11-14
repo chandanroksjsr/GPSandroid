@@ -27,6 +27,7 @@ import android.app.ProgressDialog;
 import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -112,7 +113,7 @@ public class OverSpeed extends Activity {
 		signout = (Button) findViewById(R.id.signutty);
 		welcome = (TextView) findViewById(R.id.TextView01);
 		welcomeusername = (TextView) findViewById(R.id.welcmename);
-		welcomeusername.setText(LoginActivity.usernamepassed + "!");
+		welcomeusername.setText(Config.username + "!");
 		welcomeusername.setTypeface(null, Typeface.BOLD);
 		welcome.setTypeface(null, Typeface.BOLD);
 		signout.setOnClickListener(new View.OnClickListener() {
@@ -120,12 +121,16 @@ public class OverSpeed extends Activity {
 			public void onClick(View v) {
 
 				LiveTrack.doAsynchronousTask.cancel();
-				LoginActivity.usernamepassed = "";
+				Config.username = "";
 				VehichleArrayAdapter.data.clear();
 				DashboardActivity.vehicleall.clear();
 
 				HistoryTrack.vehiclehistory1.clear();
-				LoginActivity.usernamepassed = "";
+				Config.username = "";
+				SharedPreferences settings = getApplicationContext()
+						.getSharedPreferences("MyPrefs0",
+								getApplicationContext().MODE_PRIVATE);
+				settings.edit().clear().commit();
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
@@ -139,12 +144,14 @@ public class OverSpeed extends Activity {
 						.equalsIgnoreCase("From date")) {
 					if (!todate.getText().toString()
 							.equalsIgnoreCase("To date")) {
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			            try {
-							Date date1 = sdf.parse(fromdate.getText().toString());
+						SimpleDateFormat sdf = new SimpleDateFormat(
+								"yyyy-MM-dd");
+						try {
+							Date date1 = sdf.parse(fromdate.getText()
+									.toString());
 							Date date2 = sdf.parse(todate.getText().toString());
-							
-							if(date1.compareTo(date2)>0){
+
+							if (date1.compareTo(date2) > 0) {
 								AlertDialog alertDialog = new AlertDialog.Builder(
 										OverSpeed.this).create();
 
@@ -152,7 +159,8 @@ public class OverSpeed extends Activity {
 								alertDialog.setTitle("INFO!");
 
 								// Setting Dialog Message
-								alertDialog.setMessage("To date must greater than from date.");
+								alertDialog
+										.setMessage("To date must greater than from date.");
 
 								// Setting Icon to Dialog
 								alertDialog.setIcon(R.drawable.delete);
@@ -164,7 +172,8 @@ public class OverSpeed extends Activity {
 											public void onClick(
 													final DialogInterface dialog,
 													final int which) {
-												// Write your code here to execute
+												// Write your code here to
+												// execute
 												// after dialog
 												// closed
 
@@ -173,18 +182,18 @@ public class OverSpeed extends Activity {
 
 								// Showing Alert Message
 								alertDialog.show();
-				            }else if(date1.compareTo(date2)<0){
-				            	new CompareAsync().execute();
-				            }else if(date1.compareTo(date2)==0){
-				            	new CompareAsync().execute();
-				            }else{
-				                System.out.println("How to get here?");
-				            }
+							} else if (date1.compareTo(date2) < 0) {
+								new CompareAsync().execute();
+							} else if (date1.compareTo(date2) == 0) {
+								new CompareAsync().execute();
+							} else {
+								System.out.println("How to get here?");
+							}
 						} catch (ParseException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-			            } else {
+					} else {
 						AlertDialog alertDialog = new AlertDialog.Builder(
 								OverSpeed.this).create();
 
@@ -254,7 +263,7 @@ public class OverSpeed extends Activity {
 				showDialog(DATE_PICKER_ID1);
 			}
 		});
-		if (LoginActivity.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items3_withoutalert,
@@ -389,7 +398,7 @@ public class OverSpeed extends Activity {
 			List<NameValuePair> params1 = new ArrayList<NameValuePair>();
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					LiveTrack.vehicle_reg_no));
-			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
+			params1.add(new BasicNameValuePair("org_id", Config.org_id));
 			params1.add(new BasicNameValuePair("date1", fromstring));
 			params1.add(new BasicNameValuePair("date2", tostring));
 			JsonParser jLogin = new JsonParser();
@@ -437,7 +446,7 @@ public class OverSpeed extends Activity {
 			List<NameValuePair> params1 = new ArrayList<NameValuePair>();
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					LiveTrack.vehicle_reg_no));
-			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
+			params1.add(new BasicNameValuePair("org_id", Config.org_id));
 
 			JsonParser jLogin = new JsonParser();
 

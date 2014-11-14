@@ -21,6 +21,7 @@ import android.app.ProgressDialog;
 import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -95,7 +96,7 @@ public class TheftAlarm extends Activity {
 		signout = (Button) findViewById(R.id.signutty);
 		welcome = (TextView) findViewById(R.id.TextView01);
 		welcomeusername = (TextView) findViewById(R.id.welcmename);
-		welcomeusername.setText(LoginActivity.usernamepassed + "!");
+		welcomeusername.setText(Config.username + "!");
 		welcomeusername.setTypeface(null, Typeface.BOLD);
 		welcome.setTypeface(null, Typeface.BOLD);
 		signout.setOnClickListener(new View.OnClickListener() {
@@ -103,12 +104,15 @@ public class TheftAlarm extends Activity {
 			public void onClick(View v) {
 
 				LiveTrack.doAsynchronousTask.cancel();
-				LoginActivity.usernamepassed = "";
+				Config.username = "";
 				VehichleArrayAdapter.data.clear();
 				DashboardActivity.vehicleall.clear();
 
 				HistoryTrack.vehiclehistory1.clear();
-				LoginActivity.usernamepassed = "";
+				SharedPreferences settings = getApplicationContext()
+						.getSharedPreferences("MyPrefs0",
+								getApplicationContext().MODE_PRIVATE);
+				settings.edit().clear().commit();
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
@@ -125,8 +129,8 @@ public class TheftAlarm extends Activity {
 				if (selectedid.equalsIgnoreCase("on")) {
 					on.setEnabled(false);
 					off.setEnabled(true);
-				
-//					handler.post(timedTask);
+
+					// handler.post(timedTask);
 					if (isInternetPresent) {
 						new insertTheftAlarm().execute();
 					}
@@ -134,8 +138,8 @@ public class TheftAlarm extends Activity {
 				} else {
 					// handler.removeCallbacks(timedTask);
 
-					 TheftAlarm.timer.cancel();
-					 TheftAlarm.doAsynchronousTask.cancel();
+					TheftAlarm.timer.cancel();
+					TheftAlarm.doAsynchronousTask.cancel();
 					on.setEnabled(true);
 					off.setEnabled(false);
 					anim.cancel();
@@ -150,7 +154,7 @@ public class TheftAlarm extends Activity {
 		on.setOnClickListener(listener);
 		off.setOnClickListener(listener);
 
-		if (LoginActivity.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items2_withoutalert,
@@ -173,8 +177,11 @@ public class TheftAlarm extends Activity {
 						} else if (itemPosition == 1) { // Activity#2 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
-							TheftAlarm.timer.cancel();
-							TheftAlarm.doAsynchronousTask.cancel();
+							if (TheftAlarm.timer != null) {
+								System.out.println("is not null");
+								TheftAlarm.timer.cancel();
+								TheftAlarm.doAsynchronousTask.cancel();
+							}
 							myIntent = new Intent(TheftAlarm.this,
 									LiveTrack.class);
 							myIntent.putExtra("vehicleregnum",
@@ -188,24 +195,33 @@ public class TheftAlarm extends Activity {
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
 									HistoryTrack.class);
-							TheftAlarm.timer.cancel();
-							TheftAlarm.doAsynchronousTask.cancel();
+							if (TheftAlarm.timer != null) {
+								System.out.println("is not null");
+								TheftAlarm.timer.cancel();
+								TheftAlarm.doAsynchronousTask.cancel();
+							}
 							TheftAlarm.this.startActivity(myIntent);
 						} else if (itemPosition == 3) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
 									OverSpeed.class);
-							TheftAlarm.timer.cancel();
-							TheftAlarm.doAsynchronousTask.cancel();
+							if (TheftAlarm.timer != null) {
+								System.out.println("is not null");
+								TheftAlarm.timer.cancel();
+								TheftAlarm.doAsynchronousTask.cancel();
+							}
 							TheftAlarm.this.startActivity(myIntent);
 						} else if (itemPosition == 4) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
 									DashboardActivity.class);
-							TheftAlarm.timer.cancel();
-							TheftAlarm.doAsynchronousTask.cancel();
+							if (TheftAlarm.timer != null) {
+								System.out.println("is not null");
+								TheftAlarm.timer.cancel();
+								TheftAlarm.doAsynchronousTask.cancel();
+							}
 							TheftAlarm.this.startActivity(myIntent);
 						}
 
@@ -252,7 +268,7 @@ public class TheftAlarm extends Activity {
 			pDialog.setMessage("Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
-			 pDialog.show();
+			pDialog.show();
 
 		}
 
@@ -264,7 +280,7 @@ public class TheftAlarm extends Activity {
 
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					LiveTrack.vehicle_reg_no));
-			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
+			params1.add(new BasicNameValuePair("org_id", Config.org_id));
 			System.out.println("parameters" + params1);
 
 			JSONObject json = ((JsonParser) jsonParser).makeHttpRequest(
@@ -394,7 +410,7 @@ public class TheftAlarm extends Activity {
 			List<NameValuePair> params1 = new ArrayList<NameValuePair>();
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					LiveTrack.vehicle_reg_no));
-			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
+			params1.add(new BasicNameValuePair("org_id", Config.org_id));
 			JsonParser jLogin = new JsonParser();
 
 			JSONObject json = jLogin.makeHttpRequest(Config.ServerUrl
@@ -425,7 +441,7 @@ public class TheftAlarm extends Activity {
 		protected void onPostExecute(String file_url) {
 			super.onPostExecute(file_url);
 			pDialog.dismiss();
-			
+
 			AlertDialog alertDialog = new AlertDialog.Builder(TheftAlarm.this)
 					.create();
 
@@ -463,7 +479,7 @@ public class TheftAlarm extends Activity {
 			pDialog.setMessage("Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
-			 pDialog.show();
+			pDialog.show();
 
 		}
 
@@ -474,7 +490,7 @@ public class TheftAlarm extends Activity {
 			JsonParser jLogin = new JsonParser();
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					LiveTrack.vehicle_reg_no));
-			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
+			params1.add(new BasicNameValuePair("org_id", Config.org_id));
 			JSONObject json = jLogin.makeHttpRequest(Config.ServerUrl
 					+ "TheftAlarm.php?service=insertalarm", "POST", params1);
 
@@ -596,31 +612,25 @@ public class TheftAlarm extends Activity {
 	public void timercalling() {
 		// final Handler handler;
 		// handler = new Handler();
-		 TheftAlarm.timer = new Timer();
-		
-		 TheftAlarm.doAsynchronousTask = new TimerTask() {
+		TheftAlarm.timer = new Timer();
+
+		TheftAlarm.doAsynchronousTask = new TimerTask() {
 			@Override
-			public void run()
-			{
-				runOnUiThread(new Runnable() 
-				{
-					public void run() 
-					{
-						try
-						{
-							if (isInternetPresent) 
-							{
+			public void run() {
+				runOnUiThread(new Runnable() {
+					public void run() {
+						try {
+							if (isInternetPresent) {
 								new CheckTheftAlarm().execute();
 							}
 
-						} catch (Exception e) 
-						{
+						} catch (Exception e) {
 
 						}
 					}
 				});
 			}
 		};
-		 TheftAlarm.timer.schedule(TheftAlarm.doAsynchronousTask, 120000);	
+		TheftAlarm.timer.schedule(TheftAlarm.doAsynchronousTask, 120000);
 	}
 }

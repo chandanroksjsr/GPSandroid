@@ -22,6 +22,7 @@ import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -149,7 +150,7 @@ public class AlertMsg extends Activity {
 		actions.setListNavigationCallbacks(adapter, callback);
 		route = LiveTrack.routeno;
 		System.out.println("alert route numb track veh numb" + route);
-		orgid = LoginActivity.orgid;
+		orgid = Config.org_id;
 		LinearLayout layout = (LinearLayout) findViewById(R.id.alertlayout);
 		layout.setOnTouchListener(new OnTouchListener() {
 			@Override
@@ -169,7 +170,7 @@ public class AlertMsg extends Activity {
 		signout = (Button) findViewById(R.id.logingout);
 		welcome = (TextView) findViewById(R.id.textView1);
 		welcomeusername = (TextView) findViewById(R.id.username);
-		welcomeusername.setText(LoginActivity.usernamepassed + "!");
+		welcomeusername.setText(Config.username + "!");
 		welcomeusername.setTypeface(null, Typeface.BOLD);
 		welcome.setTypeface(null, Typeface.BOLD);
 		new SendMessage().execute();
@@ -178,11 +179,14 @@ public class AlertMsg extends Activity {
 			public void onClick(View v) {
 				LiveTrack.doAsynchronousTask.cancel();
 				LiveTrack.timer.cancel();
-				LoginActivity.usernamepassed = "";
+				Config.username = "";
 				VehichleArrayAdapter.data.clear();
 				DashboardActivity.vehicleall.clear();
 				HistoryTrack.vehiclehistory1.clear();
-				LoginActivity.usernamepassed = "";
+				SharedPreferences settings = getApplicationContext()
+						.getSharedPreferences("MyPrefs0",
+								getApplicationContext().MODE_PRIVATE);
+				settings.edit().clear().commit();
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
@@ -419,7 +423,7 @@ public class AlertMsg extends Activity {
 
 			List<NameValuePair> params1 = new ArrayList<NameValuePair>();
 
-			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
+			params1.add(new BasicNameValuePair("org_id", Config.username));
 
 			params1.add(new BasicNameValuePair("routeno", route));
 			System.out.println("parameters" + params1);

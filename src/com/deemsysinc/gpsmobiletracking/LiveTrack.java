@@ -29,6 +29,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -148,14 +149,14 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		setContentView(R.layout.livetrack);
 
 		ActionBar actions = getActionBar();
-		int height = actions.getHeight();
-		System.out.println("height value::" + height);
+		
+
 		actions.setIcon(R.drawable.liveicon);
 		actions.setBackgroundDrawable(new ColorDrawable(Color
 				.parseColor("#93aac3")));
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
-		if (LoginActivity.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items_withoutalert,
@@ -303,7 +304,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		signout = (Button) findViewById(R.id.signutty);
 		welcome = (TextView) findViewById(R.id.textView1);
 		welcomeusername = (TextView) findViewById(R.id.welcmename);
-		welcomeusername.setText(LoginActivity.usernamepassed + "!");
+		welcomeusername.setText(Config.username + "!");
 		welcomeusername.setTypeface(null, Typeface.BOLD);
 		welcome.setTypeface(null, Typeface.BOLD);
 		try {
@@ -335,7 +336,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		userrole = LoginActivity.role;
+		userrole = Config.role;
 
 		tgbutton = (ToggleButton) findViewById(R.id.showmap);
 		// tgbutton.setSelected(true);
@@ -397,13 +398,16 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 			public void onClick(View v) {
 				timer.cancel();
 				LiveTrack.doAsynchronousTask.cancel();
-				LoginActivity.usernamepassed = "";
+				SharedPreferences settings = getApplicationContext()
+						.getSharedPreferences("MyPrefs0",
+								getApplicationContext().MODE_PRIVATE);
+				settings.edit().clear().commit();
 				VehichleArrayAdapter.data.clear();
 				DashboardActivity.vehicleall.clear();
 				vehiclehistory1.clear();
 				vehiclehistory.clear();
 				HistoryTrack.vehiclehistory1.clear();
-				LoginActivity.usernamepassed = "";
+				Config.username = "";
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
@@ -469,7 +473,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 
 			List<NameValuePair> params1 = new ArrayList<NameValuePair>();
 
-			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
+			params1.add(new BasicNameValuePair("org_id", Config.org_id));
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					vehicle_reg_no));
 

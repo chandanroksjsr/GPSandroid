@@ -15,6 +15,7 @@ import android.app.ProgressDialog;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -92,16 +93,20 @@ public class DashboardActivity extends Activity {
 		signout = (Button) findViewById(R.id.logout);
 		welcomeusername = (TextView) findViewById(R.id.welcomeusername);
 		welcome = (TextView) findViewById(R.id.welcome);
-		welcomeusername.setText(LoginActivity.usernamepassed + "!");
+		welcomeusername.setText(Config.username + "!");
 		// ourdevice.setTypeface(null, Typeface.BOLD);
 		welcomeusername.setTypeface(null, Typeface.BOLD);
 		welcome.setTypeface(null, Typeface.BOLD);
 		signout.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				LoginActivity.usernamepassed = "";
+				Config.username = "";
 				VehichleArrayAdapter.data.clear();
 				vehicleall.clear();
+				SharedPreferences settings = getApplicationContext()
+						.getSharedPreferences("MyPrefs0",
+								getApplicationContext().MODE_PRIVATE);
+				settings.edit().clear().commit();
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
@@ -201,7 +206,7 @@ public class DashboardActivity extends Activity {
 			vehiclelist.clear();
 			List<NameValuePair> params1 = new ArrayList<NameValuePair>();
 
-			params1.add(new BasicNameValuePair("org_id", LoginActivity.orgid));
+			params1.add(new BasicNameValuePair("org_id", Config.org_id));
 
 			jArray = jsonParser.makeHttpRequest(vehicledetailsurl, "POST",
 					params1);
