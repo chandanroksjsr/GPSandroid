@@ -270,7 +270,7 @@ containing a value of this type.
         public static final int TextView01=0x7f05002c;
         public static final int aboutus=0x7f05004b;
         public static final int access=0x7f05006c;
-        public static final int action_settings=0x7f05009c;
+        public static final int action_settings=0x7f05009d;
         public static final int addrsone=0x7f050019;
         public static final int addrsone0=0x7f05001a;
         public static final int addrsone1=0x7f05001b;
@@ -283,6 +283,7 @@ containing a value of this type.
         public static final int addrstwo2=0x7f050025;
         public static final int addrstwo3=0x7f050026;
         public static final int addrstwo5=0x7f050023;
+        public static final int alarm=0x7f05009c;
         public static final int alertlayout=0x7f050034;
         public static final int alerttext=0x7f050093;
         public static final int avatar=0x7f050005;

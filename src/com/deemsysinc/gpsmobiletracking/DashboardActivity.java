@@ -10,6 +10,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 
 import android.app.ProgressDialog;
 
@@ -50,8 +52,9 @@ public class DashboardActivity extends Activity {
 	private static final String TAG_Date = "bus_tracking_timestamp";
 	private static final String TAG_ADDRS = "address";
 	private static final String TAG_SPEED = "speed";
+	private static final String TAG_CHECK_ALARM = "checkalarm";
 	public ProgressDialog cDialog;
-	String org;
+	String org, checkalarm;
 	TextView welcome;
 	static String vehicle_regno;
 	String device_ime;
@@ -86,7 +89,14 @@ public class DashboardActivity extends Activity {
 		if (isInternetPresent) {
 			new VehicleDetails().execute();
 		}
-
+		boolean a=isMyServiceRunning(BackgroundService.class);
+		System.out.println("value of a::"+a);
+		if(!a)
+		{
+		Intent ii = new Intent(DashboardActivity.this, BackgroundService.class);
+		ii.putExtra("name", "SurvivingwithAndroid");
+		DashboardActivity.this.startService(ii);
+		}
 		list2 = (ListView) findViewById(R.id.list);
 		aboutus = (Button) findViewById(R.id.aboutus);
 		contactus = (Button) findViewById(R.id.contactus);
@@ -107,6 +117,10 @@ public class DashboardActivity extends Activity {
 						.getSharedPreferences("MyPrefs0",
 								getApplicationContext().MODE_PRIVATE);
 				settings.edit().clear().commit();
+				Intent ii = new Intent(DashboardActivity.this,
+						BackgroundService.class);
+				ii.putExtra("name", "SurvivingwithAndroid");
+				DashboardActivity.this.stopService(ii);
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
@@ -132,23 +146,24 @@ public class DashboardActivity extends Activity {
 		});
 	}
 
-	public void onItemClick(int mPosition) {
-
-		Intent intent = new Intent(DashboardActivity.this, LiveTrack.class);
-		Bundle b = new Bundle();
-		// System.out.println("Position passed from dashboard activity:::"+vehicle_regno);
-		System.out.println("Position passed from dashboard activity:fghfgh::"
-				+ route_num);
-		// Bundle b1=new Bundle();
-		b.putString("vehicleregnum", vehicle_regno);
-		b.putString("routenum", route_num);
-
-		intent.putExtras(b);
-		// intent.putExtras(b1);
-
-		startActivity(intent);
-
-	}
+	// public void onItemClick(int mPosition) {
+	//
+	// Intent intent = new Intent(DashboardActivity.this, LiveTrack.class);
+	// Bundle b = new Bundle();
+	// //
+	// System.out.println("Position passed from dashboard activity:::"+vehicle_regno);
+	// System.out.println("Position passed from dashboard activity:fghfgh::"
+	// + route_num);
+	// // Bundle b1=new Bundle();
+	// b.putString("vehicleregnum", vehicle_regno);
+	// b.putString("routenum", route_num);
+	//
+	// intent.putExtras(b);
+	// // intent.putExtras(b1);
+	//
+	// startActivity(intent);
+	//
+	// }
 
 	class VehicleDetails extends AsyncTask<String, String, String> {
 		@Override
@@ -237,7 +252,7 @@ public class DashboardActivity extends Activity {
 						timestamp = c2.getString(TAG_Date);
 						address = c2.getString(TAG_ADDRS);
 						speed = c2.getString(TAG_SPEED);
-
+						checkalarm = c2.getString(TAG_CHECK_ALARM);
 						vehiclelist.add(vehicle_regno);
 						// vehiclelist.add(device_ime);
 						vehiclelist.add(drivername);
@@ -258,6 +273,7 @@ public class DashboardActivity extends Activity {
 						cnt.setdriverstatus(driverstatus);
 						cnt.setaddress(address);
 						cnt.settimestamp(timestamp);
+						cnt.setalarm(checkalarm);
 						cnt.setspeed(speed);
 						vehicleall.add(cnt);
 						// int a=vehiclelist.size();
@@ -279,5 +295,13 @@ public class DashboardActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 	}
-
+	private boolean isMyServiceRunning(Class<?> serviceClass) {
+	    ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+	    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+	        if (serviceClass.getName().equals(service.service.getClassName())) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
 }

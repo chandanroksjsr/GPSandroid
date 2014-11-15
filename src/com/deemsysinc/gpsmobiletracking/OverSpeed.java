@@ -131,6 +131,9 @@ public class OverSpeed extends Activity {
 						.getSharedPreferences("MyPrefs0",
 								getApplicationContext().MODE_PRIVATE);
 				settings.edit().clear().commit();
+				Intent ii = new Intent(OverSpeed.this, BackgroundService.class);
+				ii.putExtra("name", "SurvivingwithAndroid");
+				OverSpeed.this.stopService(ii);
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
@@ -480,5 +483,7 @@ public class OverSpeed extends Activity {
 
 		}
 	}
-
+	@Override
+	public void onBackPressed() {
+	}
 }

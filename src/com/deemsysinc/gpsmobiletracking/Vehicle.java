@@ -12,6 +12,7 @@ public class Vehicle {
 	String timestamp;
 	String address;
 	String speed;
+	String alarm;
 
 	public String gettimestamp() {
 		return this.timestamp;
@@ -91,6 +92,14 @@ public class Vehicle {
 
 	public String getdrivername() {
 		return drivername;
+	}
+
+	public void setalarm(String alarm) {
+		this.alarm = alarm;
+	}
+
+	public String getalarm() {
+		return alarm;
 	}
 
 	public Vehicle(int driverstatus, String name, String drivernamenum,

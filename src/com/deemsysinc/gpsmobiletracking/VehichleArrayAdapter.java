@@ -30,7 +30,7 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 
 	class UserHolder {
 		TextView drivername;
-		TextView vehicleregno, timestamp, address, speed;
+		TextView vehicleregno, timestamp, address, speed,alarm;
 
 		ImageView driverstatus;
 
@@ -55,6 +55,7 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 			holder.driverstatus = (ImageView) row.findViewById(R.id.logo);
 			holder.address = (TextView) row.findViewById(R.id.addrstext);
 			holder.speed = (TextView) row.findViewById(R.id.speedtxt);
+			holder.alarm = (TextView) row.findViewById(R.id.alarm);
 			row.setTag(holder);
 		} else {
 			holder = (UserHolder) row.getTag();
@@ -84,7 +85,16 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 		} else {
 			holder.driverstatus.setImageResource(R.drawable.red_light);
 		}
+		if (user.getalarm().equals("0")) {
+			holder.alarm.setVisibility(View.INVISIBLE);
 
+		} else if (user.getalarm().equals("1")) {
+			holder.alarm.setVisibility(View.INVISIBLE);
+
+		}
+		else if(user.getalarm().equals("2")) {
+			holder.alarm.setVisibility(View.VISIBLE);
+		}
 		return row;
 
 	}

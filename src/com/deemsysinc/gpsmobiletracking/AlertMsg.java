@@ -187,6 +187,9 @@ public class AlertMsg extends Activity {
 						.getSharedPreferences("MyPrefs0",
 								getApplicationContext().MODE_PRIVATE);
 				settings.edit().clear().commit();
+				Intent ii = new Intent(AlertMsg.this, BackgroundService.class);
+				ii.putExtra("name", "SurvivingwithAndroid");
+				AlertMsg.this.stopService(ii);
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);

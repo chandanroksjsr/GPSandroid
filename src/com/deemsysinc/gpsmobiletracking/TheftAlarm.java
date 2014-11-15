@@ -113,6 +113,9 @@ public class TheftAlarm extends Activity {
 						.getSharedPreferences("MyPrefs0",
 								getApplicationContext().MODE_PRIVATE);
 				settings.edit().clear().commit();
+				Intent ii = new Intent(TheftAlarm.this, BackgroundService.class);
+				ii.putExtra("name", "SurvivingwithAndroid");
+				TheftAlarm.this.stopService(ii);
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
@@ -288,7 +291,7 @@ public class TheftAlarm extends Activity {
 					"POST", params1);
 
 			Log.i("tagconvertstr", "[" + jobject + "]");
-
+			status="0";
 			if (json != null) {
 				try {
 					if (json != null) {
@@ -347,6 +350,10 @@ public class TheftAlarm extends Activity {
 				// handler.post(timedTask);
 				timercalling();
 				blink();
+			} else {
+				off.setChecked(true);
+				txt.setVisibility(View.INVISIBLE);
+				off.setEnabled(false);
 			}
 
 			// } else {
@@ -495,6 +502,7 @@ public class TheftAlarm extends Activity {
 					+ "TheftAlarm.php?service=insertalarm", "POST", params1);
 
 			System.out.println("value for json::" + json);
+			succ="no";
 			if (json != null) {
 				try {
 					if (json != null) {
@@ -632,5 +640,9 @@ public class TheftAlarm extends Activity {
 			}
 		};
 		TheftAlarm.timer.schedule(TheftAlarm.doAsynchronousTask, 120000);
+	}
+
+	@Override
+	public void onBackPressed() {
 	}
 }

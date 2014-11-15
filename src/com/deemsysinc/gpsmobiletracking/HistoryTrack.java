@@ -308,14 +308,17 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 							.equalsIgnoreCase("From time")) {
 						if (!totime.getText().toString()
 								.equalsIgnoreCase("To time")) {
-							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-				            try {
-								Date date1 = sdf.parse(checkdate+" "+fromtime.getText().toString());
-								Date date2 = sdf.parse(checkdate+" "+totime.getText().toString());
-								
-								System.out.println("date values 1"+date1);
-								System.out.println("date values 2"+date2);
-								if(date1.compareTo(date2)>0){
+							SimpleDateFormat sdf = new SimpleDateFormat(
+									"yyyy-MM-dd HH:mm");
+							try {
+								Date date1 = sdf.parse(checkdate + " "
+										+ fromtime.getText().toString());
+								Date date2 = sdf.parse(checkdate + " "
+										+ totime.getText().toString());
+
+								System.out.println("date values 1" + date1);
+								System.out.println("date values 2" + date2);
+								if (date1.compareTo(date2) > 0) {
 									AlertDialog alertDialog = new AlertDialog.Builder(
 											HistoryTrack.this).create();
 
@@ -323,39 +326,43 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 									alertDialog.setTitle("INFO!");
 
 									// Setting Dialog Message
-									alertDialog.setMessage("To time must greater than from time.");
+									alertDialog
+											.setMessage("To time must greater than from time.");
 
 									// Setting Icon to Dialog
 									alertDialog.setIcon(R.drawable.delete);
 
 									// Setting OK Button
-									alertDialog.setButton("OK",
-											new DialogInterface.OnClickListener() {
+									alertDialog
+											.setButton(
+													"OK",
+													new DialogInterface.OnClickListener() {
 
-												public void onClick(
-														final DialogInterface dialog,
-														final int which) {
-													// Write your code here to execute
-													// after dialog
-													// closed
+														public void onClick(
+																final DialogInterface dialog,
+																final int which) {
+															// Write your code
+															// here to execute
+															// after dialog
+															// closed
 
-												}
-											});
+														}
+													});
 
 									// Showing Alert Message
 									alertDialog.show();
-					            }else if(date1.compareTo(date2)<0){
-					            	new VehiclePath().execute();
-					            }else if(date1.compareTo(date2)==0){
-					            	new VehiclePath().execute();
-					            }else{
-					                System.out.println("How to get here?");
-					            }
+								} else if (date1.compareTo(date2) < 0) {
+									new VehiclePath().execute();
+								} else if (date1.compareTo(date2) == 0) {
+									new VehiclePath().execute();
+								} else {
+									System.out.println("How to get here?");
+								}
 							} catch (ParseException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-						
+
 						} else {
 							AlertDialog alertDialog = new AlertDialog.Builder(
 									HistoryTrack.this).create();
@@ -533,17 +540,21 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 		signout.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				Config.username= "";
+				Config.username = "";
 				VehichleArrayAdapter.data.clear();
 				DashboardActivity.vehicleall.clear();
 				vehiclehistory1.clear();
 				LiveTrack.doAsynchronousTask.cancel();
 				HistoryTrack.vehiclehistory1.clear();
-			
+
 				SharedPreferences settings = getApplicationContext()
 						.getSharedPreferences("MyPrefs0",
 								getApplicationContext().MODE_PRIVATE);
 				settings.edit().clear().commit();
+				Intent ii = new Intent(HistoryTrack.this,
+						BackgroundService.class);
+				ii.putExtra("name", "SurvivingwithAndroid");
+				HistoryTrack.this.stopService(ii);
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);

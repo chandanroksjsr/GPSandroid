@@ -46,6 +46,7 @@ public class LoginActivity extends Activity {
 	String enabled;
 	String username1;
 	String password1;
+	String loginsucces;
 	public static final String MyPREFERENCES = "MyPrefs0";
 	SharedPreferences sharedpreferences, sharedpreferences1;
 	private static final String TAG_SUCCESS1 = "success";
@@ -352,48 +353,49 @@ public class LoginActivity extends Activity {
 			System.out.println(paswd.getText().toString());
 			JSONObject json = jLogin.makeHttpRequest(loginurl, "POST", params1);
 			System.out.println("value for json::" + json);
-			if (json != null) {
-				try {
-					if (json != null) {
-						System.out.println("json value::" + json);
+			loginsucces = "no";
+			try {
 
-						JSONObject jUser = json.getJSONObject(TAG_SRESL);
-						successL = jUser.getString(TAG_SUCCESS1);
-						username1 = jUser.getString(TAG_USERNAME);
-						password1 = jUser.getString(TAG_PASSWORD);
+				if (json != null) {
+					System.out.println("json value::" + json);
 
-						Config.username = jUser.getString(TAG_USERNAME);
-						Config.password = jUser.getString(TAG_PASSWORD);
-						Config.org_id = jUser.getString(TAG_ORGID);
-						Config.role = jUser.getString(TAG_ROLE);
-						Config.enabled = jUser.getString(TAG_ENABLED);
-						// System.out.println("username value:::" + username);
-						// System.out.println("password value::" + password);
-						// System.out.println("role value" + role);
+					JSONObject jUser = json.getJSONObject(TAG_SRESL);
+					loginsucces = jUser.getString(TAG_SUCCESS1);
+					username1 = jUser.getString(TAG_USERNAME);
+					password1 = jUser.getString(TAG_PASSWORD);
+					successL = "yes";
+					Config.username = jUser.getString(TAG_USERNAME);
+					Config.password = jUser.getString(TAG_PASSWORD);
+					Config.org_id = jUser.getString(TAG_ORGID);
+					Config.role = jUser.getString(TAG_ROLE);
+					Config.enabled = jUser.getString(TAG_ENABLED);
+					// System.out.println("username value:::" + username);
+					// System.out.println("password value::" + password);
+					// System.out.println("role value" + role);
 
-						Editor editor = sharedpreferences.edit();
-						editor.putString("username", Config.username);
-						editor.putString("password", Config.password);
-						editor.putString("org_id", Config.org_id);
-						editor.putString("role", Config.role);
-						editor.putString("enabled", Config.enabled);
+					Editor editor = sharedpreferences.edit();
+					editor.putString("username", Config.username);
+					editor.putString("password", Config.password);
+					editor.putString("org_id", Config.org_id);
+					editor.putString("role", Config.role);
+					editor.putString("enabled", Config.enabled);
 
-						editor.commit();
-						Intent intentSignUP = new Intent(
-								getApplicationContext(),
-								DashboardActivity.class);
-						startActivity(intentSignUP);
-					}
+					editor.commit();
+					Intent intentSignUP = new Intent(getApplicationContext(),
+							DashboardActivity.class);
+					startActivity(intentSignUP);
+				} else {
 
+					successL = "no";
 				}
 
-				catch (JSONException e) {
-					e.printStackTrace();
+			}
 
-				}
-			} else {
+			catch (JSONException e) {
+				e.printStackTrace();
+				loginsucces="no";
+				successL="yes";
 
-				successL = "No";
 			}
 
 			return null;
@@ -403,7 +405,7 @@ public class LoginActivity extends Activity {
 		@Override
 		protected void onPostExecute(String file_url) {
 			super.onPostExecute(file_url);
-			System.out.println("in post execute");
+			System.out.println("in post execute::" + loginsucces);
 			pDialog.dismiss();
 			if (JsonParser.jss.equals("empty")) {
 				System.out.println("json null value");
@@ -428,13 +430,39 @@ public class LoginActivity extends Activity {
 				alertDialog.show();
 
 				pDialog.dismiss();
-			} else if (successL.equalsIgnoreCase("No")) {
+			} else if (loginsucces.equalsIgnoreCase("No")
+					&& successL.equalsIgnoreCase("yes")) {
 				AlertDialog alertDialog = new AlertDialog.Builder(
 						LoginActivity.this).create();
 
 				alertDialog.setTitle("INFO!");
 
 				alertDialog.setMessage("Invalid username or password.");
+
+				alertDialog.setIcon(R.drawable.delete);
+
+				alertDialog.setButton("OK",
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(final DialogInterface dialog,
+									final int which) {
+
+								usrname.setText("");
+								paswd.setText("");
+								dialog.dismiss();
+							}
+						});
+
+				alertDialog.show();
+
+				pDialog.dismiss();
+			} else if (successL.equalsIgnoreCase("No")) {
+				AlertDialog alertDialog = new AlertDialog.Builder(
+						LoginActivity.this).create();
+
+				alertDialog.setTitle("INFO!");
+
+				alertDialog.setMessage("Server not connected.");
 
 				alertDialog.setIcon(R.drawable.delete);
 
@@ -467,14 +495,14 @@ public class LoginActivity extends Activity {
 		if (sharedpreferences.contains("username")) {
 			System.out.println("check wherther one pref has val");
 			System.out.println("if sharedpref0 is avail");
-			
+
 			if (sharedpreferences.contains("password")) {
 				Config.username = sharedpreferences.getString("username", "");
 				Config.password = sharedpreferences.getString("password", "");
 				Config.org_id = sharedpreferences.getString("org_id", "");
 				Config.role = sharedpreferences.getString("role", "");
 				Config.enabled = sharedpreferences.getString("enabled", "");
-		
+
 				Intent i = new Intent(this, DashboardActivity.class);
 				startActivity(i);
 			}

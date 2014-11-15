@@ -149,7 +149,6 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		setContentView(R.layout.livetrack);
 
 		ActionBar actions = getActionBar();
-		
 
 		actions.setIcon(R.drawable.liveicon);
 		actions.setBackgroundDrawable(new ColorDrawable(Color
@@ -398,6 +397,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 			public void onClick(View v) {
 				timer.cancel();
 				LiveTrack.doAsynchronousTask.cancel();
+
 				SharedPreferences settings = getApplicationContext()
 						.getSharedPreferences("MyPrefs0",
 								getApplicationContext().MODE_PRIVATE);
@@ -408,6 +408,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 				vehiclehistory.clear();
 				HistoryTrack.vehiclehistory1.clear();
 				Config.username = "";
+				Intent ii = new Intent(LiveTrack.this, BackgroundService.class);
+				ii.putExtra("name", "SurvivingwithAndroid");
+				LiveTrack.this.stopService(ii);
 				Intent intentSignUP = new Intent(getApplicationContext(),
 						LoginActivity.class);
 				startActivity(intentSignUP);
