@@ -32,4 +32,7 @@ public class PrivacyAndPolicyTab extends Activity {
 		collection.setTypeface(null, Typeface.BOLD);
 		cop.setTypeface(null, Typeface.BOLD);
 	}
+	@Override
+	public void onBackPressed() {
+	}
 }

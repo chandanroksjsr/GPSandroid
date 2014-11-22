@@ -24,8 +24,10 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -79,8 +81,10 @@ public class TheftAlarm extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.theftalarm);
 		ActionBar actions = getActionBar();
-		actions.setBackgroundDrawable(new ColorDrawable(Color
-				.parseColor("#93aac3")));
+		getActionBar().setBackgroundDrawable(
+				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
+						R.drawable.actionbarbg)));
+
 		actions.setIcon(R.drawable.historyicon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
@@ -93,34 +97,34 @@ public class TheftAlarm extends Activity {
 			new CheckTheftAlarm().execute();
 		}
 		anim = new AlphaAnimation(0.0f, 1.0f);
-		signout = (Button) findViewById(R.id.signutty);
-		welcome = (TextView) findViewById(R.id.TextView01);
-		welcomeusername = (TextView) findViewById(R.id.welcmename);
-		welcomeusername.setText(Config.username + "!");
-		welcomeusername.setTypeface(null, Typeface.BOLD);
-		welcome.setTypeface(null, Typeface.BOLD);
-		signout.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-
-				LiveTrack.doAsynchronousTask.cancel();
-				Config.username = "";
-				VehichleArrayAdapter.data.clear();
-				DashboardActivity.vehicleall.clear();
-
-				HistoryTrack.vehiclehistory1.clear();
-				SharedPreferences settings = getApplicationContext()
-						.getSharedPreferences("MyPrefs0",
-								getApplicationContext().MODE_PRIVATE);
-				settings.edit().clear().commit();
-				Intent ii = new Intent(TheftAlarm.this, BackgroundService.class);
-				ii.putExtra("name", "SurvivingwithAndroid");
-				TheftAlarm.this.stopService(ii);
-				Intent intentSignUP = new Intent(getApplicationContext(),
-						LoginActivity.class);
-				startActivity(intentSignUP);
-			}
-		});
+		// signout = (Button) findViewById(R.id.signutty);
+		// welcome = (TextView) findViewById(R.id.TextView01);
+		// welcomeusername = (TextView) findViewById(R.id.welcmename);
+		// welcomeusername.setText(Config.username + "!");
+		// welcomeusername.setTypeface(null, Typeface.BOLD);
+		// welcome.setTypeface(null, Typeface.BOLD);
+		// signout.setOnClickListener(new View.OnClickListener() {
+		//
+		// public void onClick(View v) {
+		//
+		// LiveTrack.doAsynchronousTask.cancel();
+		// Config.username = "";
+		// VehichleArrayAdapter.data.clear();
+		// DashboardActivity.vehicleall.clear();
+		//
+		// HistoryTrack.vehiclehistory1.clear();
+		// SharedPreferences settings = getApplicationContext()
+		// .getSharedPreferences("MyPrefs0",
+		// getApplicationContext().MODE_PRIVATE);
+		// settings.edit().clear().commit();
+		// Intent ii = new Intent(TheftAlarm.this, BackgroundService.class);
+		// ii.putExtra("name", "SurvivingwithAndroid");
+		// TheftAlarm.this.stopService(ii);
+		// Intent intentSignUP = new Intent(getApplicationContext(),
+		// LoginActivity.class);
+		// startActivity(intentSignUP);
+		// }
+		// });
 		on = (RadioButton) findViewById(R.id.radiosubject);
 		off = (RadioButton) findViewById(R.id.radiocourse);
 
@@ -193,6 +197,8 @@ public class TheftAlarm extends Activity {
 									LiveTrack.driver_name);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							TheftAlarm.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 2) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
@@ -204,6 +210,8 @@ public class TheftAlarm extends Activity {
 								TheftAlarm.doAsynchronousTask.cancel();
 							}
 							TheftAlarm.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 3) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
@@ -215,6 +223,8 @@ public class TheftAlarm extends Activity {
 								TheftAlarm.doAsynchronousTask.cancel();
 							}
 							TheftAlarm.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 4) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
@@ -226,6 +236,8 @@ public class TheftAlarm extends Activity {
 								TheftAlarm.doAsynchronousTask.cancel();
 							}
 							TheftAlarm.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						}
 
 					} else {
@@ -291,7 +303,7 @@ public class TheftAlarm extends Activity {
 					"POST", params1);
 
 			Log.i("tagconvertstr", "[" + jobject + "]");
-			status="0";
+			status = "0";
 			if (json != null) {
 				try {
 					if (json != null) {
@@ -502,7 +514,7 @@ public class TheftAlarm extends Activity {
 					+ "TheftAlarm.php?service=insertalarm", "POST", params1);
 
 			System.out.println("value for json::" + json);
-			succ="no";
+			succ = "no";
 			if (json != null) {
 				try {
 					if (json != null) {

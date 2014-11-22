@@ -23,12 +23,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -86,8 +89,12 @@ public class AlertMsg extends Activity {
 		setContentView(R.layout.alertmsg);
 
 		ActionBar actions = getActionBar();
-		actions.setBackgroundDrawable(new ColorDrawable(Color
-				.parseColor("#93aac3")));
+		getActionBar().setTitle(
+				Html.fromHtml("<font color='#ffffff'>Deemgps </font>"));
+		getActionBar().setBackgroundDrawable(
+				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
+						R.drawable.actionbarbg)));
+
 		actions.setIcon(R.drawable.alerticon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
@@ -122,11 +129,15 @@ public class AlertMsg extends Activity {
 								LiveTrack.vehicle_reg_no);
 						myIntent.putExtra("routenum", LiveTrack.routeno);
 						AlertMsg.this.startActivity(myIntent);
+						overridePendingTransition(R.anim.slide_in,
+								R.anim.slide_out);
 					} else if (itemPosition == 2) { // Activity#3 Selected
 						LiveTrack.timer.cancel();
 						LiveTrack.doAsynchronousTask.cancel();
 						myIntent = new Intent(AlertMsg.this, HistoryTrack.class);
 						AlertMsg.this.startActivity(myIntent);
+						overridePendingTransition(R.anim.slide_in,
+								R.anim.slide_out);
 					} else if (itemPosition == 3) { // Activity#3 Selected
 						LiveTrack.timer.cancel();
 						LiveTrack.doAsynchronousTask.cancel();
@@ -137,6 +148,8 @@ public class AlertMsg extends Activity {
 						myIntent = new Intent(AlertMsg.this,
 								DashboardActivity.class);
 						AlertMsg.this.startActivity(myIntent);
+						overridePendingTransition(R.anim.slide_in,
+								R.anim.slide_out);
 					}
 
 				} else {
@@ -163,38 +176,38 @@ public class AlertMsg extends Activity {
 		cd = new ConnectionDetector(getApplicationContext());
 		Button btnsend, btnclr;
 
-		btnsend = (Button) findViewById(R.id.button1);
-		btnclr = (Button) findViewById(R.id.button2);
+		btnsend = (Button) findViewById(R.id.fromtime);
+		btnclr = (Button) findViewById(R.id.date);
 		msgtxt = (EditText) findViewById(R.id.e6);
 
-		signout = (Button) findViewById(R.id.logingout);
-		welcome = (TextView) findViewById(R.id.textView1);
-		welcomeusername = (TextView) findViewById(R.id.username);
-		welcomeusername.setText(Config.username + "!");
-		welcomeusername.setTypeface(null, Typeface.BOLD);
-		welcome.setTypeface(null, Typeface.BOLD);
+		// signout = (Button) findViewById(R.id.logingout);
+		// welcome = (TextView) findViewById(R.id.textView1);
+		// welcomeusername = (TextView) findViewById(R.id.username);
+		// welcomeusername.setText(Config.username + "!");
+		// welcomeusername.setTypeface(null, Typeface.BOLD);
+		// welcome.setTypeface(null, Typeface.BOLD);
 		new SendMessage().execute();
-		signout.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				LiveTrack.doAsynchronousTask.cancel();
-				LiveTrack.timer.cancel();
-				Config.username = "";
-				VehichleArrayAdapter.data.clear();
-				DashboardActivity.vehicleall.clear();
-				HistoryTrack.vehiclehistory1.clear();
-				SharedPreferences settings = getApplicationContext()
-						.getSharedPreferences("MyPrefs0",
-								getApplicationContext().MODE_PRIVATE);
-				settings.edit().clear().commit();
-				Intent ii = new Intent(AlertMsg.this, BackgroundService.class);
-				ii.putExtra("name", "SurvivingwithAndroid");
-				AlertMsg.this.stopService(ii);
-				Intent intentSignUP = new Intent(getApplicationContext(),
-						LoginActivity.class);
-				startActivity(intentSignUP);
-			}
-		});
+		// signout.setOnClickListener(new View.OnClickListener() {
+		//
+		// public void onClick(View v) {
+		// LiveTrack.doAsynchronousTask.cancel();
+		// LiveTrack.timer.cancel();
+		// Config.username = "";
+		// VehichleArrayAdapter.data.clear();
+		// DashboardActivity.vehicleall.clear();
+		// HistoryTrack.vehiclehistory1.clear();
+		// SharedPreferences settings = getApplicationContext()
+		// .getSharedPreferences("MyPrefs0",
+		// getApplicationContext().MODE_PRIVATE);
+		// settings.edit().clear().commit();
+		// Intent ii = new Intent(AlertMsg.this, BackgroundService.class);
+		// ii.putExtra("name", "SurvivingwithAndroid");
+		// AlertMsg.this.stopService(ii);
+		// Intent intentSignUP = new Intent(getApplicationContext(),
+		// LoginActivity.class);
+		// startActivity(intentSignUP);
+		// }
+		// });
 
 		btnclr.setOnClickListener(new OnClickListener() {
 

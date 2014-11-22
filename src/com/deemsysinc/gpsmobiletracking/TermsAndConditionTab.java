@@ -40,4 +40,7 @@ public class TermsAndConditionTab extends Activity {
 		warantydis.setTypeface(null, Typeface.BOLD);
 		expect.setTypeface(null, Typeface.BOLD);
 	}
+	@Override
+	public void onBackPressed() {
+	}
 }

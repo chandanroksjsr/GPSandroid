@@ -98,4 +98,7 @@ public class AboutusTab extends Activity {
 		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
 		context.startActivity(Intent.createChooser(emailIntent, title));
 	}
+	@Override
+	public void onBackPressed() {
+	}
 }

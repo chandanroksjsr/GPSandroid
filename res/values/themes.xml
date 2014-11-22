@@ -7,7 +7,8 @@
    </style>
    
   <style name="MyActionBartheme">
-        <item name="android:background">#0a7dbc</item>
+        <item name="android:background">@drawable/actionbarbg</item>
+         <item name="android:homeAsUpIndicator">@drawable/backward</item>
       <item name="android:dropDownListViewStyle">@style/DropDownItem</item>
         
     </style>

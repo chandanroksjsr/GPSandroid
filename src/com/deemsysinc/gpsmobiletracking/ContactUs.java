@@ -17,10 +17,16 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
@@ -63,11 +69,20 @@ public class ContactUs extends Activity {
 	final Context context = this;
 	JSONObject jsonE;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-		getActionBar().hide();
+		getActionBar().setBackgroundDrawable(
+				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
+						R.drawable.actionbarbg)));
+		getActionBar().setTitle(
+				Html.fromHtml("<font color='#ffffff'>DeemGPS</font>"));
+		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+	
 		setContentView(R.layout.contactus);
 		mob = (EditText) findViewById(R.id.e5);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.layoutt);
@@ -993,15 +1008,6 @@ public class ContactUs extends Activity {
 
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			finish();
-		}
-		return true;
-	}
-
 	class SendEmailAsyncTask extends AsyncTask<Void, Void, Boolean> {
 		GMailSender sender = new GMailSender("deemgps@gmail.com", "deemsys@123");
 		private String messageall;
@@ -1213,9 +1219,30 @@ public class ContactUs extends Activity {
 		}
 	}
 
+	@Override
+	public void onBackPressed() {
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case android.R.id.home:
+			Intent myIntent2 = new Intent(ContactUs.this,
+					DashboardActivity.class);
+			ContactUs.this.startActivity(myIntent2);
+			overridePendingTransition(R.anim.pushup, R.anim.pushdown);
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
 	protected void hideKeyboard(View view) {
-		InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		in.hideSoftInputFromWindow(view.getWindowToken(),
-				InputMethodManager.HIDE_NOT_ALWAYS);
+		// InputMethodManager in = (InputMethodManager)
+		// getSystemService(Context.INPUT_METHOD_SERVICE);
+		// in.hideSoftInputFromWindow(view.getWindowToken(),
+		// InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 }

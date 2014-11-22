@@ -2,130 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/alertlayout"
     style="@style/AppTheme"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/loginbg"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:gravity="center_vertical|center_horizontal|center"
-        android:orientation="vertical" >
-
-        <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitStart"
-            android:src="@drawable/deemgpsicon" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="5dp"
-        android:paddingRight="20dp" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="5dp"
-            android:paddingRight="20dp" >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp" >
-
-                <TextView
-                    android:id="@+id/TextView01"
-                    style="@style/welcome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/welcome"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/welcmename"
-                    style="@style/welcome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="false"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="70dp"
-                    android:layout_toRightOf="@id/welcome"
-                    android:text="thendral"
-                    android:textColor="#000000" />
-
-                <Button
-                    android:id="@+id/signutty"
-                    style="@style/custom"
-                    android:layout_width="75dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="0dp"
-                    android:background="@drawable/logoutbutnor"
-                    android:paddingRight="5dp" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp" >
-
-            <TextView
-                android:id="@+id/textView1"
-                style="@style/welcome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="@string/welcome"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/username"
-                style="@style/welcome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="false"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@id/textView1"
-                android:text="thendral"
-                android:textColor="#000000" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="25dp" >
-    </View>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="180dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/listbg"
-        android:gravity="center_vertical|center_horizontal|center"
+        android:gravity="center_horizontal"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView1"
-            style="@style/welcome"
+            style="@style/welcomeblack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/thefttext"
-            android:textColor="#ffffff"
-            android:textSize="21sp" />
+            android:text="@string/thefttext" />
 
         <RadioGroup
             android:id="@+id/radioGroup1"
@@ -140,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/rbtn_selector"
+                android:background="@drawable/radiobuttonleft"
                 android:button="@null"
                 android:gravity="center"
                 android:padding="5dp"
@@ -152,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/rbtn_selector"
+                android:background="@drawable/radiobuttonright"
                 android:button="@null"
                 android:gravity="center"
                 android:padding="5dp"

@@ -1,275 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutt"
     android:layout_width="fill_parent"
-      android:id="@+id/layoutt"
     android:layout_height="fill_parent"
-  android:background = "@drawable/loginbg"
-   
     android:orientation="vertical" >
 
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="200dp"
-    android:gravity="center_vertical|center_horizontal|center"
-    android:orientation="vertical" >
-
-      <ImageView
-          android:id="@+id/avatar"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:scaleType="fitStart"
-          android:src="@drawable/deemgpsicon" />
-
- </LinearLayout>
- <LinearLayout
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:orientation="horizontal" >
-
-<LinearLayout
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:orientation="horizontal" >
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="60dp"
-    android:gravity="center_vertical|center_horizontal|center"
-    android:orientation="vertical"
-    android:paddingRight="40dp" >
-
-      <ImageView
-          android:id="@+id/avatar"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:paddingLeft="40dp"
-          android:scaleType="fitStart"
-          android:src="@drawable/contacticon" />
-
- </LinearLayout>
-
- </LinearLayout>
- </LinearLayout>
-
-<View
-    android:layout_width="wrap_content"
-    android:layout_height="25dp" >
-
-</View>
-
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"
-    android:background="@drawable/listbg"
-    android:orientation="vertical"
-    android:paddingBottom="20dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="40dp" >
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp" >
-
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-
-<EditText
-    android:id="@+id/e1"
-    style="@style/customcontact"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/rounded_edittext"
-    android:ems="10"
-    android:hint="@string/firstname"
-    android:padding="5dp"
-    android:paddingLeft="30dp"
-    android:singleLine="true" />
-
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="20dp" >
-
-</View>
-    <EditText
-        android:id="@+id/e2"
-        style="@style/customcontact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="@string/lastname"
-        android:lines="1"
-        android:maxLines="1"
-        android:padding="5dp"
-        android:singleLine="true" />
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="20dp" >
-
-</View>
-    <EditText
-        android:id="@+id/e3"
-        style="@style/customcontact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:lines="1"
-        android:maxLines="1"
-        android:padding="5dp"
-        android:singleLine="true" />
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="20dp" >
-
-</View>
-    <EditText
-        android:id="@+id/e4"
-        style="@style/customcontact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="@string/orgname"
-        android:lines="1"
-        android:maxLines="1"
-        android:padding="5dip"
-        android:singleLine="true" />
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="20dp" >
-
-</View>
-    <EditText
-        android:id="@+id/e5"
-        style="@style/customcontact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="@string/mobnumb"
-        android:inputType="phone"
-        android:lines="1"
-        android:maxLength="10"
-        android:maxLines="1"
-        android:padding="5dip"
-        android:singleLine="true" />
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="20dp" >
-
-</View>
-
-    <EditText
-        android:id="@+id/e6"
-        style="@style/customcontact"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:gravity="top|left"
-        android:hint="@string/addrs"
-        android:maxLines="5"
-        android:padding="10dp"
-         />
-
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="20dp" >
-
-</View>
-    <EditText
-        android:id="@+id/e8"
-        style="@style/customcontact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="@string/city"
-        android:lines="1"
-        android:maxLines="1"
-        android:padding="5dip"
-        android:singleLine="true" />
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="20dp" >
-
-</View>
-    <EditText
-        android:id="@+id/e9"
-        style="@style/customcontact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="@string/state"
-        android:lines="1"
-        android:maxLines="1"
-        android:padding="5dip"
-        android:singleLine="true" />
-
-    <View
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="20dp" >
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:scrollbars="none" >
 
-</View>
-    <LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="horizontal" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/listbg"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp" >
 
-   <Button
-       android:id="@+id/btn2"
-       android:layout_width="125dp"
-       android:layout_height="35dp"
-       android:background="@drawable/sendbutnormal" />
+            <EditText
+                android:id="@+id/e1"
+                style="@style/customcontact"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:hint="@string/firstname"
+                android:padding="5dp"
+                android:singleLine="true" />
 
-<View
-    android:layout_width="100dp"
-    android:layout_height="20dp" >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" >
+            </View>
 
-</View>
+            <EditText
+                android:id="@+id/e2"
+                style="@style/customcontact"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:hint="@string/lastname"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:singleLine="true" />
 
-    <Button
-        android:id="@+id/btn3"
-        android:layout_width="125dp"
-        android:layout_height="35dp"
-        android:background="@drawable/clearmessagebutnormal" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" >
+            </View>
 
-   </LinearLayout>
-    </LinearLayout>
-    </RelativeLayout>
-    
-  
+            <EditText
+                android:id="@+id/e3"
+                style="@style/customcontact"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:singleLine="true" />
 
-     
-    
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" >
+            </View>
 
-</LinearLayout>
+            <EditText
+                android:id="@+id/e4"
+                style="@style/customcontact"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:hint="@string/orgname"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="5dip"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" >
+            </View>
+
+            <EditText
+                android:id="@+id/e5"
+                style="@style/customcontact"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:hint="@string/mobnumb"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:padding="5dip"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" >
+            </View>
+
+            <EditText
+                android:id="@+id/e6"
+                style="@style/customcontact"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:gravity="top|left"
+                android:hint="@string/addrs"
+                android:maxLines="5"
+                android:padding="5dip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" >
+            </View>
+
+            <EditText
+                android:id="@+id/e8"
+                style="@style/customcontact"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:hint="@string/city"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="5dip"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp" >
+            </View>
+
+            <EditText
+                android:id="@+id/e9"
+                style="@style/customcontact"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:hint="@string/state"
+                android:lines="1"
+                android:maxLines="1"
+                android:padding="5dip"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" >
+            </View>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/btn2"
+                    style="@style/custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/buttonbackground"
+                    android:text="@string/savemessage" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" >
+                </View>
+
+                <Button
+                    android:id="@+id/btn3"
+                    style="@style/custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/buttonbackground"
+                    android:text="@string/clearmessage" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

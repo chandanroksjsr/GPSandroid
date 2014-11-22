@@ -1,134 +1,142 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativelay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginbg"
-    
-      android:id="@+id/relativelay"
-    android:orientation="vertical" >
+    android:background="@drawable/loginbgg"
+    android:gravity="center_vertical|center"
+    android:orientation="vertical"
+    tools:context=".LoginActivity" >
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/layoutradius"
         android:gravity="center_vertical|center_horizontal|center"
         android:orientation="vertical" >
 
-      <ImageView
-          android:id="@+id/avatar"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:scaleType="fitStart"
-          android:src="@drawable/deemgpsicon" />
+        <Button
+            android:id="@+id/loginnhere"
+            style="@style/welcome"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/actionbarbg"
+            android:clickable="false"
+            android:text="Login Here" />
 
- </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:orientation="vertical" >
 
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="15dp" >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:orientation="vertical" >
 
-</View>
+                <TextView
+                    android:id="@+id/textView1"
+                    style="@style/customcontact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_signuptext" />
+            </LinearLayout>
 
-  <LinearLayout
-      android:layout_width="fill_parent"
-      android:layout_height="60dp"
-      android:gravity="center_vertical|center_horizontal|center"
-      android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" >
 
-      <ImageView
-          android:id="@+id/avatar"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:scaleType="fitStart"
-          android:src="@drawable/loginhere" />
+                <EditText
+                    android:id="@+id/username"
+                    style="@style/customcontact"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
+                    android:ems="10"
+                    android:hint="@string/Username"
+                    android:inputType="textPersonName"
+                    android:padding="5dp"
+                    android:singleLine="true" />
+            </LinearLayout>
 
- </LinearLayout>
-   <LinearLayout
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:gravity="center_vertical|center_horizontal|center"
-       android:orientation="horizontal" >
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="15dp" >
+            </View>
 
-<ImageView
-    android:id="@+id/imageView1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/usicon" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" >
 
-     <EditText
-         android:id="@+id/username"
-         style="@style/custom"
-         android:layout_width="wrap_content"
-         android:layout_height="50dp"
-         android:background="@drawable/textbg"
-         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
-         android:ems="10"
-         android:hint="@string/Username"
-         android:inputType="textPersonName"
-         android:singleLine="true" />
+                <EditText
+                    android:id="@+id/pswd"
+                    style="@style/customcontact"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
+                    android:ems="10"
+                    android:hint="@string/pswd"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    android:singleLine="true" />
+            </LinearLayout>
 
-   </LinearLayout>
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="15dp" >
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="20dp" >
+            </View>
 
-</View>
-   <LinearLayout
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:gravity="center_vertical|center_horizontal|center"
-       android:orientation="horizontal" >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" >
 
-<ImageView
-    android:id="@+id/imageView1sd"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/pwdicon" />
+                <Button
+                    android:id="@+id/signin"
+                    style="@style/welcome"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/buttonbackground"
+                    android:text="@string/signin" />
 
-       <EditText
-           android:id="@+id/pswd"
-           style="@style/custom"
-           android:layout_width="wrap_content"
-           android:layout_height="50dp"
-           android:background="@drawable/textbg"
-           android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_"
-           android:ems="10"
-           android:hint="@string/pswd"
-           android:inputType="textPassword"
-           android:singleLine="true" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" >
+                </View>
 
-   </LinearLayout>
-<View
-       android:layout_width="fill_parent"
-       android:layout_height="35dp" >
+                <Button
+                    android:id="@+id/reset"
+                    style="@style/welcome"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/buttonbackground"
+                    android:text="@string/reset" />
 
-</View>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" >
+                </View>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="horizontal" >
-
-     <Button
-         android:id="@+id/signin"
-         android:layout_width="100dp"
-         android:layout_height="40dp"
-         android:background="@drawable/loginbutlarge" />
-
-<View
-    android:layout_width="30dp"
-    android:layout_height="1dp" >
-
-</View>
-
-     <Button
-         android:id="@+id/reset"
-         android:layout_width="100dp"
-         android:layout_height="40dp"
-         android:background="@drawable/resetbutlarge"
-       />
-
-   </LinearLayout>
 </LinearLayout>

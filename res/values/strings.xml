@@ -2,19 +2,20 @@
 <resources>
 
     <string name="login">LOG IN</string>
-    <string name="reset">RESET</string>
+    <string name="reset">Reset</string>
     <string name="app_name">DeemGPS</string>
     <string name="action_settings">Settings</string>
     <string name="release">OK</string>
     <string name="Username">Username</string>
     <string name="pswd">Password</string>
-    <string name="signin">Signin</string>
+    <string name="signin">Login</string>
     <string name="welcome">Welcome     </string>
     <string name="aboutus">About us</string>
+     <string name="profile">Profile</string>
     <string name="contactus">Contact us</string>
     <string name="callus">Call us</string>
     <string name="feedbak">FeedBack</string>
-    <string name="signout">Signout</string>
+    <string name="signout">Logout</string>
     <string name="ariel">Ariel</string>
     <string name="satellite">Satellite</string>
     <string name="firstname">Firstname</string>
@@ -26,8 +27,11 @@
     <string name="city">City</string>
     <string name="state">State</string>
     <string name="info">INFO!</string>
+    <string name="savemessage">Save Message</string>
+    <string name="clearmessage">Clear Message</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
+       <string name="login_signuptext">Enter your username and password to login</string>
 
     <string-array name="nav_drawer_items">
         <item>Live Track</item>
@@ -76,7 +80,6 @@
         <item>Over Speed</item>
         <item>Dashboard</item>
     </string-array>
-   
     <string-array name="nav_drawer_items3_withoutalert">
         <item>Over Speed</item>
         <item>Live Track</item>

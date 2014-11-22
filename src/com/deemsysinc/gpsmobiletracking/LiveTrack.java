@@ -5,60 +5,54 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.deemsysinc.gpsmobiletracking.TheftAlarm.insertTheftAlarm;
+import com.deemsysinc.gpsmobiletracking.TheftAlarm.updateTheftAlarm;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
-
 import com.google.android.gms.maps.MapsInitializer;
-
 import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.app.AlertDialog;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolylineOptions;
-
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class LiveTrack extends Activity implements OnMapLongClickListener {
+	RadioButton maprad, satrad;
 	public static ArrayList<HashMap<String, String>> vehiclehistory1 = new ArrayList<HashMap<String, String>>();
 	ArrayList<HashMap<String, String>> vehiclehistory = new ArrayList<HashMap<String, String>>();
 	HashMap<String, String> map = new HashMap<String, String>();
@@ -151,10 +145,73 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		ActionBar actions = getActionBar();
 
 		actions.setIcon(R.drawable.liveicon);
-		actions.setBackgroundDrawable(new ColorDrawable(Color
-				.parseColor("#93aac3")));
+		getActionBar().setBackgroundDrawable(new BitmapDrawable (BitmapFactory.decodeResource(getResources(), R.drawable.actionbarbg)));
+		
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
+
+		maprad = (RadioButton) findViewById(R.id.radiomap);
+		satrad = (RadioButton) findViewById(R.id.radiosatellite);
+
+		OnClickListener listener = new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioButton rb = (RadioButton) v;
+				String selectedid = rb.getText().toString();
+				if (selectedid.equalsIgnoreCase("map")) {
+					maprad.setEnabled(false);
+					satrad.setEnabled(true);
+					try {
+						if (googleMap == null) {
+							googleMap = ((MapFragment) getFragmentManager()
+									.findFragmentById(R.id.map)).getMap();
+						}
+						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+					//	tgbutton.setBackgroundResource(R.drawable.earth);
+
+						Marker marker = googleMap.addMarker(new MarkerOptions()
+								.position(TutorialsPoint).title(""));
+						CameraPosition cameraPosition = new CameraPosition.Builder()
+								.target(TutorialsPoint).zoom(4).build();
+						googleMap.animateCamera(CameraUpdateFactory
+								.newCameraPosition(cameraPosition));
+						marker.remove();
+						marker.setVisible(false);
+						marker.setVisible(false);
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else {
+					try {
+						if (googleMap == null) {
+							googleMap = ((MapFragment) getFragmentManager()
+									.findFragmentById(R.id.map)).getMap();
+						}
+						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+//						tgbutton.setBackgroundResource(R.drawable.aerial);
+						Marker marker = googleMap.addMarker(new MarkerOptions()
+								.position(TutorialsPoint).title(""));
+						CameraPosition cameraPosition = new CameraPosition.Builder()
+								.target(TutorialsPoint).zoom(4).build();
+						googleMap.animateCamera(CameraUpdateFactory
+								.newCameraPosition(cameraPosition));
+						marker.remove();
+						marker.setVisible(false);
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					maprad.setEnabled(true);
+					satrad.setEnabled(false);
+
+				}
+
+			}
+		};
+		maprad.setOnClickListener(listener);
+		satrad.setOnClickListener(listener);
+
 		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
@@ -189,6 +246,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							myIntent = new Intent(LiveTrack.this,
 									HistoryTrack.class);
 							LiveTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 2) {
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
@@ -200,6 +259,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							myIntent = new Intent(LiveTrack.this,
 									TheftAlarm.class);
 							LiveTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 3) {
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
@@ -211,6 +272,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							myIntent = new Intent(LiveTrack.this,
 									OverSpeed.class);
 							LiveTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 4) {
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
@@ -222,6 +285,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							myIntent = new Intent(LiveTrack.this,
 									DashboardActivity.class);
 							LiveTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						}
 
 					} else {
@@ -267,6 +332,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							myIntent = new Intent(LiveTrack.this,
 									HistoryTrack.class);
 							LiveTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 2) {
 							LiveTrack.timer.cancel();
 							vehiclehistory.clear();
@@ -276,6 +343,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							myIntent = new Intent(LiveTrack.this,
 									AlertMsg.class);
 							LiveTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 3) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
@@ -287,6 +356,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							myIntent = new Intent(LiveTrack.this,
 									DashboardActivity.class);
 							LiveTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						}
 
 					} else {
@@ -300,12 +371,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 
 			actions.setListNavigationCallbacks(adapter, callback);
 		}
-		signout = (Button) findViewById(R.id.signutty);
-		welcome = (TextView) findViewById(R.id.textView1);
-		welcomeusername = (TextView) findViewById(R.id.welcmename);
-		welcomeusername.setText(Config.username + "!");
-		welcomeusername.setTypeface(null, Typeface.BOLD);
-		welcome.setTypeface(null, Typeface.BOLD);
+		// signout = (Button) findViewById(R.id.signutty);
+		// welcome = (TextView) findViewById(R.id.textView1);
+		// welcomeusername = (TextView) findViewById(R.id.welcmename);
+		// welcomeusername.setText(Config.username + "!");
+		// welcomeusername.setTypeface(null, Typeface.BOLD);
+		// welcome.setTypeface(null, Typeface.BOLD);
 		try {
 			MapsInitializer.initialize(getApplicationContext());
 		} catch (GooglePlayServicesNotAvailableException e1) {
@@ -337,105 +408,77 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		}
 		userrole = Config.role;
 
-		tgbutton = (ToggleButton) findViewById(R.id.showmap);
+		//tgbutton = (ToggleButton) findViewById(R.id.showmap);
 		// tgbutton.setSelected(true);
-		tgbutton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (!tgbutton.isChecked()) {
-					try {
-						if (googleMap == null) {
-							googleMap = ((MapFragment) getFragmentManager()
-									.findFragmentById(R.id.map)).getMap();
-						}
-						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-						tgbutton.setBackgroundResource(R.drawable.earth);
-
-						Marker marker = googleMap.addMarker(new MarkerOptions()
-								.position(TutorialsPoint).title(""));
-						CameraPosition cameraPosition = new CameraPosition.Builder()
-								.target(TutorialsPoint).zoom(4).build();
-						googleMap.animateCamera(CameraUpdateFactory
-								.newCameraPosition(cameraPosition));
-						marker.remove();
-						marker.setVisible(false);
-						marker.setVisible(false);
-
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-
-				} else {
-					try {
-						if (googleMap == null) {
-							googleMap = ((MapFragment) getFragmentManager()
-									.findFragmentById(R.id.map)).getMap();
-						}
-						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-						tgbutton.setBackgroundResource(R.drawable.aerial);
-						Marker marker = googleMap.addMarker(new MarkerOptions()
-								.position(TutorialsPoint).title(""));
-						CameraPosition cameraPosition = new CameraPosition.Builder()
-								.target(TutorialsPoint).zoom(4).build();
-						googleMap.animateCamera(CameraUpdateFactory
-								.newCameraPosition(cameraPosition));
-						marker.remove();
-						marker.setVisible(false);
-
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-
-				}
-			}
-		});
-
-		signout.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				timer.cancel();
-				LiveTrack.doAsynchronousTask.cancel();
-
-				SharedPreferences settings = getApplicationContext()
-						.getSharedPreferences("MyPrefs0",
-								getApplicationContext().MODE_PRIVATE);
-				settings.edit().clear().commit();
-				VehichleArrayAdapter.data.clear();
-				DashboardActivity.vehicleall.clear();
-				vehiclehistory1.clear();
-				vehiclehistory.clear();
-				HistoryTrack.vehiclehistory1.clear();
-				Config.username = "";
-				Intent ii = new Intent(LiveTrack.this, BackgroundService.class);
-				ii.putExtra("name", "SurvivingwithAndroid");
-				LiveTrack.this.stopService(ii);
-				Intent intentSignUP = new Intent(getApplicationContext(),
-						LoginActivity.class);
-				startActivity(intentSignUP);
-			}
-		});
+//		tgbutton.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				if (!tgbutton.isChecked()) {
+//					try {
+//						if (googleMap == null) {
+//							googleMap = ((MapFragment) getFragmentManager()
+//									.findFragmentById(R.id.map)).getMap();
+//						}
+//						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//						tgbutton.setBackgroundResource(R.drawable.earth);
+//
+//						Marker marker = googleMap.addMarker(new MarkerOptions()
+//								.position(TutorialsPoint).title(""));
+//						CameraPosition cameraPosition = new CameraPosition.Builder()
+//								.target(TutorialsPoint).zoom(4).build();
+//						googleMap.animateCamera(CameraUpdateFactory
+//								.newCameraPosition(cameraPosition));
+//						marker.remove();
+//						marker.setVisible(false);
+//						marker.setVisible(false);
+//
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//
+//				} else {
+//					try {
+//						if (googleMap == null) {
+//							googleMap = ((MapFragment) getFragmentManager()
+//									.findFragmentById(R.id.map)).getMap();
+//						}
+//						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+//						tgbutton.setBackgroundResource(R.drawable.aerial);
+//						Marker marker = googleMap.addMarker(new MarkerOptions()
+//								.position(TutorialsPoint).title(""));
+//						CameraPosition cameraPosition = new CameraPosition.Builder()
+//								.target(TutorialsPoint).zoom(4).build();
+//						googleMap.animateCamera(CameraUpdateFactory
+//								.newCameraPosition(cameraPosition));
+//						marker.remove();
+//						marker.setVisible(false);
+//
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//
+//				}
+//			}
+//		});
 
 		timercalling();
 	}
 
-	/**
-	 * function to load map. If map is not created it will create it for you
-	 * */
-	private void initilizeMap() {
-		if (googleMap == null) {
-			googleMap = ((MapFragment) getFragmentManager().findFragmentById(
-					R.id.map)).getMap();
-
-			// check if map is created successfully or not
-			if (googleMap == null) {
-				Toast.makeText(getApplicationContext(),
-						"Sorry! unable to create maps", Toast.LENGTH_SHORT)
-						.show();
-			}
-		}
-	}
+	// private void initilizeMap() {
+	// if (googleMap == null) {
+	// googleMap = ((MapFragment) getFragmentManager().findFragmentById(
+	// R.id.map)).getMap();
+	//
+	// // check if map is created successfully or not
+	// if (googleMap == null) {
+	// Toast.makeText(getApplicationContext(),
+	// "Sorry! unable to create maps", Toast.LENGTH_SHORT)
+	// .show();
+	// }
+	// }
+	// }
 
 	public void timercalling() {
 		// final Handler handler;
@@ -572,6 +615,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		}
 
 		// @SuppressWarnings("deprecation")
+		@SuppressWarnings("deprecation")
 		@Override
 		protected void onPostExecute(String file_url) {
 

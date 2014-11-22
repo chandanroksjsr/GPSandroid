@@ -30,23 +30,31 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 
 import android.widget.SpinnerAdapter;
 
 import android.widget.TextView;
 
-public class OverSpeed extends Activity {
+public class OverSpeed extends Activity implements AnimationListener {
 
 	/** Called when the activity is first created. */
 
@@ -74,22 +82,23 @@ public class OverSpeed extends Activity {
 	String fromstring, tostring;
 	String checkdate;
 	String countbtdates, count;
+	LinearLayout linear;
+	Button btn, clobtn;
+	Animation animSlideUp, animSlideDown;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overspeed);
 		ActionBar actions = getActionBar();
-		actions.setBackgroundDrawable(new ColorDrawable(Color
-				.parseColor("#93aac3")));
+		getActionBar().setBackgroundDrawable(new BitmapDrawable (BitmapFactory.decodeResource(getResources(), R.drawable.actionbarbg)));
+		
 		actions.setIcon(R.drawable.historyicon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
 		cd = new ConnectionDetector(getApplicationContext());
 		isInternetPresent = cd.isConnectingToInternet();
-		// if (isInternetPresent) {
-		// new GetAsync().execute();
-		// }
+		linear = (LinearLayout) findViewById(R.id.linearover);
 		overspeed = (TextView) findViewById(R.id.overspeed);
 		drivername = (TextView) findViewById(R.id.drivername);
 		reg_number = (TextView) findViewById(R.id.veg_reg_no);
@@ -110,35 +119,42 @@ public class OverSpeed extends Activity {
 				showDialog(DATE_PICKER_ID);
 			}
 		});
-		signout = (Button) findViewById(R.id.signutty);
-		welcome = (TextView) findViewById(R.id.TextView01);
-		welcomeusername = (TextView) findViewById(R.id.welcmename);
-		welcomeusername.setText(Config.username + "!");
-		welcomeusername.setTypeface(null, Typeface.BOLD);
-		welcome.setTypeface(null, Typeface.BOLD);
-		signout.setOnClickListener(new View.OnClickListener() {
+		animSlideUp = AnimationUtils.loadAnimation(getApplicationContext(),
+				R.anim.slide_up);
+		animSlideDown = AnimationUtils.loadAnimation(getApplicationContext(),
+				R.anim.slide_down);
 
-			public void onClick(View v) {
-
-				LiveTrack.doAsynchronousTask.cancel();
-				Config.username = "";
-				VehichleArrayAdapter.data.clear();
-				DashboardActivity.vehicleall.clear();
-
-				HistoryTrack.vehiclehistory1.clear();
-				Config.username = "";
-				SharedPreferences settings = getApplicationContext()
-						.getSharedPreferences("MyPrefs0",
-								getApplicationContext().MODE_PRIVATE);
-				settings.edit().clear().commit();
-				Intent ii = new Intent(OverSpeed.this, BackgroundService.class);
-				ii.putExtra("name", "SurvivingwithAndroid");
-				OverSpeed.this.stopService(ii);
-				Intent intentSignUP = new Intent(getApplicationContext(),
-						LoginActivity.class);
-				startActivity(intentSignUP);
-			}
-		});
+		animSlideUp.setAnimationListener(this);
+		animSlideDown.setAnimationListener(this);
+		// signout = (Button) findViewById(R.id.signutty);
+		// welcome = (TextView) findViewById(R.id.TextView01);
+		// welcomeusername = (TextView) findViewById(R.id.welcmename);
+		// welcomeusername.setText(Config.username + "!");
+		// welcomeusername.setTypeface(null, Typeface.BOLD);
+		// welcome.setTypeface(null, Typeface.BOLD);
+		// signout.setOnClickListener(new View.OnClickListener() {
+		//
+		// public void onClick(View v) {
+		//
+		// LiveTrack.doAsynchronousTask.cancel();
+		// Config.username = "";
+		// VehichleArrayAdapter.data.clear();
+		// DashboardActivity.vehicleall.clear();
+		//
+		// HistoryTrack.vehiclehistory1.clear();
+		// Config.username = "";
+		// SharedPreferences settings = getApplicationContext()
+		// .getSharedPreferences("MyPrefs0",
+		// getApplicationContext().MODE_PRIVATE);
+		// settings.edit().clear().commit();
+		// Intent ii = new Intent(OverSpeed.this, BackgroundService.class);
+		// ii.putExtra("name", "SurvivingwithAndroid");
+		// OverSpeed.this.stopService(ii);
+		// Intent intentSignUP = new Intent(getApplicationContext(),
+		// LoginActivity.class);
+		// startActivity(intentSignUP);
+		// }
+		// });
 		submit.setOnClickListener(new View.OnClickListener() {
 
 			@SuppressWarnings("deprecation")
@@ -186,8 +202,12 @@ public class OverSpeed extends Activity {
 								// Showing Alert Message
 								alertDialog.show();
 							} else if (date1.compareTo(date2) < 0) {
+								linear.setVisibility(View.INVISIBLE);
+								linear.startAnimation(animSlideUp);
 								new CompareAsync().execute();
 							} else if (date1.compareTo(date2) == 0) {
+								linear.setVisibility(View.INVISIBLE);
+								linear.startAnimation(animSlideUp);
 								new CompareAsync().execute();
 							} else {
 								System.out.println("How to get here?");
@@ -297,24 +317,32 @@ public class OverSpeed extends Activity {
 									LiveTrack.driver_name);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							OverSpeed.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 2) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(OverSpeed.this,
 									HistoryTrack.class);
 							OverSpeed.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 3) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(OverSpeed.this,
 									TheftAlarm.class);
 							OverSpeed.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 4) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(OverSpeed.this,
 									DashboardActivity.class);
 							OverSpeed.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						}
 
 					} else {
@@ -483,7 +511,48 @@ public class OverSpeed extends Activity {
 
 		}
 	}
+
 	@Override
 	public void onBackPressed() {
+	}
+
+	@Override
+	public void onAnimationEnd(Animation animation) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onAnimationRepeat(Animation animation) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onAnimationStart(Animation animation) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.ovrspeed:
+
+			linear.setVisibility(View.VISIBLE);
+			linear.startAnimation(animSlideDown);
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		getMenuInflater().inflate(R.menu.overspeed, menu);
+		return true;
 	}
 }

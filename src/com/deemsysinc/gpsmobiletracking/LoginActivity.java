@@ -14,6 +14,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -68,6 +70,8 @@ public class LoginActivity extends Activity {
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		getActionBar().hide();
 		setContentView(R.layout.activity_login);
+		getActionBar().setBackgroundDrawable(
+				new ColorDrawable(Color.parseColor("#0Fa4E1")));
 		LinearLayout layout = (LinearLayout) findViewById(R.id.relativelay);
 		cd = new ConnectionDetector(getApplicationContext());
 		usrname = (EditText) findViewById(R.id.username);
@@ -130,6 +134,7 @@ public class LoginActivity extends Activity {
 						alertDialog.setIcon(R.drawable.delete);
 
 						// Setting OK Button
+
 						alertDialog.setButton("OK",
 								new DialogInterface.OnClickListener() {
 
@@ -384,6 +389,8 @@ public class LoginActivity extends Activity {
 					Intent intentSignUP = new Intent(getApplicationContext(),
 							DashboardActivity.class);
 					startActivity(intentSignUP);
+					overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+
 				} else {
 
 					successL = "no";
@@ -393,8 +400,8 @@ public class LoginActivity extends Activity {
 
 			catch (JSONException e) {
 				e.printStackTrace();
-				loginsucces="no";
-				successL="yes";
+				loginsucces = "no";
+				successL = "yes";
 
 			}
 

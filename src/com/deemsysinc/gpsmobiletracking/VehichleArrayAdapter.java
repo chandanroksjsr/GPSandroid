@@ -30,7 +30,7 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 
 	class UserHolder {
 		TextView drivername;
-		TextView vehicleregno, timestamp, address, speed,alarm;
+		TextView vehicleregno, timestamp, address, speed, alarm;
 
 		ImageView driverstatus;
 
@@ -91,8 +91,7 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 		} else if (user.getalarm().equals("1")) {
 			holder.alarm.setVisibility(View.INVISIBLE);
 
-		}
-		else if(user.getalarm().equals("2")) {
+		} else if (user.getalarm().equals("2")) {
 			holder.alarm.setVisibility(View.VISIBLE);
 		}
 		return row;

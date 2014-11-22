@@ -18,7 +18,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.AdapterView;
@@ -27,7 +31,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import android.text.Html;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
@@ -82,68 +89,74 @@ public class DashboardActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-		getActionBar().hide();
+		getActionBar().setTitle(
+				Html.fromHtml("<font color='#ffffff'>Dashboard</font>"));
+
+		getActionBar().setBackgroundDrawable(
+				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
+						R.drawable.actionbarbg)));
+
 		setContentView(R.layout.dashboard);
 		cd = new ConnectionDetector(getApplicationContext());
 		isInternetPresent = cd.isConnectingToInternet();
 		if (isInternetPresent) {
 			new VehicleDetails().execute();
 		}
-		boolean a=isMyServiceRunning(BackgroundService.class);
-		System.out.println("value of a::"+a);
-		if(!a)
-		{
-		Intent ii = new Intent(DashboardActivity.this, BackgroundService.class);
-		ii.putExtra("name", "SurvivingwithAndroid");
-		DashboardActivity.this.startService(ii);
+		boolean a = isMyServiceRunning(BackgroundService.class);
+		System.out.println("value of a::" + a);
+		if (!a) {
+			Intent ii = new Intent(DashboardActivity.this,
+					BackgroundService.class);
+			ii.putExtra("name", "SurvivingwithAndroid");
+			DashboardActivity.this.startService(ii);
 		}
 		list2 = (ListView) findViewById(R.id.list);
 		aboutus = (Button) findViewById(R.id.aboutus);
 		contactus = (Button) findViewById(R.id.contactus);
-		signout = (Button) findViewById(R.id.logout);
-		welcomeusername = (TextView) findViewById(R.id.welcomeusername);
-		welcome = (TextView) findViewById(R.id.welcome);
-		welcomeusername.setText(Config.username + "!");
-		// ourdevice.setTypeface(null, Typeface.BOLD);
-		welcomeusername.setTypeface(null, Typeface.BOLD);
-		welcome.setTypeface(null, Typeface.BOLD);
-		signout.setOnClickListener(new View.OnClickListener() {
+		// signout = (Button) findViewById(R.id.logout);
+		// welcomeusername = (TextView) findViewById(R.id.welcomeusername);
+		// welcome = (TextView) findViewById(R.id.welcome);
+		// welcomeusername.setText(Config.username + "!");
+		// // ourdevice.setTypeface(null, Typeface.BOLD);
+		// welcomeusername.setTypeface(null, Typeface.BOLD);
+		// welcome.setTypeface(null, Typeface.BOLD);
+		// signout.setOnClickListener(new View.OnClickListener() {
+		//
+		// public void onClick(View v) {
+		// Config.username = "";
+		// VehichleArrayAdapter.data.clear();
+		// vehicleall.clear();
+		// SharedPreferences settings = getApplicationContext()
+		// .getSharedPreferences("MyPrefs0",
+		// getApplicationContext().MODE_PRIVATE);
+		// settings.edit().clear().commit();
+		// Intent ii = new Intent(DashboardActivity.this,
+		// BackgroundService.class);
+		// ii.putExtra("name", "SurvivingwithAndroid");
+		// DashboardActivity.this.stopService(ii);
+		// Intent intentSignUP = new Intent(getApplicationContext(),
+		// LoginActivity.class);
+		// startActivity(intentSignUP);
+		// }
+		// });
 
-			public void onClick(View v) {
-				Config.username = "";
-				VehichleArrayAdapter.data.clear();
-				vehicleall.clear();
-				SharedPreferences settings = getApplicationContext()
-						.getSharedPreferences("MyPrefs0",
-								getApplicationContext().MODE_PRIVATE);
-				settings.edit().clear().commit();
-				Intent ii = new Intent(DashboardActivity.this,
-						BackgroundService.class);
-				ii.putExtra("name", "SurvivingwithAndroid");
-				DashboardActivity.this.stopService(ii);
-				Intent intentSignUP = new Intent(getApplicationContext(),
-						LoginActivity.class);
-				startActivity(intentSignUP);
-			}
-		});
-
-		aboutus.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				Intent intentSignUP = new Intent(getApplicationContext(),
-						Aboutus.class);
-				startActivity(intentSignUP);
-			}
-		});
-
-		contactus.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				Intent intentSignUP = new Intent(getApplicationContext(),
-						ContactUs.class);
-				startActivity(intentSignUP);
-			}
-		});
+		// aboutus.setOnClickListener(new View.OnClickListener() {
+		//
+		// public void onClick(View v) {
+		// Intent intentSignUP = new Intent(getApplicationContext(),
+		// Aboutus.class);
+		// startActivity(intentSignUP);
+		// }
+		// });
+		//
+		// contactus.setOnClickListener(new View.OnClickListener() {
+		//
+		// public void onClick(View v) {
+		// Intent intentSignUP = new Intent(getApplicationContext(),
+		// ContactUs.class);
+		// startActivity(intentSignUP);
+		// }
+		// });
 	}
 
 	// public void onItemClick(int mPosition) {
@@ -207,6 +220,8 @@ public class DashboardActivity extends Activity {
 					i.putExtra("routenum", regno);
 					i.putExtra("drivername", driver_name);
 					startActivity(i);
+					overridePendingTransition(android.R.anim.slide_in_left,
+							android.R.anim.slide_out_right);
 				}
 			});
 
@@ -295,13 +310,70 @@ public class DashboardActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.profile:
+			Intent myIntent0 = new Intent(DashboardActivity.this,
+					ProfileActivity.class);
+			DashboardActivity.this.startActivity(myIntent0);
+			overridePendingTransition(R.anim.pushdown, R.anim.pushup);
+			return true;
+		case R.id.aboutus:
+			Intent myIntent = new Intent(DashboardActivity.this, Aboutus.class);
+			DashboardActivity.this.startActivity(myIntent);
+			overridePendingTransition(R.anim.pushdown, R.anim.pushup);
+			return true;
+		case R.id.contactus:
+			Intent myIntent1 = new Intent(DashboardActivity.this,
+					ContactUs.class);
+			DashboardActivity.this.startActivity(myIntent1);
+			overridePendingTransition(R.anim.pushdown, R.anim.pushup);
+			return true;
+		case R.id.logout:
+			Config.username = "";
+			VehichleArrayAdapter.data.clear();
+			vehicleall.clear();
+			SharedPreferences settings = getApplicationContext()
+					.getSharedPreferences("MyPrefs0",
+							getApplicationContext().MODE_PRIVATE);
+			settings.edit().clear().commit();
+			Intent ii = new Intent(DashboardActivity.this,
+					BackgroundService.class);
+			ii.putExtra("name", "SurvivingwithAndroid");
+			DashboardActivity.this.stopService(ii);
+			Intent myIntent2 = new Intent(DashboardActivity.this,
+					LoginActivity.class);
+			DashboardActivity.this.startActivity(myIntent2);
+			overridePendingTransition(android.R.anim.slide_in_left,
+					android.R.anim.slide_out_right);
+			return true;
+		case android.R.id.home:
+
+			finish();
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
 	private boolean isMyServiceRunning(Class<?> serviceClass) {
-	    ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-	    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-	        if (serviceClass.getName().equals(service.service.getClassName())) {
-	            return true;
-	        }
-	    }
-	    return false;
+		ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+		for (RunningServiceInfo service : manager
+				.getRunningServices(Integer.MAX_VALUE)) {
+			if (serviceClass.getName().equals(service.service.getClassName())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

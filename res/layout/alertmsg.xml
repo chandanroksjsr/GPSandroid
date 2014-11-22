@@ -1,130 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/alertlayout"
+    style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     style="@style/AppTheme"
-     android:id="@+id/alertlayout"
-    android:background="@drawable/loginbg"
     android:orientation="vertical" >
-<LinearLayout
-     android:layout_width="fill_parent"
-     android:layout_height="100dp"
-     android:gravity="center_vertical|center_horizontal|center"
-     android:orientation="vertical" >
 
-      <ImageView
-          android:id="@+id/avatar"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:scaleType="fitStart"
-          android:src="@drawable/deemgpsicon" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="15dp" >
 
- </LinearLayout>
- 
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingLeft="5dp"
-    android:paddingRight="20dp" >
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="15dp" >
-
-        <TextView
-            android:id="@+id/textView1"
-            style="@style/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/welcome"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/username"
-            style="@style/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="false"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/textView1"
-            android:text="thendral"
-            android:textColor="#000000" />
-
-        <Button
-            android:id="@+id/logingout"
+        <EditText
+            android:id="@+id/e6"
             style="@style/custom"
-            android:layout_width="75dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="0dp"
-            android:background="@drawable/logoutbutnor"
-            android:paddingRight="5dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/listbg"
+            android:ems="10"
+            android:gravity="top|left"
+            android:scrollHorizontally="true"
+            android:shadowRadius="5" >
 
-        </RelativeLayout>
+            <requestFocus />
+        </EditText>
     </LinearLayout>
 
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="150dp"
-    android:orientation="horizontal"
-    android:paddingBottom="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="15dp" >
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="25dp" >
+    </View>
 
-  <EditText
-      android:id="@+id/e6"
-      style="@style/custom"
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:background="@drawable/listbg"
-      android:ems="10"
-      android:gravity="top|left"
-      android:scrollHorizontally="true"
-      android:shadowRadius="5" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" >
 
-        <requestFocus />
-    </EditText>
-</LinearLayout>
-<View
-    android:layout_width="fill_parent"
-    android:layout_height="25dp" >
+        <Button
+            android:id="@+id/fromtime"
+            style="@style/custom"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/buttonbackground"
+            android:text="@string/savemessage" />
 
-</View>
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:gravity="center_vertical|center_horizontal|center"
-    android:orientation="horizontal" >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp" >
+        </View>
 
-  <Button
-      android:id="@+id/button1"
-      android:layout_width="100dp"
-      android:layout_height="25dp"
-      android:background="@drawable/sendbutnormal" />
-
-<View
-    android:layout_width="25dp"
-    android:layout_height="1dp" >
-
-</View>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:background="@drawable/clearmessagebutnormal" />
-
-   </LinearLayout>
-
-
-  
+        <Button
+            android:id="@+id/date"
+            style="@style/custom"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/buttonbackground"
+            android:text="@string/clearmessage" />
+    </LinearLayout>
 
 </LinearLayout>

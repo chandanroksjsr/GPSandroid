@@ -2,451 +2,406 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     android:orientation="vertical"
-    android:background="@drawable/loginbg" >
-<LinearLayout
-     android:layout_width="fill_parent"
-     android:layout_height="100dp"
-     android:gravity="center_vertical|center_horizontal|center"
-     android:orientation="vertical" >
+    android:orientation="vertical" >
 
-      <ImageView
-          android:id="@+id/avatar"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:scaleType="fitStart"
-          android:src="@drawable/deemgpsicon" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
 
- </LinearLayout>
-
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
-
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="20dp"
-    android:gravity="center_vertical|center_horizontal|center"
-    android:orientation="vertical"
-    android:paddingRight="20dp" >
-
-      <ImageView
-          android:id="@+id/avatar"
-          android:layout_width="wrap_content"
-          android:layout_height="fill_parent"
-          android:paddingLeft="20dp"
-          android:scaleType="fitStart"
-          android:src="@drawable/abouticon" />
-
- </LinearLayout>
-
- </LinearLayout>
- <View
-    android:layout_width="wrap_content"
-    android:layout_height="15dp" >
-
-</View>
-  <LinearLayout
-      android:layout_width="fill_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      android:paddingLeft="10dp"
-      android:paddingRight="10dp" >
-
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/listbg" >
-
-        <RelativeLayout
+        <ScrollView
+            android:id="@+id/scrollView1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical" >
-
-<TextView
-    android:id="@+id/textqView1"
-    style="@style/custom"
-    android:layout_width="540dp"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="false"
-    android:layout_alignParentTop="false"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="1dp"
-    android:text="@string/aboutusdeem" />
-
-<TextView
-    android:id="@+id/textq34View1"
-    style="@style/custom"
-    android:layout_width="280dp"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="false"
-    android:layout_alignParentTop="false"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="25dp"
-    android:text="@string/aboutusfirst" />
-
-            <TextView
-                android:id="@+id/textView1"
-                style="@style/custom"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentTop="false"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="105dp"
-                android:text="@string/aboutusfirst1" />
-
- <TextView
-     android:id="@+id/boldtextcorp"
-     style="@style/custom"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_centerVertical="false"
-     android:layout_marginLeft="20dp"
-     android:layout_marginTop="205dp"
-     android:text="@string/corpweb" />
-
-  <TextView
-      android:id="@+id/boldtextcorplink"
-      style="@style/custom"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerVertical="false"
-      android:layout_marginLeft="140dp"
-      android:layout_marginTop="205dp"
-      android:text="@string/corpweblink"
-      android:textColorLink="#fda74a" />
-
-  <TextView
-      android:id="@+id/deemgpsapp"
-      style="@style/custom"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerVertical="false"
-      android:layout_marginLeft="20dp"
-      android:layout_marginTop="230dp"
-      android:text="@string/deemgpsapp" />
-
-   <TextView
-       android:id="@+id/deemgpsapp1"
-       style="@style/custom"
-       android:layout_width="280dp"
-       android:layout_height="wrap_content"
-       android:layout_centerVertical="false"
-       android:layout_marginLeft="20dp"
-       android:layout_marginTop="250dp"
-       android:text="@string/deemgpsapp1" />
-
-   <TextView
-       android:id="@+id/deemgpsapp2"
-       style="@style/custom"
-       android:layout_width="280dp"
-       android:layout_height="wrap_content"
-       android:layout_centerVertical="false"
-       android:layout_marginLeft="20dp"
-       android:layout_marginTop="335dp"
-       android:text="@string/deemgpsapp2" />
-
-   <TextView
-       android:id="@+id/deemgpsapp3"
-       style="@style/custom"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_centerVertical="false"
-       android:layout_marginLeft="20dp"
-       android:layout_marginTop="420dp"
-       android:text="@string/deemgpsapp3" />
-
-    <TextView
-        android:id="@+id/weblink"
-        style="@style/custom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="false"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="420dp"
-        android:text="@string/weblink"
-        android:textColorLink="#fda74a" />
-            
-            <TextView
-                android:id="@+id/boldtext"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="false"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="450dp"
-                android:text="@string/oudevice" />
-
-            <TextView
-                android:id="@+id/boldtext1"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="false"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="470dp"
-                android:text="@string/ourdevice1" />
-
-            <TextView
-                android:id="@+id/boldtext2"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="490dp"
-                android:text="@string/ourdevice2" />
-
-            <TextView
-                android:id="@+id/boldtext3"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="510dp"
-                android:text="@string/ourdevice3" />
-
-            <TextView
-                android:id="@+id/version"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="false"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="530dp"
-                android:text="@string/version" />
-
-            <TextView
-                android:id="@+id/helpsup"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="550dp"
-                android:text="@string/helpsup" />
-
-            <TextView
-                android:id="@+id/emailid"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="false"
-                android:layout_marginLeft="110dp"
-                android:layout_marginTop="550dp"
-                android:text="@string/emailidd"
-                android:textColor="#fda74a" />
-
- <TextView
-     android:id="@+id/usdeemsys1"
-     style="@style/custom"
-     android:layout_width="175dp"
-     android:layout_height="wrap_content"
-     android:layout_marginLeft="20dp"
-     android:layout_marginTop="580dp"
-     android:text="@string/deemsysaddresss" />
-
-            <TextView
-                android:id="@+id/addrsone"
-                style="@style/custom"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="600dp"
-                android:text="@string/addressdeem" />
-
-            <TextView
-                android:id="@+id/addrsone0"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="620dp"
-                android:text="@string/addrs1" />
-
-            <TextView
-                android:id="@+id/addrsone1"
-                style="@style/custom"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="640dp"
-                android:text="@string/addrs2" />
-
-            <TextView
-                android:id="@+id/addrsone2"
-                style="@style/custom"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="660dp"
-                android:text="@string/addrs3" />
-            
-            <TextView
-                android:id="@+id/addrsone2t"
-                style="@style/custom"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="680dp"
-                android:text="@string/addrs5" />
-
-            <TextView
-                android:id="@+id/addrsone3"
-                style="@style/custom"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="700dp"
-                android:text="@string/addrs4" />
-
-            <TextView
-                android:id="@+id/emailrajanques"
-                style="@style/custom"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="720dp"
-                android:text="@string/emailabout" />
-
-            <TextView
-                android:id="@+id/emailrajan"
-                style="@style/custom"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="720dp"
-                android:text="@string/emailsales" />
-
- <TextView
-     android:id="@+id/usdeemsys"
-     style="@style/custom"
-     android:layout_width="175dp"
-     android:layout_height="wrap_content"
-     android:layout_marginLeft="20dp"
-     android:layout_marginTop="750dp"
-     android:text="@string/headoffice" />
-
-            <TextView
-                android:id="@+id/addrstwo"
-                style="@style/custom"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="770dp"
-                android:text="@string/usdeem" />
-
-  <TextView
-      android:id="@+id/addrstwo5"
-      style="@style/custom"
-      android:layout_width="175dp"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="20dp"
-      android:layout_marginTop="790dp"
-      android:text="@string/deemus5" />
-            
-              <TextView
-                  android:id="@+id/addrstwo1"
-                  style="@style/custom"
-                  android:layout_width="175dp"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="20dp"
-                  android:layout_marginTop="810dp"
-                  android:text="@string/deemus" />
-              
-              <TextView
-                  android:id="@+id/addrstwo2"
-                  style="@style/custom"
-                  android:layout_width="175dp"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="20dp"
-                  android:layout_marginTop="830dp"
-                  android:text="@string/deemus0" />
-
-              <TextView
-                  android:id="@+id/addrstwo3"
-                  style="@style/custom"
-                  android:layout_width="175dp"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="20dp"
-                  android:layout_marginTop="850dp"
-                  android:text="@string/deemus1" />
-
- <TextView
-     android:id="@+id/emailsalesques"
-     style="@style/custom"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_marginLeft="20dp"
-     android:layout_marginTop="870dp"
-     android:text="@string/emailabout" />
-
-              <TextView
-                  android:id="@+id/emailsales"
-                  style="@style/custom"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="70dp"
-                  android:layout_marginTop="870dp"
-                  android:text="@string/emailrajan" />
-
-               <TextView
-                   android:id="@+id/deveby"
-                   style="@style/custom"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_centerInParent="false"
-                   android:layout_marginLeft="20dp"
-                   android:layout_marginTop="900dp"
-                   android:text="@string/devby" />
-
-            <TextView
-                android:id="@+id/deemname"
-                style="@style/custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="920dp"
-                android:text="@string/deemname" />
+            android:layout_height="400dp"
+            android:layout_weight="1"
+            android:scrollbars="none"
+            android:background="@drawable/listbg" >
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="210dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="930dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical" >
 
-                <ImageView
-                    android:id="@+id/imageView1"
+                <TextView
+                    android:id="@+id/textqView1"
                     style="@style/custom"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="100dp"
-                    android:cropToPadding="false"
-                    android:src="@drawable/deemgpslogoo" />
+                    android:layout_width="540dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/aboutusdeem" />
 
                 <TextView
-                    android:id="@+id/TextView01"
+                    android:id="@+id/textq34View1"
+                    style="@style/custom"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/aboutusfirst" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    style="@style/custom"
+                    android:layout_width="270dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="105dp"
+                    android:text="@string/aboutusfirst1" />
+
+                <TextView
+                    android:id="@+id/boldtextcorp"
                     style="@style/custom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="70dp"
-                    android:text="@string/copyright" />
+                    android:layout_centerVertical="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="205dp"
+                    android:text="@string/corpweb" />
 
+                <TextView
+                    android:id="@+id/boldtextcorplink"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="false"
+                    android:layout_marginLeft="140dp"
+                    android:layout_marginTop="205dp"
+                    android:text="@string/corpweblink"
+                    android:textColorLink="#fda74a" />
+
+                <TextView
+                    android:id="@+id/deemgpsapp"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="230dp"
+                    android:text="@string/deemgpsapp" />
+
+                <TextView
+                    android:id="@+id/deemgpsapp1"
+                    style="@style/custom"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="250dp"
+                    android:text="@string/deemgpsapp1" />
+
+                <TextView
+                    android:id="@+id/deemgpsapp2"
+                    style="@style/custom"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="335dp"
+                    android:text="@string/deemgpsapp2" />
+
+                <TextView
+                    android:id="@+id/deemgpsapp3"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="420dp"
+                    android:text="@string/deemgpsapp3" />
+
+                <TextView
+                    android:id="@+id/weblink"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="false"
+                    android:layout_marginLeft="140dp"
+                    android:layout_marginTop="420dp"
+                    android:text="@string/weblink"
+                    android:textColorLink="#fda74a" />
+
+                <TextView
+                    android:id="@+id/boldtext"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="450dp"
+                    android:text="@string/oudevice" />
+
+                <TextView
+                    android:id="@+id/boldtext1"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="470dp"
+                    android:text="@string/ourdevice1" />
+
+                <TextView
+                    android:id="@+id/boldtext2"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="490dp"
+                    android:text="@string/ourdevice2" />
+
+                <TextView
+                    android:id="@+id/boldtext3"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="510dp"
+                    android:text="@string/ourdevice3" />
+
+                <TextView
+                    android:id="@+id/version"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="530dp"
+                    android:text="@string/version" />
+
+                <TextView
+                    android:id="@+id/helpsup"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="550dp"
+                    android:text="@string/helpsup" />
+
+                <TextView
+                    android:id="@+id/emailid"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginLeft="110dp"
+                    android:layout_marginTop="550dp"
+                    android:text="@string/emailidd"
+                    android:textColor="#fda74a" />
+
+                <TextView
+                    android:id="@+id/usdeemsys1"
+                    style="@style/custom"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="580dp"
+                    android:text="@string/deemsysaddresss" />
+
+                <TextView
+                    android:id="@+id/addrsone"
+                    style="@style/custom"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="600dp"
+                    android:text="@string/addressdeem" />
+
+                <TextView
+                    android:id="@+id/addrsone0"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="620dp"
+                    android:text="@string/addrs1" />
+
+                <TextView
+                    android:id="@+id/addrsone1"
+                    style="@style/custom"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="640dp"
+                    android:text="@string/addrs2" />
+
+                <TextView
+                    android:id="@+id/addrsone2"
+                    style="@style/custom"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="660dp"
+                    android:text="@string/addrs3" />
+
+                <TextView
+                    android:id="@+id/addrsone2t"
+                    style="@style/custom"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="680dp"
+                    android:text="@string/addrs5" />
+
+                <TextView
+                    android:id="@+id/addrsone3"
+                    style="@style/custom"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="700dp"
+                    android:text="@string/addrs4" />
+
+                <TextView
+                    android:id="@+id/emailrajanques"
+                    style="@style/custom"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="720dp"
+                    android:text="@string/emailabout" />
+
+                <TextView
+                    android:id="@+id/emailrajan"
+                    style="@style/custom"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="720dp"
+                    android:text="@string/emailsales" />
+
+                <TextView
+                    android:id="@+id/usdeemsys"
+                    style="@style/custom"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="750dp"
+                    android:text="@string/headoffice" />
+
+                <TextView
+                    android:id="@+id/addrstwo"
+                    style="@style/custom"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="770dp"
+                    android:text="@string/usdeem" />
+
+                <TextView
+                    android:id="@+id/addrstwo5"
+                    style="@style/custom"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="790dp"
+                    android:text="@string/deemus5" />
+
+                <TextView
+                    android:id="@+id/addrstwo1"
+                    style="@style/custom"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="810dp"
+                    android:text="@string/deemus" />
+
+                <TextView
+                    android:id="@+id/addrstwo2"
+                    style="@style/custom"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="830dp"
+                    android:text="@string/deemus0" />
+
+                <TextView
+                    android:id="@+id/addrstwo3"
+                    style="@style/custom"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="850dp"
+                    android:text="@string/deemus1" />
+
+                <TextView
+                    android:id="@+id/emailsalesques"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="870dp"
+                    android:text="@string/emailabout" />
+
+                <TextView
+                    android:id="@+id/emailsales"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="870dp"
+                    android:text="@string/emailrajan" />
+
+                <TextView
+                    android:id="@+id/deveby"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="false"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="900dp"
+                    android:text="@string/devby" />
+
+                <TextView
+                    android:id="@+id/deemname"
+                    style="@style/custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="920dp"
+                    android:text="@string/deemname" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="930dp"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        style="@style/custom"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="100dp"
+                        android:cropToPadding="false"
+                        android:src="@drawable/deemgpslogoo" />
+
+                    <TextView
+                        android:id="@+id/TextView01"
+                        style="@style/custom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="70dp"
+                        android:text="@string/copyright" />
+                </RelativeLayout>
             </RelativeLayout>
-
-        </RelativeLayout>
-     
-    </ScrollView>
+        </ScrollView>
     </LinearLayout>
 
 </LinearLayout>

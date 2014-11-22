@@ -44,18 +44,27 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -63,7 +72,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 @SuppressLint("SimpleDateFormat")
-public class HistoryTrack extends Activity implements OnMapLongClickListener {
+public class HistoryTrack extends Activity implements OnMapLongClickListener,
+		AnimationListener {
+	RadioButton maprad, satrad;
 	private int year;
 	private int month;
 	private int day;
@@ -83,7 +94,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 	TextView welcomeusername, welcome;
 	Button signout, hmey;
 	ToggleButton tgbutton;
-	Button fromtime, totime, submit;
+	Button fromtime, totime, submit, datebutton;
 	final Context context = this;
 	public static ArrayList<HashMap<String, String>> vehiclehistory1 = new ArrayList<HashMap<String, String>>();
 	HashMap<String, String> map = new HashMap<String, String>();
@@ -107,10 +118,10 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 	double longitude1;
 	private int pHour;
 	private int pMinute;
-	// private static String vehiclehistorysurll =
-	// "http://192.168.1.158:8888/gpsandroid/service/HistoryTrack.php?service=vehiclehistory";
-	// private static String vehiclehistorysurll =
-	// "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory";
+	LinearLayout linear;
+	Button btn, clobtn;
+	Animation animSlideUp, animSlideDown;
+
 	private static String vehiclehistorysurll = Config.ServerUrl
 			+ "HistoryTrack.php?service=vehiclehistory";
 
@@ -146,14 +157,84 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.historytrack);
-		signout = (Button) findViewById(R.id.signoutty);
-
+	
+		linear = (LinearLayout) findViewById(R.id.linear);
 		ActionBar actions = getActionBar();
-		actions.setBackgroundDrawable(new ColorDrawable(Color
-				.parseColor("#93aac3")));
+		getActionBar().setBackgroundDrawable(new BitmapDrawable (BitmapFactory.decodeResource(getResources(), R.drawable.actionbarbg)));
+		
 		actions.setIcon(R.drawable.historyicon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
+
+		animSlideUp = AnimationUtils.loadAnimation(getApplicationContext(),
+				R.anim.slide_up);
+		animSlideDown = AnimationUtils.loadAnimation(getApplicationContext(),
+				R.anim.slide_down);
+
+		animSlideUp.setAnimationListener(this);
+		animSlideDown.setAnimationListener(this);
+
+		maprad = (RadioButton) findViewById(R.id.radiomap);
+		satrad = (RadioButton) findViewById(R.id.radiosatellite);
+
+		OnClickListener listener = new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioButton rb = (RadioButton) v;
+				String selectedid = rb.getText().toString();
+				if (selectedid.equalsIgnoreCase("map")) {
+					maprad.setEnabled(false);
+					satrad.setEnabled(true);
+					try {
+						if (googleMap == null) {
+							googleMap = ((MapFragment) getFragmentManager()
+									.findFragmentById(R.id.map)).getMap();
+						}
+						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+					//	tgbutton.setBackgroundResource(R.drawable.earth);
+
+						Marker marker = googleMap.addMarker(new MarkerOptions()
+								.position(TutorialsPoint).title(""));
+						CameraPosition cameraPosition = new CameraPosition.Builder()
+								.target(TutorialsPoint).zoom(4).build();
+						googleMap.animateCamera(CameraUpdateFactory
+								.newCameraPosition(cameraPosition));
+						marker.remove();
+						marker.setVisible(false);
+						marker.setVisible(false);
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else {
+					try {
+						if (googleMap == null) {
+							googleMap = ((MapFragment) getFragmentManager()
+									.findFragmentById(R.id.map)).getMap();
+						}
+						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+//						tgbutton.setBackgroundResource(R.drawable.aerial);
+						Marker marker = googleMap.addMarker(new MarkerOptions()
+								.position(TutorialsPoint).title(""));
+						CameraPosition cameraPosition = new CameraPosition.Builder()
+								.target(TutorialsPoint).zoom(4).build();
+						googleMap.animateCamera(CameraUpdateFactory
+								.newCameraPosition(cameraPosition));
+						marker.remove();
+						marker.setVisible(false);
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					maprad.setEnabled(true);
+					satrad.setEnabled(false);
+
+				}
+
+			}
+		};
+		maprad.setOnClickListener(listener);
+		satrad.setOnClickListener(listener);
 		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
@@ -188,24 +269,32 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 									LiveTrack.driver_name);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							HistoryTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 2) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(HistoryTrack.this,
 									TheftAlarm.class);
 							HistoryTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 3) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(HistoryTrack.this,
 									OverSpeed.class);
 							HistoryTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 4) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(HistoryTrack.this,
 									DashboardActivity.class);
 							HistoryTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						}
 
 					} else {
@@ -258,18 +347,24 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 							myIntent.putExtra("drivername",
 									LiveTrack.driver_name);
 							HistoryTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 2) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(HistoryTrack.this,
 									AlertMsg.class);
 							HistoryTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						} else if (itemPosition == 3) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(HistoryTrack.this,
 									DashboardActivity.class);
 							HistoryTrack.this.startActivity(myIntent);
+							overridePendingTransition(R.anim.slide_in,
+									R.anim.slide_out);
 						}
 
 					} else {
@@ -282,8 +377,9 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 			};
 			actions.setListNavigationCallbacks(adapter, callback);
 		}
-		fromtime = (Button) findViewById(R.id.fromdate);
-		totime = (Button) findViewById(R.id.todate);
+		datebutton = (Button) findViewById(R.id.date);
+		fromtime = (Button) findViewById(R.id.fromtime);
+		totime = (Button) findViewById(R.id.totime);
 		fromtime.setOnClickListener(new View.OnClickListener() {
 
 			@SuppressWarnings("deprecation")
@@ -291,6 +387,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 				showDialog(TIME_PICKER_ID);
 			}
 		});
+
 		totime.setOnClickListener(new View.OnClickListener() {
 
 			@SuppressWarnings("deprecation")
@@ -298,7 +395,14 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 				showDialog(TIME_PICKER_ID1);
 			}
 		});
-		submit = (Button) findViewById(R.id.submit);
+		datebutton.setOnClickListener(new View.OnClickListener() {
+
+			@SuppressWarnings("deprecation")
+			public void onClick(View v) {
+				showDialog(DATE_PICKER_ID);
+			}
+		});
+		submit = (Button) findViewById(R.id.go);
 		submit.setOnClickListener(new View.OnClickListener() {
 
 			@SuppressWarnings("deprecation")
@@ -352,8 +456,12 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 									// Showing Alert Message
 									alertDialog.show();
 								} else if (date1.compareTo(date2) < 0) {
+									linear.setVisibility(View.GONE);
+									linear.startAnimation(animSlideUp);
 									new VehiclePath().execute();
 								} else if (date1.compareTo(date2) == 0) {
+									linear.setVisibility(View.GONE);
+									linear.startAnimation(animSlideUp);
 									new VehiclePath().execute();
 								} else {
 									System.out.println("How to get here?");
@@ -456,11 +564,11 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 				}
 			}
 		});
-		welcome = (TextView) findViewById(R.id.textView1);
-		welcomeusername = (TextView) findViewById(R.id.welcomename);
-		welcomeusername.setText(Config.username + "!");
-		welcomeusername.setTypeface(null, Typeface.BOLD);
-		welcome.setTypeface(null, Typeface.BOLD);
+		// welcome = (TextView) findViewById(R.id.textView1);
+		// welcomeusername = (TextView) findViewById(R.id.welcomename);
+		// welcomeusername.setText(Config.username + "!");
+		// welcomeusername.setTypeface(null, Typeface.BOLD);
+		// welcome.setTypeface(null, Typeface.BOLD);
 
 		try {
 			if (googleMap == null) {
@@ -486,42 +594,42 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		tgbutton = (ToggleButton) findViewById(R.id.showmapdif);
-		tgbutton.setSelected(true);
-		tgbutton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (!tgbutton.isChecked()) {
-					try {
-						if (googleMap == null) {
-							googleMap = ((MapFragment) getFragmentManager()
-									.findFragmentById(R.id.map)).getMap();
-						}
-						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-						tgbutton.setBackgroundResource(R.drawable.earth);
-
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-
-				} else {
-					try {
-						if (googleMap == null) {
-							googleMap = ((MapFragment) getFragmentManager()
-									.findFragmentById(R.id.map)).getMap();
-						}
-						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-						tgbutton.setBackgroundResource(R.drawable.aerial);
-
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-
-				}
-			}
-		});
+//		tgbutton = (ToggleButton) findViewById(R.id.showmapdif);
+//		tgbutton.setSelected(true);
+//		tgbutton.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				if (!tgbutton.isChecked()) {
+//					try {
+//						if (googleMap == null) {
+//							googleMap = ((MapFragment) getFragmentManager()
+//									.findFragmentById(R.id.map)).getMap();
+//						}
+//						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//						tgbutton.setBackgroundResource(R.drawable.earth);
+//
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//
+//				} else {
+//					try {
+//						if (googleMap == null) {
+//							googleMap = ((MapFragment) getFragmentManager()
+//									.findFragmentById(R.id.map)).getMap();
+//						}
+//						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+//						tgbutton.setBackgroundResource(R.drawable.aerial);
+//
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//
+//				}
+//			}
+//		});
 
 		vehicle_reg_numb = LiveTrack.vehicle_reg_no;
 		// System.out.println("history track veh numb"+vehicle_reg_numb);
@@ -537,31 +645,31 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 
 		// System.out.println("in history track:::::::");
 
-		signout.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				Config.username = "";
-				VehichleArrayAdapter.data.clear();
-				DashboardActivity.vehicleall.clear();
-				vehiclehistory1.clear();
-				LiveTrack.doAsynchronousTask.cancel();
-				HistoryTrack.vehiclehistory1.clear();
-
-				SharedPreferences settings = getApplicationContext()
-						.getSharedPreferences("MyPrefs0",
-								getApplicationContext().MODE_PRIVATE);
-				settings.edit().clear().commit();
-				Intent ii = new Intent(HistoryTrack.this,
-						BackgroundService.class);
-				ii.putExtra("name", "SurvivingwithAndroid");
-				HistoryTrack.this.stopService(ii);
-				Intent intentSignUP = new Intent(getApplicationContext(),
-						LoginActivity.class);
-				startActivity(intentSignUP);
-			}
-		});
+		// signout.setOnClickListener(new View.OnClickListener() {
+		//
+		// public void onClick(View v) {
+		// Config.username = "";
+		// VehichleArrayAdapter.data.clear();
+		// DashboardActivity.vehicleall.clear();
+		// vehiclehistory1.clear();
+		// LiveTrack.doAsynchronousTask.cancel();
+		// HistoryTrack.vehiclehistory1.clear();
+		//
+		// SharedPreferences settings = getApplicationContext()
+		// .getSharedPreferences("MyPrefs0",
+		// getApplicationContext().MODE_PRIVATE);
+		// settings.edit().clear().commit();
+		// Intent ii = new Intent(HistoryTrack.this,
+		// BackgroundService.class);
+		// ii.putExtra("name", "SurvivingwithAndroid");
+		// HistoryTrack.this.stopService(ii);
+		// Intent intentSignUP = new Intent(getApplicationContext(),
+		// LoginActivity.class);
+		// startActivity(intentSignUP);
+		// }
+		// });
 		initilizeMap();
-		showDialog(DATE_PICKER_ID);
+
 	}
 
 	@Override
@@ -616,6 +724,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 				String date1 = year + "-" + checkDigit(month + 1) + "-"
 						+ checkDigit(day);
 				checkdate = date1.toString();
+				datebutton.setText(checkdate);
 				// if (isInternetPresent) {
 				// new VehiclePath().execute();
 				// }
@@ -858,6 +967,49 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener {
 	public void onMapLongClick(LatLng point) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void onAnimationStart(Animation animation) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onAnimationEnd(Animation animation) {
+		// TODO Auto-generated method stub
+
+//		if (animation == animSlideUp) {
+//		}
+
+	}
+
+	@Override
+	public void onAnimationRepeat(Animation animation) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.history:
+
+			linear.setVisibility(View.VISIBLE);
+			linear.startAnimation(animSlideDown);
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		getMenuInflater().inflate(R.menu.history, menu);
+		return true;
 	}
 
 }

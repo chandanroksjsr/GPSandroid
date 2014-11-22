@@ -1,131 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   android:layout_width="fill_parent"
-   android:background="@drawable/loginbg"
-   android:orientation="vertical"
-   android:layout_height="fill_parent" >
-
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="90dp"
-    android:gravity="center_vertical|center_horizontal|center"
-    android:orientation="vertical" >
-
-      <ImageView
-          android:id="@+id/avatar"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:scaleType="fitStart"
-          android:src="@drawable/deemgpsicon" />
-
- </LinearLayout>
- 
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingLeft="5dp"
-    android:paddingRight="20dp" >
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="15dp" >
-
-        <TextView
-            android:id="@+id/textView1"
-            style="@style/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text="@string/welcome"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/welcomename"
-            style="@style/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="false"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="70dp"
-            android:layout_toRightOf="@id/welcome"
-            android:text="thendral"
-            android:textColor="#000000" />
-
-        <Button
-            android:id="@+id/signoutty"
-            style="@style/custom"
-            android:layout_width="75dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="0dp"
-            android:background="@drawable/logoutbutnor"
-            android:paddingRight="5dp" />
-
-        </RelativeLayout>
-    </LinearLayout>
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical|center_horizontal" >
-
-            <Button
-                android:id="@+id/fromdate"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="From Time" />
-
-            <Button
-                android:id="@+id/todate"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="To Time" />
-
-            <Button
-                android:id="@+id/submit"
-            
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Search" />
-        </LinearLayout>
-<LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="horizontal"
-    android:paddingBottom="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="15dp" >
+    android:orientation="vertical" >
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/listbg" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
-  <fragment
-      android:id="@+id/map"
-      android:name="com.google.android.gms.maps.MapFragment"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_alignParentBottom="false"
-      android:layout_centerHorizontal="false" />
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#888888"
+            android:visibility="gone" >
 
-  <ToggleButton
-      android:id="@+id/showmapdif"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:layout_alignBottom="@+id/map"
-      android:layout_alignLeft="@+id/map"
-      android:background="@drawable/togglebutton"
-      android:checked="false"
-       android:textOff=""
-            android:textOn=""
-      android:text="ToggleButton" />
-  </RelativeLayout>
-  </LinearLayout>
+            <Button
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="Date"
+                android:textColor="#ffffff" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/fromtime"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="From Time"
+                android:textColor="#ffffff" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/totime"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="To Time"
+                android:textColor="#ffffff" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/go"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Go"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/listbg" >
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.MapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="false"
+                android:layout_centerHorizontal="false"
+                android:layout_centerInParent="false" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="7dp" >
+
+                <RadioButton
+                    android:id="@+id/radiomap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/mapleftradio"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Map"
+                    android:textColor="@drawable/mapradiotext" />
+
+                <RadioButton
+                    android:id="@+id/radiosatellite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/maprightradio"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Satellite"
+                    android:textColor="@drawable/mapradiotext" />
+            </RadioGroup>
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>
