@@ -15,5 +15,6 @@ public class Config {
 	static String org_id;
 	static String role;
 	static String enabled;
+	static String flag;
 
 }

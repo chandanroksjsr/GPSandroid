@@ -46,7 +46,8 @@ import android.widget.RelativeLayout;
 
 public class ContactUs extends Activity {
 
-	Boolean isInternetPresent;
+	ConnectionDetector cd;
+	Boolean isInternetPresent = false;
 
 	EditText fstname, organistn, add1, city1, state1;
 	EditText lstname, email1;
@@ -86,7 +87,7 @@ public class ContactUs extends Activity {
 		setContentView(R.layout.contactus);
 		mob = (EditText) findViewById(R.id.e5);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.layoutt);
-		ConnectionDetector cd = new ConnectionDetector(getApplicationContext());
+		cd = new ConnectionDetector(getApplicationContext());
 		isInternetPresent = cd.isConnectingToInternet();
 		InputFilter filter = new InputFilter() {
 
@@ -422,7 +423,7 @@ public class ContactUs extends Activity {
 			public void onClick(View view) {
 
 				// ended.setEnabled(false);
-
+				isInternetPresent = cd.isConnectingToInternet();
 				if (isInternetPresent) {
 
 					firstname = fstname.getText().toString();
@@ -914,7 +915,10 @@ public class ContactUs extends Activity {
 					}
 
 					if (a == 1) {
+						if(isInternetPresent)
+						{
 						new AttemptLogin().execute();
+						}
 					}
 
 				}
@@ -1145,7 +1149,11 @@ public class ContactUs extends Activity {
 		protected void onPostExecute(String file_url) {
 			super.onPostExecute(file_url);
 			System.out.println("in post execute");
+			isInternetPresent = cd.isConnectingToInternet();
+			if(isInternetPresent)
+			{
 			new SendEmailAsyncTask().execute();
+			}
 			pDialog.dismiss();
 			if (JsonParser.jss.equals("empty")) {
 				System.out.println("json null value");
@@ -1156,7 +1164,7 @@ public class ContactUs extends Activity {
 				alertDialog.setTitle("INFO!");
 
 				// Setting Dialog Message
-				alertDialog.setMessage("Error connecting database.");
+				alertDialog.setMessage("No network connection.");
 
 				// Setting Icon to Dialog
 				alertDialog.setIcon(R.drawable.delete);

@@ -119,4 +119,11 @@
         <item name="android:popupBackground">@drawable/actionbarbackground</item>
     </style>
 
+    <style name="Scroller">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+     
+        <item name="android:layout_margin">3dp</item>
+    </style>
+
 </resources>

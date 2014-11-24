@@ -11,18 +11,19 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.app.ActivityManager.RunningServiceInfo;
 
 import android.app.ProgressDialog;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Typeface;
+
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.AdapterView;
@@ -85,6 +86,7 @@ public class DashboardActivity extends Activity {
 	private static String vehicledetailsurl = Config.ServerUrl
 			+ "VehicleDetails.php?service=vehicledetails1";
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -97,10 +99,49 @@ public class DashboardActivity extends Activity {
 						R.drawable.actionbarbg)));
 
 		setContentView(R.layout.dashboard);
+		if (Config.flag.equalsIgnoreCase("notloggedin")) {
+			AlertDialog alertDialog = new AlertDialog.Builder(
+					DashboardActivity.this).create();
+
+			alertDialog.setTitle("INFO!");
+
+			alertDialog.setMessage("Welcome " + Config.username + "!");
+
+			alertDialog.setIcon(R.drawable.delete);
+
+			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+
+				public void onClick(final DialogInterface dialog,
+						final int which) {
+
+				}
+			});
+
+			alertDialog.show();
+		}
 		cd = new ConnectionDetector(getApplicationContext());
 		isInternetPresent = cd.isConnectingToInternet();
 		if (isInternetPresent) {
 			new VehicleDetails().execute();
+		} else {
+			AlertDialog alertDialog = new AlertDialog.Builder(
+					DashboardActivity.this).create();
+
+			alertDialog.setTitle("INFO!");
+
+			alertDialog.setMessage("No network connection.");
+
+			alertDialog.setIcon(R.drawable.delete);
+
+			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+
+				public void onClick(final DialogInterface dialog,
+						final int which) {
+
+				}
+			});
+
+			alertDialog.show();
 		}
 		boolean a = isMyServiceRunning(BackgroundService.class);
 		System.out.println("value of a::" + a);

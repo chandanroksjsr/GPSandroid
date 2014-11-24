@@ -18,6 +18,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -42,7 +43,7 @@ public class BackgroundService extends Service {
 	Context context = this;
 	String status;
 	static TimerTask doAsynchronousTask;
-
+	MediaPlayer mPlayer;
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
@@ -162,11 +163,18 @@ public class BackgroundService extends Service {
 				if (Integer.parseInt(status) > 0) {
 
 					try {
-						Uri notification = RingtoneManager
-								.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-						Ringtone r = RingtoneManager.getRingtone(
-								getApplicationContext(), notification);
-						r.play();
+						
+						
+						mPlayer = MediaPlayer.create(getApplicationContext(),
+								R.raw.alarmtone);// Create MediaPlayer object with
+													// MP3 file under res/raw folder
+						mPlayer.start();
+						
+//						Uri notification = RingtoneManager
+//								.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//						Ringtone r = RingtoneManager.getRingtone(
+//								getApplicationContext(), notification);
+//						r.play();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

@@ -386,6 +386,7 @@ public class LoginActivity extends Activity {
 					editor.putString("enabled", Config.enabled);
 
 					editor.commit();
+					Config.flag="notloggedin";
 					Intent intentSignUP = new Intent(getApplicationContext(),
 							DashboardActivity.class);
 					startActivity(intentSignUP);
@@ -509,6 +510,7 @@ public class LoginActivity extends Activity {
 				Config.org_id = sharedpreferences.getString("org_id", "");
 				Config.role = sharedpreferences.getString("role", "");
 				Config.enabled = sharedpreferences.getString("enabled", "");
+				Config.flag ="alreadyloggedin";
 
 				Intent i = new Intent(this, DashboardActivity.class);
 				startActivity(i);

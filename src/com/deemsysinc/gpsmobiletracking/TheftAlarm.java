@@ -29,6 +29,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -52,7 +53,7 @@ import android.widget.Toast;
 public class TheftAlarm extends Activity {
 
 	/** Called when the activity is first created. */
-
+	MediaPlayer mPlayer;
 	ConnectionDetector cd;
 	Boolean isInternetPresent = false;
 	public ProgressDialog pDialog;
@@ -76,6 +77,7 @@ public class TheftAlarm extends Activity {
 	public static Timer timer;
 	static TimerTask doAsynchronousTask;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,16 +87,43 @@ public class TheftAlarm extends Activity {
 				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
 						R.drawable.actionbarbg)));
 
-		actions.setIcon(R.drawable.historyicon);
+		actions.setIcon(R.drawable.alarmicon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
 		cd = new ConnectionDetector(getApplicationContext());
 		txt = (TextView) findViewById(R.id.alerttext);
 		txt.setTypeface(null, Typeface.BOLD);
 		txt.setVisibility(View.INVISIBLE);
+		on = (RadioButton) findViewById(R.id.radiosubject);
+		off = (RadioButton) findViewById(R.id.radiocourse);
+
+		// mPlayer =
+		// MediaPlayer.create(getApplicationContext(),R.raw.alarmtone);
+		// mPlayer.start();
 		isInternetPresent = cd.isConnectingToInternet();
 		if (isInternetPresent) {
 			new CheckTheftAlarm().execute();
+		} else {
+			on.setVisibility(View.INVISIBLE);
+			off.setVisibility(View.INVISIBLE);
+			AlertDialog alertDialog = new AlertDialog.Builder(TheftAlarm.this)
+					.create();
+
+			alertDialog.setTitle("INFO!");
+
+			alertDialog.setMessage("No network connection.");
+
+			alertDialog.setIcon(R.drawable.delete);
+
+			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+
+				public void onClick(final DialogInterface dialog,
+						final int which) {
+
+				}
+			});
+
+			alertDialog.show();
 		}
 		anim = new AlphaAnimation(0.0f, 1.0f);
 		// signout = (Button) findViewById(R.id.signutty);
@@ -125,12 +154,11 @@ public class TheftAlarm extends Activity {
 		// startActivity(intentSignUP);
 		// }
 		// });
-		on = (RadioButton) findViewById(R.id.radiosubject);
-		off = (RadioButton) findViewById(R.id.radiocourse);
-
+	
 		OnClickListener listener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				isInternetPresent = cd.isConnectingToInternet();
 				RadioButton rb = (RadioButton) v;
 				String selectedid = rb.getText().toString();
 				if (selectedid.equalsIgnoreCase("on")) {
@@ -140,19 +168,72 @@ public class TheftAlarm extends Activity {
 					// handler.post(timedTask);
 					if (isInternetPresent) {
 						new insertTheftAlarm().execute();
+					} else {
+						off.setChecked(true);
+						on.setEnabled(true);
+						off.setEnabled(false);
+						AlertDialog alertDialog = new AlertDialog.Builder(
+								TheftAlarm.this).create();
+
+						alertDialog.setTitle("INFO!");
+
+						alertDialog.setMessage("No network connection.");
+
+						alertDialog.setIcon(R.drawable.delete);
+
+						alertDialog.setButton("OK",
+								new DialogInterface.OnClickListener() {
+
+									public void onClick(
+											final DialogInterface dialog,
+											final int which) {
+
+									}
+								});
+
+						alertDialog.show();
 					}
 
 				} else {
 					// handler.removeCallbacks(timedTask);
-
-					TheftAlarm.timer.cancel();
-					TheftAlarm.doAsynchronousTask.cancel();
+					if (mPlayer != null && mPlayer.isPlaying()) {
+						mPlayer.stop();
+					}
+					if (TheftAlarm.timer != null) {
+						TheftAlarm.timer.cancel();
+						TheftAlarm.doAsynchronousTask.cancel();
+					}
 					on.setEnabled(true);
 					off.setEnabled(false);
 					anim.cancel();
 					anim.reset();
+
 					if (isInternetPresent) {
 						new updateTheftAlarm().execute();
+					} else {
+						on.setChecked(true);
+						on.setEnabled(false);
+						off.setEnabled(true);
+						AlertDialog alertDialog = new AlertDialog.Builder(
+								TheftAlarm.this).create();
+
+						alertDialog.setTitle("INFO!");
+
+						alertDialog.setMessage("No network connection.");
+
+						alertDialog.setIcon(R.drawable.delete);
+
+						alertDialog.setButton("OK",
+								new DialogInterface.OnClickListener() {
+
+									public void onClick(
+											final DialogInterface dialog,
+											final int which) {
+
+									}
+								});
+
+						alertDialog.show();
 					}
 				}
 
@@ -188,6 +269,10 @@ public class TheftAlarm extends Activity {
 								System.out.println("is not null");
 								TheftAlarm.timer.cancel();
 								TheftAlarm.doAsynchronousTask.cancel();
+
+							}
+							if (mPlayer != null && mPlayer.isPlaying()) {
+								mPlayer.stop();
 							}
 							myIntent = new Intent(TheftAlarm.this,
 									LiveTrack.class);
@@ -204,6 +289,9 @@ public class TheftAlarm extends Activity {
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(TheftAlarm.this,
 									HistoryTrack.class);
+							if (mPlayer != null && mPlayer.isPlaying()) {
+								mPlayer.stop();
+							}
 							if (TheftAlarm.timer != null) {
 								System.out.println("is not null");
 								TheftAlarm.timer.cancel();
@@ -222,6 +310,9 @@ public class TheftAlarm extends Activity {
 								TheftAlarm.timer.cancel();
 								TheftAlarm.doAsynchronousTask.cancel();
 							}
+							if (mPlayer != null && mPlayer.isPlaying()) {
+								mPlayer.stop();
+							}
 							TheftAlarm.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
@@ -234,6 +325,9 @@ public class TheftAlarm extends Activity {
 								System.out.println("is not null");
 								TheftAlarm.timer.cancel();
 								TheftAlarm.doAsynchronousTask.cancel();
+							}
+							if (mPlayer != null && mPlayer.isPlaying()) {
+								mPlayer.stop();
 							}
 							TheftAlarm.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
@@ -351,11 +445,15 @@ public class TheftAlarm extends Activity {
 				on.setChecked(true);
 				on.setEnabled(false);
 				try {
-					Uri notification = RingtoneManager
-							.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-					Ringtone r = RingtoneManager.getRingtone(
-							getApplicationContext(), notification);
-					r.play();
+					mPlayer = MediaPlayer.create(getApplicationContext(),
+							R.raw.alarmtone);// Create MediaPlayer object with
+												// MP3 file under res/raw folder
+					mPlayer.start();
+					// Uri notification = RingtoneManager
+					// .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+					// Ringtone r = RingtoneManager.getRingtone(
+					// getApplicationContext(), notification);
+					// r.play();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -615,8 +713,30 @@ public class TheftAlarm extends Activity {
 		@Override
 		public void run() {
 			try {
+				isInternetPresent = cd.isConnectingToInternet();
 				if (isInternetPresent) {
 					new CheckTheftAlarm().execute();
+				} else {
+					AlertDialog alertDialog = new AlertDialog.Builder(
+							TheftAlarm.this).create();
+
+					alertDialog.setTitle("INFO!");
+
+					alertDialog.setMessage("No network connection.");
+
+					alertDialog.setIcon(R.drawable.delete);
+
+					alertDialog.setButton("OK",
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(
+										final DialogInterface dialog,
+										final int which) {
+
+								}
+							});
+
+					alertDialog.show();
 				}
 
 			} catch (Exception e) {
@@ -642,6 +762,28 @@ public class TheftAlarm extends Activity {
 						try {
 							if (isInternetPresent) {
 								new CheckTheftAlarm().execute();
+							} else {
+								AlertDialog alertDialog = new AlertDialog.Builder(
+										TheftAlarm.this).create();
+
+								alertDialog.setTitle("INFO!");
+
+								alertDialog
+										.setMessage("No network connection.");
+
+								alertDialog.setIcon(R.drawable.delete);
+
+								alertDialog.setButton("OK",
+										new DialogInterface.OnClickListener() {
+
+											public void onClick(
+													final DialogInterface dialog,
+													final int which) {
+
+											}
+										});
+
+								alertDialog.show();
 							}
 
 						} catch (Exception e) {

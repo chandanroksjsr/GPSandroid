@@ -174,6 +174,7 @@ public class AlertMsg extends Activity {
 
 		});
 		cd = new ConnectionDetector(getApplicationContext());
+		isInternetPresent = cd.isConnectingToInternet();
 		Button btnsend, btnclr;
 
 		btnsend = (Button) findViewById(R.id.fromtime);
@@ -186,7 +187,39 @@ public class AlertMsg extends Activity {
 		// welcomeusername.setText(Config.username + "!");
 		// welcomeusername.setTypeface(null, Typeface.BOLD);
 		// welcome.setTypeface(null, Typeface.BOLD);
+		if(isInternetPresent){
 		new SendMessage().execute();
+		}else
+		{
+			AlertDialog alertDialog = new AlertDialog.Builder(
+					AlertMsg.this).create();
+
+			// Setting Dialog Title
+			alertDialog.setTitle("INFO!");
+
+			// Setting Dialog Message
+			alertDialog.setMessage("No network connection.");
+
+			// Setting Icon to Dialog
+			alertDialog.setIcon(R.drawable.delete);
+
+			// Setting OK Button
+			alertDialog.setButton("OK",
+					new DialogInterface.OnClickListener() {
+
+						public void onClick(
+								final DialogInterface dialog,
+								final int which) {
+							// Write your code here to execute after
+							// dialog
+							// closed
+
+						}
+					});
+
+			// Showing Alert Message
+			alertDialog.show();
+		}
 		// signout.setOnClickListener(new View.OnClickListener() {
 		//
 		// public void onClick(View v) {

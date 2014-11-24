@@ -13,9 +13,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.deemsysinc.gpsmobiletracking.LiveTrack.MyInfoWindowAdapter;
-import com.deemsysinc.gpsmobiletracking.OverSpeed.CompareAsync;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
@@ -43,16 +40,15 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
+
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -153,16 +149,19 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.historytrack);
-	
+
 		linear = (LinearLayout) findViewById(R.id.linear);
 		ActionBar actions = getActionBar();
-		getActionBar().setBackgroundDrawable(new BitmapDrawable (BitmapFactory.decodeResource(getResources(), R.drawable.actionbarbg)));
-		
-		actions.setIcon(R.drawable.historyicon);
+		getActionBar().setBackgroundDrawable(
+				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
+						R.drawable.actionbarbg)));
+
+		actions.setIcon(R.drawable.histroyicon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
 
@@ -191,7 +190,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 									.findFragmentById(R.id.map)).getMap();
 						}
 						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-					//	tgbutton.setBackgroundResource(R.drawable.earth);
+						// tgbutton.setBackgroundResource(R.drawable.earth);
 
 						Marker marker = googleMap.addMarker(new MarkerOptions()
 								.position(TutorialsPoint).title(""));
@@ -213,7 +212,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 									.findFragmentById(R.id.map)).getMap();
 						}
 						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-//						tgbutton.setBackgroundResource(R.drawable.aerial);
+						// tgbutton.setBackgroundResource(R.drawable.aerial);
 						Marker marker = googleMap.addMarker(new MarkerOptions()
 								.position(TutorialsPoint).title(""));
 						CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -407,7 +406,10 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 
 			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
-				if (!checkdate.equalsIgnoreCase("empty")) {
+				isInternetPresent = cd.isConnectingToInternet();
+				System.out.println("check date in go::"
+						+ datebutton.getText().toString());
+				if (!datebutton.getText().toString().equalsIgnoreCase("Date")) {
 					if (!fromtime.getText().toString()
 							.equalsIgnoreCase("From time")) {
 						if (!totime.getText().toString()
@@ -415,9 +417,13 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 							SimpleDateFormat sdf = new SimpleDateFormat(
 									"yyyy-MM-dd HH:mm");
 							try {
-								Date date1 = sdf.parse(checkdate + " "
+								Date date1 = sdf.parse(datebutton.getText()
+										.toString()
+										+ " "
 										+ fromtime.getText().toString());
-								Date date2 = sdf.parse(checkdate + " "
+								Date date2 = sdf.parse(datebutton.getText()
+										.toString()
+										+ " "
 										+ totime.getText().toString());
 
 								System.out.println("date values 1" + date1);
@@ -458,11 +464,63 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 								} else if (date1.compareTo(date2) < 0) {
 									linear.setVisibility(View.GONE);
 									linear.startAnimation(animSlideUp);
-									new VehiclePath().execute();
+									if (isInternetPresent) {
+										new VehiclePath().execute();
+									} else {
+										AlertDialog alertDialog = new AlertDialog.Builder(
+												HistoryTrack.this).create();
+
+										alertDialog.setTitle("INFO!");
+
+										alertDialog
+												.setMessage("No network connection.");
+
+										alertDialog.setIcon(R.drawable.delete);
+
+										alertDialog
+												.setButton(
+														"OK",
+														new DialogInterface.OnClickListener() {
+
+															public void onClick(
+																	final DialogInterface dialog,
+																	final int which) {
+
+															}
+														});
+
+										alertDialog.show();
+									}
 								} else if (date1.compareTo(date2) == 0) {
 									linear.setVisibility(View.GONE);
 									linear.startAnimation(animSlideUp);
-									new VehiclePath().execute();
+									if (isInternetPresent) {
+										new VehiclePath().execute();
+									} else {
+										AlertDialog alertDialog = new AlertDialog.Builder(
+												HistoryTrack.this).create();
+
+										alertDialog.setTitle("INFO!");
+
+										alertDialog
+												.setMessage("No network connection.");
+
+										alertDialog.setIcon(R.drawable.delete);
+
+										alertDialog
+												.setButton(
+														"OK",
+														new DialogInterface.OnClickListener() {
+
+															public void onClick(
+																	final DialogInterface dialog,
+																	final int which) {
+
+															}
+														});
+
+										alertDialog.show();
+									}
 								} else {
 									System.out.println("How to get here?");
 								}
@@ -594,42 +652,42 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		tgbutton = (ToggleButton) findViewById(R.id.showmapdif);
-//		tgbutton.setSelected(true);
-//		tgbutton.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				if (!tgbutton.isChecked()) {
-//					try {
-//						if (googleMap == null) {
-//							googleMap = ((MapFragment) getFragmentManager()
-//									.findFragmentById(R.id.map)).getMap();
-//						}
-//						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//						tgbutton.setBackgroundResource(R.drawable.earth);
-//
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//
-//				} else {
-//					try {
-//						if (googleMap == null) {
-//							googleMap = ((MapFragment) getFragmentManager()
-//									.findFragmentById(R.id.map)).getMap();
-//						}
-//						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-//						tgbutton.setBackgroundResource(R.drawable.aerial);
-//
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//
-//				}
-//			}
-//		});
+		// tgbutton = (ToggleButton) findViewById(R.id.showmapdif);
+		// tgbutton.setSelected(true);
+		// tgbutton.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// // TODO Auto-generated method stub
+		// if (!tgbutton.isChecked()) {
+		// try {
+		// if (googleMap == null) {
+		// googleMap = ((MapFragment) getFragmentManager()
+		// .findFragmentById(R.id.map)).getMap();
+		// }
+		// googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+		// tgbutton.setBackgroundResource(R.drawable.earth);
+		//
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		//
+		// } else {
+		// try {
+		// if (googleMap == null) {
+		// googleMap = ((MapFragment) getFragmentManager()
+		// .findFragmentById(R.id.map)).getMap();
+		// }
+		// googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+		// tgbutton.setBackgroundResource(R.drawable.aerial);
+		//
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		//
+		// }
+		// }
+		// });
 
 		vehicle_reg_numb = LiveTrack.vehicle_reg_no;
 		// System.out.println("history track veh numb"+vehicle_reg_numb);
@@ -716,22 +774,23 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		public void onDateSet(DatePicker view, int selectedYear,
 				int selectedMonth, int selectedDay) {
 			// int noOfTimesCalled = 0;
-			if (view.isShown()) {
-				year = selectedYear;
-				month = selectedMonth;
-				day = selectedDay;
+			// if (view.isShown()) {
+			year = selectedYear;
+			month = selectedMonth;
+			day = selectedDay;
 
-				String date1 = year + "-" + checkDigit(month + 1) + "-"
-						+ checkDigit(day);
-				checkdate = date1.toString();
-				datebutton.setText(checkdate);
-				// if (isInternetPresent) {
-				// new VehiclePath().execute();
-				// }
+			String date1 = year + "-" + checkDigit(month + 1) + "-"
+					+ checkDigit(day);
+			// checkdate = date1.toString();
+			datebutton.setText(date1.toString());
+			System.out.println("check date value::" + date1.toString());
+			// if (isInternetPresent) {
+			// new VehiclePath().execute();
+			// }
 
-			} else {
-				checkdate = "empty";
-			}
+			// } else {
+			// checkdate = "empty";
+			// }
 		}
 
 	};
@@ -759,10 +818,10 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 			params1.add(new BasicNameValuePair("org_id", Config.org_id));
 			params1.add(new BasicNameValuePair("vechicle_reg_no",
 					vehicle_reg_numb));
-			params1.add(new BasicNameValuePair("date1", checkdate + " "
-					+ fromtime.getText().toString()));
-			params1.add(new BasicNameValuePair("date2", checkdate + " "
-					+ totime.getText().toString()));
+			params1.add(new BasicNameValuePair("date1", datebutton.getText()
+					.toString() + " " + fromtime.getText().toString()));
+			params1.add(new BasicNameValuePair("date2", datebutton.getText()
+					.toString() + " " + totime.getText().toString()));
 			// System.out.println("vehicle ddfgate no.fdfsd ."+checkdate);
 			// params1.add(new BasicNameValuePair("org_id",
 			// LoginActivity.orgid));
@@ -979,8 +1038,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 	public void onAnimationEnd(Animation animation) {
 		// TODO Auto-generated method stub
 
-//		if (animation == animSlideUp) {
-//		}
+		// if (animation == animSlideUp) {
+		// }
 
 	}
 

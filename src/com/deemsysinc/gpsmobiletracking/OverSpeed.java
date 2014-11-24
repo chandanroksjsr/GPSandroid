@@ -93,7 +93,7 @@ public class OverSpeed extends Activity implements AnimationListener {
 		ActionBar actions = getActionBar();
 		getActionBar().setBackgroundDrawable(new BitmapDrawable (BitmapFactory.decodeResource(getResources(), R.drawable.actionbarbg)));
 		
-		actions.setIcon(R.drawable.historyicon);
+		actions.setIcon(R.drawable.overspeedicon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
 		cd = new ConnectionDetector(getApplicationContext());
@@ -159,6 +159,7 @@ public class OverSpeed extends Activity implements AnimationListener {
 
 			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
+				isInternetPresent = cd.isConnectingToInternet();
 				if (!fromdate.getText().toString()
 						.equalsIgnoreCase("From date")) {
 					if (!todate.getText().toString()
@@ -204,11 +205,70 @@ public class OverSpeed extends Activity implements AnimationListener {
 							} else if (date1.compareTo(date2) < 0) {
 								linear.setVisibility(View.INVISIBLE);
 								linear.startAnimation(animSlideUp);
+								if(isInternetPresent){
 								new CompareAsync().execute();
+								}
+								else{
+									AlertDialog alertDialog = new AlertDialog.Builder(
+											OverSpeed.this).create();
+
+								
+									alertDialog.setTitle("INFO!");
+
+									
+									alertDialog.setMessage("No network connection.");
+
+								
+									alertDialog.setIcon(R.drawable.delete);
+
+									
+
+									alertDialog.setButton("OK",
+											new DialogInterface.OnClickListener() {
+
+												public void onClick(
+														final DialogInterface dialog,
+														final int which) {
+												
+												}
+											});
+
+									
+									alertDialog.show();
+								}
 							} else if (date1.compareTo(date2) == 0) {
 								linear.setVisibility(View.INVISIBLE);
 								linear.startAnimation(animSlideUp);
+								if(isInternetPresent){
 								new CompareAsync().execute();
+								}else{
+									AlertDialog alertDialog = new AlertDialog.Builder(
+											OverSpeed.this).create();
+
+								
+									alertDialog.setTitle("INFO!");
+
+									
+									alertDialog.setMessage("No network connection.");
+
+								
+									alertDialog.setIcon(R.drawable.delete);
+
+									
+
+									alertDialog.setButton("OK",
+											new DialogInterface.OnClickListener() {
+
+												public void onClick(
+														final DialogInterface dialog,
+														final int which) {
+												
+												}
+											});
+
+									
+									alertDialog.show();
+								}
 							} else {
 								System.out.println("How to get here?");
 							}

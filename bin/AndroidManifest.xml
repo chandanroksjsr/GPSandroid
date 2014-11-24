@@ -79,7 +79,7 @@
             android:value="8" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDZgRjLy4BiUjBh_a7P-cGORTpiize4KUg" />
+            android:value="AIzaSyBv4Y7___dAlBlFFwf8bqK3rzxmCLtkQFY" />
         <!-- for development   AIzaSyBv4Y7___dAlBlFFwf8bqK3rzxmCLtkQFY-->
         <!-- android:value="AIzaSyDZgRjLy4BiUjBh_a7P-cGORTpiize4KUg" /> -->
 

@@ -137,6 +137,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -145,11 +146,15 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		ActionBar actions = getActionBar();
 
 		actions.setIcon(R.drawable.liveicon);
-		getActionBar().setBackgroundDrawable(new BitmapDrawable (BitmapFactory.decodeResource(getResources(), R.drawable.actionbarbg)));
-		
+		getActionBar().setBackgroundDrawable(
+				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
+						R.drawable.actionbarbg)));
+
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
-
+		cd = new ConnectionDetector(getApplicationContext());
+		isInternetPresent = cd.isConnectingToInternet();
+		alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
 		maprad = (RadioButton) findViewById(R.id.radiomap);
 		satrad = (RadioButton) findViewById(R.id.radiosatellite);
 
@@ -167,7 +172,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 									.findFragmentById(R.id.map)).getMap();
 						}
 						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-					//	tgbutton.setBackgroundResource(R.drawable.earth);
+						// tgbutton.setBackgroundResource(R.drawable.earth);
 
 						Marker marker = googleMap.addMarker(new MarkerOptions()
 								.position(TutorialsPoint).title(""));
@@ -189,7 +194,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 									.findFragmentById(R.id.map)).getMap();
 						}
 						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-//						tgbutton.setBackgroundResource(R.drawable.aerial);
+						// tgbutton.setBackgroundResource(R.drawable.aerial);
 						Marker marker = googleMap.addMarker(new MarkerOptions()
 								.position(TutorialsPoint).title(""));
 						CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -218,7 +223,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					R.array.nav_drawer_items_withoutalert,
 					android.R.layout.simple_spinner_dropdown_item);
 
-			alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
+			
 			// Callback
 			OnNavigationListener callback = new OnNavigationListener() {
 
@@ -408,62 +413,63 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		}
 		userrole = Config.role;
 
-		//tgbutton = (ToggleButton) findViewById(R.id.showmap);
+		// tgbutton = (ToggleButton) findViewById(R.id.showmap);
 		// tgbutton.setSelected(true);
-//		tgbutton.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				if (!tgbutton.isChecked()) {
-//					try {
-//						if (googleMap == null) {
-//							googleMap = ((MapFragment) getFragmentManager()
-//									.findFragmentById(R.id.map)).getMap();
-//						}
-//						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//						tgbutton.setBackgroundResource(R.drawable.earth);
-//
-//						Marker marker = googleMap.addMarker(new MarkerOptions()
-//								.position(TutorialsPoint).title(""));
-//						CameraPosition cameraPosition = new CameraPosition.Builder()
-//								.target(TutorialsPoint).zoom(4).build();
-//						googleMap.animateCamera(CameraUpdateFactory
-//								.newCameraPosition(cameraPosition));
-//						marker.remove();
-//						marker.setVisible(false);
-//						marker.setVisible(false);
-//
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//
-//				} else {
-//					try {
-//						if (googleMap == null) {
-//							googleMap = ((MapFragment) getFragmentManager()
-//									.findFragmentById(R.id.map)).getMap();
-//						}
-//						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-//						tgbutton.setBackgroundResource(R.drawable.aerial);
-//						Marker marker = googleMap.addMarker(new MarkerOptions()
-//								.position(TutorialsPoint).title(""));
-//						CameraPosition cameraPosition = new CameraPosition.Builder()
-//								.target(TutorialsPoint).zoom(4).build();
-//						googleMap.animateCamera(CameraUpdateFactory
-//								.newCameraPosition(cameraPosition));
-//						marker.remove();
-//						marker.setVisible(false);
-//
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//
-//				}
-//			}
-//		});
-
+		// tgbutton.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// // TODO Auto-generated method stub
+		// if (!tgbutton.isChecked()) {
+		// try {
+		// if (googleMap == null) {
+		// googleMap = ((MapFragment) getFragmentManager()
+		// .findFragmentById(R.id.map)).getMap();
+		// }
+		// googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+		// tgbutton.setBackgroundResource(R.drawable.earth);
+		//
+		// Marker marker = googleMap.addMarker(new MarkerOptions()
+		// .position(TutorialsPoint).title(""));
+		// CameraPosition cameraPosition = new CameraPosition.Builder()
+		// .target(TutorialsPoint).zoom(4).build();
+		// googleMap.animateCamera(CameraUpdateFactory
+		// .newCameraPosition(cameraPosition));
+		// marker.remove();
+		// marker.setVisible(false);
+		// marker.setVisible(false);
+		//
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		//
+		// } else {
+		// try {
+		// if (googleMap == null) {
+		// googleMap = ((MapFragment) getFragmentManager()
+		// .findFragmentById(R.id.map)).getMap();
+		// }
+		// googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+		// tgbutton.setBackgroundResource(R.drawable.aerial);
+		// Marker marker = googleMap.addMarker(new MarkerOptions()
+		// .position(TutorialsPoint).title(""));
+		// CameraPosition cameraPosition = new CameraPosition.Builder()
+		// .target(TutorialsPoint).zoom(4).build();
+		// googleMap.animateCamera(CameraUpdateFactory
+		// .newCameraPosition(cameraPosition));
+		// marker.remove();
+		// marker.setVisible(false);
+		//
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		//
+		// }
+		// }
+		// });
+		
 		timercalling();
+	
 	}
 
 	// private void initilizeMap() {
@@ -488,9 +494,44 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 			@Override
 			public void run() {
 				runOnUiThread(new Runnable() {
+					@SuppressWarnings("deprecation")
 					public void run() {
 						try {
+							if (isInternetPresent) {
 							new VehiclePath().execute();
+							}else
+							{
+								alertcheck = alertDialog.isShowing();
+
+								if (alertcheck.booleanValue() == true) {
+									System.out.println("alert check value::" + alertcheck);
+									alertDialog.dismiss();
+								}
+								alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
+							
+								alertDialog.setTitle("INFO!");
+
+								
+								alertDialog.setMessage("No network connection.");
+
+							
+								alertDialog.setIcon(R.drawable.delete);
+
+								
+
+								alertDialog.setButton("OK",
+										new DialogInterface.OnClickListener() {
+
+											public void onClick(
+													final DialogInterface dialog,
+													final int which) {
+											
+											}
+										});
+
+								
+								alertDialog.show();	
+							}
 
 						} catch (Exception e) {
 
