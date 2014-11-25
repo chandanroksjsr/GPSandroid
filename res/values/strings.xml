@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="drivername">Driver Name</string>
     <string name="login">LOG IN</string>
     <string name="reset">Reset</string>
-    <string name="app_name">DeemGPS</string>
+    <string name="app_name">DeemsysGPS</string>
     <string name="action_settings">Settings</string>
     <string name="release">OK</string>
     <string name="Username">Username</string>
@@ -11,7 +12,7 @@
     <string name="signin">Login</string>
     <string name="welcome">Welcome     </string>
     <string name="aboutus">About us</string>
-     <string name="profile">Profile</string>
+    <string name="profile">Profile</string>
     <string name="contactus">Contact us</string>
     <string name="callus">Call us</string>
     <string name="feedbak">FeedBack</string>
@@ -28,10 +29,11 @@
     <string name="state">State</string>
     <string name="info">INFO!</string>
     <string name="savemessage">Save Message</string>
+    <string name="savesettings">Save Settings</string>
     <string name="clearmessage">Clear Message</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
-       <string name="login_signuptext">Enter your username and password to login</string>
+    <string name="login_signuptext">Enter your username and password to login</string>
 
     <string-array name="nav_drawer_items">
         <item>Live Track</item>
@@ -88,6 +90,8 @@
         <item>Dashboard</item>
     </string-array>
 
+    <string name="alarmtype">Select Alarm type</string>
+    <string name="synciming">Select Synchronization timing</string>
     <string name="aboutusdeem">About Deemsys</string>
     <string name="vehicleno">Vehicle No</string>
     <string name="lastupdate">Last Updated</string>

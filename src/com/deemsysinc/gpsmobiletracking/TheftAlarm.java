@@ -329,6 +329,8 @@ public class TheftAlarm extends Activity {
 							if (mPlayer != null && mPlayer.isPlaying()) {
 								mPlayer.stop();
 							}
+							Config.flag ="alreadyloggedin";
+							myIntent.putExtra("isalreadylogged", Config.flag);
 							TheftAlarm.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);

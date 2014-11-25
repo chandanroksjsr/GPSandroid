@@ -114,6 +114,8 @@ public class Aboutus extends TabActivity implements OnTabChangeListener {
 		case android.R.id.home:
 			Intent myIntent2 = new Intent(Aboutus.this,
 					DashboardActivity.class);
+			Config.flag ="alreadyloggedin";
+			myIntent2.putExtra("isalreadylogged", Config.flag);
 			Aboutus.this.startActivity(myIntent2);
 			overridePendingTransition(R.anim.pushup,
 					R.anim.pushdown);

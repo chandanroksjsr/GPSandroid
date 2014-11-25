@@ -291,6 +291,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(HistoryTrack.this,
 									DashboardActivity.class);
+							Config.flag = "alreadyloggedin";
+							myIntent.putExtra("isalreadylogged", Config.flag);
 							HistoryTrack.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
@@ -316,17 +318,13 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 			// Callback
 			OnNavigationListener callback = new OnNavigationListener() {
 
-				String[] items = getResources().getStringArray(
-						R.array.nav_drawer_items1); // List items from res
+				// String[] items = getResources().getStringArray(
+				// R.array.nav_drawer_items1); // List items from res
 
 				@Override
 				public boolean onNavigationItemSelected(int itemPosition,
 						long id) {
 
-					// Do stuff when navigation item is selected
-					// System.out.println("item position value"+itemPosition);
-					// Log.d("NavigationItemSelected", items[position]); //
-					// Debug
 					Intent myIntent;
 					if (itemPosition != 0) {
 						if (itemPosition == 0) { // Activity#1 Selected
@@ -361,6 +359,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(HistoryTrack.this,
 									DashboardActivity.class);
+							Config.flag = "alreadyloggedin";
+							myIntent.putExtra("isalreadylogged", Config.flag);
 							HistoryTrack.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
@@ -381,7 +381,6 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		totime = (Button) findViewById(R.id.totime);
 		fromtime.setOnClickListener(new View.OnClickListener() {
 
-			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
 				showDialog(TIME_PICKER_ID);
 			}
@@ -389,14 +388,12 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 
 		totime.setOnClickListener(new View.OnClickListener() {
 
-			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
 				showDialog(TIME_PICKER_ID1);
 			}
 		});
 		datebutton.setOnClickListener(new View.OnClickListener() {
 
-			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
 				showDialog(DATE_PICKER_ID);
 			}
@@ -404,26 +401,23 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		submit = (Button) findViewById(R.id.go);
 		submit.setOnClickListener(new View.OnClickListener() {
 
-			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
 				isInternetPresent = cd.isConnectingToInternet();
 				System.out.println("check date in go::"
 						+ datebutton.getText().toString());
 				if (!datebutton.getText().toString().equalsIgnoreCase("Date")) {
 					if (!fromtime.getText().toString()
-							.equalsIgnoreCase("From time")) {
+							.equalsIgnoreCase("From Time"))// has value 12:12:12
+					{
+
 						if (!totime.getText().toString()
-								.equalsIgnoreCase("To time")) {
+								.equalsIgnoreCase("To Time")) {
 							SimpleDateFormat sdf = new SimpleDateFormat(
 									"yyyy-MM-dd HH:mm");
 							try {
-								Date date1 = sdf.parse(datebutton.getText()
-										.toString()
-										+ " "
+								Date date1 = sdf.parse(checkdate + " "
 										+ fromtime.getText().toString());
-								Date date2 = sdf.parse(datebutton.getText()
-										.toString()
-										+ " "
+								Date date2 = sdf.parse(checkdate + " "
 										+ totime.getText().toString());
 
 								System.out.println("date values 1" + date1);
@@ -462,65 +456,9 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 									// Showing Alert Message
 									alertDialog.show();
 								} else if (date1.compareTo(date2) < 0) {
-									linear.setVisibility(View.GONE);
-									linear.startAnimation(animSlideUp);
-									if (isInternetPresent) {
-										new VehiclePath().execute();
-									} else {
-										AlertDialog alertDialog = new AlertDialog.Builder(
-												HistoryTrack.this).create();
-
-										alertDialog.setTitle("INFO!");
-
-										alertDialog
-												.setMessage("No network connection.");
-
-										alertDialog.setIcon(R.drawable.delete);
-
-										alertDialog
-												.setButton(
-														"OK",
-														new DialogInterface.OnClickListener() {
-
-															public void onClick(
-																	final DialogInterface dialog,
-																	final int which) {
-
-															}
-														});
-
-										alertDialog.show();
-									}
+									new VehiclePath().execute();
 								} else if (date1.compareTo(date2) == 0) {
-									linear.setVisibility(View.GONE);
-									linear.startAnimation(animSlideUp);
-									if (isInternetPresent) {
-										new VehiclePath().execute();
-									} else {
-										AlertDialog alertDialog = new AlertDialog.Builder(
-												HistoryTrack.this).create();
-
-										alertDialog.setTitle("INFO!");
-
-										alertDialog
-												.setMessage("No network connection.");
-
-										alertDialog.setIcon(R.drawable.delete);
-
-										alertDialog
-												.setButton(
-														"OK",
-														new DialogInterface.OnClickListener() {
-
-															public void onClick(
-																	final DialogInterface dialog,
-																	final int which) {
-
-															}
-														});
-
-										alertDialog.show();
-									}
+									new VehiclePath().execute();
 								} else {
 									System.out.println("How to get here?");
 								}
@@ -530,89 +468,48 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 							}
 
 						} else {
-							AlertDialog alertDialog = new AlertDialog.Builder(
-									HistoryTrack.this).create();
+							totime.setText(" 23:59:59");
+							if (isInternetPresent) {
+								new VehiclePath().execute();
+							} else {
 
-							// Setting Dialog Title
-							alertDialog.setTitle("INFO!");
+							}
+						}
+					} else if (!totime.getText().toString()
+							.equalsIgnoreCase("To Time")) // has value 12:12:12
+					{
+						fromtime.setText(" 00:00:00");
+						if (isInternetPresent) {
+							new VehiclePath().execute();
+						} else {
 
-							// Setting Dialog Message
-							alertDialog.setMessage("Select to time.");
-
-							// Setting Icon to Dialog
-							alertDialog.setIcon(R.drawable.delete);
-
-							// Setting OK Button
-							alertDialog.setButton("OK",
-									new DialogInterface.OnClickListener() {
-
-										public void onClick(
-												final DialogInterface dialog,
-												final int which) {
-											// Write your code here to execute
-											// after dialog
-											// closed
-
-										}
-									});
-
-							// Showing Alert Message
-							alertDialog.show();
 						}
 					} else {
-						AlertDialog alertDialog = new AlertDialog.Builder(
-								HistoryTrack.this).create();
+						fromtime.setText(" 00:00:00");
+						totime.setText(" 23:59:59");
+						if (isInternetPresent) {
+							new VehiclePath().execute();
+						} else {
 
-						// Setting Dialog Title
-						alertDialog.setTitle("INFO!");
-
-						// Setting Dialog Message
-						alertDialog.setMessage("Select from time.");
-
-						// Setting Icon to Dialog
-						alertDialog.setIcon(R.drawable.delete);
-
-						// Setting OK Button
-						alertDialog.setButton("OK",
-								new DialogInterface.OnClickListener() {
-
-									public void onClick(
-											final DialogInterface dialog,
-											final int which) {
-										// Write your code here to execute after
-										// dialog
-										// closed
-
-									}
-								});
-
-						// Showing Alert Message
-						alertDialog.show();
-
+						}
 					}
+
 				} else {
 					AlertDialog alertDialog = new AlertDialog.Builder(
 							HistoryTrack.this).create();
 
-					// Setting Dialog Title
 					alertDialog.setTitle("INFO!");
 
-					// Setting Dialog Message
 					alertDialog.setMessage("Select date.");
 
-					// Setting Icon to Dialog
 					alertDialog.setIcon(R.drawable.delete);
 
-					// Setting OK Button
 					alertDialog.setButton("OK",
 							new DialogInterface.OnClickListener() {
 
 								public void onClick(
 										final DialogInterface dialog,
 										final int which) {
-									// Write your code here to execute after
-									// dialog
-									// closed
 
 								}
 							});
@@ -936,7 +833,15 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 									TAG_bus_tracking_timestamp + k);
 					String snippetval = titlevalue + "\n" + "Address:"
 							+ vehiclehistory1.get(k).get(TAG_address + k);
-					if (vehiclehistory1.get(k).get(TAG_Exceed_Speed + k)
+
+					if (k == 0 || k == vehiclehistory1.size() - 1) {
+						marker = new MarkerOptions().position(pinLocation)
+								.snippet(snippetval);
+
+						marker.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.options));
+						googleMap.addMarker(marker);
+					} else if (vehiclehistory1.get(k).get(TAG_Exceed_Speed + k)
 							.equals("1")) {
 						marker = new MarkerOptions().position(pinLocation)
 								.snippet(snippetval);
@@ -944,7 +849,9 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 						marker.icon(BitmapDescriptorFactory
 								.fromResource(R.drawable.pink_pin));
 						googleMap.addMarker(marker);
-					} else {
+					}
+
+					else {
 						marker = new MarkerOptions().position(pinLocation)
 								.snippet(snippetval);
 						marker.icon(BitmapDescriptorFactory
@@ -954,12 +861,19 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 					}
 					int sizeminusone = vehiclehistory1.size() - 1;
 					if (sizeminusone == k) {
+						// marker = new MarkerOptions().position(pinLocation)
+						// .snippet(snippetval);
+						//
+						// marker.icon(BitmapDescriptorFactory
+						// .fromResource(R.drawable.options));
+						// googleMap.addMarker(marker);
 
 						CameraPosition cameraPosition = new CameraPosition.Builder()
 								.target(pinLocation).zoom(12).build();
 						googleMap.animateCamera(CameraUpdateFactory
 								.newCameraPosition(cameraPosition));
 					}
+
 					// System.out.println("vehicle histroy value::"+vehiclehistory1.get(k).get(TAG_Exceed_Speed+k));
 
 				}

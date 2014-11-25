@@ -147,6 +147,8 @@ public class AlertMsg extends Activity {
 						HistoryTrack.vehiclehistory1.clear();
 						myIntent = new Intent(AlertMsg.this,
 								DashboardActivity.class);
+						Config.flag ="alreadyloggedin";
+						myIntent.putExtra("isalreadylogged", Config.flag);
 						AlertMsg.this.startActivity(myIntent);
 						overridePendingTransition(R.anim.slide_in,
 								R.anim.slide_out);

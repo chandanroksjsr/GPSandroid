@@ -10,9 +10,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.deemsysinc.gpsmobiletracking.TheftAlarm.insertTheftAlarm;
-import com.deemsysinc.gpsmobiletracking.TheftAlarm.updateTheftAlarm;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,18 +27,20 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -99,6 +98,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	double latitude1;
 	double longitude1;
 	Boolean alertcheck;
+	TextView timingsec;
+	ProgressBar pb;
 	// private static String vehicleliveurl =
 	// "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory";
 	// private static String vehicleliveurl =
@@ -157,7 +158,10 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
 		maprad = (RadioButton) findViewById(R.id.radiomap);
 		satrad = (RadioButton) findViewById(R.id.radiosatellite);
-
+		pb = (ProgressBar) findViewById(R.id.progressBarToday);
+		pb.setMax(30);
+		timingsec = (TextView) findViewById(R.id.timingsecs);
+		
 		OnClickListener listener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -223,12 +227,11 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					R.array.nav_drawer_items_withoutalert,
 					android.R.layout.simple_spinner_dropdown_item);
 
-			
 			// Callback
 			OnNavigationListener callback = new OnNavigationListener() {
 
-				String[] items = getResources().getStringArray(
-						R.array.nav_drawer_items); // List items from res
+				// String[] items = getResources().getStringArray(
+				// R.array.nav_drawer_items); // List items from res
 
 				@Override
 				public boolean onNavigationItemSelected(int itemPosition,
@@ -289,6 +292,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							HistoryTrack.vehiclehistory1.clear();
 							myIntent = new Intent(LiveTrack.this,
 									DashboardActivity.class);
+							Config.flag = "alreadyloggedin";
+							myIntent.putExtra("isalreadylogged", Config.flag);
 							LiveTrack.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
@@ -312,9 +317,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 			alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
 			// Callback
 			OnNavigationListener callback = new OnNavigationListener() {
-
-				String[] items = getResources().getStringArray(
-						R.array.nav_drawer_items); // List items from res
+				//
+				// String[] items = getResources().getStringArray(
+				// R.array.nav_drawer_items); // List items from res
 
 				@Override
 				public boolean onNavigationItemSelected(int itemPosition,
@@ -360,6 +365,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							HistoryTrack.vehiclehistory1.clear();
 							myIntent = new Intent(LiveTrack.this,
 									DashboardActivity.class);
+							Config.flag = "alreadyloggedin";
+							myIntent.putExtra("isalreadylogged", Config.flag);
 							LiveTrack.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
@@ -467,9 +474,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		// }
 		// }
 		// });
-		
+
 		timercalling();
-	
+
 	}
 
 	// private void initilizeMap() {
@@ -498,26 +505,39 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					public void run() {
 						try {
 							if (isInternetPresent) {
-							new VehiclePath().execute();
-							}else
-							{
+								CountDownTimer countDownTimer = new CountDownTimer(30000, 1000) {
+
+									public void onTick(long millisUntilFinished) {
+										long seconds = millisUntilFinished / 1000;
+										int barVal = ((int) (millisUntilFinished) / 1000);
+										pb.setProgress(barVal);
+
+										timingsec.setText("seconds remaining: " + millisUntilFinished
+												/ 1000);
+									}
+
+									public void onFinish() {
+										timingsec.setText("done!");
+									}
+								}.start();
+								new VehiclePath().execute();
+							} else {
 								alertcheck = alertDialog.isShowing();
 
 								if (alertcheck.booleanValue() == true) {
-									System.out.println("alert check value::" + alertcheck);
+									System.out.println("alert check value::"
+											+ alertcheck);
 									alertDialog.dismiss();
 								}
-								alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
-							
+								alertDialog = new AlertDialog.Builder(
+										LiveTrack.this).create();
+
 								alertDialog.setTitle("INFO!");
 
-								
-								alertDialog.setMessage("No network connection.");
+								alertDialog
+										.setMessage("No network connection.");
 
-							
 								alertDialog.setIcon(R.drawable.delete);
-
-								
 
 								alertDialog.setButton("OK",
 										new DialogInterface.OnClickListener() {
@@ -525,12 +545,11 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 											public void onClick(
 													final DialogInterface dialog,
 													final int which) {
-											
+
 											}
 										});
 
-								
-								alertDialog.show();	
+								alertDialog.show();
 							}
 
 						} catch (Exception e) {
@@ -540,6 +559,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 				});
 			}
 		};
+		
 		timer.schedule(doAsynchronousTask, 0, 30000);
 	}
 
@@ -690,9 +710,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								TAG_bus_tracking_timestamp + k);
 				String snippetval = titlevalue + "\n" + "Address:"
 						+ vehiclehistory.get(k).get(TAG_address + k);
-				String date = "Date:"
-						+ vehiclehistory.get(k).get(
-								TAG_bus_tracking_timestamp + k);
+				// String date = "Date:"
+				// + vehiclehistory.get(k).get(
+				// TAG_bus_tracking_timestamp + k);
 
 				if (sizeminusone != k) {
 
@@ -783,7 +803,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// googleMap.clear();
+
 		vehicle_reg_no = getIntent().getExtras().getString("vehicleregnum");
 		routeno = getIntent().getExtras().getString("routenum");
 		driver_name = getIntent().getExtras().getString("drivername");
@@ -810,4 +830,22 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.info:
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		getMenuInflater().inflate(R.menu.info, menu);
+		return true;
+	}
 }

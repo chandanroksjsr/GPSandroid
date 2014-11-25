@@ -79,6 +79,7 @@ public class DashboardActivity extends Activity {
 	ListView list2;
 	TextView welcomeusername;
 	Button aboutus, contactus, signout;
+	String isalready;
 	// private static String vehicledetailsurl =
 	// "http://192.168.1.158:8888/gpsandroid/service/VehicleDetails.php?service=vehicledetails1";
 	// private static String vehicledetailsurl =
@@ -99,7 +100,9 @@ public class DashboardActivity extends Activity {
 						R.drawable.actionbarbg)));
 
 		setContentView(R.layout.dashboard);
-		if (Config.flag.equalsIgnoreCase("notloggedin")) {
+		isalready = getIntent().getExtras().getString("isalreadylogged");
+		System.out.println("value of isalready::"+isalready);
+		if (isalready.equalsIgnoreCase("notloggedin")&&Config.flag.equalsIgnoreCase("notloggedin")) {
 			AlertDialog alertDialog = new AlertDialog.Builder(
 					DashboardActivity.this).create();
 
@@ -119,6 +122,8 @@ public class DashboardActivity extends Activity {
 
 			alertDialog.show();
 		}
+	
+	
 		cd = new ConnectionDetector(getApplicationContext());
 		isInternetPresent = cd.isConnectingToInternet();
 		if (isInternetPresent) {
@@ -370,6 +375,12 @@ public class DashboardActivity extends Activity {
 			Intent myIntent1 = new Intent(DashboardActivity.this,
 					ContactUs.class);
 			DashboardActivity.this.startActivity(myIntent1);
+			overridePendingTransition(R.anim.pushdown, R.anim.pushup);
+			return true;
+		case R.id.settings:
+			Intent myIntent11 = new Intent(DashboardActivity.this,
+					Settings.class);
+			DashboardActivity.this.startActivity(myIntent11);
 			overridePendingTransition(R.anim.pushdown, R.anim.pushup);
 			return true;
 		case R.id.logout:

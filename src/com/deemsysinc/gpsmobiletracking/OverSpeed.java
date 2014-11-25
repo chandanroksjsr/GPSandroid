@@ -400,6 +400,8 @@ public class OverSpeed extends Activity implements AnimationListener {
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(OverSpeed.this,
 									DashboardActivity.class);
+							Config.flag ="alreadyloggedin";
+							myIntent.putExtra("isalreadylogged", Config.flag);
 							OverSpeed.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);

@@ -389,6 +389,7 @@ public class LoginActivity extends Activity {
 					Config.flag="notloggedin";
 					Intent intentSignUP = new Intent(getApplicationContext(),
 							DashboardActivity.class);
+					intentSignUP.putExtra("isalreadylogged", Config.flag);
 					startActivity(intentSignUP);
 					overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
@@ -510,9 +511,11 @@ public class LoginActivity extends Activity {
 				Config.org_id = sharedpreferences.getString("org_id", "");
 				Config.role = sharedpreferences.getString("role", "");
 				Config.enabled = sharedpreferences.getString("enabled", "");
-				Config.flag ="alreadyloggedin";
+				
 
 				Intent i = new Intent(this, DashboardActivity.class);
+				Config.flag ="alreadyloggedin";
+				i.putExtra("isalreadylogged", Config.flag);
 				startActivity(i);
 			}
 		}

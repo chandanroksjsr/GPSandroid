@@ -46,6 +46,8 @@ public class ProfileActivity extends Activity {
 		case android.R.id.home:
 			Intent myIntent2 = new Intent(ProfileActivity.this,
 					DashboardActivity.class);
+			Config.flag ="alreadyloggedin";
+			myIntent2.putExtra("isalreadylogged", Config.flag);
 			ProfileActivity.this.startActivity(myIntent2);
 			overridePendingTransition(R.anim.pushup, R.anim.pushdown);
 

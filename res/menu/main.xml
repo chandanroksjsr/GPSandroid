@@ -1,7 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.deemsys.lmsmooc.MainActivity" >
-
+  <item
+                android:id="@+id/settings"
+               
+                android:showAsAction="always"
+                android:title="@string/action_settings"/>
     <item
         android:id="@+id/navd"
         android:icon="@drawable/overflow"
@@ -20,6 +24,7 @@
                 android:orderInCategory="0"
                 android:showAsAction="never"
                 android:title="@string/contactus"/>
+            
             <item
                 android:id="@+id/logout"
                 android:orderInCategory="0"

@@ -1,10 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:android1="http://schemas.android.com/apk/res/android"
-    style="@style/MyTheme"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
+
+    <LinearLayout
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_gravity="center_vertical|center_horizontal|center"
+        android1:orientation="vertical" >
+
+        <LinearLayout
+            android1:layout_width="match_parent"
+            android1:layout_height="wrap_content"
+            android1:orientation="horizontal" >
+
+            <TextView
+                android1:id="@+id/textView1"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="@string/drivername" />
+
+            <TextView
+                android1:id="@+id/drivername"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="TextView" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android1:layout_width="match_parent"
+        android1:layout_height="wrap_content"
+        android1:orientation="horizontal"
+        android1:paddingLeft="20dp" >
+
+        <ProgressBar
+            android1:id="@+id/progressBarToday"
+            style="?android:attr/progressBarStyleHorizontal"
+            android1:layout_width="150dp"
+            android1:layout_height="150dp"
+            android1:max="30"
+            android1:progressDrawable="@drawable/animation" />
+
+        <TextView
+            android1:id="@+id/timingsecs"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_gravity="center_vertical|center_horizontal|fill_horizontal"
+            android1:paddingLeft="20dp"
+            android1:text="TextView" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
