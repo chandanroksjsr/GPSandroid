@@ -35,10 +35,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -64,7 +68,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	JSONObject jArray;
 	JSONArray user = null;
 	String vehicle_reg_numb;
-	TextView welcomeusername;
+	TextView welcomeusername, drivernametext;
 	Button signout, home;
 	TextView welcome;
 	static String driver_name;
@@ -78,6 +82,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	public static Timer timer;
 	static TimerTask doAsynchronousTask;
 	final Context context = this;
+	int delaytime;
 	private static final String TAG_SRES = "serviceresponse";
 	private static final String TAG_VEHICLE_ARRAY = "VehicleHistory List";
 	static final String TAG_Vechicle_REG = "vechicle_reg_no";
@@ -100,12 +105,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	Boolean alertcheck;
 	TextView timingsec;
 	ProgressBar pb;
-	// private static String vehicleliveurl =
-	// "http://192.168.1.71:8080/gpsandroid/service/HistoryTrack.php?service=vehiclehistory";
-	// private static String vehicleliveurl =
-	// "http://192.168.1.158:8888/gpsandroid/service/LiveTrack.php?service=livetrack";
-	// private static String vehicleliveurl =
-	// "http://192.168.1.71:8080/gpsandroid/service/LiveTrack.php?service=livetrack";
+	LinearLayout lin1;
+	RelativeLayout lin2;
 	private static String vehicleliveurl = Config.ServerUrl
 			+ "LiveTrack.php?service=livetrack";
 
@@ -155,13 +156,16 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		actions.setDisplayShowTitleEnabled(false);
 		cd = new ConnectionDetector(getApplicationContext());
 		isInternetPresent = cd.isConnectingToInternet();
+		lin1 = (LinearLayout) findViewById(R.id.livelin1);
+		drivernametext = (TextView) findViewById(R.id.drivername);
+		lin2 = (RelativeLayout) findViewById(R.id.livelin2);
 		alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
 		maprad = (RadioButton) findViewById(R.id.radiomap);
 		satrad = (RadioButton) findViewById(R.id.radiosatellite);
 		pb = (ProgressBar) findViewById(R.id.progressBarToday);
 		pb.setMax(30);
 		timingsec = (TextView) findViewById(R.id.timingsecs);
-		
+
 		OnClickListener listener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -505,19 +509,21 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					public void run() {
 						try {
 							if (isInternetPresent) {
-								CountDownTimer countDownTimer = new CountDownTimer(30000, 1000) {
+								new CountDownTimer(30000, 1000) {
 
 									public void onTick(long millisUntilFinished) {
-										long seconds = millisUntilFinished / 1000;
+										// long seconds = millisUntilFinished /
+										// 1000;
 										int barVal = ((int) (millisUntilFinished) / 1000);
 										pb.setProgress(barVal);
 
-										timingsec.setText("seconds remaining: " + millisUntilFinished
-												/ 1000);
+										timingsec.setText(""
+												+ millisUntilFinished / 1000);
+
 									}
 
 									public void onFinish() {
-										timingsec.setText("done!");
+										timingsec.setText("started");
 									}
 								}.start();
 								new VehiclePath().execute();
@@ -559,7 +565,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 				});
 			}
 		};
-		
+
 		timer.schedule(doAsynchronousTask, 0, 30000);
 	}
 
@@ -807,6 +813,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		vehicle_reg_no = getIntent().getExtras().getString("vehicleregnum");
 		routeno = getIntent().getExtras().getString("routenum");
 		driver_name = getIntent().getExtras().getString("drivername");
+		drivernametext.setText(driver_name);
 		System.out.println("value of driver name:::" + driver_name);
 
 	}
@@ -829,12 +836,24 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		// TODO Auto-generated method stub
 
 	}
-
+	public void scaleView(View v, float startScale, float endScale) {
+	    Animation anim = new ScaleAnimation(
+	            1f, 1f, // Start and end values for the X axis scaling
+	            startScale, endScale, // Start and end values for the Y axis scaling
+	            Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
+	            Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
+	    anim.setFillAfter(true); // Needed to keep the result of the animation
+	    v.startAnimation(anim);
+	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 
 		case R.id.info:
+//			View v = findViewById(R.id.commonlinear);
+//			scaleView(v, 5f, 8f);
+//			v.setVisibility(View.VISIBLE);
+//			lin2.setVisibility(View.VISIBLE);
 
 		default:
 			return super.onOptionsItemSelected(item);

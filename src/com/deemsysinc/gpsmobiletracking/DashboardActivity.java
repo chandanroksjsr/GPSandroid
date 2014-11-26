@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.widget.AdapterView;
 
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,8 +39,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 
-public class DashboardActivity extends Activity {
+public class DashboardActivity extends Activity implements AnimationListener {
 	Boolean isInternetPresent = false;
 	ConnectionDetector cd;
 	JsonParser jsonParser = new JsonParser();
@@ -51,10 +55,9 @@ public class DashboardActivity extends Activity {
 	private static final String TAG_SRES = "serviceresponse";
 	private static final String TAG_ORGID = "org_id1";
 	private static final String TAG_Vehicle_regno = "vechicle_reg_no";
-	private static final String TAG_Device_imei = "device_imei_number";
+
 	private static final String TAG_drivername = "driver_name";
-	private static final String TAG_driver_license_no = "driver_licence_number";
-	private static final String TAG_licence_expdate = "driver_licence_exp_date";
+
 	private static final String TAG_route_no = "route_no";
 	private static final String TAG_driver_status = "device_status";
 	private static final String TAG_Date = "bus_tracking_timestamp";
@@ -78,12 +81,11 @@ public class DashboardActivity extends Activity {
 	Context context = this;
 	ListView list2;
 	TextView welcomeusername;
-	Button aboutus, contactus, signout;
+	Button aboutus, contactus, signout, btnclose;
 	String isalready;
-	// private static String vehicledetailsurl =
-	// "http://192.168.1.158:8888/gpsandroid/service/VehicleDetails.php?service=vehicledetails1";
-	// private static String vehicledetailsurl =
-	// "http://192.168.1.71:8080/gpsandroid/service/VehicleDetails.php?service=vehicledetails1";
+	LinearLayout linear;
+	Animation animMove;
+
 	private static String vehicledetailsurl = Config.ServerUrl
 			+ "VehicleDetails.php?service=vehicledetails1";
 
@@ -100,30 +102,39 @@ public class DashboardActivity extends Activity {
 						R.drawable.actionbarbg)));
 
 		setContentView(R.layout.dashboard);
+
+		linear = (LinearLayout) findViewById(R.id.lin);
+
+		btnclose = (Button) findViewById(R.id.btnclose);
+		welcomeusername = (TextView) findViewById(R.id.welcomeusername);
+		welcomeusername.setText("Welcome  "+ Config.username +"!");
+		final Animation animBounce1 = AnimationUtils.loadAnimation(this,
+				R.anim.newbounce);
+
+		animMove = AnimationUtils.loadAnimation(getApplicationContext(),
+				R.anim.move);
+
+		animMove.setAnimationListener(this);
+
+		animBounce1.setAnimationListener(this);
+
 		isalready = getIntent().getExtras().getString("isalreadylogged");
-		System.out.println("value of isalready::"+isalready);
-		if (isalready.equalsIgnoreCase("notloggedin")&&Config.flag.equalsIgnoreCase("notloggedin")) {
-			AlertDialog alertDialog = new AlertDialog.Builder(
-					DashboardActivity.this).create();
-
-			alertDialog.setTitle("INFO!");
-
-			alertDialog.setMessage("Welcome " + Config.username + "!");
-
-			alertDialog.setIcon(R.drawable.delete);
-
-			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-
-				public void onClick(final DialogInterface dialog,
-						final int which) {
-
-				}
-			});
-
-			alertDialog.show();
+		System.out.println("value of isalready::" + isalready);
+		if (isalready.equalsIgnoreCase("notloggedin")
+				&& Config.flag.equalsIgnoreCase("notloggedin")) {
+			
+			linear.startAnimation(animBounce1);
 		}
-	
-	
+		else{
+			linear.setVisibility(View.INVISIBLE);
+		}
+		btnclose.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				linear.startAnimation(animMove);
+
+			}
+		});
 		cd = new ConnectionDetector(getApplicationContext());
 		isInternetPresent = cd.isConnectingToInternet();
 		if (isInternetPresent) {
@@ -159,70 +170,8 @@ public class DashboardActivity extends Activity {
 		list2 = (ListView) findViewById(R.id.list);
 		aboutus = (Button) findViewById(R.id.aboutus);
 		contactus = (Button) findViewById(R.id.contactus);
-		// signout = (Button) findViewById(R.id.logout);
-		// welcomeusername = (TextView) findViewById(R.id.welcomeusername);
-		// welcome = (TextView) findViewById(R.id.welcome);
-		// welcomeusername.setText(Config.username + "!");
-		// // ourdevice.setTypeface(null, Typeface.BOLD);
-		// welcomeusername.setTypeface(null, Typeface.BOLD);
-		// welcome.setTypeface(null, Typeface.BOLD);
-		// signout.setOnClickListener(new View.OnClickListener() {
-		//
-		// public void onClick(View v) {
-		// Config.username = "";
-		// VehichleArrayAdapter.data.clear();
-		// vehicleall.clear();
-		// SharedPreferences settings = getApplicationContext()
-		// .getSharedPreferences("MyPrefs0",
-		// getApplicationContext().MODE_PRIVATE);
-		// settings.edit().clear().commit();
-		// Intent ii = new Intent(DashboardActivity.this,
-		// BackgroundService.class);
-		// ii.putExtra("name", "SurvivingwithAndroid");
-		// DashboardActivity.this.stopService(ii);
-		// Intent intentSignUP = new Intent(getApplicationContext(),
-		// LoginActivity.class);
-		// startActivity(intentSignUP);
-		// }
-		// });
 
-		// aboutus.setOnClickListener(new View.OnClickListener() {
-		//
-		// public void onClick(View v) {
-		// Intent intentSignUP = new Intent(getApplicationContext(),
-		// Aboutus.class);
-		// startActivity(intentSignUP);
-		// }
-		// });
-		//
-		// contactus.setOnClickListener(new View.OnClickListener() {
-		//
-		// public void onClick(View v) {
-		// Intent intentSignUP = new Intent(getApplicationContext(),
-		// ContactUs.class);
-		// startActivity(intentSignUP);
-		// }
-		// });
 	}
-
-	// public void onItemClick(int mPosition) {
-	//
-	// Intent intent = new Intent(DashboardActivity.this, LiveTrack.class);
-	// Bundle b = new Bundle();
-	// //
-	// System.out.println("Position passed from dashboard activity:::"+vehicle_regno);
-	// System.out.println("Position passed from dashboard activity:fghfgh::"
-	// + route_num);
-	// // Bundle b1=new Bundle();
-	// b.putString("vehicleregnum", vehicle_regno);
-	// b.putString("routenum", route_num);
-	//
-	// intent.putExtras(b);
-	// // intent.putExtras(b1);
-	//
-	// startActivity(intent);
-	//
-	// }
 
 	class VehicleDetails extends AsyncTask<String, String, String> {
 		@Override
@@ -367,7 +316,8 @@ public class DashboardActivity extends Activity {
 			overridePendingTransition(R.anim.pushdown, R.anim.pushup);
 			return true;
 		case R.id.aboutus:
-			Intent myIntent = new Intent(DashboardActivity.this, Aboutus.class);
+			Intent myIntent = new Intent(DashboardActivity.this,
+					AboutActivity.class);
 			DashboardActivity.this.startActivity(myIntent);
 			overridePendingTransition(R.anim.pushdown, R.anim.pushup);
 			return true;
@@ -427,5 +377,29 @@ public class DashboardActivity extends Activity {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void onAnimationEnd(Animation animation) {
+
+		
+		if (animation == animMove) {
+
+		}
+	}
+
+	@Override
+	public void onAnimationRepeat(Animation animation) {
+
+
+
+
+	}
+
+	@Override
+	public void onAnimationStart(Animation animation) {
+
+
+
 	}
 }

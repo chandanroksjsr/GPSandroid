@@ -90,7 +90,7 @@
         <item>Dashboard</item>
     </string-array>
 
-    <string name="alarmtype">Select Alarm type</string>
+    <string name="alarmtype">Alarm type</string>
     <string name="synciming">Select Synchronization timing</string>
     <string name="aboutusdeem">About Deemsys</string>
     <string name="vehicleno">Vehicle No</string>

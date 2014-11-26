@@ -125,7 +125,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.deemsysinc.gpsmobiletracking.Aboutus"
+            android:name="com.deemsysinc.gpsmobiletracking.AboutActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>

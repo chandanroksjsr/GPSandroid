@@ -1,5 +1,7 @@
 package com.deemsysinc.gpsmobiletracking;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -7,15 +9,18 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class ProfileActivity extends Activity {
 	TextView orgname;
 
+	ListView lv;
+	String a="";
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,6 +28,7 @@ public class ProfileActivity extends Activity {
 		// getActionBar().hide();
 		getActionBar().setTitle(
 				Html.fromHtml("<font color='#ffffff'>Profile </font>"));
+
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setBackgroundDrawable(
 				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
@@ -30,8 +36,37 @@ public class ProfileActivity extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.profile);
-		orgname = (TextView) findViewById(R.id.orgname);
-		orgname.setText(Config.username);
+		// orgname = (TextView) findViewById(R.id.orgname);
+		// orgname.setText(Config.username);
+
+		lv = (ListView) findViewById(R.id.list1);
+		ArrayList<String> arr = new ArrayList<String>();
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+
+			a="Fleet";
+		} else if (Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
+
+			a="School";
+
+		} 
+		
+		
+		String[] web = { "Organisation Name:"+Config.username,
+				"Type : "+a,
+				"Organisation Address : "+"addrs",
+				"Telephone : "+"9677881101",
+
+		};
+
+		
+
+		try {
+			CustomList adapter = new CustomList(ProfileActivity.this, web);
+
+			lv.setAdapter(adapter);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -46,7 +81,7 @@ public class ProfileActivity extends Activity {
 		case android.R.id.home:
 			Intent myIntent2 = new Intent(ProfileActivity.this,
 					DashboardActivity.class);
-			Config.flag ="alreadyloggedin";
+			Config.flag = "alreadyloggedin";
 			myIntent2.putExtra("isalreadylogged", Config.flag);
 			ProfileActivity.this.startActivity(myIntent2);
 			overridePendingTransition(R.anim.pushup, R.anim.pushdown);

@@ -80,7 +80,7 @@ public class VehichleArrayAdapter extends ArrayAdapter<Vehicle> {
 			holder.driverstatus.setImageResource(R.drawable.yellow_light);
 
 		} else if (user.getdriverstatus().equals("3")) {
-			holder.driverstatus.setImageResource(R.drawable.yellow_light);
+			holder.driverstatus.setImageResource(R.drawable.orange_light);
 
 		} else {
 			holder.driverstatus.setImageResource(R.drawable.red_light);

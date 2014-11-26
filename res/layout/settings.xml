@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".OverSpeed" >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         android:paddingLeft="10dp" >
 
         <TextView
@@ -18,58 +18,31 @@
             android:layout_height="wrap_content"
             android:text="@string/alarmtype"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal|center"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
 
         <Spinner
             android:id="@+id/alarmtype"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:background="@drawable/buttondropdown" />
+            style="@style/welcomeblack"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dropdown"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="10dp"
+            android:spinnerMode="dialog" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="10dp" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/synciming"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal|center"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
-
-        <Spinner
-            android:id="@+id/timing"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:background="@drawable/buttondropdown" />
+        android:layout_height="40dp"
+        android:orientation="vertical" >
     </LinearLayout>
 
     <Button
         android:id="@+id/savesettings"
         style="@style/welcome"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_marginTop="20dp"
         android:background="@drawable/buttonbackground"
         android:text="@string/savesettings" />
 

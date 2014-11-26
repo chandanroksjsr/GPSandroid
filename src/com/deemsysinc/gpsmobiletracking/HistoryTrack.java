@@ -398,6 +398,172 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 				showDialog(DATE_PICKER_ID);
 			}
 		});
+
+		// submit = (Button) findViewById(R.id.go);
+		// submit.setOnClickListener(new View.OnClickListener() {
+		//
+		// @SuppressWarnings("deprecation")
+		// public void onClick(View v) {
+		// System.out.println("check date in go::"+checkdate);
+		// if (!datebutton.getText().toString().equalsIgnoreCase("Date")) {
+		// if (!fromtime.getText().toString()
+		// .equalsIgnoreCase("From time")) {
+		// if (!totime.getText().toString()
+		// .equalsIgnoreCase("To time")) {
+		// SimpleDateFormat sdf = new SimpleDateFormat(
+		// "yyyy-MM-dd HH:mm");
+		// try {
+		// Date date1 = sdf.parse(datebutton.getText().toString() + " "
+		// + fromtime.getText().toString());
+		// Date date2 = sdf.parse(datebutton.getText().toString() + " "
+		// + totime.getText().toString());
+		//
+		// System.out.println("date values 1" + date1);
+		// System.out.println("date values 2" + date2);
+		// if (date1.compareTo(date2) > 0) {
+		// AlertDialog alertDialog = new AlertDialog.Builder(
+		// HistoryTrack.this).create();
+		//
+		// // Setting Dialog Title
+		// alertDialog.setTitle("INFO!");
+		//
+		// // Setting Dialog Message
+		// alertDialog
+		// .setMessage("To time must greater than from time.");
+		//
+		// // Setting Icon to Dialog
+		// alertDialog.setIcon(R.drawable.delete);
+		//
+		// // Setting OK Button
+		// alertDialog
+		// .setButton(
+		// "OK",
+		// new DialogInterface.OnClickListener() {
+		//
+		// public void onClick(
+		// final DialogInterface dialog,
+		// final int which) {
+		// // Write your code
+		// // here to execute
+		// // after dialog
+		// // closed
+		//
+		// }
+		// });
+		//
+		// // Showing Alert Message
+		// alertDialog.show();
+		// } else if (date1.compareTo(date2) < 0) {
+		// linear.setVisibility(View.GONE);
+		// linear.startAnimation(animSlideUp);
+		// new VehiclePath().execute();
+		// } else if (date1.compareTo(date2) == 0) {
+		// linear.setVisibility(View.GONE);
+		// linear.startAnimation(animSlideUp);
+		// new VehiclePath().execute();
+		// } else {
+		// System.out.println("How to get here?");
+		// }
+		// } catch (ParseException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		//
+		// } else {
+		// AlertDialog alertDialog = new AlertDialog.Builder(
+		// HistoryTrack.this).create();
+		//
+		// // Setting Dialog Title
+		// alertDialog.setTitle("INFO!");
+		//
+		// // Setting Dialog Message
+		// alertDialog.setMessage("Select to time.");
+		//
+		// // Setting Icon to Dialog
+		// alertDialog.setIcon(R.drawable.delete);
+		//
+		// // Setting OK Button
+		// alertDialog.setButton("OK",
+		// new DialogInterface.OnClickListener() {
+		//
+		// public void onClick(
+		// final DialogInterface dialog,
+		// final int which) {
+		// // Write your code here to execute
+		// // after dialog
+		// // closed
+		//
+		// }
+		// });
+		//
+		// // Showing Alert Message
+		// alertDialog.show();
+		// }
+		// } else {
+		// AlertDialog alertDialog = new AlertDialog.Builder(
+		// HistoryTrack.this).create();
+		//
+		// // Setting Dialog Title
+		// alertDialog.setTitle("INFO!");
+		//
+		// // Setting Dialog Message
+		// alertDialog.setMessage("Select from time.");
+		//
+		// // Setting Icon to Dialog
+		// alertDialog.setIcon(R.drawable.delete);
+		//
+		// // Setting OK Button
+		// alertDialog.setButton("OK",
+		// new DialogInterface.OnClickListener() {
+		//
+		// public void onClick(
+		// final DialogInterface dialog,
+		// final int which) {
+		// // Write your code here to execute after
+		// // dialog
+		// // closed
+		//
+		// }
+		// });
+		//
+		// // Showing Alert Message
+		// alertDialog.show();
+		//
+		// }
+		// } else {
+		// AlertDialog alertDialog = new AlertDialog.Builder(
+		// HistoryTrack.this).create();
+		//
+		// // Setting Dialog Title
+		// alertDialog.setTitle("INFO!");
+		//
+		// // Setting Dialog Message
+		// alertDialog.setMessage("Select date.");
+		//
+		// // Setting Icon to Dialog
+		// alertDialog.setIcon(R.drawable.delete);
+		//
+		// // Setting OK Button
+		// alertDialog.setButton("OK",
+		// new DialogInterface.OnClickListener() {
+		//
+		// public void onClick(
+		// final DialogInterface dialog,
+		// final int which) {
+		// // Write your code here to execute after
+		// // dialog
+		// // closed
+		//
+		// }
+		// });
+		//
+		// // Showing Alert Message
+		// alertDialog.show();
+		// }
+		// }
+		// });
+		//
+
 		submit = (Button) findViewById(R.id.go);
 		submit.setOnClickListener(new View.OnClickListener() {
 
@@ -406,18 +572,25 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 				System.out.println("check date in go::"
 						+ datebutton.getText().toString());
 				if (!datebutton.getText().toString().equalsIgnoreCase("Date")) {
+					System.out.println("first if");
 					if (!fromtime.getText().toString()
 							.equalsIgnoreCase("From Time"))// has value 12:12:12
 					{
+						System.out.println("second if");
 
 						if (!totime.getText().toString()
 								.equalsIgnoreCase("To Time")) {
+							System.out.println("third if");
 							SimpleDateFormat sdf = new SimpleDateFormat(
 									"yyyy-MM-dd HH:mm");
 							try {
-								Date date1 = sdf.parse(checkdate + " "
+								Date date1 = sdf.parse(datebutton.getText()
+										.toString()
+										+ " "
 										+ fromtime.getText().toString());
-								Date date2 = sdf.parse(checkdate + " "
+								Date date2 = sdf.parse(datebutton.getText()
+										.toString()
+										+ " "
 										+ totime.getText().toString());
 
 								System.out.println("date values 1" + date1);
@@ -456,9 +629,65 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 									// Showing Alert Message
 									alertDialog.show();
 								} else if (date1.compareTo(date2) < 0) {
-									new VehiclePath().execute();
+									linear.setVisibility(View.GONE);
+									linear.startAnimation(animSlideUp);
+									if (isInternetPresent) {
+										new VehiclePath().execute();
+									} else {
+										AlertDialog alertDialog = new AlertDialog.Builder(
+												HistoryTrack.this).create();
+
+										alertDialog.setTitle("INFO!");
+
+										alertDialog
+												.setMessage("No network connection.");
+
+										alertDialog.setIcon(R.drawable.delete);
+
+										alertDialog
+												.setButton(
+														"OK",
+														new DialogInterface.OnClickListener() {
+
+															public void onClick(
+																	final DialogInterface dialog,
+																	final int which) {
+
+															}
+														});
+
+										alertDialog.show();
+									}
 								} else if (date1.compareTo(date2) == 0) {
-									new VehiclePath().execute();
+									linear.setVisibility(View.GONE);
+									linear.startAnimation(animSlideUp);
+									if (isInternetPresent) {
+										new VehiclePath().execute();
+									} else {
+										AlertDialog alertDialog = new AlertDialog.Builder(
+												HistoryTrack.this).create();
+
+										alertDialog.setTitle("INFO!");
+
+										alertDialog
+												.setMessage("No network connection.");
+
+										alertDialog.setIcon(R.drawable.delete);
+
+										alertDialog
+												.setButton(
+														"OK",
+														new DialogInterface.OnClickListener() {
+
+															public void onClick(
+																	final DialogInterface dialog,
+																	final int which) {
+
+															}
+														});
+
+										alertDialog.show();
+									}
 								} else {
 									System.out.println("How to get here?");
 								}
@@ -469,28 +698,96 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 
 						} else {
 							totime.setText(" 23:59:59");
+							linear.setVisibility(View.GONE);
+							linear.startAnimation(animSlideUp);
 							if (isInternetPresent) {
 								new VehiclePath().execute();
 							} else {
+								AlertDialog alertDialog = new AlertDialog.Builder(
+										HistoryTrack.this).create();
 
+								alertDialog.setTitle("INFO!");
+
+								alertDialog
+										.setMessage("No network connection.");
+
+								alertDialog.setIcon(R.drawable.delete);
+
+								alertDialog.setButton("OK",
+										new DialogInterface.OnClickListener() {
+
+											public void onClick(
+													final DialogInterface dialog,
+													final int which) {
+
+											}
+										});
+
+								alertDialog.show();
 							}
 						}
 					} else if (!totime.getText().toString()
 							.equalsIgnoreCase("To Time")) // has value 12:12:12
 					{
+						System.out.println("first else if");
 						fromtime.setText(" 00:00:00");
+						linear.setVisibility(View.GONE);
+						linear.startAnimation(animSlideUp);
 						if (isInternetPresent) {
+
 							new VehiclePath().execute();
 						} else {
+							AlertDialog alertDialog = new AlertDialog.Builder(
+									HistoryTrack.this).create();
 
+							alertDialog.setTitle("INFO!");
+
+							alertDialog.setMessage("No network connection.");
+
+							alertDialog.setIcon(R.drawable.delete);
+
+							alertDialog.setButton("OK",
+									new DialogInterface.OnClickListener() {
+
+										public void onClick(
+												final DialogInterface dialog,
+												final int which) {
+
+										}
+									});
+
+							alertDialog.show();
 						}
 					} else {
+						System.out.println("second else if");
 						fromtime.setText(" 00:00:00");
 						totime.setText(" 23:59:59");
+						linear.setVisibility(View.GONE);
+						linear.startAnimation(animSlideUp);
 						if (isInternetPresent) {
+
 							new VehiclePath().execute();
 						} else {
+							AlertDialog alertDialog = new AlertDialog.Builder(
+									HistoryTrack.this).create();
 
+							alertDialog.setTitle("INFO!");
+
+							alertDialog.setMessage("No network connection.");
+
+							alertDialog.setIcon(R.drawable.delete);
+
+							alertDialog.setButton("OK",
+									new DialogInterface.OnClickListener() {
+
+										public void onClick(
+												final DialogInterface dialog,
+												final int which) {
+
+										}
+									});
+
+							alertDialog.show();
 						}
 					}
 
@@ -519,6 +816,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 				}
 			}
 		});
+
 		// welcome = (TextView) findViewById(R.id.textView1);
 		// welcomeusername = (TextView) findViewById(R.id.welcomename);
 		// welcomeusername.setText(Config.username + "!");

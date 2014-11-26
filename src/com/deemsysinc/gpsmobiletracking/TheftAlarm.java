@@ -11,8 +11,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.deemsysinc.gpsmobiletracking.LiveTrack.VehiclePath;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,18 +19,15 @@ import android.app.ProgressDialog;
 import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
+
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
+
 import android.media.MediaPlayer;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,10 +40,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SpinnerAdapter;
-import android.widget.RadioGroup;
+
 import android.widget.TextView;
-import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.Toast;
 
 public class TheftAlarm extends Activity {
 
@@ -126,35 +119,7 @@ public class TheftAlarm extends Activity {
 			alertDialog.show();
 		}
 		anim = new AlphaAnimation(0.0f, 1.0f);
-		// signout = (Button) findViewById(R.id.signutty);
-		// welcome = (TextView) findViewById(R.id.TextView01);
-		// welcomeusername = (TextView) findViewById(R.id.welcmename);
-		// welcomeusername.setText(Config.username + "!");
-		// welcomeusername.setTypeface(null, Typeface.BOLD);
-		// welcome.setTypeface(null, Typeface.BOLD);
-		// signout.setOnClickListener(new View.OnClickListener() {
-		//
-		// public void onClick(View v) {
-		//
-		// LiveTrack.doAsynchronousTask.cancel();
-		// Config.username = "";
-		// VehichleArrayAdapter.data.clear();
-		// DashboardActivity.vehicleall.clear();
-		//
-		// HistoryTrack.vehiclehistory1.clear();
-		// SharedPreferences settings = getApplicationContext()
-		// .getSharedPreferences("MyPrefs0",
-		// getApplicationContext().MODE_PRIVATE);
-		// settings.edit().clear().commit();
-		// Intent ii = new Intent(TheftAlarm.this, BackgroundService.class);
-		// ii.putExtra("name", "SurvivingwithAndroid");
-		// TheftAlarm.this.stopService(ii);
-		// Intent intentSignUP = new Intent(getApplicationContext(),
-		// LoginActivity.class);
-		// startActivity(intentSignUP);
-		// }
-		// });
-	
+
 		OnClickListener listener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -329,7 +294,7 @@ public class TheftAlarm extends Activity {
 							if (mPlayer != null && mPlayer.isPlaying()) {
 								mPlayer.stop();
 							}
-							Config.flag ="alreadyloggedin";
+							Config.flag = "alreadyloggedin";
 							myIntent.putExtra("isalreadylogged", Config.flag);
 							TheftAlarm.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
@@ -447,10 +412,40 @@ public class TheftAlarm extends Activity {
 				on.setChecked(true);
 				on.setEnabled(false);
 				try {
-					mPlayer = MediaPlayer.create(getApplicationContext(),
-							R.raw.alarmtone);// Create MediaPlayer object with
-												// MP3 file under res/raw folder
-					mPlayer.start();
+					if (Config.alarmsoundtype != null) {
+						if (Config.alarmsoundtype.equalsIgnoreCase("type 1")) {
+							mPlayer = MediaPlayer.create(
+									getApplicationContext(), R.raw.type1);
+							mPlayer.start();
+						} else if (Config.alarmsoundtype
+								.equalsIgnoreCase("type 2")) {
+							mPlayer = MediaPlayer.create(
+									getApplicationContext(), R.raw.type2);
+							mPlayer.start();
+						} else if (Config.alarmsoundtype
+								.equalsIgnoreCase("type 3")) {
+							mPlayer = MediaPlayer.create(
+									getApplicationContext(), R.raw.type3);
+							mPlayer.start();
+						} else if (Config.alarmsoundtype
+								.equalsIgnoreCase("type 4")) {
+							mPlayer = MediaPlayer.create(
+									getApplicationContext(), R.raw.type4);
+							mPlayer.start();
+						} else if (Config.alarmsoundtype
+								.equalsIgnoreCase("default")) {
+							mPlayer = MediaPlayer.create(
+									getApplicationContext(), R.raw.alarmtone);
+							mPlayer.start();
+						}
+
+					} else {
+
+						mPlayer = MediaPlayer.create(getApplicationContext(),
+								R.raw.alarmtone);
+						mPlayer.start();
+					}
+
 					// Uri notification = RingtoneManager
 					// .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 					// Ringtone r = RingtoneManager.getRingtone(

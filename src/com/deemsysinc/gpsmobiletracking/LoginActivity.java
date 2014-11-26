@@ -386,7 +386,7 @@ public class LoginActivity extends Activity {
 					editor.putString("enabled", Config.enabled);
 
 					editor.commit();
-					Config.flag="notloggedin";
+					Config.flag = "notloggedin";
 					Intent intentSignUP = new Intent(getApplicationContext(),
 							DashboardActivity.class);
 					intentSignUP.putExtra("isalreadylogged", Config.flag);
@@ -511,10 +511,14 @@ public class LoginActivity extends Activity {
 				Config.org_id = sharedpreferences.getString("org_id", "");
 				Config.role = sharedpreferences.getString("role", "");
 				Config.enabled = sharedpreferences.getString("enabled", "");
-				
+				// Config.refreshtime =
+				// sharedpreferences.getString("refreshtime",
+				// "");
+				Config.alarmsoundtype = sharedpreferences.getString(
+						"alarmsoundtype", "");
 
 				Intent i = new Intent(this, DashboardActivity.class);
-				Config.flag ="alreadyloggedin";
+				Config.flag = "alreadyloggedin";
 				i.putExtra("isalreadylogged", Config.flag);
 				startActivity(i);
 			}
