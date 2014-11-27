@@ -2,30 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:weightSum="10" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/banner"
+        android:gravity="center"
+        android:weightSum="2" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/man" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:weightSum="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:gravity="center_horizontal|center" >
+        android:orientation="vertical"
+        android:weightSum="7" >
 
-        <TextView
-            android:id="@+id/textView1"
-            style="@style/welcomeblack1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Organization Name:" />
-<View
-            android:layout_width="15dp"
-            android:layout_height="match_parent" >
-        </View>
-        <TextView
-            android:id="@+id/orgname"
-            style="@style/welcomeblack1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="orgname" />
+        <ListView
+            android:id="@+id/list1"
+            style="@style/customcontact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
     </LinearLayout>
 
 </LinearLayout>

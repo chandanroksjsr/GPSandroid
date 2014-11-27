@@ -63,6 +63,164 @@
                 android:textColor="#ffffff" />
         </LinearLayout>
 
+<LinearLayout
+    android:id="@+id/commonlinear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center_vertical|center_horizontal|center|end"
+    android:addStatesFromChildren="true"
+    android:animateLayoutChanges="true"
+    android:duplicateParentState="false"
+    android:fitsSystemWindows="false"
+    android:gravity="center_vertical|center_horizontal|center|end"
+    android:orientation="vertical"
+    android:splitMotionEvents="true"
+    android:visibility="gone" >
+
+    <LinearLayout
+        android:id="@+id/livelin1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp" >
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="@string/vehicle_owner" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="144dp"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="@string/vehicle_reg_num" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="5dp" >
+
+            <TextView
+                android:id="@+id/vehicleowner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/vehicle_reg_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/livelin2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="false"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/red_pin" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="4dp"
+                    android:text="@string/red_des" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:paddingLeft="5dp" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/pink_pin" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="4dp"
+                    android:text="@string/pink_des" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout1"
+            android:paddingTop="5dp" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dist_travelled" />
+
+            <TextView
+                android:id="@+id/distancetravelled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp" >
+
+        <Button
+            android:id="@+id/close"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/buttonbackground"
+            android:text="Close"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -6,58 +6,200 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_gravity="center_vertical|center_horizontal|center"
-        android1:orientation="vertical" >
-
-        <LinearLayout
-            android1:layout_width="match_parent"
-            android1:layout_height="wrap_content"
-            android1:orientation="horizontal" >
-
-            <TextView
-                android1:id="@+id/textView1"
-                android1:layout_width="wrap_content"
-                android1:layout_height="wrap_content"
-                android1:text="@string/drivername" />
-
-            <TextView
-                android1:id="@+id/drivername"
-                android1:layout_width="wrap_content"
-                android1:layout_height="wrap_content"
-                android1:text="TextView" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
+        android1:id="@+id/commonlinear"
         android1:layout_width="match_parent"
         android1:layout_height="wrap_content"
-        android1:gravity="center_vertical|center_horizontal|center"
-        android1:orientation="horizontal"
-        android1:paddingLeft="20dp" >
+        android1:layout_gravity="bottom|center_vertical|center_horizontal|center|end"
+        android1:addStatesFromChildren="true"
+        android1:animateLayoutChanges="true"
+        android1:duplicateParentState="false"
+        android1:fitsSystemWindows="false"
+        android1:gravity="center_vertical|center_horizontal|center|end"
+        android1:orientation="vertical"
+        android1:splitMotionEvents="true"
+        android1:visibility="gone" >
 
-        <ProgressBar
-            android1:id="@+id/progressBarToday"
-            style="?android:attr/progressBarStyleHorizontal"
-            android1:layout_width="150dp"
-            android1:layout_height="150dp"
-            android1:max="30"
-            android1:progressDrawable="@drawable/animation" />
-
-        <TextView
-            android1:id="@+id/timingsecs"
-            android1:layout_width="wrap_content"
+        <LinearLayout
+            android1:id="@+id/livelin1"
+            android1:layout_width="match_parent"
             android1:layout_height="wrap_content"
-            android1:layout_gravity="center_vertical|center_horizontal|fill_horizontal"
-            android1:paddingLeft="20dp"
-            android1:text="TextView" />
+            android1:gravity="center_vertical|center_horizontal|center"
+            android1:orientation="horizontal"
+            android1:paddingBottom="15dp"
+            android1:paddingLeft="15dp"
+            android1:paddingTop="15dp" >
+
+            <LinearLayout
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:orientation="vertical"
+                android1:paddingLeft="15dp" >
+
+                <TextView
+                    android1:id="@+id/textView1"
+                    style="@style/largeblacktext"
+                    android1:layout_width="161dp"
+                    android1:layout_height="wrap_content"
+                    android1:maxLines="2"
+                    android1:text="@string/vehicle_owner" />
+
+                <TextView
+                    android1:id="@+id/textView1"
+                    style="@style/largeblacktext"
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content"
+                    android1:maxLines="2"
+                    android1:paddingTop="10dp"
+                    android1:text="@string/vehicle_reg_num" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android1:layout_width="match_parent"
+                android1:layout_height="wrap_content"
+                android1:orientation="vertical"
+                android1:paddingLeft="5dp" >
+
+                <TextView
+                    android1:id="@+id/vehicleowner"
+                    style="@style/largeblacktext"
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content" />
+
+                <TextView
+                    android1:id="@+id/vehicle_reg_number"
+                    style="@style/largeblacktext"
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content"
+                    android1:paddingTop="10dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android1:id="@+id/livelin2"
+            android1:layout_width="match_parent"
+            android1:layout_height="wrap_content"
+            android1:focusableInTouchMode="false"
+            android1:orientation="horizontal"
+            android1:paddingBottom="15dp"
+            android1:paddingLeft="15dp"
+            android1:paddingTop="15dp" >
+
+            <LinearLayout
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:layout_alignParentLeft="true"
+                android1:layout_toLeftOf="@+id/progressBarToday"
+                android1:orientation="vertical" >
+
+                <LinearLayout
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content"
+                    android1:paddingBottom="4dp" >
+
+                    <ImageView
+                        android1:id="@+id/imageView1"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:src="@drawable/red_pin" />
+
+                    <TextView
+                        android1:id="@+id/textView2"
+                        style="@style/largeblacktext"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:layout_gravity="center_vertical"
+                        android1:paddingLeft="4dp"
+                        android1:text="@string/red_des" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content"
+                    android1:paddingBottom="4dp" >
+
+                    <ImageView
+                        android1:id="@+id/imageView1"
+                        style="@style/largeblacktext"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:src="@drawable/green_pin" />
+
+                    <TextView
+                        android1:id="@+id/textView2"
+                        style="@style/largeblacktext"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:layout_gravity="center_vertical"
+                        android1:paddingLeft="4dp"
+                        android1:text="@string/green_des" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content"
+                    android1:paddingBottom="4dp" >
+
+                    <ImageView
+                        android1:id="@+id/imageView1"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:src="@drawable/pink_pin" />
+
+                    <TextView
+                        android1:id="@+id/textView2"
+                        style="@style/largeblacktext"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:layout_gravity="center_vertical"
+                        android1:paddingLeft="4dp"
+                        android1:text="@string/pink_des" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <ProgressBar
+                android1:id="@+id/progressBarToday"
+                style="?android:attr/progressBarStyleHorizontal"
+                android1:layout_width="150dp"
+                android1:layout_height="150dp"
+                android1:layout_centerInParent="true"
+                android1:max="30"
+                android1:progressDrawable="@drawable/animation" />
+
+            <TextView
+                android1:id="@+id/timingsecs"
+               style="@style/largeblacktext"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:layout_centerInParent="true"
+                android1:layout_gravity="center_vertical|center_horizontal|fill_horizontal"
+                android1:text="TextView" />
+
+            <Button
+                android1:id="@+id/close"
+                style="@style/largewhitetext"
+                android1:layout_width="150dp"
+                android1:layout_height="50dp"
+                android1:layout_alignParentRight="true"
+                android1:layout_below="@+id/timingsecs"
+                android1:layout_centerHorizontal="true"
+                android1:layout_centerVertical="true"
+                android1:layout_marginRight="4dp"
+                android:background="@drawable/buttonbackground"
+                android1:text="Close"
+                android1:textColor="#ffffff" />
+
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -69,7 +211,6 @@
                 android:name="com.google.android.gms.maps.MapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentBottom="false"
                 android:layout_centerHorizontal="false"
                 android1:layout_alignParentEnd="false" />
 

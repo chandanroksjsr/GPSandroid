@@ -3,6 +3,11 @@
     tools:context="com.deemsys.lmsmooc.MainActivity" >
 
     <item
+        android:id="@+id/info"
+        android:icon="@drawable/infoicon"
+        android:showAsAction="always">
+    </item>
+    <item
         android:id="@+id/history"
         android:icon="@drawable/overflow"
         android:showAsAction="always">

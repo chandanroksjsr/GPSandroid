@@ -41,7 +41,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    style="@style/customcontact"
+                    style="@style/largeblacktext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/login_signuptext" />
@@ -112,7 +112,7 @@
 
                 <Button
                     android:id="@+id/signin"
-                    style="@style/welcome"
+                    style="@style/largewhitetext"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/buttonbackground"
@@ -125,7 +125,7 @@
 
                 <Button
                     android:id="@+id/reset"
-                    style="@style/welcome"
+                    style="@style/largewhitetext"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/buttonbackground"

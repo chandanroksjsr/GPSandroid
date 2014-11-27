@@ -23,6 +23,7 @@
 
             <Button
                 android:id="@+id/fromdate"
+                style="@style/largewhitetext"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:paddingLeft="10dp"
@@ -37,6 +38,7 @@
 
             <Button
                 android:id="@+id/todate"
+                style="@style/largewhitetext"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:paddingLeft="10dp"
@@ -51,6 +53,7 @@
 
             <Button
                 android:id="@+id/submit"
+                style="@style/largewhitetext"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:paddingLeft="10dp"
@@ -79,36 +82,34 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="center_vertical"
             android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/drivernametext"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Driver Name" />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="5dp" >
-            </View>
+                android:layout_height="25dp" />
 
             <TextView
                 android:id="@+id/veg_reg_notext"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:text="Vehicle Registration Number" />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="5dp" >
-            </View>
+                android:layout_height="25dp" />
 
             <TextView
                 android:id="@+id/overspeedtext"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Over Speed Count" />
@@ -117,7 +118,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical" >
 
             <TextView
@@ -129,24 +129,24 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="15dp" >
+                android:layout_height="35dp" >
             </View>
 
             <TextView
                 android:id="@+id/veg_reg_no"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
+                android:layout_height="50dp"
+                android:text="sf" />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="10dp" >
+                android:layout_height="5dp" >
             </View>
 
             <TextView
                 android:id="@+id/overspeed"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />

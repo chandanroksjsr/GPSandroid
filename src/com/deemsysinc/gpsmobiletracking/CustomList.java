@@ -11,13 +11,12 @@ import android.widget.TextView;
 public class CustomList extends ArrayAdapter<String> {
 	private final Activity context;
 	private final String[] web;
-	
 
 	public CustomList(Activity context, String[] web) {
 		super(context, R.layout.singlelist, web);
 		this.context = context;
 		this.web = web;
-		
+
 	}
 
 	@Override

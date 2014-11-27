@@ -44,6 +44,7 @@ public class BackgroundService extends Service {
 	String status;
 	static TimerTask doAsynchronousTask;
 	MediaPlayer mPlayer;
+
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
@@ -131,7 +132,7 @@ public class BackgroundService extends Service {
 					"POST", params1);
 
 			Log.i("tagconvertstr", "[" + jobject + "]");
-			status="0";
+			status = "0";
 			if (json != null) {
 				try {
 					if (json != null) {
@@ -159,27 +160,25 @@ public class BackgroundService extends Service {
 		protected void onPostExecute(String file_url) {
 
 			super.onPostExecute(file_url);
-			
-				if (Integer.parseInt(status) > 0) {
 
-					try {
-						
-						
-						mPlayer = MediaPlayer.create(getApplicationContext(),
-								R.raw.alarmtone);// Create MediaPlayer object with
-													// MP3 file under res/raw folder
-						mPlayer.start();
-						
-//						Uri notification = RingtoneManager
-//								.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//						Ringtone r = RingtoneManager.getRingtone(
-//								getApplicationContext(), notification);
-//						r.play();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+			if (Integer.parseInt(status) > 0) {
 
-			
+				try {
+
+					mPlayer = MediaPlayer.create(getApplicationContext(),
+							R.raw.alarmtone);// Create MediaPlayer object with
+												// MP3 file under res/raw folder
+					mPlayer.start();
+
+					// Uri notification = RingtoneManager
+					// .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+					// Ringtone r = RingtoneManager.getRingtone(
+					// getApplicationContext(), notification);
+					// r.play();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 			}
 
 		}

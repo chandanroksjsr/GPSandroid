@@ -38,28 +38,28 @@
 
             <TextView
                 android:id="@+id/textView1"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/vehicleno" />
 
             <TextView
                 android:id="@+id/textView2"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lastupdate" />
 
             <TextView
                 android:id="@+id/textView4"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/curspeed" />
 
             <TextView
                 android:id="@+id/textView3"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/curloc" />
@@ -82,28 +82,28 @@
 
             <TextView
                 android:id="@+id/veh_reg_no"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="text" />
 
             <TextView
                 android:id="@+id/label"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="then" />
 
             <TextView
                 android:id="@+id/speedtxt"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/addrstext"
-                style="@style/customcontact"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="adres" />

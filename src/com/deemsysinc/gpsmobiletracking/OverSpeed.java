@@ -91,8 +91,10 @@ public class OverSpeed extends Activity implements AnimationListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.overspeed);
 		ActionBar actions = getActionBar();
-		getActionBar().setBackgroundDrawable(new BitmapDrawable (BitmapFactory.decodeResource(getResources(), R.drawable.actionbarbg)));
-		
+		getActionBar().setBackgroundDrawable(
+				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
+						R.drawable.actionbarbg)));
+
 		actions.setIcon(R.drawable.overspeedicon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
@@ -205,68 +207,61 @@ public class OverSpeed extends Activity implements AnimationListener {
 							} else if (date1.compareTo(date2) < 0) {
 								linear.setVisibility(View.INVISIBLE);
 								linear.startAnimation(animSlideUp);
-								if(isInternetPresent){
-								new CompareAsync().execute();
-								}
-								else{
+								if (isInternetPresent) {
+									new CompareAsync().execute();
+								} else {
 									AlertDialog alertDialog = new AlertDialog.Builder(
 											OverSpeed.this).create();
 
-								
 									alertDialog.setTitle("INFO!");
 
-									
-									alertDialog.setMessage("No network connection.");
+									alertDialog
+											.setMessage("No network connection.");
 
-								
 									alertDialog.setIcon(R.drawable.delete);
 
-									
+									alertDialog
+											.setButton(
+													"OK",
+													new DialogInterface.OnClickListener() {
 
-									alertDialog.setButton("OK",
-											new DialogInterface.OnClickListener() {
+														public void onClick(
+																final DialogInterface dialog,
+																final int which) {
 
-												public void onClick(
-														final DialogInterface dialog,
-														final int which) {
-												
-												}
-											});
+														}
+													});
 
-									
 									alertDialog.show();
 								}
 							} else if (date1.compareTo(date2) == 0) {
 								linear.setVisibility(View.INVISIBLE);
 								linear.startAnimation(animSlideUp);
-								if(isInternetPresent){
-								new CompareAsync().execute();
-								}else{
+								if (isInternetPresent) {
+									new CompareAsync().execute();
+								} else {
 									AlertDialog alertDialog = new AlertDialog.Builder(
 											OverSpeed.this).create();
 
-								
 									alertDialog.setTitle("INFO!");
 
-									
-									alertDialog.setMessage("No network connection.");
+									alertDialog
+											.setMessage("No network connection.");
 
-								
 									alertDialog.setIcon(R.drawable.delete);
 
-									
+									alertDialog
+											.setButton(
+													"OK",
+													new DialogInterface.OnClickListener() {
 
-									alertDialog.setButton("OK",
-											new DialogInterface.OnClickListener() {
+														public void onClick(
+																final DialogInterface dialog,
+																final int which) {
 
-												public void onClick(
-														final DialogInterface dialog,
-														final int which) {
-												
-												}
-											});
+														}
+													});
 
-									
 									alertDialog.show();
 								}
 							} else {
@@ -400,7 +395,7 @@ public class OverSpeed extends Activity implements AnimationListener {
 							LiveTrack.doAsynchronousTask.cancel();
 							myIntent = new Intent(OverSpeed.this,
 									DashboardActivity.class);
-							Config.flag ="alreadyloggedin";
+							Config.flag = "alreadyloggedin";
 							myIntent.putExtra("isalreadylogged", Config.flag);
 							OverSpeed.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,

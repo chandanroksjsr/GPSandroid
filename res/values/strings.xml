@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="drivername">Driver Name</string>
+    <string name="dist_travelled">Distance Travelled : </string>
+    <string name="red_des">Last Location</string>
+    <string name="green_des">Current Location</string>
+    <string name="pink_des">Over Speed</string>
+    <string name="vehicle_reg_num">Vehicle Reg.No : </string>
+    <string name="vehicle_owner">Driver Name  : </string>
     <string name="login">LOG IN</string>
     <string name="reset">Reset</string>
     <string name="app_name">DeemsysGPS</string>

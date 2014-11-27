@@ -36,7 +36,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -53,6 +52,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 public class LiveTrack extends Activity implements OnMapLongClickListener {
 	RadioButton maprad, satrad;
@@ -69,7 +70,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	JSONArray user = null;
 	String vehicle_reg_numb;
 	TextView welcomeusername, drivernametext;
-	Button signout, home;
+	Button signout, home, close;
 	TextView welcome;
 	static String driver_name;
 	String succy;
@@ -103,10 +104,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	double latitude1;
 	double longitude1;
 	Boolean alertcheck;
-	TextView timingsec;
+	TextView timingsec, vehicle_own, reg_no;
 	ProgressBar pb;
 	LinearLayout lin1;
 	RelativeLayout lin2;
+	LinearLayout com;
+	Animation animSlideUp;
 	private static String vehicleliveurl = Config.ServerUrl
 			+ "LiveTrack.php?service=livetrack";
 
@@ -157,13 +160,30 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		cd = new ConnectionDetector(getApplicationContext());
 		isInternetPresent = cd.isConnectingToInternet();
 		lin1 = (LinearLayout) findViewById(R.id.livelin1);
-		drivernametext = (TextView) findViewById(R.id.drivername);
+
+		reg_no = (TextView) findViewById(R.id.vehicle_reg_number);
+		vehicle_own = (TextView) findViewById(R.id.vehicleowner);
 		lin2 = (RelativeLayout) findViewById(R.id.livelin2);
+		com = (LinearLayout) findViewById(R.id.commonlinear);
+		close = (Button) findViewById(R.id.close);
+
+		close.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				YoYo.with(Techniques.RollOut).duration(200).playOn(com);
+				com.setVisibility(View.GONE);
+
+			}
+		});
+
 		alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
 		maprad = (RadioButton) findViewById(R.id.radiomap);
 		satrad = (RadioButton) findViewById(R.id.radiosatellite);
 		pb = (ProgressBar) findViewById(R.id.progressBarToday);
 		pb.setMax(30);
+
 		timingsec = (TextView) findViewById(R.id.timingsecs);
 
 		OnClickListener listener = new OnClickListener() {
@@ -523,7 +543,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 									}
 
 									public void onFinish() {
-										timingsec.setText("started");
+										timingsec.setText("");
 									}
 								}.start();
 								new VehiclePath().execute();
@@ -531,8 +551,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								alertcheck = alertDialog.isShowing();
 
 								if (alertcheck.booleanValue() == true) {
-									System.out.println("alert check value::"
-											+ alertcheck);
+
 									alertDialog.dismiss();
 								}
 								alertDialog = new AlertDialog.Builder(
@@ -599,10 +618,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 				if (jArray != null) {
 
 					JSONObject c = jArray.getJSONObject(TAG_SRES);
-					// Log.i("tagconvertstr", "["+c+"]");
+
 					user = c.getJSONArray(TAG_VEHICLE_ARRAY);
-					// Log.i("tagconvertstr1", "["+user+"]");
-					// System.out.println("size of user lenght"+user.length());
+
 					if (user.length() == 0) {
 						succy = "fail";
 					} else {
@@ -610,7 +628,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					}
 					for (int i = 0; i < user.length(); i++) {
 						int p = vehiclehistory.size();
-						// System.out.println("value of p"+p);
+
 						JSONObject c1 = user.getJSONObject(i);
 						JSONObject c2 = c1.getJSONObject(TAG_SRES);
 
@@ -631,11 +649,6 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								bus_tracking_timestamp);
 
 						vehiclehistory.add(p, map);
-						// vehiclehistory1=vehiclehistory;
-
-						// System.out.println("map values"+map);
-						// System.out.println("Values for vehiclehistory list"+vehiclehistory1);
-						// System.out.println("size of arraylist::"+vehiclehistory1.size());
 
 					}
 
@@ -646,33 +659,26 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 				alertcheck = alertDialog.isShowing();
 
 				if (alertcheck.booleanValue() == true) {
-					System.out.println("alert check value::" + alertcheck);
+
 					alertDialog.dismiss();
 				}
 				alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
-				// Setting Dialog Title
 
 				alertDialog.setTitle("INFO!");
 
-				// Setting Dialog Message
 				alertDialog.setMessage("No location's found.");
 
-				// Setting Icon to Dialog
 				alertDialog.setIcon(R.drawable.delete);
 
-				// Setting OK Button
 				alertDialog.setButton("OK",
 						new DialogInterface.OnClickListener() {
 
 							public void onClick(final DialogInterface dialog,
 									final int which) {
-								// Write your code here to execute after dialog
-								// closed
 
 							}
 						});
 
-				// Showing Alert Message
 				alertDialog.show();
 				e.printStackTrace();
 			}
@@ -681,7 +687,6 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 			return null;
 		}
 
-		// @SuppressWarnings("deprecation")
 		@SuppressWarnings("deprecation")
 		@Override
 		protected void onPostExecute(String file_url) {
@@ -692,21 +697,19 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 			points = new ArrayList<LatLng>();
 			googleMap.clear();
 			polyLineOptions = new PolylineOptions();
-			// System.out.println("vehicle size"+vehiclehistory1.size());
-			// System.out.println("size of vehicle history in post execute"+vehiclehistory.size());
+
 			cDialog.dismiss();
 			int sizeminusone;
 			sizeminusone = vehiclehistory.size() - 1;
-			// System.out.println("size of vehicle history in post execute"+vehiclehistory.size());
+
 			for (int k = 0; k < vehiclehistory.size(); k++) {
-				// System.out.println("k value"+k);
-				// System.out.println("value of index::"+vehiclehistory.get(k));
+
 				LatLng pinLocation = new LatLng(
 						Double.parseDouble(vehiclehistory.get(k).get(
 								TAG_Latitude + k)),
 						Double.parseDouble(vehiclehistory.get(k).get(
 								TAG_Longitude + k)));
-				// System.out.println("pin location"+pinLocation);
+
 				points.add(pinLocation);
 				String titlevalue = "Speed:"
 						+ vehiclehistory.get(k).get(TAG_Speed + k)
@@ -716,27 +719,20 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								TAG_bus_tracking_timestamp + k);
 				String snippetval = titlevalue + "\n" + "Address:"
 						+ vehiclehistory.get(k).get(TAG_address + k);
-				// String date = "Date:"
-				// + vehiclehistory.get(k).get(
-				// TAG_bus_tracking_timestamp + k);
 
 				if (sizeminusone != k) {
 
-					// System.out.println("if index and size is not same");
 					marker = new MarkerOptions().position(pinLocation).snippet(
 							snippetval);
 					marker.icon(BitmapDescriptorFactory
 							.fromResource(R.drawable.click));
 					marker.icon(BitmapDescriptorFactory
 							.fromResource(R.drawable.red_pin));
-					// marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.click));
+
 					googleMap.addMarker(marker);
 					// callone();
 
 				} else if (sizeminusone == k) {
-
-					// System.out.println("k value"+k);
-					// System.out.println("if index and size is same asc");
 
 					marker = new MarkerOptions().position(pinLocation).snippet(
 							snippetval);
@@ -776,28 +772,22 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					alertDialog.dismiss();
 				}
 				alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
-				// Setting Dialog Title
+
 				alertDialog.setTitle("INFO!");
 
-				// Setting Dialog Message
 				alertDialog.setMessage("No location's found.");
 
-				// Setting Icon to Dialog
 				alertDialog.setIcon(R.drawable.delete);
 
-				// Setting OK Button
 				alertDialog.setButton("OK",
 						new DialogInterface.OnClickListener() {
 
 							public void onClick(final DialogInterface dialog,
 									final int which) {
-								// Write your code here to execute after dialog
-								// closed
 
 							}
 						});
 
-				// Showing Alert Message
 				alertDialog.show();
 
 			}
@@ -813,7 +803,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		vehicle_reg_no = getIntent().getExtras().getString("vehicleregnum");
 		routeno = getIntent().getExtras().getString("routenum");
 		driver_name = getIntent().getExtras().getString("drivername");
-		drivernametext.setText(driver_name);
+
+		reg_no.setText(vehicle_reg_no);
+		vehicle_own.setText(driver_name);
 		System.out.println("value of driver name:::" + driver_name);
 
 	}
@@ -836,24 +828,16 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		// TODO Auto-generated method stub
 
 	}
-	public void scaleView(View v, float startScale, float endScale) {
-	    Animation anim = new ScaleAnimation(
-	            1f, 1f, // Start and end values for the X axis scaling
-	            startScale, endScale, // Start and end values for the Y axis scaling
-	            Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
-	            Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
-	    anim.setFillAfter(true); // Needed to keep the result of the animation
-	    v.startAnimation(anim);
-	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 
 		case R.id.info:
-//			View v = findViewById(R.id.commonlinear);
-//			scaleView(v, 5f, 8f);
-//			v.setVisibility(View.VISIBLE);
-//			lin2.setVisibility(View.VISIBLE);
+
+			com.setVisibility(View.VISIBLE);
+
+			YoYo.with(Techniques.RotateIn).duration(200).playOn(com);
 
 		default:
 			return super.onOptionsItemSelected(item);

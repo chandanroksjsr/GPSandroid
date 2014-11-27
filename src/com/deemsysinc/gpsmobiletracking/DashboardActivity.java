@@ -107,7 +107,7 @@ public class DashboardActivity extends Activity implements AnimationListener {
 
 		btnclose = (Button) findViewById(R.id.btnclose);
 		welcomeusername = (TextView) findViewById(R.id.welcomeusername);
-		welcomeusername.setText("Welcome  "+ Config.username +"!");
+		welcomeusername.setText("Welcome  " + Config.username + "!");
 		final Animation animBounce1 = AnimationUtils.loadAnimation(this,
 				R.anim.newbounce);
 
@@ -122,10 +122,9 @@ public class DashboardActivity extends Activity implements AnimationListener {
 		System.out.println("value of isalready::" + isalready);
 		if (isalready.equalsIgnoreCase("notloggedin")
 				&& Config.flag.equalsIgnoreCase("notloggedin")) {
-			
+
 			linear.startAnimation(animBounce1);
-		}
-		else{
+		} else {
 			linear.setVisibility(View.INVISIBLE);
 		}
 		btnclose.setOnClickListener(new View.OnClickListener() {
@@ -382,7 +381,6 @@ public class DashboardActivity extends Activity implements AnimationListener {
 	@Override
 	public void onAnimationEnd(Animation animation) {
 
-		
 		if (animation == animMove) {
 
 		}
@@ -391,15 +389,10 @@ public class DashboardActivity extends Activity implements AnimationListener {
 	@Override
 	public void onAnimationRepeat(Animation animation) {
 
-
-
-
 	}
 
 	@Override
 	public void onAnimationStart(Animation animation) {
-
-
 
 	}
 }

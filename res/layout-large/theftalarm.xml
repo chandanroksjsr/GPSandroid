@@ -19,13 +19,14 @@
             style="@style/welcomeblack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:text="@string/thefttext" />
 
         <RadioGroup
             android:id="@+id/radioGroup1"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="70dp"
             android:gravity="center"
             android:orientation="horizontal" >
 

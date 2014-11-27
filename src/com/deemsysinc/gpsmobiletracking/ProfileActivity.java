@@ -20,7 +20,8 @@ public class ProfileActivity extends Activity {
 	TextView orgname;
 
 	ListView lv;
-	String a="";
+	String a = "";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,22 +44,18 @@ public class ProfileActivity extends Activity {
 		ArrayList<String> arr = new ArrayList<String>();
 		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
 
-			a="Fleet";
+			a = "Fleet";
 		} else if (Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
 
-			a="School";
+			a = "School";
 
-		} 
-		
-		
-		String[] web = { "Organisation Name:"+Config.username,
-				"Type : "+a,
-				"Organisation Address : "+"addrs",
-				"Telephone : "+"9677881101",
+		}
+
+		String[] web = { "Organisation Name:" + Config.username, "Type : " + a,
+				"Organisation Address : " + "addrs",
+				"Telephone : " + "9677881101",
 
 		};
-
-		
 
 		try {
 			CustomList adapter = new CustomList(ProfileActivity.this, web);

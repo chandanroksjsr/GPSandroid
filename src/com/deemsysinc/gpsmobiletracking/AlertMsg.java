@@ -147,7 +147,7 @@ public class AlertMsg extends Activity {
 						HistoryTrack.vehiclehistory1.clear();
 						myIntent = new Intent(AlertMsg.this,
 								DashboardActivity.class);
-						Config.flag ="alreadyloggedin";
+						Config.flag = "alreadyloggedin";
 						myIntent.putExtra("isalreadylogged", Config.flag);
 						AlertMsg.this.startActivity(myIntent);
 						overridePendingTransition(R.anim.slide_in,
@@ -189,12 +189,11 @@ public class AlertMsg extends Activity {
 		// welcomeusername.setText(Config.username + "!");
 		// welcomeusername.setTypeface(null, Typeface.BOLD);
 		// welcome.setTypeface(null, Typeface.BOLD);
-		if(isInternetPresent){
-		new SendMessage().execute();
-		}else
-		{
-			AlertDialog alertDialog = new AlertDialog.Builder(
-					AlertMsg.this).create();
+		if (isInternetPresent) {
+			new SendMessage().execute();
+		} else {
+			AlertDialog alertDialog = new AlertDialog.Builder(AlertMsg.this)
+					.create();
 
 			// Setting Dialog Title
 			alertDialog.setTitle("INFO!");
@@ -206,18 +205,16 @@ public class AlertMsg extends Activity {
 			alertDialog.setIcon(R.drawable.delete);
 
 			// Setting OK Button
-			alertDialog.setButton("OK",
-					new DialogInterface.OnClickListener() {
+			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
 
-						public void onClick(
-								final DialogInterface dialog,
-								final int which) {
-							// Write your code here to execute after
-							// dialog
-							// closed
+				public void onClick(final DialogInterface dialog,
+						final int which) {
+					// Write your code here to execute after
+					// dialog
+					// closed
 
-						}
-					});
+				}
+			});
 
 			// Showing Alert Message
 			alertDialog.show();

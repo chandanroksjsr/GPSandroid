@@ -1,5 +1,6 @@
 package com.deemsysinc.gpsmobiletracking;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
@@ -70,6 +74,8 @@ import android.widget.ToggleButton;
 @SuppressLint("SimpleDateFormat")
 public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		AnimationListener {
+	double distance, totaldistance = 0;
+	LinearLayout com;
 	RadioButton maprad, satrad;
 	private int year;
 	private int month;
@@ -87,8 +93,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 	JSONObject jArray;
 	JSONArray user = null;
 	private GoogleMap googleMap;
-	TextView welcomeusername, welcome;
-	Button signout, hmey;
+	TextView welcomeusername, welcome, distancetravelled;
+	Button signout, hmey, close;
 	ToggleButton tgbutton;
 	Button fromtime, totime, submit, datebutton;
 	final Context context = this;
@@ -104,7 +110,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 	private static final String TAG_Exceed_Speed = "exceed_speed_limit";
 	private static final String TAG_bus_tracking_timestamp = "bus_tracking_timestamp";
 	private static final String TAG_address = "address";
-
+	TextView vehicle_own, reg_no;
 	static final LatLng TutorialsPoint = new LatLng(22.3512639, 78.9542827);
 	String orgid, vehicle_reg_no, speed, exceed_speed_limit,
 			bus_tracking_timestamp, address;
@@ -172,10 +178,14 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 
 		animSlideUp.setAnimationListener(this);
 		animSlideDown.setAnimationListener(this);
-
+		com = (LinearLayout) findViewById(R.id.commonlinear);
 		maprad = (RadioButton) findViewById(R.id.radiomap);
 		satrad = (RadioButton) findViewById(R.id.radiosatellite);
-
+		reg_no = (TextView) findViewById(R.id.vehicle_reg_number);
+		vehicle_own = (TextView) findViewById(R.id.vehicleowner);
+		distancetravelled = (TextView) findViewById(R.id.distancetravelled);
+		reg_no.setText(LiveTrack.vehicle_reg_no);
+		vehicle_own.setText(LiveTrack.driver_name);
 		OnClickListener listener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -232,6 +242,17 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 
 			}
 		};
+		close = (Button) findViewById(R.id.close);
+		close.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				YoYo.with(Techniques.RollOut).duration(200).playOn(com);
+				com.setVisibility(View.GONE);
+
+			}
+		});
 		maprad.setOnClickListener(listener);
 		satrad.setOnClickListener(listener);
 		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
@@ -398,171 +419,6 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 				showDialog(DATE_PICKER_ID);
 			}
 		});
-
-		// submit = (Button) findViewById(R.id.go);
-		// submit.setOnClickListener(new View.OnClickListener() {
-		//
-		// @SuppressWarnings("deprecation")
-		// public void onClick(View v) {
-		// System.out.println("check date in go::"+checkdate);
-		// if (!datebutton.getText().toString().equalsIgnoreCase("Date")) {
-		// if (!fromtime.getText().toString()
-		// .equalsIgnoreCase("From time")) {
-		// if (!totime.getText().toString()
-		// .equalsIgnoreCase("To time")) {
-		// SimpleDateFormat sdf = new SimpleDateFormat(
-		// "yyyy-MM-dd HH:mm");
-		// try {
-		// Date date1 = sdf.parse(datebutton.getText().toString() + " "
-		// + fromtime.getText().toString());
-		// Date date2 = sdf.parse(datebutton.getText().toString() + " "
-		// + totime.getText().toString());
-		//
-		// System.out.println("date values 1" + date1);
-		// System.out.println("date values 2" + date2);
-		// if (date1.compareTo(date2) > 0) {
-		// AlertDialog alertDialog = new AlertDialog.Builder(
-		// HistoryTrack.this).create();
-		//
-		// // Setting Dialog Title
-		// alertDialog.setTitle("INFO!");
-		//
-		// // Setting Dialog Message
-		// alertDialog
-		// .setMessage("To time must greater than from time.");
-		//
-		// // Setting Icon to Dialog
-		// alertDialog.setIcon(R.drawable.delete);
-		//
-		// // Setting OK Button
-		// alertDialog
-		// .setButton(
-		// "OK",
-		// new DialogInterface.OnClickListener() {
-		//
-		// public void onClick(
-		// final DialogInterface dialog,
-		// final int which) {
-		// // Write your code
-		// // here to execute
-		// // after dialog
-		// // closed
-		//
-		// }
-		// });
-		//
-		// // Showing Alert Message
-		// alertDialog.show();
-		// } else if (date1.compareTo(date2) < 0) {
-		// linear.setVisibility(View.GONE);
-		// linear.startAnimation(animSlideUp);
-		// new VehiclePath().execute();
-		// } else if (date1.compareTo(date2) == 0) {
-		// linear.setVisibility(View.GONE);
-		// linear.startAnimation(animSlideUp);
-		// new VehiclePath().execute();
-		// } else {
-		// System.out.println("How to get here?");
-		// }
-		// } catch (ParseException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		//
-		// } else {
-		// AlertDialog alertDialog = new AlertDialog.Builder(
-		// HistoryTrack.this).create();
-		//
-		// // Setting Dialog Title
-		// alertDialog.setTitle("INFO!");
-		//
-		// // Setting Dialog Message
-		// alertDialog.setMessage("Select to time.");
-		//
-		// // Setting Icon to Dialog
-		// alertDialog.setIcon(R.drawable.delete);
-		//
-		// // Setting OK Button
-		// alertDialog.setButton("OK",
-		// new DialogInterface.OnClickListener() {
-		//
-		// public void onClick(
-		// final DialogInterface dialog,
-		// final int which) {
-		// // Write your code here to execute
-		// // after dialog
-		// // closed
-		//
-		// }
-		// });
-		//
-		// // Showing Alert Message
-		// alertDialog.show();
-		// }
-		// } else {
-		// AlertDialog alertDialog = new AlertDialog.Builder(
-		// HistoryTrack.this).create();
-		//
-		// // Setting Dialog Title
-		// alertDialog.setTitle("INFO!");
-		//
-		// // Setting Dialog Message
-		// alertDialog.setMessage("Select from time.");
-		//
-		// // Setting Icon to Dialog
-		// alertDialog.setIcon(R.drawable.delete);
-		//
-		// // Setting OK Button
-		// alertDialog.setButton("OK",
-		// new DialogInterface.OnClickListener() {
-		//
-		// public void onClick(
-		// final DialogInterface dialog,
-		// final int which) {
-		// // Write your code here to execute after
-		// // dialog
-		// // closed
-		//
-		// }
-		// });
-		//
-		// // Showing Alert Message
-		// alertDialog.show();
-		//
-		// }
-		// } else {
-		// AlertDialog alertDialog = new AlertDialog.Builder(
-		// HistoryTrack.this).create();
-		//
-		// // Setting Dialog Title
-		// alertDialog.setTitle("INFO!");
-		//
-		// // Setting Dialog Message
-		// alertDialog.setMessage("Select date.");
-		//
-		// // Setting Icon to Dialog
-		// alertDialog.setIcon(R.drawable.delete);
-		//
-		// // Setting OK Button
-		// alertDialog.setButton("OK",
-		// new DialogInterface.OnClickListener() {
-		//
-		// public void onClick(
-		// final DialogInterface dialog,
-		// final int which) {
-		// // Write your code here to execute after
-		// // dialog
-		// // closed
-		//
-		// }
-		// });
-		//
-		// // Showing Alert Message
-		// alertDialog.show();
-		// }
-		// }
-		// });
-		//
 
 		submit = (Button) findViewById(R.id.go);
 		submit.setOnClickListener(new View.OnClickListener() {
@@ -1085,6 +941,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 			polyLineOptions = new PolylineOptions();
 			googleMap.clear();
 			if (vehiclehistory1.size() == 0) {
+				distancetravelled.setText("");
 				AlertDialog alertDialog = new AlertDialog.Builder(
 						HistoryTrack.this).create();
 
@@ -1172,17 +1029,36 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 								.newCameraPosition(cameraPosition));
 					}
 
-					// System.out.println("vehicle histroy value::"+vehiclehistory1.get(k).get(TAG_Exceed_Speed+k));
-
 				}
 				polyLineOptions.addAll(points);
 				polyLineOptions.width(2);
 				polyLineOptions.color(Color.BLACK);
 				googleMap.addPolyline(polyLineOptions);
 			}
+			for (int o = 0; o < vehiclehistory1.size() - 1; o++) {
+				totaldistance += distance(
+						Double.parseDouble(vehiclehistory1.get(o).get(
+								TAG_Latitude + o)),
+						Double.parseDouble(vehiclehistory1.get(o + 1).get(
+								TAG_Latitude + (o + 1))),
+						Double.parseDouble(vehiclehistory1.get(o).get(
+								TAG_Longitude + o)),
+						Double.parseDouble(vehiclehistory1.get(o + 1).get(
+								TAG_Longitude + (o + 1))));
 
+				System.out.println("distance total  caluculated::"
+						+ totaldistance);
+
+				DecimalFormat df = new DecimalFormat("#.#####");
+				totaldistance = Double.valueOf(df.format(totaldistance));
+				System.out.println("Total Distance in Kilometer:"
+						+ totaldistance);
+				distancetravelled.setText(String.valueOf(totaldistance)
+						+ "Km (Approx.)");
+
+			}
+			totaldistance = 0.0;
 		}
-
 	}
 
 	@Override
@@ -1264,15 +1140,21 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case R.id.info:
 
+			com.setVisibility(View.VISIBLE);
+
+			YoYo.with(Techniques.RotateIn).duration(200).playOn(com);
+			break;
 		case R.id.history:
 
 			linear.setVisibility(View.VISIBLE);
 			linear.startAnimation(animSlideDown);
-
+			break;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+		return true;
 
 	}
 
@@ -1283,4 +1165,31 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		return true;
 	}
 
+	private double distance(double lat1, double lat2, double lon1, double lon2) {
+		// System.out.println("lat one::" + lat1);
+		// System.out.println("long one::" + lon1);
+		// System.out.println("lat two::" + lat2);
+		// System.out.println("long two::" + lon2);
+		final int R = 6371; // Radius of the earth
+		Double latDistance = deg2rad(lat2 - lat1);
+		Double lonDistance = deg2rad(lon2 - lon1);
+		Double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+				+ Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2))
+				* Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		double distance = R * c; // convert the meters
+		return distance;
+
+	}
+
+	/*
+	 * Helper function for distance calculation
+	 */
+	private double deg2rad(double deg) {
+		return (deg * Math.PI / 180.0);
+	}
+
+	private double rad2deg(double rad) {
+		return (rad * 180 / Math.PI);
+	}
 }

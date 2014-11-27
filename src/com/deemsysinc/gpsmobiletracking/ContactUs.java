@@ -83,7 +83,7 @@ public class ContactUs extends Activity {
 				Html.fromHtml("<font color='#ffffff'>DeemGPS</font>"));
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-	
+
 		setContentView(R.layout.contactus);
 		mob = (EditText) findViewById(R.id.e5);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.layoutt);
@@ -915,9 +915,8 @@ public class ContactUs extends Activity {
 					}
 
 					if (a == 1) {
-						if(isInternetPresent)
-						{
-						new AttemptLogin().execute();
+						if (isInternetPresent) {
+							new AttemptLogin().execute();
 						}
 					}
 
@@ -1150,9 +1149,8 @@ public class ContactUs extends Activity {
 			super.onPostExecute(file_url);
 			System.out.println("in post execute");
 			isInternetPresent = cd.isConnectingToInternet();
-			if(isInternetPresent)
-			{
-			new SendEmailAsyncTask().execute();
+			if (isInternetPresent) {
+				new SendEmailAsyncTask().execute();
 			}
 			pDialog.dismiss();
 			if (JsonParser.jss.equals("empty")) {
@@ -1238,7 +1236,7 @@ public class ContactUs extends Activity {
 		case android.R.id.home:
 			Intent myIntent2 = new Intent(ContactUs.this,
 					DashboardActivity.class);
-			Config.flag ="alreadyloggedin";
+			Config.flag = "alreadyloggedin";
 			myIntent2.putExtra("isalreadylogged", Config.flag);
 			ContactUs.this.startActivity(myIntent2);
 			overridePendingTransition(R.anim.pushup, R.anim.pushdown);

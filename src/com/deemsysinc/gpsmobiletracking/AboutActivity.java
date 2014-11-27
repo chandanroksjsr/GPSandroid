@@ -65,6 +65,7 @@ public class AboutActivity extends Activity {
 
 		});
 	}
+
 	@Override
 	public void onBackPressed() {
 	}
@@ -76,7 +77,7 @@ public class AboutActivity extends Activity {
 		case android.R.id.home:
 			Intent myIntent2 = new Intent(AboutActivity.this,
 					DashboardActivity.class);
-			Config.flag ="alreadyloggedin";
+			Config.flag = "alreadyloggedin";
 			myIntent2.putExtra("isalreadylogged", Config.flag);
 			AboutActivity.this.startActivity(myIntent2);
 			overridePendingTransition(R.anim.pushup, R.anim.pushdown);

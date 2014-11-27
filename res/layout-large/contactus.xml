@@ -2,18 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layoutt"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical" >
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|center_horizontal|center"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
@@ -33,12 +34,14 @@
                 android:ems="10"
                 android:hint="@string/firstname"
                 android:padding="5dp"
-                android:singleLine="true" />
+                android:singleLine="true" >
+
+                <requestFocus />
+            </EditText>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp" >
-            </View>
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/e2"
@@ -57,8 +60,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp" >
-            </View>
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/e3"
@@ -78,8 +80,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp" >
-            </View>
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/e4"
@@ -98,8 +99,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp" >
-            </View>
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/e5"
@@ -120,8 +120,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp" >
-            </View>
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/e6"
@@ -139,8 +138,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp" >
-            </View>
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/e8"
@@ -159,8 +157,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp" >
-            </View>
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/e9"
@@ -179,8 +176,7 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="10dp" >
-            </View>
+                android:layout_height="10dp" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -198,8 +194,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="5dp" >
-                </View>
+                    android:layout_height="10dp" />
 
                 <Button
                     android:id="@+id/btn3"
