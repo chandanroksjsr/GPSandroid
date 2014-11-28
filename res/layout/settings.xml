@@ -24,8 +24,8 @@
             style="@style/welcomeblack"
             android:layout_width="200dp"
             android:layout_height="40dp"
-            android:background="@drawable/dropdown"
             android:layout_marginLeft="10dp"
+            android:background="@drawable/dropdown"
             android:paddingLeft="10dp"
             android:spinnerMode="dialog" />
     </LinearLayout>
@@ -35,6 +35,15 @@
         android:layout_height="40dp"
         android:orientation="vertical" >
     </LinearLayout>
+
+    <Button
+        android:id="@+id/clearcache"
+        style="@style/welcome"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonbackground"
+        android:text="Clear Cache" />
 
     <Button
         android:id="@+id/savesettings"

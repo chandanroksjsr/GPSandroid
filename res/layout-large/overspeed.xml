@@ -10,7 +10,7 @@
         android:id="@+id/linearover"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#888888"
+        android:background="#808080"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -18,16 +18,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp"
             android:gravity="center_vertical|center_horizontal|center" >
 
             <Button
                 android:id="@+id/fromdate"
-                style="@style/largewhitetext"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="From Date"
                 android:textColor="#ffffff" />
 
@@ -38,11 +39,10 @@
 
             <Button
                 android:id="@+id/todate"
-                style="@style/largewhitetext"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="To Date"
                 android:textColor="#ffffff" />
 
@@ -53,11 +53,10 @@
 
             <Button
                 android:id="@+id/submit"
-                style="@style/largewhitetext"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="Go"
                 android:textColor="#ffffff" />
         </LinearLayout>
@@ -70,20 +69,35 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="247dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/listbg"
         android:orientation="horizontal"
-        android:paddingLeft="15dp"
+        android:paddingLeft="5dp"
         android:paddingRight="20dp"
         android:paddingTop="10dp" >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
             android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/ownernametext"
+                style="@style/largeblacktext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner Name" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="15dp" >
+            </View>
 
             <TextView
                 android:id="@+id/drivernametext"
@@ -94,18 +108,32 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" >
+            </View>
 
             <TextView
                 android:id="@+id/veg_reg_notext"
                 style="@style/largeblacktext"
-                android:layout_width="250dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Vehicle Registration Number" />
+                android:text="Vehicle Reg.No" />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" >
+            </View>
+
+            <TextView
+                android:id="@+id/devicestatus"
+                style="@style/largeblacktext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Device Status" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="15dp" >
+            </View>
 
             <TextView
                 android:id="@+id/overspeedtext"
@@ -118,30 +146,58 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/drivername"
-                style="@style/customcontact"
+                android:id="@+id/ownername"
+                style="@style/largeblacktext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="35dp" >
+                android:layout_height="15dp" >
+            </View>
+
+            <TextView
+                android:id="@+id/drivername"
+                style="@style/largeblacktext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="15dp" >
             </View>
 
             <TextView
                 android:id="@+id/veg_reg_no"
                 style="@style/largeblacktext"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="sf" />
+                android:layout_height="wrap_content"
+                android:text="" />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="5dp" >
+                android:layout_height="15dp" >
+            </View>
+
+            <TextView
+                android:id="@+id/device_status"
+                style="@style/largeblacktext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="15dp" >
             </View>
 
             <TextView

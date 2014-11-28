@@ -59,7 +59,7 @@ public class TheftAlarm extends Activity {
 	RadioButton on, off;
 	Button signout;
 	Runnable runnable;
-	TextView welcomeusername, welcome, txt;
+	TextView welcomeusername, welcome, txt, devicestatus, ownername,drivername, reg_number;
 	String succ;
 	Animation anim;
 	private static final String TAG_SRES = "serviceresponse";
@@ -89,7 +89,25 @@ public class TheftAlarm extends Activity {
 		txt.setVisibility(View.INVISIBLE);
 		on = (RadioButton) findViewById(R.id.radiosubject);
 		off = (RadioButton) findViewById(R.id.radiocourse);
+		drivername = (TextView) findViewById(R.id.drivername);
+		reg_number = (TextView) findViewById(R.id.veg_reg_no);
+		ownername = (TextView) findViewById(R.id.ownername);
+		devicestatus = (TextView) findViewById(R.id.device_status);
+		reg_number.setText(LiveTrack.vehicle_reg_no);
+		drivername.setText(LiveTrack.driver_name);
+		ownername.setText(Config.username);
 
+		if (LiveTrack.devicestatus.equalsIgnoreCase("0")) {
+			devicestatus.setText("Switched Off");
+		} else if (LiveTrack.devicestatus.equalsIgnoreCase("1")) {
+			devicestatus.setText("Active");
+		} else if (LiveTrack.devicestatus.equalsIgnoreCase("2")) {
+			devicestatus.setText("No GPS signal");
+		} else if (LiveTrack.devicestatus.equalsIgnoreCase("3")) {
+			devicestatus.setText("Sleep mode");
+		} else {
+			devicestatus.setText("Switched Off");
+		}
 		// mPlayer =
 		// MediaPlayer.create(getApplicationContext(),R.raw.alarmtone);
 		// mPlayer.start();
@@ -207,7 +225,7 @@ public class TheftAlarm extends Activity {
 		on.setOnClickListener(listener);
 		off.setOnClickListener(listener);
 
-		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")||Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items2_withoutalert,
@@ -239,8 +257,11 @@ public class TheftAlarm extends Activity {
 							if (mPlayer != null && mPlayer.isPlaying()) {
 								mPlayer.stop();
 							}
+							
 							myIntent = new Intent(TheftAlarm.this,
 									LiveTrack.class);
+							myIntent.putExtra("devicestatus",
+									LiveTrack.devicestatus);
 							myIntent.putExtra("vehicleregnum",
 									LiveTrack.vehicle_reg_no);
 							myIntent.putExtra("drivername",
@@ -365,28 +386,31 @@ public class TheftAlarm extends Activity {
 
 			Log.i("tagconvertstr", "[" + jobject + "]");
 			status = "0";
-			if (json != null) {
-				try {
-					if (json != null) {
-						System.out.println("json value::" + json);
+			try {
+				if (json != null) {
+					try {
+						if (json != null) {
+							System.out.println("json value::" + json);
 
-						JSONObject jUser = json.getJSONObject(TAG_SRES);
-						status = jUser.getString(TAG_STATUS);
+							JSONObject jUser = json.getJSONObject(TAG_SRES);
+							status = jUser.getString(TAG_STATUS);
 
-						System.out.println("status value" + status);
+							System.out.println("status value" + status);
+
+						}
 
 					}
 
-				}
+					catch (JSONException e) {
+						e.printStackTrace();
 
-				catch (JSONException e) {
-					e.printStackTrace();
+					}
+				} else {
 
 				}
-			} else {
+			} catch (Exception e) {
 
 			}
-
 			pDialog.dismiss();
 			return null;
 		}
@@ -395,80 +419,84 @@ public class TheftAlarm extends Activity {
 		protected void onPostExecute(String file_url) {
 
 			super.onPostExecute(file_url);
+			try {
+				if (status.equalsIgnoreCase("1")) {
+					on.setChecked(true);
+					on.setEnabled(false);
+					timercalling();
+					// handler.post(timedTask);
+					txt.setVisibility(View.INVISIBLE);
 
-			if (status.equalsIgnoreCase("1")) {
-				on.setChecked(true);
-				on.setEnabled(false);
-				timercalling();
-				// handler.post(timedTask);
-				txt.setVisibility(View.INVISIBLE);
+				} else if (status.equalsIgnoreCase("0")) {
+					off.setChecked(true);
+					txt.setVisibility(View.INVISIBLE);
+					off.setEnabled(false);
 
-			} else if (status.equalsIgnoreCase("0")) {
-				off.setChecked(true);
-				txt.setVisibility(View.INVISIBLE);
-				off.setEnabled(false);
+				} else if (status.equalsIgnoreCase("2")) {
+					on.setChecked(true);
+					on.setEnabled(false);
+					try {
+						if (Config.alarmsoundtype != null) {
+							if (Config.alarmsoundtype
+									.equalsIgnoreCase("type 1")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(), R.raw.type1);
+								mPlayer.start();
+							} else if (Config.alarmsoundtype
+									.equalsIgnoreCase("type 2")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(), R.raw.type2);
+								mPlayer.start();
+							} else if (Config.alarmsoundtype
+									.equalsIgnoreCase("type 3")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(), R.raw.type3);
+								mPlayer.start();
+							} else if (Config.alarmsoundtype
+									.equalsIgnoreCase("type 4")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(), R.raw.type4);
+								mPlayer.start();
+							} else if (Config.alarmsoundtype
+									.equalsIgnoreCase("default")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(),
+										R.raw.alarmtone);
+								mPlayer.start();
+							}
 
-			} else if (status.equalsIgnoreCase("2")) {
-				on.setChecked(true);
-				on.setEnabled(false);
-				try {
-					if (Config.alarmsoundtype != null) {
-						if (Config.alarmsoundtype.equalsIgnoreCase("type 1")) {
-							mPlayer = MediaPlayer.create(
-									getApplicationContext(), R.raw.type1);
-							mPlayer.start();
-						} else if (Config.alarmsoundtype
-								.equalsIgnoreCase("type 2")) {
-							mPlayer = MediaPlayer.create(
-									getApplicationContext(), R.raw.type2);
-							mPlayer.start();
-						} else if (Config.alarmsoundtype
-								.equalsIgnoreCase("type 3")) {
-							mPlayer = MediaPlayer.create(
-									getApplicationContext(), R.raw.type3);
-							mPlayer.start();
-						} else if (Config.alarmsoundtype
-								.equalsIgnoreCase("type 4")) {
-							mPlayer = MediaPlayer.create(
-									getApplicationContext(), R.raw.type4);
-							mPlayer.start();
-						} else if (Config.alarmsoundtype
-								.equalsIgnoreCase("default")) {
+						} else {
+
 							mPlayer = MediaPlayer.create(
 									getApplicationContext(), R.raw.alarmtone);
 							mPlayer.start();
 						}
 
-					} else {
-
-						mPlayer = MediaPlayer.create(getApplicationContext(),
-								R.raw.alarmtone);
-						mPlayer.start();
+						// Uri notification = RingtoneManager
+						// .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+						// Ringtone r = RingtoneManager.getRingtone(
+						// getApplicationContext(), notification);
+						// r.play();
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-
-					// Uri notification = RingtoneManager
-					// .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-					// Ringtone r = RingtoneManager.getRingtone(
-					// getApplicationContext(), notification);
-					// r.play();
-				} catch (Exception e) {
-					e.printStackTrace();
+					// handler.post(timedTask);
+					timercalling();
+					blink();
+				} else {
+					off.setChecked(true);
+					txt.setVisibility(View.INVISIBLE);
+					off.setEnabled(false);
 				}
-				// handler.post(timedTask);
-				timercalling();
-				blink();
-			} else {
-				off.setChecked(true);
-				txt.setVisibility(View.INVISIBLE);
-				off.setEnabled(false);
+
+				// } else {
+				// txt.setVisibility(View.INVISIBLE);
+				// off.setChecked(true);
+				// off.setEnabled(false);
+				// }
+			} catch (Exception e) {
+
 			}
-
-			// } else {
-			// txt.setVisibility(View.INVISIBLE);
-			// off.setChecked(true);
-			// off.setEnabled(false);
-			// }
-
 		}
 
 	}
@@ -483,28 +511,6 @@ public class TheftAlarm extends Activity {
 		anim.setRepeatCount(Animation.INFINITE);
 		txt.startAnimation(anim);
 
-		// new Thread(new Runnable() {
-		// @Override
-		// public void run() {
-		// int timeToBlink = 500; // in milissegunds
-		// try {
-		// Thread.sleep(timeToBlink);
-		// } catch (Exception e) {
-		// }
-		// handler.post(new Runnable() {
-		// @Override
-		// public void run() {
-		//
-		// if (txt.getVisibility() == View.VISIBLE) {
-		// txt.setVisibility(View.INVISIBLE);
-		// } else {
-		// txt.setVisibility(View.VISIBLE);
-		// }
-		// blink();
-		// }
-		// });
-		// }
-		// }).start();
 	}
 
 	class updateTheftAlarm extends AsyncTask<String, String, String> {
@@ -529,22 +535,26 @@ public class TheftAlarm extends Activity {
 
 			JSONObject json = jLogin.makeHttpRequest(Config.ServerUrl
 					+ "TheftAlarm.php?service=updatealarm", "POST", params1);
+			try {
+				if (json != null) {
+					try {
+						if (json != null) {
 
-			if (json != null) {
-				try {
-					if (json != null) {
+							JSONObject jUser = json.getJSONObject(TAG_SRES);
+							System.out.println("value of juser:" + jUser);
 
-						JSONObject jUser = json.getJSONObject(TAG_SRES);
+						}
 
 					}
 
-				}
+					catch (JSONException e) {
+						e.printStackTrace();
 
-				catch (JSONException e) {
-					e.printStackTrace();
+					}
+				} else {
 
 				}
-			} else {
+			} catch (Exception e) {
 
 			}
 			return null;
@@ -610,28 +620,31 @@ public class TheftAlarm extends Activity {
 
 			System.out.println("value for json::" + json);
 			succ = "no";
-			if (json != null) {
-				try {
-					if (json != null) {
-						System.out.println("json value::" + json);
+			try {
+				if (json != null) {
+					try {
+						if (json != null) {
+							System.out.println("json value::" + json);
 
-						JSONObject jUser = json.getJSONObject(TAG_SRES);
-						succ = jUser.getString(TAG_SUCCESS);
+							JSONObject jUser = json.getJSONObject(TAG_SRES);
+							succ = jUser.getString(TAG_SUCCESS);
 
-						System.out.println("success value" + succ);
+							System.out.println("success value" + succ);
+
+						}
 
 					}
 
-				}
+					catch (JSONException e) {
+						e.printStackTrace();
 
-				catch (JSONException e) {
-					e.printStackTrace();
+					}
+				} else {
 
 				}
-			} else {
+			} catch (Exception e) {
 
 			}
-
 			return null;
 		}
 
@@ -640,73 +653,82 @@ public class TheftAlarm extends Activity {
 		protected void onPostExecute(String file_url) {
 			super.onPostExecute(file_url);
 			pDialog.dismiss();
-			timercalling();
-			if (succ.equalsIgnoreCase("No")) {
-				off.setChecked(true);
-				off.setEnabled(false);
-				on.setEnabled(true);
-				AlertDialog alertDialog = new AlertDialog.Builder(
-						TheftAlarm.this).create();
+			try {
+				timercalling();
+				if (succ.equalsIgnoreCase("No")) {
+					off.setChecked(true);
+					off.setEnabled(false);
+					on.setEnabled(true);
+					AlertDialog alertDialog = new AlertDialog.Builder(
+							TheftAlarm.this).create();
 
-				// Setting Dialog Title
-				alertDialog.setTitle("Can't reachable!");
+					// Setting Dialog Title
+					alertDialog.setTitle("Can't reachable!");
 
-				// Setting Dialog Message
-				alertDialog
-						.setMessage("Make sure the device is turned on. Try again!");
+					// Setting Dialog Message
+					alertDialog
+							.setMessage("Make sure the device is turned on. Try again!");
 
-				// Setting Icon to Dialog
-				alertDialog.setIcon(R.drawable.delete);
+					// Setting Icon to Dialog
+					alertDialog.setIcon(R.drawable.delete);
 
-				// Setting OK Button
-				alertDialog.setButton("OK",
-						new DialogInterface.OnClickListener() {
+					// Setting OK Button
+					alertDialog.setButton("OK",
+							new DialogInterface.OnClickListener() {
 
-							public void onClick(final DialogInterface dialog,
-									final int which) {
-								// Write your code here to execute after dialog
-								// closed
-								off.setChecked(true);
-								off.setEnabled(false);
-								on.setEnabled(true);
-							}
-						});
+								public void onClick(
+										final DialogInterface dialog,
+										final int which) {
+									// Write your code here to execute after
+									// dialog
+									// closed
+									off.setChecked(true);
+									off.setEnabled(false);
+									on.setEnabled(true);
+								}
+							});
 
-				// Showing Alert Message
-				alertDialog.show();
-			} else {
-				AlertDialog alertDialog = new AlertDialog.Builder(
-						TheftAlarm.this).create();
+					// Showing Alert Message
+					alertDialog.show();
+				} else {
+					AlertDialog alertDialog = new AlertDialog.Builder(
+							TheftAlarm.this).create();
 
-				// Setting Dialog Title
-				alertDialog.setTitle("INFO!");
+					// Setting Dialog Title
+					alertDialog.setTitle("INFO!");
 
-				// Setting Dialog Message
-				alertDialog.setMessage("Theft alarm turned on.");
+					// Setting Dialog Message
+					alertDialog.setMessage("Theft alarm turned on.");
 
-				// Setting Icon to Dialog
-				alertDialog.setIcon(R.drawable.delete);
+					// Setting Icon to Dialog
+					alertDialog.setIcon(R.drawable.delete);
 
-				// Setting OK Button
-				alertDialog.setButton("OK",
-						new DialogInterface.OnClickListener() {
+					// Setting OK Button
+					alertDialog.setButton("OK",
+							new DialogInterface.OnClickListener() {
 
-							public void onClick(final DialogInterface dialog,
-									final int which) {
-								// Write your code here to execute after dialog
-								// closed
+								public void onClick(
+										final DialogInterface dialog,
+										final int which) {
+									// Write your code here to execute after
+									// dialog
+									// closed
 
-							}
-						});
+								}
+							});
 
-				// Showing Alert Message
-				alertDialog.show();
+					// Showing Alert Message
+					alertDialog.show();
+				}
+			} catch (Exception e) {
+
 			}
 		}
 	}
 
 	private Runnable timedTask = new Runnable() {
 
+		@SuppressWarnings("deprecation")
 		@Override
 		public void run() {
 			try {
@@ -739,22 +761,20 @@ public class TheftAlarm extends Activity {
 			} catch (Exception e) {
 
 			}
-			// TODO Auto-generated method stub
-			// cnt++;
-			// counter.setText(String.valueOf(cnt));
+
 			handler.postDelayed(timedTask, 300000);
 		}
 	};
 
 	public void timercalling() {
-		// final Handler handler;
-		// handler = new Handler();
+
 		TheftAlarm.timer = new Timer();
 
 		TheftAlarm.doAsynchronousTask = new TimerTask() {
 			@Override
 			public void run() {
 				runOnUiThread(new Runnable() {
+					@SuppressWarnings("deprecation")
 					public void run() {
 						try {
 							if (isInternetPresent) {

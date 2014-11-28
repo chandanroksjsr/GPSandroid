@@ -58,6 +58,8 @@ public class LoginActivity extends Activity {
 	private static final String TAG_ENABLED = "enabled";
 	private static final String TAG_SRESL = "serviceresponse";
 	private static final String TAG_ORGID = "org_id";
+	private static final String TAG_ADDRESS = "address";
+	private static final String TAG_TELEPHONE = "telephone1";
 
 	// private static String loginurl =
 	// "http://192.168.1.158:8888/gpsandroid/service/Login.php?service=login";
@@ -124,16 +126,11 @@ public class LoginActivity extends Activity {
 						AlertDialog alertDialog = new AlertDialog.Builder(
 								LoginActivity.this).create();
 
-						// Setting Dialog Title
 						alertDialog.setTitle("INFO!");
 
-						// Setting Dialog Message
 						alertDialog.setMessage("No network connection.");
 
-						// Setting Icon to Dialog
 						alertDialog.setIcon(R.drawable.delete);
-
-						// Setting OK Button
 
 						alertDialog.setButton("OK",
 								new DialogInterface.OnClickListener() {
@@ -141,188 +138,78 @@ public class LoginActivity extends Activity {
 									public void onClick(
 											final DialogInterface dialog,
 											final int which) {
-										// Write your code here to execute after
-										// dialog
-										// closed
 
 									}
 								});
 
-						// Showing Alert Message
 						alertDialog.show();
-						/*
-						 * AlertDialog.Builder builder= new
-						 * AlertDialog.Builder(LoginActivity
-						 * .this,R.style.MyTheme );
-						 * 
-						 * builder.setMessage("No network connection." )
-						 * .setTitle( "INFO!" ) .setIcon( R.drawable.pink_pin )
-						 * .setCancelable( false )
-						 * 
-						 * .setPositiveButton( "OK", new
-						 * DialogInterface.OnClickListener() { public void
-						 * onClick( DialogInterface dialog, int which ) {
-						 * usrname.setText(""); paswd.setText("");
-						 * dialog.dismiss(); } } ); Dialog dialog = null;
-						 * builder.setInverseBackgroundForced(true);
-						 * 
-						 * dialog = builder.create();
-						 * dialog.getWindow().setLayout(600, 400);
-						 * dialog.getWindow().setBackgroundDrawable(new
-						 * ColorDrawable(android.graphics.Color.TRANSPARENT));
-						 * dialog.show();
-						 */
+
 					}
 				} else if (!password.equalsIgnoreCase("")) {
 					AlertDialog alertDialog = new AlertDialog.Builder(
 							LoginActivity.this).create();
 
-					// Setting Dialog Title
 					alertDialog.setTitle("INFO!");
 
-					// Setting Dialog Message
 					alertDialog.setMessage("Please enter username.");
 
-					// Setting Icon to Dialog
 					alertDialog.setIcon(R.drawable.delete);
 
-					// Setting OK Button
 					alertDialog.setButton("OK",
 							new DialogInterface.OnClickListener() {
 
 								public void onClick(
 										final DialogInterface dialog,
 										final int which) {
-									// Write your code here to execute after
-									// dialog
-									// closed
 
 								}
 							});
 
-					// Showing Alert Message
 					alertDialog.show();
 
-					/*
-					 * AlertDialog.Builder builder= new
-					 * AlertDialog.Builder(LoginActivity.this,R.style.MyTheme );
-					 * 
-					 * builder.setMessage("Please enter username." ) .setTitle(
-					 * "INFO!" ) .setIcon( R.drawable.pink_pin ) .setCancelable(
-					 * false )
-					 * 
-					 * .setPositiveButton( "OK", new
-					 * DialogInterface.OnClickListener() { public void onClick(
-					 * DialogInterface dialog, int which ) { dialog.dismiss(); }
-					 * } ); Dialog dialog = null;
-					 * builder.setInverseBackgroundForced(true);
-					 * 
-					 * dialog = builder.create();
-					 * dialog.getWindow().setLayout(600, 400);
-					 * dialog.getWindow().setBackgroundDrawable(new
-					 * ColorDrawable(android.graphics.Color.TRANSPARENT));
-					 * dialog.show();
-					 */
 				} else if (!username.equalsIgnoreCase("")) {
 					AlertDialog alertDialog = new AlertDialog.Builder(
 							LoginActivity.this).create();
 
-					// Setting Dialog Title
 					alertDialog.setTitle("INFO!");
 
-					// Setting Dialog Message
 					alertDialog.setMessage("Please enter password.");
 
-					// Setting Icon to Dialog
 					alertDialog.setIcon(R.drawable.delete);
 
-					// Setting OK Button
 					alertDialog.setButton("OK",
 							new DialogInterface.OnClickListener() {
 
 								public void onClick(
 										final DialogInterface dialog,
 										final int which) {
-									// Write your code here to execute after
-									// dialog
-									// closed
 
 								}
 							});
 
-					// Showing Alert Message
 					alertDialog.show();
 
-					/*
-					 * AlertDialog.Builder builder= new
-					 * AlertDialog.Builder(LoginActivity.this,R.style.MyTheme );
-					 * 
-					 * builder.setMessage("Please enter password." ) .setTitle(
-					 * "INFO!" ) .setIcon( R.drawable.pink_pin ) .setCancelable(
-					 * false )
-					 * 
-					 * .setPositiveButton( "OK", new
-					 * DialogInterface.OnClickListener() { public void onClick(
-					 * DialogInterface dialog, int which ) { dialog.dismiss(); }
-					 * } ); Dialog dialog = null;
-					 * builder.setInverseBackgroundForced(true);
-					 * 
-					 * dialog = builder.create();
-					 * dialog.getWindow().setLayout(600, 400);
-					 * dialog.getWindow().setBackgroundDrawable(new
-					 * ColorDrawable(android.graphics.Color.TRANSPARENT));
-					 * dialog.show();
-					 */
 				} else {
 					AlertDialog alertDialog = new AlertDialog.Builder(
 							LoginActivity.this).create();
 
-					// Setting Dialog Title
 					alertDialog.setTitle("INFO!");
 
-					// Setting Dialog Message
 					alertDialog.setMessage("Enter login credentials.");
 
-					// Setting Icon to Dialog
 					alertDialog.setIcon(R.drawable.delete);
 
-					// Setting OK Button
 					alertDialog.setButton("OK",
 							new DialogInterface.OnClickListener() {
 
 								public void onClick(
 										final DialogInterface dialog,
 										final int which) {
-									// Write your code here to execute after
-									// dialog
-									// closed
 
 								}
 							});
 
-					// Showing Alert Message
 					alertDialog.show();
-
-					/*
-					 * AlertDialog.Builder builder= new
-					 * AlertDialog.Builder(LoginActivity.this,R.style.MyTheme );
-					 * 
-					 * builder.setMessage("Enter login credentials." )
-					 * .setTitle( "INFO!" ) .setIcon( R.drawable.pink_pin )
-					 * .setCancelable( false )
-					 * 
-					 * .setPositiveButton( "OK", new
-					 * DialogInterface.OnClickListener() { public void onClick(
-					 * DialogInterface dialog, int which ) { dialog.dismiss(); }
-					 * } ); Dialog dialog = null;
-					 * builder.setInverseBackgroundForced(true);
-					 * 
-					 * dialog = builder.create();
-					 * dialog.getWindow().setLayout(600, 400);
-					 * dialog.getWindow().setBackgroundDrawable(new
-					 * ColorDrawable(android.graphics.Color.TRANSPARENT));
-					 * dialog.show();
-					 */
 
 				}
 			}
@@ -374,6 +261,8 @@ public class LoginActivity extends Activity {
 					Config.org_id = jUser.getString(TAG_ORGID);
 					Config.role = jUser.getString(TAG_ROLE);
 					Config.enabled = jUser.getString(TAG_ENABLED);
+					Config.address = jUser.getString(TAG_ADDRESS);
+					Config.telephone = jUser.getString(TAG_TELEPHONE);
 					// System.out.println("username value:::" + username);
 					// System.out.println("password value::" + password);
 					// System.out.println("role value" + role);
@@ -384,6 +273,8 @@ public class LoginActivity extends Activity {
 					editor.putString("org_id", Config.org_id);
 					editor.putString("role", Config.role);
 					editor.putString("enabled", Config.enabled);
+					editor.putString("address", Config.address);
+					editor.putString("telephone", Config.telephone);
 
 					editor.commit();
 					Config.flag = "notloggedin";
@@ -511,6 +402,8 @@ public class LoginActivity extends Activity {
 				Config.org_id = sharedpreferences.getString("org_id", "");
 				Config.role = sharedpreferences.getString("role", "");
 				Config.enabled = sharedpreferences.getString("enabled", "");
+				Config.address = sharedpreferences.getString("address", "");
+				Config.telephone = sharedpreferences.getString("telephone", "");
 				// Config.refreshtime =
 				// sharedpreferences.getString("refreshtime",
 				// "");

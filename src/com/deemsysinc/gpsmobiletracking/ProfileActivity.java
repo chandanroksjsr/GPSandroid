@@ -1,32 +1,34 @@
 package com.deemsysinc.gpsmobiletracking;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
+
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.ArrayAdapter;
+
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ProfileActivity extends Activity {
 	TextView orgname;
-
+	ImageView vehicle;
 	ListView lv;
 	String a = "";
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-		// getActionBar().hide();
+
 		getActionBar().setTitle(
 				Html.fromHtml("<font color='#ffffff'>Profile </font>"));
 
@@ -37,23 +39,25 @@ public class ProfileActivity extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.profile);
-		// orgname = (TextView) findViewById(R.id.orgname);
-		// orgname.setText(Config.username);
-
+		vehicle = (ImageView) findViewById(R.id.imageView1);
 		lv = (ListView) findViewById(R.id.list1);
-		ArrayList<String> arr = new ArrayList<String>();
-		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+		Resources res = getResources();
+
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")||Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
+			Drawable draw = res.getDrawable(R.drawable.green_light);
+			vehicle.setImageDrawable(draw);
 
 			a = "Fleet";
-		} else if (Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
-
+		} else if (Config.role.equalsIgnoreCase("ROLE_ADMIN")) {
+			Drawable draw = res.getDrawable(R.drawable.usericon);
+			vehicle.setImageDrawable(draw);
 			a = "School";
 
 		}
 
 		String[] web = { "Organisation Name:" + Config.username, "Type : " + a,
-				"Organisation Address : " + "addrs",
-				"Telephone : " + "9677881101",
+				"Organisation Address : " + Config.address,
+				"Telephone : " + Config.telephone,
 
 		};
 
@@ -81,8 +85,8 @@ public class ProfileActivity extends Activity {
 			Config.flag = "alreadyloggedin";
 			myIntent2.putExtra("isalreadylogged", Config.flag);
 			ProfileActivity.this.startActivity(myIntent2);
-			overridePendingTransition(R.anim.pushup, R.anim.pushdown);
-
+			overridePendingTransition(android.R.anim.slide_in_left,
+					android.R.anim.slide_out_right);
 		default:
 			return super.onOptionsItemSelected(item);
 		}

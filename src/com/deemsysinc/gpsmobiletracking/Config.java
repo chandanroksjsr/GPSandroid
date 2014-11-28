@@ -17,7 +17,8 @@ public class Config {
 	static String role;
 	static String enabled;
 	static String flag;
-	// static String refreshtime;
+	static String address;
+	static String telephone;
 	static String alarmsoundtype;
 
 }

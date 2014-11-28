@@ -255,7 +255,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		});
 		maprad.setOnClickListener(listener);
 		satrad.setOnClickListener(listener);
-		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")||Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items1_withoutalert,
@@ -287,6 +287,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 									LiveTrack.vehicle_reg_no);
 							myIntent.putExtra("drivername",
 									LiveTrack.driver_name);
+							myIntent.putExtra("devicestatus",
+									LiveTrack.devicestatus);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							HistoryTrack.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
@@ -364,6 +366,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 							myIntent.putExtra("routenum", LiveTrack.routeno);
 							myIntent.putExtra("drivername",
 									LiveTrack.driver_name);
+							myIntent.putExtra("devicestatus",
+									LiveTrack.devicestatus);
 							HistoryTrack.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
@@ -934,131 +938,138 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 
 			super.onPostExecute(file_url);
 			cDialog.dismiss();
+			try {
+				ArrayList<LatLng> points = null;
+				PolylineOptions polyLineOptions = null;
+				points = new ArrayList<LatLng>();
+				polyLineOptions = new PolylineOptions();
+				googleMap.clear();
+				if (vehiclehistory1.size() == 0) {
+					distancetravelled.setText("");
+					AlertDialog alertDialog = new AlertDialog.Builder(
+							HistoryTrack.this).create();
 
-			ArrayList<LatLng> points = null;
-			PolylineOptions polyLineOptions = null;
-			points = new ArrayList<LatLng>();
-			polyLineOptions = new PolylineOptions();
-			googleMap.clear();
-			if (vehiclehistory1.size() == 0) {
-				distancetravelled.setText("");
-				AlertDialog alertDialog = new AlertDialog.Builder(
-						HistoryTrack.this).create();
+					// Setting Dialog Title
+					alertDialog.setTitle("INFO!");
 
-				// Setting Dialog Title
-				alertDialog.setTitle("INFO!");
+					// Setting Dialog Message
+					alertDialog.setMessage("No location's found.");
 
-				// Setting Dialog Message
-				alertDialog.setMessage("No location's found.");
+					// Setting Icon to Dialog
+					alertDialog.setIcon(R.drawable.delete);
 
-				// Setting Icon to Dialog
-				alertDialog.setIcon(R.drawable.delete);
+					// Setting OK Button
+					alertDialog.setButton("OK",
+							new DialogInterface.OnClickListener() {
 
-				// Setting OK Button
-				alertDialog.setButton("OK",
-						new DialogInterface.OnClickListener() {
+								public void onClick(
+										final DialogInterface dialog,
+										final int which) {
+									// Write your code here to execute after
+									// dialog
+									// closed
 
-							public void onClick(final DialogInterface dialog,
-									final int which) {
-								// Write your code here to execute after dialog
-								// closed
+								}
+							});
 
-							}
-						});
+					// Showing Alert Message
+					alertDialog.show();
 
-				// Showing Alert Message
-				alertDialog.show();
+				} else {
+					// System.out.println("vehicle history list size"+vehiclehistory1.size());
+					for (int k = 0; k < vehiclehistory1.size(); k++) {
 
-			} else {
-				// System.out.println("vehicle history list size"+vehiclehistory1.size());
-				for (int k = 0; k < vehiclehistory1.size(); k++) {
+						LatLng pinLocation = new LatLng(
+								Double.parseDouble(vehiclehistory1.get(k).get(
+										TAG_Latitude + k)),
+								Double.parseDouble(vehiclehistory1.get(k).get(
+										TAG_Longitude + k)));
+						MarkerOptions marker;
+						points.add(pinLocation);
+						String titlevalue = "Speed:"
+								+ vehiclehistory1.get(k).get(TAG_Speed + k)
+								+ " km/hr "
+								+ "Date:"
+								+ vehiclehistory1.get(k).get(
+										TAG_bus_tracking_timestamp + k);
+						String snippetval = titlevalue + "\n" + "Address:"
+								+ vehiclehistory1.get(k).get(TAG_address + k);
 
-					LatLng pinLocation = new LatLng(
-							Double.parseDouble(vehiclehistory1.get(k).get(
-									TAG_Latitude + k)),
-							Double.parseDouble(vehiclehistory1.get(k).get(
-									TAG_Longitude + k)));
-					MarkerOptions marker;
-					points.add(pinLocation);
-					String titlevalue = "Speed:"
-							+ vehiclehistory1.get(k).get(TAG_Speed + k)
-							+ " km/hr "
-							+ "Date:"
-							+ vehiclehistory1.get(k).get(
-									TAG_bus_tracking_timestamp + k);
-					String snippetval = titlevalue + "\n" + "Address:"
-							+ vehiclehistory1.get(k).get(TAG_address + k);
+						if (k == 0 || k == vehiclehistory1.size() - 1) {
+							marker = new MarkerOptions().position(pinLocation)
+									.snippet(snippetval);
 
-					if (k == 0 || k == vehiclehistory1.size() - 1) {
-						marker = new MarkerOptions().position(pinLocation)
-								.snippet(snippetval);
+							marker.icon(BitmapDescriptorFactory
+									.fromResource(R.drawable.options));
+							googleMap.addMarker(marker);
+						} else if (vehiclehistory1.get(k)
+								.get(TAG_Exceed_Speed + k).equals("1")) {
+							marker = new MarkerOptions().position(pinLocation)
+									.snippet(snippetval);
 
-						marker.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.options));
-						googleMap.addMarker(marker);
-					} else if (vehiclehistory1.get(k).get(TAG_Exceed_Speed + k)
-							.equals("1")) {
-						marker = new MarkerOptions().position(pinLocation)
-								.snippet(snippetval);
+							marker.icon(BitmapDescriptorFactory
+									.fromResource(R.drawable.pink_pin));
+							googleMap.addMarker(marker);
+						}
 
-						marker.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.pink_pin));
-						googleMap.addMarker(marker);
+						else {
+							marker = new MarkerOptions().position(pinLocation)
+									.snippet(snippetval);
+							marker.icon(BitmapDescriptorFactory
+									.fromResource(R.drawable.red_pin));
+							googleMap.addMarker(marker);
+
+						}
+						int sizeminusone = vehiclehistory1.size() - 1;
+						if (sizeminusone == k) {
+							// marker = new
+							// MarkerOptions().position(pinLocation)
+							// .snippet(snippetval);
+							//
+							// marker.icon(BitmapDescriptorFactory
+							// .fromResource(R.drawable.options));
+							// googleMap.addMarker(marker);
+
+							CameraPosition cameraPosition = new CameraPosition.Builder()
+									.target(pinLocation).zoom(12).build();
+							googleMap.animateCamera(CameraUpdateFactory
+									.newCameraPosition(cameraPosition));
+						}
+
 					}
+					polyLineOptions.addAll(points);
+					polyLineOptions.width(2);
+					polyLineOptions.color(Color.BLACK);
+					googleMap.addPolyline(polyLineOptions);
+				}
+				for (int o = 0; o < vehiclehistory1.size() - 1; o++) {
+					totaldistance += distance(
+							Double.parseDouble(vehiclehistory1.get(o).get(
+									TAG_Latitude + o)),
+							Double.parseDouble(vehiclehistory1.get(o + 1).get(
+									TAG_Latitude + (o + 1))),
+							Double.parseDouble(vehiclehistory1.get(o).get(
+									TAG_Longitude + o)),
+							Double.parseDouble(vehiclehistory1.get(o + 1).get(
+									TAG_Longitude + (o + 1))));
 
-					else {
-						marker = new MarkerOptions().position(pinLocation)
-								.snippet(snippetval);
-						marker.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.red_pin));
-						googleMap.addMarker(marker);
+					System.out.println("distance total  caluculated::"
+							+ totaldistance);
 
-					}
-					int sizeminusone = vehiclehistory1.size() - 1;
-					if (sizeminusone == k) {
-						// marker = new MarkerOptions().position(pinLocation)
-						// .snippet(snippetval);
-						//
-						// marker.icon(BitmapDescriptorFactory
-						// .fromResource(R.drawable.options));
-						// googleMap.addMarker(marker);
-
-						CameraPosition cameraPosition = new CameraPosition.Builder()
-								.target(pinLocation).zoom(12).build();
-						googleMap.animateCamera(CameraUpdateFactory
-								.newCameraPosition(cameraPosition));
-					}
+					DecimalFormat df = new DecimalFormat("#.#####");
+					totaldistance = Double.valueOf(df.format(totaldistance));
+					System.out.println("Total Distance in Kilometer:"
+							+ totaldistance);
+					distancetravelled.setText(String.valueOf(totaldistance)
+							+ "Km (Approx.)");
 
 				}
-				polyLineOptions.addAll(points);
-				polyLineOptions.width(2);
-				polyLineOptions.color(Color.BLACK);
-				googleMap.addPolyline(polyLineOptions);
-			}
-			for (int o = 0; o < vehiclehistory1.size() - 1; o++) {
-				totaldistance += distance(
-						Double.parseDouble(vehiclehistory1.get(o).get(
-								TAG_Latitude + o)),
-						Double.parseDouble(vehiclehistory1.get(o + 1).get(
-								TAG_Latitude + (o + 1))),
-						Double.parseDouble(vehiclehistory1.get(o).get(
-								TAG_Longitude + o)),
-						Double.parseDouble(vehiclehistory1.get(o + 1).get(
-								TAG_Longitude + (o + 1))));
-
-				System.out.println("distance total  caluculated::"
-						+ totaldistance);
-
-				DecimalFormat df = new DecimalFormat("#.#####");
-				totaldistance = Double.valueOf(df.format(totaldistance));
-				System.out.println("Total Distance in Kilometer:"
-						+ totaldistance);
-				distancetravelled.setText(String.valueOf(totaldistance)
-						+ "Km (Approx.)");
+				totaldistance = 0.0;
+			} catch (Exception e) {
 
 			}
-			totaldistance = 0.0;
 		}
+
 	}
 
 	@Override
@@ -1077,23 +1088,27 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 	}
 
 	private void initilizeMap() {
-		if (googleMap == null) {
-			googleMap = ((MapFragment) getFragmentManager().findFragmentById(
-					R.id.map)).getMap();
-			Marker marker = googleMap.addMarker(new MarkerOptions().position(
-					TutorialsPoint).title(""));
-			CameraPosition cameraPosition = new CameraPosition.Builder()
-					.target(TutorialsPoint).zoom(4).build();
-			googleMap.animateCamera(CameraUpdateFactory
-					.newCameraPosition(cameraPosition));
-			marker.remove();
-			marker.setVisible(false);
-			// check if map is created successfully or not
+		try {
 			if (googleMap == null) {
-				Toast.makeText(getApplicationContext(),
-						"Sorry! unable to create maps", Toast.LENGTH_SHORT)
-						.show();
+				googleMap = ((MapFragment) getFragmentManager()
+						.findFragmentById(R.id.map)).getMap();
+				Marker marker = googleMap.addMarker(new MarkerOptions()
+						.position(TutorialsPoint).title(""));
+				CameraPosition cameraPosition = new CameraPosition.Builder()
+						.target(TutorialsPoint).zoom(4).build();
+				googleMap.animateCamera(CameraUpdateFactory
+						.newCameraPosition(cameraPosition));
+				marker.remove();
+				marker.setVisible(false);
+				// check if map is created successfully or not
+				if (googleMap == null) {
+					Toast.makeText(getApplicationContext(),
+							"Sorry! unable to create maps", Toast.LENGTH_SHORT)
+							.show();
+				}
 			}
+		} catch (Exception e) {
+
 		}
 	}
 

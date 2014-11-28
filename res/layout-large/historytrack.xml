@@ -13,7 +13,7 @@
             android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#888888"
+            android:background="#808080"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -81,6 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_vertical|center_horizontal|center|end"
+            android:layout_marginTop="40dp"
             android:addStatesFromChildren="true"
             android:animateLayoutChanges="true"
             android:duplicateParentState="false"
@@ -89,13 +90,13 @@
             android:orientation="vertical"
             android:paddingTop="5dp"
             android:splitMotionEvents="true"
-            android:visibility="visible" >
+            android:visibility="gone" >
 
             <LinearLayout
                 android:id="@+id/livelin1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|center_horizontal|center"
+                android:layout_gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal"
                 android:paddingBottom="3dp" >
 
@@ -118,12 +119,14 @@
                         style="@style/largeblacktext"
                         android:layout_width="189dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
                         android:maxLines="2"
                         android:text="@string/vehicle_reg_num" />
+
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingLeft="5dp" >
@@ -131,15 +134,17 @@
                     <TextView
                         android:id="@+id/vehicleowner"
                         style="@style/largeblacktext"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:id="@+id/vehicle_reg_number"
                         style="@style/largeblacktext"
-                        android:layout_width="183dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
                         android:layout_weight="1" />
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -184,6 +189,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
                         android:paddingBottom="4dp"
                         android:paddingLeft="5dp" >
 
@@ -205,9 +211,13 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/linearLayout1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="false"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal|center_vertical"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="15dp" >
@@ -237,8 +247,8 @@
                 <Button
                     android:id="@+id/close"
                     style="@style/largewhitetext"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
+                    android:layout_width="180dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical|center_horizontal|center"
                     android:layout_marginRight="4dp"
                     android:background="@drawable/buttonbackground"

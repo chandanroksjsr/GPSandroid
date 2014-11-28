@@ -94,7 +94,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	private static final String TAG_bus_tracking_timestamp = "bus_tracking_timestamp";
 	private static final String TAG_address = "address";
 	String orgid;
-	static String vehicle_reg_no;
+	static String vehicle_reg_no, devicestatus;
 	String speed;
 	String exceed_speed_limit;
 	String bus_tracking_timestamp;
@@ -245,7 +245,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		maprad.setOnClickListener(listener);
 		satrad.setOnClickListener(listener);
 
-		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")||Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items_withoutalert,
@@ -692,103 +692,111 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		protected void onPostExecute(String file_url) {
 
 			super.onPostExecute(file_url);
-			ArrayList<LatLng> points = null;
-			PolylineOptions polyLineOptions = null;
-			points = new ArrayList<LatLng>();
-			googleMap.clear();
-			polyLineOptions = new PolylineOptions();
+			try {
 
-			cDialog.dismiss();
-			int sizeminusone;
-			sizeminusone = vehiclehistory.size() - 1;
+				ArrayList<LatLng> points = null;
+				PolylineOptions polyLineOptions = null;
+				points = new ArrayList<LatLng>();
+				googleMap.clear();
+				polyLineOptions = new PolylineOptions();
 
-			for (int k = 0; k < vehiclehistory.size(); k++) {
+				cDialog.dismiss();
+				int sizeminusone;
+				sizeminusone = vehiclehistory.size() - 1;
 
-				LatLng pinLocation = new LatLng(
-						Double.parseDouble(vehiclehistory.get(k).get(
-								TAG_Latitude + k)),
-						Double.parseDouble(vehiclehistory.get(k).get(
-								TAG_Longitude + k)));
+				for (int k = 0; k < vehiclehistory.size(); k++) {
 
-				points.add(pinLocation);
-				String titlevalue = "Speed:"
-						+ vehiclehistory.get(k).get(TAG_Speed + k)
-						+ " km/hr "
-						+ "Date:"
-						+ vehiclehistory.get(k).get(
-								TAG_bus_tracking_timestamp + k);
-				String snippetval = titlevalue + "\n" + "Address:"
-						+ vehiclehistory.get(k).get(TAG_address + k);
+					LatLng pinLocation = new LatLng(
+							Double.parseDouble(vehiclehistory.get(k).get(
+									TAG_Latitude + k)),
+							Double.parseDouble(vehiclehistory.get(k).get(
+									TAG_Longitude + k)));
 
-				if (sizeminusone != k) {
+					points.add(pinLocation);
+					String titlevalue = "Speed:"
+							+ vehiclehistory.get(k).get(TAG_Speed + k)
+							+ " km/hr "
+							+ "Date:"
+							+ vehiclehistory.get(k).get(
+									TAG_bus_tracking_timestamp + k);
+					String snippetval = titlevalue + "\n" + "Address:"
+							+ vehiclehistory.get(k).get(TAG_address + k);
 
-					marker = new MarkerOptions().position(pinLocation).snippet(
-							snippetval);
-					marker.icon(BitmapDescriptorFactory
-							.fromResource(R.drawable.click));
-					marker.icon(BitmapDescriptorFactory
-							.fromResource(R.drawable.red_pin));
+					if (sizeminusone != k) {
 
-					googleMap.addMarker(marker);
-					// callone();
+						marker = new MarkerOptions().position(pinLocation)
+								.snippet(snippetval);
+						marker.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.click));
+						marker.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.red_pin));
 
-				} else if (sizeminusone == k) {
+						googleMap.addMarker(marker);
+						// callone();
 
-					marker = new MarkerOptions().position(pinLocation).snippet(
-							snippetval);
+					} else if (sizeminusone == k) {
 
-					marker.icon(BitmapDescriptorFactory
-							.fromResource(R.drawable.green_pin));
-					googleMap.addMarker(marker);
+						marker = new MarkerOptions().position(pinLocation)
+								.snippet(snippetval);
 
-					CameraPosition cameraPosition = new CameraPosition.Builder()
-							.target(pinLocation).zoom(18).build();
+						marker.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.green_pin));
+						googleMap.addMarker(marker);
 
-					googleMap.animateCamera(CameraUpdateFactory
-							.newCameraPosition(cameraPosition));
+						CameraPosition cameraPosition = new CameraPosition.Builder()
+								.target(pinLocation).zoom(18).build();
+
+						googleMap.animateCamera(CameraUpdateFactory
+								.newCameraPosition(cameraPosition));
+
+					}
+
+					if (vehiclehistory.get(k).get(TAG_Exceed_Speed + k)
+							.equals("1")) {
+						marker = new MarkerOptions().position(pinLocation)
+								.snippet(snippetval);
+
+						marker.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.pink_pin));
+						googleMap.addMarker(marker);
+					}
 
 				}
+				polyLineOptions.addAll(points);
+				polyLineOptions.width(2);
+				polyLineOptions.color(Color.BLACK);
+				googleMap.addPolyline(polyLineOptions);
 
-				if (vehiclehistory.get(k).get(TAG_Exceed_Speed + k).equals("1")) {
-					marker = new MarkerOptions().position(pinLocation).snippet(
-							snippetval);
+				if (succy.equalsIgnoreCase("fail")) {
+					alertcheck = alertDialog.isShowing();
 
-					marker.icon(BitmapDescriptorFactory
-							.fromResource(R.drawable.pink_pin));
-					googleMap.addMarker(marker);
+					if (alertcheck.booleanValue() == true) {
+						System.out.println("alert check value::" + alertcheck);
+						alertDialog.dismiss();
+					}
+					alertDialog = new AlertDialog.Builder(LiveTrack.this)
+							.create();
+
+					alertDialog.setTitle("INFO!");
+
+					alertDialog.setMessage("No location's found.");
+
+					alertDialog.setIcon(R.drawable.delete);
+
+					alertDialog.setButton("OK",
+							new DialogInterface.OnClickListener() {
+
+								public void onClick(
+										final DialogInterface dialog,
+										final int which) {
+
+								}
+							});
+
+					alertDialog.show();
+
 				}
-
-			}
-			polyLineOptions.addAll(points);
-			polyLineOptions.width(2);
-			polyLineOptions.color(Color.BLACK);
-			googleMap.addPolyline(polyLineOptions);
-
-			if (succy.equalsIgnoreCase("fail")) {
-				alertcheck = alertDialog.isShowing();
-
-				if (alertcheck.booleanValue() == true) {
-					System.out.println("alert check value::" + alertcheck);
-					alertDialog.dismiss();
-				}
-				alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
-
-				alertDialog.setTitle("INFO!");
-
-				alertDialog.setMessage("No location's found.");
-
-				alertDialog.setIcon(R.drawable.delete);
-
-				alertDialog.setButton("OK",
-						new DialogInterface.OnClickListener() {
-
-							public void onClick(final DialogInterface dialog,
-									final int which) {
-
-							}
-						});
-
-				alertDialog.show();
+			} catch (Exception e) {
 
 			}
 
@@ -803,7 +811,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		vehicle_reg_no = getIntent().getExtras().getString("vehicleregnum");
 		routeno = getIntent().getExtras().getString("routenum");
 		driver_name = getIntent().getExtras().getString("drivername");
-
+		devicestatus = getIntent().getExtras().getString("devicestatus");
 		reg_no.setText(vehicle_reg_no);
 		vehicle_own.setText(driver_name);
 		System.out.println("value of driver name:::" + driver_name);

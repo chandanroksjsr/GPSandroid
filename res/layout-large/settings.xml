@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal"
         android:paddingLeft="10dp" >
 
@@ -20,18 +20,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
             android:text="@string/alarmtype"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="26sp" />
 
         <Spinner
             android:id="@+id/alarmtype"
-            style="@style/welcomeblack"
+            style="@style/largewhitetext"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/dropdown"
             android:paddingLeft="10dp"
             android:spinnerMode="dialog" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -41,9 +40,18 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/clearcache"
+        style="@style/welcome"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonbackground"
+        android:text="Clear Cache" />
+
+    <Button
         android:id="@+id/savesettings"
         style="@style/largewhitetext"
-        android:layout_width="300dp"
+        android:layout_width="400dp"
         android:layout_height="60dp"
         android:layout_gravity="center_vertical|center_horizontal|center"
         android:layout_marginTop="20dp"

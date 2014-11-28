@@ -197,7 +197,8 @@ public class DashboardActivity extends Activity implements AnimationListener {
 					String item = vehicleall.get(arg2).getvehicle_regno();
 					String regno = vehicleall.get(arg2).getroute_num();
 					String driver_name = vehicleall.get(arg2).getdrivername();
-
+					String devicestatus = vehicleall.get(arg2)
+							.getdriverstatus();
 					System.out
 							.println("Position passed from dashboard activity:::"
 									+ item);
@@ -213,6 +214,7 @@ public class DashboardActivity extends Activity implements AnimationListener {
 					i.putExtra("vehicleregnum", item);
 					i.putExtra("routenum", regno);
 					i.putExtra("drivername", driver_name);
+					i.putExtra("devicestatus", devicestatus);
 					startActivity(i);
 					overridePendingTransition(android.R.anim.slide_in_left,
 							android.R.anim.slide_out_right);

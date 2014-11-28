@@ -2,27 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#93aac3"
-    android:orientation="horizontal">
-    
+    android:orientation="horizontal" >
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-       
+        android:background="@drawable/buttonbackground"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp" >
+
         <TextView
             android:id="@+id/title"
-             style="@style/custom"
+            style="@style/largewhitetext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/snippet"
-             style="@style/custom"
+            style="@style/largewhitetext"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="10dp"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </LinearLayout>

@@ -8,67 +8,188 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="center_horizontal"
+        android:layout_height="307dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/listbg"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/textView1"
-            style="@style/welcomeblack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/thefttext" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup1"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:gravity="center"
-            android:orientation="horizontal" >
-
-            <RadioButton
-                android:id="@+id/radiosubject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/radiobuttonleft"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="On"
-                android:textColor="@drawable/rbtn_textcolor_selector" />
-
-            <RadioButton
-                android:id="@+id/radiocourse"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/radiobuttonright"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Off"
-                android:textColor="@drawable/rbtn_textcolor_selector" />
-        </RadioGroup>
-
-        <View
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="15dp" >
-        </View>
-
-        <TextView
-            android:id="@+id/alerttext"
-            style="@style/welcome"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal|center"
-            android:text="Alert"
-            android:textColor="#FF0000"
-            android:textSize="22sp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:gravity="left"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/ownernametext"
+                    style="@style/largeblacktext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Owner Name" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/drivernametext"
+                    style="@style/largeblacktext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Driver Name" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/veg_reg_notext"
+                    style="@style/largeblacktext"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Vehicle Reg.No" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/devicestatus"
+                    style="@style/largeblacktext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Device Status" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/ownername"
+                    style="@style/largeblacktext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/drivername"
+                    style="@style/largeblacktext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/veg_reg_no"
+                    style="@style/largeblacktext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/device_status"
+                    style="@style/largeblacktext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="15dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/largeblacktext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal|center"
+                android:text="@string/thefttext" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup1"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radiosubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radiobuttonleft"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="On"
+                    android:textColor="@drawable/rbtn_textcolor_selector" />
+
+                <RadioButton
+                    android:id="@+id/radiocourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radiobuttonright"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Off"
+                    android:textColor="@drawable/rbtn_textcolor_selector" />
+            </RadioGroup>
+        </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/alerttext"
+        style="@style/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="Alert"
+        android:textColor="#FF0000"
+        android:textSize="24sp" />
 
 </LinearLayout>

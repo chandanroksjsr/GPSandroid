@@ -1,8 +1,11 @@
 package com.deemsysinc.gpsmobiletracking;
 
+import java.io.File;
 import java.util.ArrayList;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -10,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -21,7 +25,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Settings extends Activity implements OnItemSelectedListener {
 	Spinner alarmtypespin;
-	Button savesett;
+	Button savesett, clearcache;
 	SharedPreferences sharedpreferences;
 	public static final String MyPREFERENCES = "MyPrefs0";
 
@@ -38,6 +42,7 @@ public class Settings extends Activity implements OnItemSelectedListener {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.settings);
 		savesett = (Button) findViewById(R.id.savesettings);
+		clearcache = (Button) findViewById(R.id.clearcache);
 		sharedpreferences = getSharedPreferences(MyPREFERENCES,
 				Context.MODE_PRIVATE);
 		ArrayList<String> timingarr = new ArrayList<String>();
@@ -86,26 +91,6 @@ public class Settings extends Activity implements OnItemSelectedListener {
 		dataAdapter
 				.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
 
-		// refreshtiming.setAdapter(dataAdapter);
-		// System.out.println("value of refresh time type::" +
-		// Config.refreshtime);
-		// if (Config.refreshtime != null) {
-		//
-		// if (Config.refreshtime.equalsIgnoreCase("30 secs")) {
-		//
-		// refreshtiming.setSelection(dataAdapter.getPosition("30 secs"));
-		// } else if (Config.refreshtime.equalsIgnoreCase("60 secs")) {
-		//
-		// refreshtiming.setSelection(dataAdapter.getPosition("60 secs"));
-		// } else if (Config.refreshtime.equalsIgnoreCase("2 mins")) {
-		// refreshtiming.setSelection(dataAdapter.getPosition("2 mins"));
-		// } else if (Config.refreshtime.equalsIgnoreCase("3 mins")) {
-		// refreshtiming.setSelection(dataAdapter.getPosition("3 mins"));
-		// }
-		// } else {
-		// refreshtiming.setSelection(dataAdapter.getPosition("30 secs"));
-		// }
-
 		savesett.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -123,6 +108,71 @@ public class Settings extends Activity implements OnItemSelectedListener {
 
 			}
 		});
+		clearcache.setOnClickListener(new View.OnClickListener() {
+
+			@SuppressWarnings("deprecation")
+			public void onClick(View v) {
+
+				AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+						Settings.this);
+
+				alertDialog.setTitle("Clear cache");
+
+				alertDialog
+						.setMessage("Are you sure you want clear DeemsysGPS Application Cache?");
+
+				alertDialog.setIcon(R.drawable.delete);
+
+				alertDialog.setPositiveButton("YES",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Intent ii = new Intent(Settings.this,
+										BackgroundService.class);
+								ii.putExtra("name", "SurvivingwithAndroid");
+								Settings.this.stopService(ii);
+								File cache = getCacheDir();
+								File appDir = new File(cache.getParent());
+								if (appDir.exists()) {
+									String[] children = appDir.list();
+									for (String s : children) {
+										if (!s.equals("lib")) {
+											deleteDir(new File(appDir, s));
+
+										}
+
+									}
+								}
+							}
+						});
+
+				alertDialog.setNegativeButton("NO",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+
+								dialog.cancel();
+							}
+						});
+
+				// Showing Alert Message
+				alertDialog.show();
+
+			}
+		});
+	}
+
+	public static boolean deleteDir(File dir) {
+		if (dir != null && dir.isDirectory()) {
+			String[] children = dir.list();
+			for (int i = 0; i < children.length; i++) {
+				boolean success = deleteDir(new File(dir, children[i]));
+				if (!success) {
+					return false;
+				}
+			}
+		}
+		return dir.delete();
 	}
 
 	@Override
@@ -149,7 +199,8 @@ public class Settings extends Activity implements OnItemSelectedListener {
 			Config.flag = "alreadyloggedin";
 			myIntent2.putExtra("isalreadylogged", Config.flag);
 			Settings.this.startActivity(myIntent2);
-			overridePendingTransition(R.anim.pushup, R.anim.pushdown);
+			overridePendingTransition(android.R.anim.slide_in_left,
+					android.R.anim.slide_out_right);
 
 		default:
 			return super.onOptionsItemSelected(item);

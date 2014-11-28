@@ -10,7 +10,7 @@
         android:id="@+id/linearover"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#888888"
+        android:background="#808080"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -67,7 +67,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="120dp"
+        android:layout_height="136dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/listbg"
@@ -83,8 +83,20 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/ownernametext"
+                style="@style/welcomeblack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner Name" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="5dp" >
+            </View>
+
+            <TextView
                 android:id="@+id/drivernametext"
-                style="@style/customcontact"
+                style="@style/welcomeblack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Driver Name" />
@@ -96,10 +108,22 @@
 
             <TextView
                 android:id="@+id/veg_reg_notext"
-                style="@style/customcontact"
+                style="@style/welcomeblack"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Vehicle Registration Number" />
+                android:text="Vehicle Reg.No" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="5dp" >
+            </View>
+
+            <TextView
+                android:id="@+id/devicestatus"
+                style="@style/welcomeblack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Device Status" />
 
             <View
                 android:layout_width="fill_parent"
@@ -108,7 +132,7 @@
 
             <TextView
                 android:id="@+id/overspeedtext"
-                style="@style/customcontact"
+                style="@style/welcomeblack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Over Speed Count" />
@@ -121,32 +145,56 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/drivername"
-                style="@style/customcontact"
+                android:id="@+id/ownername"
+                style="@style/welcomeblack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="15dp" >
+                android:layout_height="5dp" >
+            </View>
+
+            <TextView
+                android:id="@+id/drivername"
+                style="@style/welcomeblack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="5dp" >
             </View>
 
             <TextView
                 android:id="@+id/veg_reg_no"
-                style="@style/customcontact"
+                style="@style/welcomeblack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="10dp" >
+                android:layout_height="5dp" >
+            </View>
+
+            <TextView
+                android:id="@+id/device_status"
+                style="@style/welcomeblack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="5dp" >
             </View>
 
             <TextView
                 android:id="@+id/overspeed"
-                style="@style/customcontact"
+                style="@style/welcomeblack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />

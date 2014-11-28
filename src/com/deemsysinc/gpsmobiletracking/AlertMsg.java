@@ -95,7 +95,7 @@ public class AlertMsg extends Activity {
 				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
 						R.drawable.actionbarbg)));
 
-		actions.setIcon(R.drawable.alerticon);
+		actions.setIcon(R.drawable.alarmicon);
 		actions.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actions.setDisplayShowTitleEnabled(false);
 		SpinnerAdapter adapter = ArrayAdapter.createFromResource(getActionBar()
@@ -128,6 +128,8 @@ public class AlertMsg extends Activity {
 						myIntent.putExtra("vehicleregnum",
 								LiveTrack.vehicle_reg_no);
 						myIntent.putExtra("routenum", LiveTrack.routeno);
+						myIntent.putExtra("devicestatus",
+								LiveTrack.devicestatus);
 						AlertMsg.this.startActivity(myIntent);
 						overridePendingTransition(R.anim.slide_in,
 								R.anim.slide_out);

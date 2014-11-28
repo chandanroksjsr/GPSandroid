@@ -74,7 +74,7 @@
             android1:focusableInTouchMode="false"
             android1:orientation="horizontal"
             android1:paddingLeft="5dp"
-            android1:paddingTop="5dp" >
+            android1:paddingTop="2dp" >
 
             <LinearLayout
                 android1:layout_width="wrap_content"
@@ -147,9 +147,10 @@
             <ProgressBar
                 android1:id="@+id/progressBarToday"
                 style="?android:attr/progressBarStyleHorizontal"
-                android1:layout_width="70dp"
-                android1:layout_height="70dp"
-                android1:layout_centerInParent="true"
+                android1:layout_width="80dp"
+                android1:layout_height="80dp"
+                android1:layout_alignParentTop="true"
+                android1:layout_centerHorizontal="true"
                 android1:max="30"
                 android1:progressDrawable="@drawable/animation" />
 
@@ -160,7 +161,7 @@
                 android1:layout_height="wrap_content"
                 android1:layout_centerInParent="true"
                 android1:layout_gravity="center_vertical|center_horizontal|fill_horizontal"
-                android1:text="TextView" />
+                android1:text="start" />
 
             <Button
                 android1:id="@+id/close"

@@ -51,7 +51,7 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="17" />
+      />
 
     <permission
         android:name="com.example.googlemaps.permission.MAPS_RECEIVE"

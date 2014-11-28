@@ -13,9 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.deemsysinc.gpsmobiletracking.HistoryTrack.VehiclePath;
-import com.deemsysinc.gpsmobiletracking.TheftAlarm.CheckTheftAlarm;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -27,14 +24,12 @@ import android.app.ProgressDialog;
 import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Typeface;
+
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -73,7 +68,7 @@ public class OverSpeed extends Activity implements AnimationListener {
 	static final int DATE_PICKER_ID1 = 1112;
 	String succ;
 	private static final String TAG_SRES = "serviceresponse";
-	TextView welcomeusername, welcome;
+	TextView welcomeusername, welcome, devicestatus, ownername;
 	private static final String TAG_Count_BT_DATES = "overspeed_count";
 	static final String TAG_Count = "overspeed_count";
 	private int year;
@@ -86,6 +81,7 @@ public class OverSpeed extends Activity implements AnimationListener {
 	Button btn, clobtn;
 	Animation animSlideUp, animSlideDown;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -104,9 +100,23 @@ public class OverSpeed extends Activity implements AnimationListener {
 		overspeed = (TextView) findViewById(R.id.overspeed);
 		drivername = (TextView) findViewById(R.id.drivername);
 		reg_number = (TextView) findViewById(R.id.veg_reg_no);
+		ownername = (TextView) findViewById(R.id.ownername);
+		devicestatus = (TextView) findViewById(R.id.device_status);
 		reg_number.setText(LiveTrack.vehicle_reg_no);
 		drivername.setText(LiveTrack.driver_name);
-		System.out.println("driver name over speed" + LiveTrack.driver_name);
+		ownername.setText(Config.username);
+
+		if (LiveTrack.devicestatus.equalsIgnoreCase("0")) {
+			devicestatus.setText("Switched Off");
+		} else if (LiveTrack.devicestatus.equalsIgnoreCase("1")) {
+			devicestatus.setText("Active");
+		} else if (LiveTrack.devicestatus.equalsIgnoreCase("2")) {
+			devicestatus.setText("No GPS signal");
+		} else if (LiveTrack.devicestatus.equalsIgnoreCase("3")) {
+			devicestatus.setText("Sleep mode");
+		} else {
+			devicestatus.setText("Switched Off");
+		}
 		fromdate = (Button) findViewById(R.id.fromdate);
 		todate = (Button) findViewById(R.id.todate);
 		submit = (Button) findViewById(R.id.submit);
@@ -128,35 +138,7 @@ public class OverSpeed extends Activity implements AnimationListener {
 
 		animSlideUp.setAnimationListener(this);
 		animSlideDown.setAnimationListener(this);
-		// signout = (Button) findViewById(R.id.signutty);
-		// welcome = (TextView) findViewById(R.id.TextView01);
-		// welcomeusername = (TextView) findViewById(R.id.welcmename);
-		// welcomeusername.setText(Config.username + "!");
-		// welcomeusername.setTypeface(null, Typeface.BOLD);
-		// welcome.setTypeface(null, Typeface.BOLD);
-		// signout.setOnClickListener(new View.OnClickListener() {
-		//
-		// public void onClick(View v) {
-		//
-		// LiveTrack.doAsynchronousTask.cancel();
-		// Config.username = "";
-		// VehichleArrayAdapter.data.clear();
-		// DashboardActivity.vehicleall.clear();
-		//
-		// HistoryTrack.vehiclehistory1.clear();
-		// Config.username = "";
-		// SharedPreferences settings = getApplicationContext()
-		// .getSharedPreferences("MyPrefs0",
-		// getApplicationContext().MODE_PRIVATE);
-		// settings.edit().clear().commit();
-		// Intent ii = new Intent(OverSpeed.this, BackgroundService.class);
-		// ii.putExtra("name", "SurvivingwithAndroid");
-		// OverSpeed.this.stopService(ii);
-		// Intent intentSignUP = new Intent(getApplicationContext(),
-		// LoginActivity.class);
-		// startActivity(intentSignUP);
-		// }
-		// });
+
 		submit.setOnClickListener(new View.OnClickListener() {
 
 			@SuppressWarnings("deprecation")
@@ -177,32 +159,23 @@ public class OverSpeed extends Activity implements AnimationListener {
 								AlertDialog alertDialog = new AlertDialog.Builder(
 										OverSpeed.this).create();
 
-								// Setting Dialog Title
 								alertDialog.setTitle("INFO!");
 
-								// Setting Dialog Message
 								alertDialog
 										.setMessage("To date must greater than from date.");
 
-								// Setting Icon to Dialog
 								alertDialog.setIcon(R.drawable.delete);
 
-								// Setting OK Button
 								alertDialog.setButton("OK",
 										new DialogInterface.OnClickListener() {
 
 											public void onClick(
 													final DialogInterface dialog,
 													final int which) {
-												// Write your code here to
-												// execute
-												// after dialog
-												// closed
 
 											}
 										});
 
-								// Showing Alert Message
 								alertDialog.show();
 							} else if (date1.compareTo(date2) < 0) {
 								linear.setVisibility(View.INVISIBLE);
@@ -275,60 +248,44 @@ public class OverSpeed extends Activity implements AnimationListener {
 						AlertDialog alertDialog = new AlertDialog.Builder(
 								OverSpeed.this).create();
 
-						// Setting Dialog Title
 						alertDialog.setTitle("INFO!");
 
-						// Setting Dialog Message
 						alertDialog.setMessage("Select to date.");
 
-						// Setting Icon to Dialog
 						alertDialog.setIcon(R.drawable.delete);
 
-						// Setting OK Button
 						alertDialog.setButton("OK",
 								new DialogInterface.OnClickListener() {
 
 									public void onClick(
 											final DialogInterface dialog,
 											final int which) {
-										// Write your code here to execute after
-										// dialog
-										// closed
 
 									}
 								});
 
-						// Showing Alert Message
 						alertDialog.show();
 					}
 				} else {
 					AlertDialog alertDialog = new AlertDialog.Builder(
 							OverSpeed.this).create();
 
-					// Setting Dialog Title
 					alertDialog.setTitle("INFO!");
 
-					// Setting Dialog Message
 					alertDialog.setMessage("Select from date.");
 
-					// Setting Icon to Dialog
 					alertDialog.setIcon(R.drawable.delete);
 
-					// Setting OK Button
 					alertDialog.setButton("OK",
 							new DialogInterface.OnClickListener() {
 
 								public void onClick(
 										final DialogInterface dialog,
 										final int which) {
-									// Write your code here to execute after
-									// dialog
-									// closed
 
 								}
 							});
 
-					// Showing Alert Message
 					alertDialog.show();
 
 				}
@@ -341,7 +298,7 @@ public class OverSpeed extends Activity implements AnimationListener {
 				showDialog(DATE_PICKER_ID1);
 			}
 		});
-		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")||Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items3_withoutalert,
@@ -371,6 +328,8 @@ public class OverSpeed extends Activity implements AnimationListener {
 							myIntent.putExtra("drivername",
 									LiveTrack.driver_name);
 							myIntent.putExtra("routenum", LiveTrack.routeno);
+							myIntent.putExtra("devicestatus",
+									LiveTrack.devicestatus);
 							OverSpeed.this.startActivity(myIntent);
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
@@ -493,23 +452,26 @@ public class OverSpeed extends Activity implements AnimationListener {
 
 			JSONObject json = jLogin.makeHttpRequest(Config.ServerUrl
 					+ "OverSpeed.php?service=overspeeddate", "POST", params1);
+			try {
+				if (json != null) {
+					try {
+						if (json != null) {
+							System.out.println("json value::" + json);
 
-			if (json != null) {
-				try {
-					if (json != null) {
-						System.out.println("json value::" + json);
+							JSONObject jUser = json.getJSONObject(TAG_SRES);
+							countbtdates = jUser.getString(TAG_Count_BT_DATES);
 
-						JSONObject jUser = json.getJSONObject(TAG_SRES);
-						countbtdates = jUser.getString(TAG_Count_BT_DATES);
+						}
 
 					}
 
-				}
+					catch (Exception e) {
+						e.printStackTrace();
 
-				catch (JSONException e) {
-					e.printStackTrace();
-
+					}
 				}
+			} catch (Exception e) {
+
 			}
 			return null;
 		}
@@ -517,7 +479,11 @@ public class OverSpeed extends Activity implements AnimationListener {
 		@Override
 		protected void onPostExecute(String file_url) {
 			super.onPostExecute(file_url);
-			overspeed.setText(countbtdates);
+			try {
+				overspeed.setText(countbtdates);
+			} catch (Exception e) {
+
+			}
 
 		}
 	}
@@ -540,23 +506,27 @@ public class OverSpeed extends Activity implements AnimationListener {
 
 			JSONObject json = jLogin.makeHttpRequest(Config.ServerUrl
 					+ "OverSpeed.php?service=overspeed", "POST", params1);
+			try {
+				if (json != null) {
+					try {
+						if (json != null) {
+							System.out.println("json value::" + json);
 
-			if (json != null) {
-				try {
-					if (json != null) {
-						System.out.println("json value::" + json);
+							JSONObject jUser = json.getJSONObject(TAG_SRES);
+							countbtdates = jUser.getString(TAG_Count_BT_DATES);
 
-						JSONObject jUser = json.getJSONObject(TAG_SRES);
-						countbtdates = jUser.getString(TAG_Count_BT_DATES);
+						}
+
+					}
+
+					catch (JSONException e) {
+						e.printStackTrace();
 
 					}
 
 				}
+			} catch (Exception e) {
 
-				catch (JSONException e) {
-					e.printStackTrace();
-
-				}
 			}
 			return null;
 		}
@@ -564,7 +534,11 @@ public class OverSpeed extends Activity implements AnimationListener {
 		@Override
 		protected void onPostExecute(String file_url) {
 			super.onPostExecute(file_url);
-			overspeed.setText(countbtdates);
+			try {
+				overspeed.setText(countbtdates);
+			} catch (Exception e) {
+
+			}
 
 		}
 	}

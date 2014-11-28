@@ -1239,7 +1239,8 @@ public class ContactUs extends Activity {
 			Config.flag = "alreadyloggedin";
 			myIntent2.putExtra("isalreadylogged", Config.flag);
 			ContactUs.this.startActivity(myIntent2);
-			overridePendingTransition(R.anim.pushup, R.anim.pushdown);
+			overridePendingTransition(android.R.anim.slide_in_left,
+					android.R.anim.slide_out_right);
 
 		default:
 			return super.onOptionsItemSelected(item);
