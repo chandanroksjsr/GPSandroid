@@ -33,7 +33,7 @@
     <string name="city">City</string>
     <string name="state">State</string>
     <string name="info">INFO!</string>
-    <string name="savemessage">Save Message</string>
+    <string name="savemessage">Send Message</string>
     <string name="savesettings">Save Settings</string>
     <string name="clearmessage">Clear Message</string>
     <string name="drawer_open">Slider Menu Opened</string>

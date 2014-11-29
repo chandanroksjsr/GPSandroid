@@ -21,15 +21,15 @@
         android1:visibility="gone" >
 
         <LinearLayout
-                android:id="@+id/livelin1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal"
-                android:paddingBottom="3dp" >
+            android:id="@+id/livelin1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="3dp"
+            android1:paddingLeft="15dp" >
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingLeft="15dp" >

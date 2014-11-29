@@ -165,10 +165,54 @@ public class BackgroundService extends Service {
 
 				try {
 
-					mPlayer = MediaPlayer.create(getApplicationContext(),
-							R.raw.alarmtone);// Create MediaPlayer object with
-												// MP3 file under res/raw folder
-					mPlayer.start();
+					try {
+
+						if (sharedpreferences.getString("alarmsoundtype", "") != null) {
+							if (sharedpreferences.getString("alarmsoundtype",
+									"").equalsIgnoreCase("Nuclear Alert")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(), R.raw.type1);
+								mPlayer.start();
+							} else if (sharedpreferences.getString(
+									"alarmsoundtype", "").equalsIgnoreCase(
+									"Car Alert")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(), R.raw.type2);
+								mPlayer.start();
+							} else if (sharedpreferences.getString(
+									"alarmsoundtype", "").equalsIgnoreCase(
+									"Extreme Alert")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(), R.raw.type3);
+								mPlayer.start();
+							} else if (sharedpreferences.getString(
+									"alarmsoundtype", "").equalsIgnoreCase(
+									"Handy Alert")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(), R.raw.type4);
+								mPlayer.start();
+							} else if (sharedpreferences.getString(
+									"alarmsoundtype", "").equalsIgnoreCase(
+									"Red Alert")) {
+								mPlayer = MediaPlayer.create(
+										getApplicationContext(),
+										R.raw.alarmtone);
+								mPlayer.start();
+							}
+
+						} else {
+							System.out.println("config value is null");
+							mPlayer = MediaPlayer.create(
+									getApplicationContext(), R.raw.alarmtone);
+							mPlayer.start();
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					// mPlayer = MediaPlayer.create(getApplicationContext(),
+					// R.raw.type3);// Create MediaPlayer object with
+					// // MP3 file under res/raw folder
+					// mPlayer.start();
 
 					// Uri notification = RingtoneManager
 					// .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

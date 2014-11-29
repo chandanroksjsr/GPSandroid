@@ -14,12 +14,13 @@ import android.view.MenuItem;
 import android.view.Window;
 
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ProfileActivity extends Activity {
 	TextView orgname;
-	ImageView vehicle;
+	LinearLayout vehicle;
 	ListView lv;
 	String a = "";
 
@@ -30,7 +31,7 @@ public class ProfileActivity extends Activity {
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 
 		getActionBar().setTitle(
-				Html.fromHtml("<font color='#ffffff'>Profile </font>"));
+				Html.fromHtml("<font color='#ffffff'>Profile</font>"));
 
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setBackgroundDrawable(
@@ -39,20 +40,24 @@ public class ProfileActivity extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.profile);
-		vehicle = (ImageView) findViewById(R.id.imageView1);
+		vehicle = (LinearLayout) findViewById(R.id.imageView1);
 		lv = (ListView) findViewById(R.id.list1);
 		Resources res = getResources();
 
-		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")||Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
-			Drawable draw = res.getDrawable(R.drawable.green_light);
-			vehicle.setImageDrawable(draw);
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")) {
+			Drawable draw = res.getDrawable(R.drawable.fleet_cover);
+			vehicle.setBackgroundDrawable(draw);
 
 			a = "Fleet";
 		} else if (Config.role.equalsIgnoreCase("ROLE_ADMIN")) {
-			Drawable draw = res.getDrawable(R.drawable.usericon);
-			vehicle.setImageDrawable(draw);
+			Drawable draw = res.getDrawable(R.drawable.school_cover);
+			vehicle.setBackgroundDrawable(draw);
 			a = "School";
 
+		} else if (Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
+			Drawable draw = res.getDrawable(R.drawable.personal_cover);
+			vehicle.setBackgroundDrawable(draw);
+			a = "Personal";
 		}
 
 		String[] web = { "Organisation Name:" + Config.username, "Type : " + a,

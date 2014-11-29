@@ -178,7 +178,7 @@ public class OverSpeed extends Activity implements AnimationListener {
 
 								alertDialog.show();
 							} else if (date1.compareTo(date2) < 0) {
-								linear.setVisibility(View.INVISIBLE);
+								linear.setVisibility(View.GONE);
 								linear.startAnimation(animSlideUp);
 								if (isInternetPresent) {
 									new CompareAsync().execute();
@@ -208,7 +208,7 @@ public class OverSpeed extends Activity implements AnimationListener {
 									alertDialog.show();
 								}
 							} else if (date1.compareTo(date2) == 0) {
-								linear.setVisibility(View.INVISIBLE);
+								linear.setVisibility(View.GONE);
 								linear.startAnimation(animSlideUp);
 								if (isInternetPresent) {
 									new CompareAsync().execute();

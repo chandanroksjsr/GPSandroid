@@ -245,7 +245,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		maprad.setOnClickListener(listener);
 		satrad.setOnClickListener(listener);
 
-		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")||Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")
+				|| Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items_withoutalert,
@@ -407,12 +408,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 
 			actions.setListNavigationCallbacks(adapter, callback);
 		}
-		// signout = (Button) findViewById(R.id.signutty);
-		// welcome = (TextView) findViewById(R.id.textView1);
-		// welcomeusername = (TextView) findViewById(R.id.welcmename);
-		// welcomeusername.setText(Config.username + "!");
-		// welcomeusername.setTypeface(null, Typeface.BOLD);
-		// welcome.setTypeface(null, Typeface.BOLD);
+
 		try {
 			MapsInitializer.initialize(getApplicationContext());
 		} catch (GooglePlayServicesNotAvailableException e1) {
@@ -444,82 +440,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		}
 		userrole = Config.role;
 
-		// tgbutton = (ToggleButton) findViewById(R.id.showmap);
-		// tgbutton.setSelected(true);
-		// tgbutton.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// // TODO Auto-generated method stub
-		// if (!tgbutton.isChecked()) {
-		// try {
-		// if (googleMap == null) {
-		// googleMap = ((MapFragment) getFragmentManager()
-		// .findFragmentById(R.id.map)).getMap();
-		// }
-		// googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-		// tgbutton.setBackgroundResource(R.drawable.earth);
-		//
-		// Marker marker = googleMap.addMarker(new MarkerOptions()
-		// .position(TutorialsPoint).title(""));
-		// CameraPosition cameraPosition = new CameraPosition.Builder()
-		// .target(TutorialsPoint).zoom(4).build();
-		// googleMap.animateCamera(CameraUpdateFactory
-		// .newCameraPosition(cameraPosition));
-		// marker.remove();
-		// marker.setVisible(false);
-		// marker.setVisible(false);
-		//
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-		//
-		// } else {
-		// try {
-		// if (googleMap == null) {
-		// googleMap = ((MapFragment) getFragmentManager()
-		// .findFragmentById(R.id.map)).getMap();
-		// }
-		// googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-		// tgbutton.setBackgroundResource(R.drawable.aerial);
-		// Marker marker = googleMap.addMarker(new MarkerOptions()
-		// .position(TutorialsPoint).title(""));
-		// CameraPosition cameraPosition = new CameraPosition.Builder()
-		// .target(TutorialsPoint).zoom(4).build();
-		// googleMap.animateCamera(CameraUpdateFactory
-		// .newCameraPosition(cameraPosition));
-		// marker.remove();
-		// marker.setVisible(false);
-		//
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-		//
-		// }
-		// }
-		// });
-
 		timercalling();
 
 	}
 
-	// private void initilizeMap() {
-	// if (googleMap == null) {
-	// googleMap = ((MapFragment) getFragmentManager().findFragmentById(
-	// R.id.map)).getMap();
-	//
-	// // check if map is created successfully or not
-	// if (googleMap == null) {
-	// Toast.makeText(getApplicationContext(),
-	// "Sorry! unable to create maps", Toast.LENGTH_SHORT)
-	// .show();
-	// }
-	// }
-	// }
-
 	public void timercalling() {
-		// final Handler handler;
-		// handler = new Handler();
+
 		timer = new Timer();
 		doAsynchronousTask = new TimerTask() {
 			@Override
@@ -532,8 +458,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								new CountDownTimer(30000, 1000) {
 
 									public void onTick(long millisUntilFinished) {
-										// long seconds = millisUntilFinished /
-										// 1000;
+
 										int barVal = ((int) (millisUntilFinished) / 1000);
 										pb.setProgress(barVal);
 

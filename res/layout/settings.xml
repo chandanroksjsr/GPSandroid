@@ -37,15 +37,6 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/clearcache"
-        style="@style/welcome"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/buttonbackground"
-        android:text="Clear Cache" />
-
-    <Button
         android:id="@+id/savesettings"
         style="@style/welcome"
         android:layout_width="250dp"

@@ -71,7 +71,7 @@
                     style="@style/largewhitetext"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:text="Go"
+                    android:text="Show"
                     android:textColor="#ffffff" />
             </LinearLayout>
         </LinearLayout>
@@ -80,13 +80,11 @@
             android:id="@+id/commonlinear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_vertical|center_horizontal|center|end"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:addStatesFromChildren="true"
             android:animateLayoutChanges="true"
             android:duplicateParentState="false"
             android:fitsSystemWindows="false"
-            android:gravity="center_vertical|center_horizontal|center|end"
             android:orientation="vertical"
             android:paddingTop="5dp"
             android:splitMotionEvents="true"
@@ -96,7 +94,6 @@
                 android:id="@+id/livelin1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal"
                 android:paddingBottom="3dp" >
 
@@ -162,8 +159,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="false"
-                    android:layout_centerInParent="true"
-                    android:orientation="horizontal" >
+                    android:layout_centerInParent="false"
+                    android:orientation="horizontal"
+                    android:paddingTop="15dp" >
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -214,13 +212,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/linearLayout1"
-                    android:layout_centerHorizontal="true"
+                    android:layout_centerHorizontal="false"
                     android:layout_centerVertical="false"
                     android:layout_marginTop="20dp"
                     android:gravity="center_horizontal|center_vertical"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
-                    android:paddingTop="15dp" >
+                    android:paddingTop="10dp" >
 
                     <TextView
                         android:id="@+id/textView3"
@@ -242,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="10dp"
-                android:paddingTop="10dp" >
+                android:paddingTop="15dp" >
 
                 <Button
                     android:id="@+id/close"

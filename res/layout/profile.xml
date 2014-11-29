@@ -6,6 +6,7 @@
     android:weightSum="10" >
 
     <LinearLayout
+        android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@drawable/banner"
@@ -13,7 +14,6 @@
         android:weightSum="2" >
 
         <ImageView
-            android:id="@+id/imageView1"
             android:layout_width="100dp"
             android:layout_height="80dp"
             android:layout_gravity="center_vertical"

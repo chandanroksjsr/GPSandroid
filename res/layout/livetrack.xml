@@ -20,50 +20,48 @@
         android1:visibility="gone" >
 
         <LinearLayout
-            android1:id="@+id/livelin1"
-            android1:layout_width="match_parent"
-            android1:layout_height="wrap_content"
-            android1:gravity="center_vertical|center_horizontal|center"
-            android1:orientation="horizontal" >
+            android:id="@+id/livelin1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="3dp" >
 
             <LinearLayout
-                android1:layout_width="150dp"
-                android1:layout_height="wrap_content"
-                android1:orientation="vertical"
-                android1:paddingLeft="15dp" >
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="5dp" >
 
                 <TextView
-                    android1:id="@+id/textView1"
-                    android1:layout_width="wrap_content"
-                    android1:layout_height="wrap_content"
-                    android1:maxLines="2"
-                    android1:text="@string/vehicle_owner" />
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="@string/vehicle_owner" />
 
                 <TextView
-                    android1:id="@+id/textView1"
-                    android1:layout_width="144dp"
-                    android1:layout_height="wrap_content"
-                    android1:maxLines="2"
-                    android1:text="@string/vehicle_reg_num" />
-
+                    android:id="@+id/textView1"
+                    android:layout_width="144dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="@string/vehicle_reg_num" />
             </LinearLayout>
 
             <LinearLayout
-                android1:layout_width="match_parent"
-                android1:layout_height="wrap_content"
-                android1:orientation="vertical"
-                android1:paddingLeft="5dp" >
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="5dp" >
 
                 <TextView
-                    android1:id="@+id/vehicleowner"
-                    android1:layout_width="wrap_content"
-                    android1:layout_height="wrap_content" />
+                    android:id="@+id/vehicleowner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <TextView
-                    android1:id="@+id/vehicle_reg_number"
-                    android1:layout_width="wrap_content"
-                    android1:layout_height="wrap_content" />
-
+                    android:id="@+id/vehicle_reg_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
 
@@ -100,7 +98,6 @@
                         android1:layout_height="wrap_content"
                         android1:paddingLeft="4dp"
                         android1:text="@string/red_des" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -120,7 +117,6 @@
                         android1:layout_height="wrap_content"
                         android1:paddingLeft="4dp"
                         android1:text="@string/green_des" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -140,7 +136,6 @@
                         android1:layout_height="wrap_content"
                         android1:paddingLeft="4dp"
                         android1:text="@string/pink_des" />
-
                 </LinearLayout>
             </LinearLayout>
 

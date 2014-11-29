@@ -37,12 +37,12 @@ public class Settings extends Activity implements OnItemSelectedListener {
 				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
 						R.drawable.actionbarbg)));
 		getActionBar().setTitle(
-				Html.fromHtml("<font color='#ffffff'>DeemGPS</font>"));
+				Html.fromHtml("<font color='#ffffff'>Settings</font>"));
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.settings);
 		savesett = (Button) findViewById(R.id.savesettings);
-		clearcache = (Button) findViewById(R.id.clearcache);
+		// clearcache = (Button) findViewById(R.id.clearcache);
 		sharedpreferences = getSharedPreferences(MyPREFERENCES,
 				Context.MODE_PRIVATE);
 		ArrayList<String> timingarr = new ArrayList<String>();
@@ -51,11 +51,11 @@ public class Settings extends Activity implements OnItemSelectedListener {
 		timingarr.add("2 mins");
 		timingarr.add("3 mins");
 		ArrayList<String> alarmtype = new ArrayList<String>();
-		alarmtype.add("type 1");
-		alarmtype.add("type 2");
-		alarmtype.add("type 3");
-		alarmtype.add("type 4");
-		alarmtype.add("default");
+		alarmtype.add("Nuclear Alert");
+		alarmtype.add("Car Alert");
+		alarmtype.add("Extreme Alert");
+		alarmtype.add("Handy Alert");
+		alarmtype.add("Red Alert");
 		// refreshtiming = (Spinner) findViewById(R.id.timing);
 		alarmtypespin = (Spinner) findViewById(R.id.alarmtype);
 		ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this,
@@ -69,21 +69,21 @@ public class Settings extends Activity implements OnItemSelectedListener {
 				.println("value of alarmsound type::" + Config.alarmsoundtype);
 		if (Config.alarmsoundtype != null) {
 
-			if (Config.alarmsoundtype.equalsIgnoreCase("type 1")) {
+			if (Config.alarmsoundtype.equalsIgnoreCase("Nuclear Alert")) {
 
-				alarmtypespin.setSelection(dataAdapter1.getPosition("type 1"));
-			} else if (Config.alarmsoundtype.equalsIgnoreCase("type 2")) {
+				alarmtypespin.setSelection(dataAdapter1.getPosition("Nuclear Alert"));
+			} else if (Config.alarmsoundtype.equalsIgnoreCase("Car Alert")) {
 
-				alarmtypespin.setSelection(dataAdapter1.getPosition("type 2"));
-			} else if (Config.alarmsoundtype.equalsIgnoreCase("type 3")) {
-				alarmtypespin.setSelection(dataAdapter1.getPosition("type 3"));
-			} else if (Config.alarmsoundtype.equalsIgnoreCase("type 4")) {
-				alarmtypespin.setSelection(dataAdapter1.getPosition("type 4"));
-			} else if (Config.alarmsoundtype.equalsIgnoreCase("default")) {
-				alarmtypespin.setSelection(dataAdapter1.getPosition("default"));
+				alarmtypespin.setSelection(dataAdapter1.getPosition("Car Alert"));
+			} else if (Config.alarmsoundtype.equalsIgnoreCase("Extreme Alert")) {
+				alarmtypespin.setSelection(dataAdapter1.getPosition("Extreme Alert"));
+			} else if (Config.alarmsoundtype.equalsIgnoreCase("Handy Alert")) {
+				alarmtypespin.setSelection(dataAdapter1.getPosition("Handy Alert"));
+			} else if (Config.alarmsoundtype.equalsIgnoreCase("Red Alert")) {
+				alarmtypespin.setSelection(dataAdapter1.getPosition("Red Alert"));
 			}
 		} else {
-			alarmtypespin.setSelection(dataAdapter1.getPosition("default"));
+			alarmtypespin.setSelection(dataAdapter1.getPosition("Red Alert"));
 		}
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, timingarr);
@@ -93,7 +93,30 @@ public class Settings extends Activity implements OnItemSelectedListener {
 
 		savesett.setOnClickListener(new View.OnClickListener() {
 
+			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
+				
+				
+				AlertDialog alertDialog = new AlertDialog.Builder(
+						Settings.this).create();
+
+				alertDialog.setTitle("INFO!");
+
+				alertDialog.setMessage("Settings saved.");
+
+				alertDialog.setIcon(R.drawable.tick);
+
+				alertDialog.setButton("OK",
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(
+									final DialogInterface dialog,
+									final int which) {
+
+							}
+						});
+
+				alertDialog.show();
 
 				// Config.refreshtime =
 				// refreshtiming.getSelectedItem().toString();
@@ -108,58 +131,58 @@ public class Settings extends Activity implements OnItemSelectedListener {
 
 			}
 		});
-		clearcache.setOnClickListener(new View.OnClickListener() {
-
-			@SuppressWarnings("deprecation")
-			public void onClick(View v) {
-
-				AlertDialog.Builder alertDialog = new AlertDialog.Builder(
-						Settings.this);
-
-				alertDialog.setTitle("Clear cache");
-
-				alertDialog
-						.setMessage("Are you sure you want clear DeemsysGPS Application Cache?");
-
-				alertDialog.setIcon(R.drawable.delete);
-
-				alertDialog.setPositiveButton("YES",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-								Intent ii = new Intent(Settings.this,
-										BackgroundService.class);
-								ii.putExtra("name", "SurvivingwithAndroid");
-								Settings.this.stopService(ii);
-								File cache = getCacheDir();
-								File appDir = new File(cache.getParent());
-								if (appDir.exists()) {
-									String[] children = appDir.list();
-									for (String s : children) {
-										if (!s.equals("lib")) {
-											deleteDir(new File(appDir, s));
-
-										}
-
-									}
-								}
-							}
-						});
-
-				alertDialog.setNegativeButton("NO",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-
-								dialog.cancel();
-							}
-						});
-
-				// Showing Alert Message
-				alertDialog.show();
-
-			}
-		});
+		// clearcache.setOnClickListener(new View.OnClickListener() {
+		//
+		// @SuppressWarnings("deprecation")
+		// public void onClick(View v) {
+		//
+		// AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+		// Settings.this);
+		//
+		// alertDialog.setTitle("Clear cache");
+		//
+		// alertDialog
+		// .setMessage("Are you sure you want clear DeemsysGPS Application Cache?");
+		//
+		// alertDialog.setIcon(R.drawable.delete);
+		//
+		// alertDialog.setPositiveButton("YES",
+		// new DialogInterface.OnClickListener() {
+		// public void onClick(DialogInterface dialog,
+		// int which) {
+		// Intent ii = new Intent(Settings.this,
+		// BackgroundService.class);
+		// ii.putExtra("name", "SurvivingwithAndroid");
+		// Settings.this.stopService(ii);
+		// File cache = getCacheDir();
+		// File appDir = new File(cache.getParent());
+		// if (appDir.exists()) {
+		// String[] children = appDir.list();
+		// for (String s : children) {
+		// if (!s.equals("lib")) {
+		// deleteDir(new File(appDir, s));
+		//
+		// }
+		//
+		// }
+		// }
+		// }
+		// });
+		//
+		// alertDialog.setNegativeButton("NO",
+		// new DialogInterface.OnClickListener() {
+		// public void onClick(DialogInterface dialog,
+		// int which) {
+		//
+		// dialog.cancel();
+		// }
+		// });
+		//
+		// // Showing Alert Message
+		// alertDialog.show();
+		//
+		// }
+		// });
 	}
 
 	public static boolean deleteDir(File dir) {

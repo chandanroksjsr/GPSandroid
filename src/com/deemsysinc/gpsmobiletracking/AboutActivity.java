@@ -29,7 +29,7 @@ public class AboutActivity extends Activity {
 				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
 						R.drawable.actionbarbg)));
 		getActionBar().setTitle(
-				Html.fromHtml("<font color='#ffffff'>DeemGPS</font>"));
+				Html.fromHtml("<font color='#ffffff'>About Us</font>"));
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.aboutactivity);

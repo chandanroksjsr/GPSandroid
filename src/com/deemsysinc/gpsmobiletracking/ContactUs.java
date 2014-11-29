@@ -80,7 +80,7 @@ public class ContactUs extends Activity {
 				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
 						R.drawable.actionbarbg)));
 		getActionBar().setTitle(
-				Html.fromHtml("<font color='#ffffff'>DeemGPS</font>"));
+				Html.fromHtml("<font color='#ffffff'>Contact Us</font>"));
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 

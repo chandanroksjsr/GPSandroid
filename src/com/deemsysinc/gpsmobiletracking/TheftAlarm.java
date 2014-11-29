@@ -108,9 +108,10 @@ public class TheftAlarm extends Activity {
 		} else {
 			devicestatus.setText("Switched Off");
 		}
-		// mPlayer =
-		// MediaPlayer.create(getApplicationContext(),R.raw.alarmtone);
-		// mPlayer.start();
+//		 mPlayer =
+//		 MediaPlayer.create(getApplicationContext(),R.raw.alarmtone);
+//		// mPlayer.reset();
+//		 mPlayer.start();
 		isInternetPresent = cd.isConnectingToInternet();
 		if (isInternetPresent) {
 			new CheckTheftAlarm().execute();
@@ -438,27 +439,27 @@ public class TheftAlarm extends Activity {
 					try {
 						if (Config.alarmsoundtype != null) {
 							if (Config.alarmsoundtype
-									.equalsIgnoreCase("type 1")) {
+									.equalsIgnoreCase("Nuclear Alert")) {
 								mPlayer = MediaPlayer.create(
 										getApplicationContext(), R.raw.type1);
 								mPlayer.start();
 							} else if (Config.alarmsoundtype
-									.equalsIgnoreCase("type 2")) {
+									.equalsIgnoreCase("Car Alert")) {
 								mPlayer = MediaPlayer.create(
 										getApplicationContext(), R.raw.type2);
 								mPlayer.start();
 							} else if (Config.alarmsoundtype
-									.equalsIgnoreCase("type 3")) {
+									.equalsIgnoreCase("Extreme Alert")) {
 								mPlayer = MediaPlayer.create(
 										getApplicationContext(), R.raw.type3);
 								mPlayer.start();
 							} else if (Config.alarmsoundtype
-									.equalsIgnoreCase("type 4")) {
+									.equalsIgnoreCase("Handy Alert")) {
 								mPlayer = MediaPlayer.create(
 										getApplicationContext(), R.raw.type4);
 								mPlayer.start();
 							} else if (Config.alarmsoundtype
-									.equalsIgnoreCase("default")) {
+									.equalsIgnoreCase("Red Alert")) {
 								mPlayer = MediaPlayer.create(
 										getApplicationContext(),
 										R.raw.alarmtone);
