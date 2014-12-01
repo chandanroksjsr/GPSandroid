@@ -1,8 +1,10 @@
 package com.deemsysinc.gpsmobiletracking;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.apache.http.NameValuePair;
@@ -57,6 +59,7 @@ import com.daimajia.androidanimations.library.YoYo;
 
 public class LiveTrack extends Activity implements OnMapLongClickListener {
 	RadioButton maprad, satrad;
+	int fromsleeptag;
 	public static ArrayList<HashMap<String, String>> vehiclehistory1 = new ArrayList<HashMap<String, String>>();
 	ArrayList<HashMap<String, String>> vehiclehistory = new ArrayList<HashMap<String, String>>();
 	HashMap<String, String> map = new HashMap<String, String>();
@@ -84,6 +87,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	static TimerTask doAsynchronousTask;
 	final Context context = this;
 	int delaytime;
+	String issleep = "no", sleepstring = "no";
 	private static final String TAG_SRES = "serviceresponse";
 	private static final String TAG_VEHICLE_ARRAY = "VehicleHistory List";
 	static final String TAG_Vechicle_REG = "vechicle_reg_no";
@@ -93,6 +97,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	private static final String TAG_Exceed_Speed = "exceed_speed_limit";
 	private static final String TAG_bus_tracking_timestamp = "bus_tracking_timestamp";
 	private static final String TAG_address = "address";
+	private static final String TAG_Sleep = "sleep";
 	String orgid;
 	static String vehicle_reg_no, devicestatus;
 	String speed;
@@ -685,18 +690,56 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								.fromResource(R.drawable.pink_pin));
 						googleMap.addMarker(marker);
 					}
+					// Checking for sleep tag from tag need to change the
+					// condition based on index
+					if (sleepstring.equalsIgnoreCase("yes")) {
+						issleep = "yes";//
+						fromsleeptag = k;// get the k value to know from where
+											// the random color will get draw
+					}
 
 				}
-				polyLineOptions.addAll(points);
-				polyLineOptions.width(2);
-				polyLineOptions.color(Color.BLACK);
-				googleMap.addPolyline(polyLineOptions);
+				if (sleepstring.equalsIgnoreCase("no")) {
+					polyLineOptions.addAll(points);
+					polyLineOptions.width(2);
+					polyLineOptions.color(Color.BLACK);
+					googleMap.addPolyline(polyLineOptions);
+				} else {
+					for (int o = fromsleeptag; o < vehiclehistory.size() - 1; o++) {
+						Random rnd = new Random();
+						int color = Color.argb(255, rnd.nextInt(256),
+								rnd.nextInt(256), rnd.nextInt(256));
+
+						googleMap
+								.addPolyline((new PolylineOptions())
+										.add(new LatLng(
+												Double.parseDouble(vehiclehistory
+														.get(o).get(
+																TAG_Latitude
+																		+ o)),
+												Double.parseDouble(vehiclehistory
+														.get(o).get(
+																TAG_Longitude
+																		+ o))),
+												new LatLng(
+														Double.parseDouble(vehiclehistory
+																.get(o + 1)
+																.get(TAG_Latitude
+																		+ (o + 1))),
+														Double.parseDouble(vehiclehistory
+																.get(o + 1)
+																.get(TAG_Longitude
+																		+ (o + 1)))))
+										.width(5).color(color).geodesic(true));
+
+					}
+				}
 
 				if (succy.equalsIgnoreCase("fail")) {
 					alertcheck = alertDialog.isShowing();
 
 					if (alertcheck.booleanValue() == true) {
-						System.out.println("alert check value::" + alertcheck);
+
 						alertDialog.dismiss();
 					}
 					alertDialog = new AlertDialog.Builder(LiveTrack.this)

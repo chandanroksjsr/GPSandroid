@@ -23,7 +23,7 @@ public class PrivacyAndPolicyTab extends Activity {
 				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
 						R.drawable.actionbarbg)));
 		getActionBar().setTitle(
-				Html.fromHtml("<font color='#ffffff'>DeemGPS</font>"));
+				Html.fromHtml("<font color='#ffffff'>Privacy Policy</font>"));
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.privacytab);

@@ -206,6 +206,32 @@
                             android:paddingLeft="4dp"
                             android:text="@string/pink_des" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearlayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linearLayout1"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:paddingBottom="4dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/startpoint" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/largeblacktext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="4dp"
+                        android:text="@string/start_flag" />
+
+                </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout

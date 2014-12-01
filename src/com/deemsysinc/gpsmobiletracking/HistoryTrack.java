@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 import java.util.HashMap;
 import java.util.List;
@@ -74,6 +75,11 @@ import android.widget.ToggleButton;
 @SuppressLint("SimpleDateFormat")
 public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		AnimationListener {
+	String[] arr = new String[] { "CC0033", "FF0033", "330066", "990033",
+			"660000", "00FFFF", "FFFF00", "FF3300", "99FF66", "FF0099",
+			"663399", "000000", "9933CC", "3366CC", "3300FF", "0000CC",
+			"009999", "993366", "" };
+	String sleep = "no", checksleepflag = "no";
 	double distance, totaldistance = 0;
 	LinearLayout com;
 	RadioButton maprad, satrad;
@@ -255,7 +261,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		});
 		maprad.setOnClickListener(listener);
 		satrad.setOnClickListener(listener);
-		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")||Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
+		if (Config.role.equalsIgnoreCase("ROLE_FCLIENT")
+				|| Config.role.equalsIgnoreCase("ROLE_PCLIENT")) {
 			SpinnerAdapter adapter1 = ArrayAdapter.createFromResource(
 					getActionBar().getThemedContext(),
 					R.array.nav_drawer_items1_withoutalert,
@@ -707,42 +714,6 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// tgbutton = (ToggleButton) findViewById(R.id.showmapdif);
-		// tgbutton.setSelected(true);
-		// tgbutton.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// // TODO Auto-generated method stub
-		// if (!tgbutton.isChecked()) {
-		// try {
-		// if (googleMap == null) {
-		// googleMap = ((MapFragment) getFragmentManager()
-		// .findFragmentById(R.id.map)).getMap();
-		// }
-		// googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-		// tgbutton.setBackgroundResource(R.drawable.earth);
-		//
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-		//
-		// } else {
-		// try {
-		// if (googleMap == null) {
-		// googleMap = ((MapFragment) getFragmentManager()
-		// .findFragmentById(R.id.map)).getMap();
-		// }
-		// googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-		// tgbutton.setBackgroundResource(R.drawable.aerial);
-		//
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-		//
-		// }
-		// }
-		// });
 
 		vehicle_reg_numb = LiveTrack.vehicle_reg_no;
 		// System.out.println("history track veh numb"+vehicle_reg_numb);
@@ -756,31 +727,6 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 		pHour = c.get(Calendar.HOUR_OF_DAY);
 		pMinute = c.get(Calendar.MINUTE);
 
-		// System.out.println("in history track:::::::");
-
-		// signout.setOnClickListener(new View.OnClickListener() {
-		//
-		// public void onClick(View v) {
-		// Config.username = "";
-		// VehichleArrayAdapter.data.clear();
-		// DashboardActivity.vehicleall.clear();
-		// vehiclehistory1.clear();
-		// LiveTrack.doAsynchronousTask.cancel();
-		// HistoryTrack.vehiclehistory1.clear();
-		//
-		// SharedPreferences settings = getApplicationContext()
-		// .getSharedPreferences("MyPrefs0",
-		// getApplicationContext().MODE_PRIVATE);
-		// settings.edit().clear().commit();
-		// Intent ii = new Intent(HistoryTrack.this,
-		// BackgroundService.class);
-		// ii.putExtra("name", "SurvivingwithAndroid");
-		// HistoryTrack.this.stopService(ii);
-		// Intent intentSignUP = new Intent(getApplicationContext(),
-		// LoginActivity.class);
-		// startActivity(intentSignUP);
-		// }
-		// });
 		initilizeMap();
 
 	}
@@ -839,13 +785,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 			// checkdate = date1.toString();
 			datebutton.setText(date1.toString());
 			System.out.println("check date value::" + date1.toString());
-			// if (isInternetPresent) {
-			// new VehiclePath().execute();
-			// }
-
-			// } else {
-			// checkdate = "empty";
-			// }
+			
 		}
 
 	};
@@ -877,25 +817,19 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 					.toString() + " " + fromtime.getText().toString()));
 			params1.add(new BasicNameValuePair("date2", datebutton.getText()
 					.toString() + " " + totime.getText().toString()));
-			// System.out.println("vehicle ddfgate no.fdfsd ."+checkdate);
-			// params1.add(new BasicNameValuePair("org_id",
-			// LoginActivity.orgid));
 
 			jArray = jsonParser.makeHttpRequest(vehiclehistorysurll, "POST",
 					params1);
-
-			// Log.i("tagconvertstr", "["+jArray+"]");
 
 			try {
 				if (jArray != null) {
 
 					JSONObject c = jArray.getJSONObject(TAG_SRES);
-					// Log.i("tagconvertstr", "["+c+"]");
+
 					user = c.getJSONArray(TAG_VEHICLE_ARRAY);
-					// Log.i("tagconvertstr1", "["+user+"]");
 
 					for (int i = 0; i < user.length(); i++) {
-						// System.out.println("forloop i valuie"+i);
+
 						JSONObject c1 = user.getJSONObject(i);
 						JSONObject c2 = c1.getJSONObject(TAG_SRES);
 
@@ -916,9 +850,6 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 								bus_tracking_timestamp);
 
 						vehiclehistory.add(i, map);
-						// System.out.println("map values"+map);
-						// System.out.println("Values for vehiclehistory list"+vehiclehistory.get(i));
-						// System.out.println("size of arraylist::"+vehiclehistory.size());
 
 					}
 
@@ -949,33 +880,26 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 					AlertDialog alertDialog = new AlertDialog.Builder(
 							HistoryTrack.this).create();
 
-					// Setting Dialog Title
 					alertDialog.setTitle("INFO!");
 
-					// Setting Dialog Message
 					alertDialog.setMessage("No location's found.");
 
-					// Setting Icon to Dialog
 					alertDialog.setIcon(R.drawable.delete);
 
-					// Setting OK Button
 					alertDialog.setButton("OK",
 							new DialogInterface.OnClickListener() {
 
 								public void onClick(
 										final DialogInterface dialog,
 										final int which) {
-									// Write your code here to execute after
-									// dialog
-									// closed
 
 								}
 							});
 
-					// Showing Alert Message
 					alertDialog.show();
 
 				} else {
+
 					// System.out.println("vehicle history list size"+vehiclehistory1.size());
 					for (int k = 0; k < vehiclehistory1.size(); k++) {
 
@@ -984,6 +908,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 										TAG_Latitude + k)),
 								Double.parseDouble(vehiclehistory1.get(k).get(
 										TAG_Longitude + k)));
+
 						MarkerOptions marker;
 						points.add(pinLocation);
 						String titlevalue = "Speed:"
@@ -1000,7 +925,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 									.snippet(snippetval);
 
 							marker.icon(BitmapDescriptorFactory
-									.fromResource(R.drawable.options));
+									.fromResource(R.drawable.startpoint));
 							googleMap.addMarker(marker);
 						} else if (vehiclehistory1.get(k)
 								.get(TAG_Exceed_Speed + k).equals("1")) {
@@ -1022,13 +947,6 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 						}
 						int sizeminusone = vehiclehistory1.size() - 1;
 						if (sizeminusone == k) {
-							// marker = new
-							// MarkerOptions().position(pinLocation)
-							// .snippet(snippetval);
-							//
-							// marker.icon(BitmapDescriptorFactory
-							// .fromResource(R.drawable.options));
-							// googleMap.addMarker(marker);
 
 							CameraPosition cameraPosition = new CameraPosition.Builder()
 									.target(pinLocation).zoom(12).build();
@@ -1037,12 +955,37 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 						}
 
 					}
+
 					polyLineOptions.addAll(points);
 					polyLineOptions.width(2);
 					polyLineOptions.color(Color.BLACK);
 					googleMap.addPolyline(polyLineOptions);
+
 				}
 				for (int o = 0; o < vehiclehistory1.size() - 1; o++) {
+					// Random rnd = new Random();
+					// int color = Color.argb(255, rnd.nextInt(256),
+					// rnd.nextInt(256), rnd.nextInt(256));
+					//
+					// googleMap
+					// .addPolyline((new PolylineOptions())
+					// .add(new LatLng(Double
+					// .parseDouble(vehiclehistory1.get(o)
+					// .get(TAG_Latitude + o)),
+					// Double.parseDouble(vehiclehistory1
+					// .get(o).get(
+					// TAG_Longitude + o))),
+					// new LatLng(
+					// Double.parseDouble(vehiclehistory1
+					// .get(o + 1)
+					// .get(TAG_Latitude
+					// + (o + 1))),
+					// Double.parseDouble(vehiclehistory1
+					// .get(o + 1)
+					// .get(TAG_Longitude
+					// + (o + 1)))))
+					// .width(5).color(color).geodesic(true));
+
 					totaldistance += distance(
 							Double.parseDouble(vehiclehistory1.get(o).get(
 									TAG_Latitude + o)),
@@ -1053,13 +996,9 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 							Double.parseDouble(vehiclehistory1.get(o + 1).get(
 									TAG_Longitude + (o + 1))));
 
-					System.out.println("distance total  caluculated::"
-							+ totaldistance);
-
 					DecimalFormat df = new DecimalFormat("#.#####");
 					totaldistance = Double.valueOf(df.format(totaldistance));
-					System.out.println("Total Distance in Kilometer:"
-							+ totaldistance);
+
 					distancetravelled.setText(String.valueOf(totaldistance)
 							+ "Km (Approx.)");
 

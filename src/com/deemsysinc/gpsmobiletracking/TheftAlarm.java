@@ -108,10 +108,9 @@ public class TheftAlarm extends Activity {
 		} else {
 			devicestatus.setText("Switched Off");
 		}
-//		 mPlayer =
-//		 MediaPlayer.create(getApplicationContext(),R.raw.alarmtone);
-//		// mPlayer.reset();
-//		 mPlayer.start();
+		
+		// mPlayer.reset();
+		
 		isInternetPresent = cd.isConnectingToInternet();
 		if (isInternetPresent) {
 			new CheckTheftAlarm().execute();

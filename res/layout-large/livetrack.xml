@@ -160,6 +160,25 @@
                         android1:text="@string/pink_des" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content"
+                    android1:paddingBottom="4dp" >
+
+                    <ImageView
+                        android1:id="@+id/imageView1"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:src="@drawable/idlepoint" />
+
+                    <TextView
+                        android1:id="@+id/textView2"
+                         style="@style/largeblacktext"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:paddingLeft="4dp"
+                        android1:text="@string/idle_flag" />
+                </LinearLayout>
             </LinearLayout>
 
             <ProgressBar

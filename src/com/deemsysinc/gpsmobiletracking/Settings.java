@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -26,12 +28,16 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class Settings extends Activity implements OnItemSelectedListener {
 	Spinner alarmtypespin;
 	Button savesett, clearcache;
+	MediaPlayer mPlayer;
+	String onloadfalse;
+	int alreadyselected;
 	SharedPreferences sharedpreferences;
 	public static final String MyPREFERENCES = "MyPrefs0";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		getActionBar().setBackgroundDrawable(
 				new BitmapDrawable(BitmapFactory.decodeResource(getResources(),
@@ -65,24 +71,38 @@ public class Settings extends Activity implements OnItemSelectedListener {
 				.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
 
 		alarmtypespin.setAdapter(dataAdapter1);
+		alreadyselected=alarmtypespin.getSelectedItemPosition();
+		alarmtypespin.setOnItemSelectedListener(this);
+		if (mPlayer != null && mPlayer.isPlaying()) {
+			mPlayer.stop();
+		}
 		System.out
 				.println("value of alarmsound type::" + Config.alarmsoundtype);
 		if (Config.alarmsoundtype != null) {
 
 			if (Config.alarmsoundtype.equalsIgnoreCase("Nuclear Alert")) {
-
-				alarmtypespin.setSelection(dataAdapter1.getPosition("Nuclear Alert"));
+				onloadfalse = "nottoplay";
+				alarmtypespin.setSelection(dataAdapter1
+						.getPosition("Nuclear Alert"));
 			} else if (Config.alarmsoundtype.equalsIgnoreCase("Car Alert")) {
-
-				alarmtypespin.setSelection(dataAdapter1.getPosition("Car Alert"));
+				onloadfalse = "nottoplay";
+				alarmtypespin.setSelection(dataAdapter1
+						.getPosition("Car Alert"));
 			} else if (Config.alarmsoundtype.equalsIgnoreCase("Extreme Alert")) {
-				alarmtypespin.setSelection(dataAdapter1.getPosition("Extreme Alert"));
+				onloadfalse = "nottoplay";
+				alarmtypespin.setSelection(dataAdapter1
+						.getPosition("Extreme Alert"));
 			} else if (Config.alarmsoundtype.equalsIgnoreCase("Handy Alert")) {
-				alarmtypespin.setSelection(dataAdapter1.getPosition("Handy Alert"));
+				onloadfalse = "nottoplay";
+				alarmtypespin.setSelection(dataAdapter1
+						.getPosition("Handy Alert"));
 			} else if (Config.alarmsoundtype.equalsIgnoreCase("Red Alert")) {
-				alarmtypespin.setSelection(dataAdapter1.getPosition("Red Alert"));
+				onloadfalse = "nottoplay";
+				alarmtypespin.setSelection(dataAdapter1
+						.getPosition("Red Alert"));
 			}
 		} else {
+			onloadfalse = "nottoplay";
 			alarmtypespin.setSelection(dataAdapter1.getPosition("Red Alert"));
 		}
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
@@ -95,10 +115,12 @@ public class Settings extends Activity implements OnItemSelectedListener {
 
 			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
-				
-				
-				AlertDialog alertDialog = new AlertDialog.Builder(
-						Settings.this).create();
+				if (mPlayer != null && mPlayer.isPlaying()) {
+					mPlayer.stop();
+				}
+
+				AlertDialog alertDialog = new AlertDialog.Builder(Settings.this)
+						.create();
 
 				alertDialog.setTitle("INFO!");
 
@@ -109,8 +131,7 @@ public class Settings extends Activity implements OnItemSelectedListener {
 				alertDialog.setButton("OK",
 						new DialogInterface.OnClickListener() {
 
-							public void onClick(
-									final DialogInterface dialog,
+							public void onClick(final DialogInterface dialog,
 									final int which) {
 
 							}
@@ -131,58 +152,7 @@ public class Settings extends Activity implements OnItemSelectedListener {
 
 			}
 		});
-		// clearcache.setOnClickListener(new View.OnClickListener() {
-		//
-		// @SuppressWarnings("deprecation")
-		// public void onClick(View v) {
-		//
-		// AlertDialog.Builder alertDialog = new AlertDialog.Builder(
-		// Settings.this);
-		//
-		// alertDialog.setTitle("Clear cache");
-		//
-		// alertDialog
-		// .setMessage("Are you sure you want clear DeemsysGPS Application Cache?");
-		//
-		// alertDialog.setIcon(R.drawable.delete);
-		//
-		// alertDialog.setPositiveButton("YES",
-		// new DialogInterface.OnClickListener() {
-		// public void onClick(DialogInterface dialog,
-		// int which) {
-		// Intent ii = new Intent(Settings.this,
-		// BackgroundService.class);
-		// ii.putExtra("name", "SurvivingwithAndroid");
-		// Settings.this.stopService(ii);
-		// File cache = getCacheDir();
-		// File appDir = new File(cache.getParent());
-		// if (appDir.exists()) {
-		// String[] children = appDir.list();
-		// for (String s : children) {
-		// if (!s.equals("lib")) {
-		// deleteDir(new File(appDir, s));
-		//
-		// }
-		//
-		// }
-		// }
-		// }
-		// });
-		//
-		// alertDialog.setNegativeButton("NO",
-		// new DialogInterface.OnClickListener() {
-		// public void onClick(DialogInterface dialog,
-		// int which) {
-		//
-		// dialog.cancel();
-		// }
-		// });
-		//
-		// // Showing Alert Message
-		// alertDialog.show();
-		//
-		// }
-		// });
+
 	}
 
 	public static boolean deleteDir(File dir) {
@@ -196,17 +166,6 @@ public class Settings extends Activity implements OnItemSelectedListener {
 			}
 		}
 		return dir.delete();
-	}
-
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
-
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-
 	}
 
 	public void onBackPressed() {
@@ -229,5 +188,54 @@ public class Settings extends Activity implements OnItemSelectedListener {
 			return super.onOptionsItemSelected(item);
 		}
 
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+			long arg3) {
+		if (mPlayer != null && mPlayer.isPlaying()) {
+			mPlayer.stop();
+		}
+		if (!onloadfalse.equalsIgnoreCase("nottoplay")) {
+			if (arg2 == 0) {
+				onloadfalse="changed";
+				mPlayer = MediaPlayer.create(getApplicationContext(),
+						R.raw.type1);
+				mPlayer.start();
+			}
+			if (arg2 == 1) {
+				onloadfalse="changed";
+				mPlayer = MediaPlayer.create(getApplicationContext(),
+						R.raw.type2);
+				mPlayer.start();
+			}
+			if (arg2 == 2) {
+				onloadfalse="changed";
+				mPlayer = MediaPlayer.create(getApplicationContext(),
+						R.raw.type3);
+				mPlayer.start();
+			}
+			if (arg2 == 3) {
+				onloadfalse="changed";
+				mPlayer = MediaPlayer.create(getApplicationContext(),
+						R.raw.type4);
+				mPlayer.start();
+			}
+			if (arg2 == 4) {
+				onloadfalse="changed";
+				mPlayer = MediaPlayer.create(getApplicationContext(),
+						R.raw.alarmtone);
+				mPlayer.start();
+			}
+
+		}
+
+		System.out.println("selected postion::" + arg2);
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("item clicked two");
 	}
 }

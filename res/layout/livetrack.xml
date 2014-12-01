@@ -74,11 +74,35 @@
             android1:paddingLeft="5dp"
             android1:paddingTop="2dp" >
 
+            <RelativeLayout
+                android1:layout_width="80dp"
+                android1:layout_height="80dp"
+                android1:layout_alignParentBottom="false"
+                android1:layout_alignParentLeft="false"
+                android1:layout_toRightOf="@+id/linearlive2" >
+
+                <ProgressBar
+                    android1:id="@+id/progressBarToday"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="match_parent"
+                    android1:max="30"
+                    android1:progressDrawable="@drawable/animation" />
+
+                <TextView
+                    android1:id="@+id/timingsecs"
+                    style="@style/welcomeblack1"
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content"
+                    android1:layout_centerInParent="true"
+                    android1:text="start" />
+            </RelativeLayout>
+
             <LinearLayout
+                android1:id="@+id/linearLayout1"
                 android1:layout_width="wrap_content"
                 android1:layout_height="wrap_content"
                 android1:layout_alignParentLeft="true"
-                android1:layout_toLeftOf="@+id/progressBarToday"
                 android1:orientation="vertical" >
 
                 <LinearLayout
@@ -139,38 +163,52 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <ProgressBar
-                android1:id="@+id/progressBarToday"
-                style="?android:attr/progressBarStyleHorizontal"
-                android1:layout_width="80dp"
-                android1:layout_height="80dp"
-                android1:layout_alignParentTop="true"
-                android1:layout_centerHorizontal="true"
-                android1:max="30"
-                android1:progressDrawable="@drawable/animation" />
-
-            <TextView
-                android1:id="@+id/timingsecs"
-                style="@style/welcomeblack1"
-                android1:layout_width="wrap_content"
+            <LinearLayout
+                android1:id="@+id/linearlive2"
+                android1:layout_width="100dp"
                 android1:layout_height="wrap_content"
-                android1:layout_centerInParent="true"
-                android1:layout_gravity="center_vertical|center_horizontal|fill_horizontal"
-                android1:text="start" />
+                android1:layout_centerHorizontal="true"
+                android1:layout_centerInParent="false"
+                android1:layout_toRightOf="@+id/linearLayout1"
+                android1:orientation="vertical" >
+
+                <LinearLayout
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content"
+                    android1:paddingBottom="4dp" >
+
+                    <ImageView
+                        android1:id="@+id/imageView1"
+                        android1:layout_width="15dp"
+                        android1:layout_height="15dp"
+                        android1:src="@drawable/idlepoint" />
+
+                    <TextView
+                        android1:id="@+id/textView2"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:paddingLeft="4dp"
+                        android1:text="@string/idle_flag" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android1:layout_width="match_parent"
+            android1:layout_height="wrap_content"
+            android1:layout_marginBottom="5dp"
+            android1:orientation="vertical" >
 
             <Button
                 android1:id="@+id/close"
                 android1:layout_width="100dp"
                 android1:layout_height="30dp"
-                android1:layout_alignParentRight="true"
-                android1:layout_below="@+id/timingsecs"
-                android1:layout_centerHorizontal="true"
-                android1:layout_centerVertical="true"
+                android1:layout_gravity="center_vertical|center_horizontal"
                 android1:layout_marginRight="4dp"
-                android:background="@drawable/buttonbackground"
+                android1:background="@drawable/buttonbackground"
                 android1:text="Close"
                 android1:textColor="#ffffff" />
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

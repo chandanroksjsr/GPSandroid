@@ -3,6 +3,8 @@
 
     <string name="dist_travelled">Distance Travelled : </string>
     <string name="red_des">Last Location</string>
+     <string name="idle_flag">Idle Location</string>
+    <string name="start_flag">Start &amp; End Location</string>
     <string name="green_des">Current Location</string>
     <string name="pink_des">Over Speed</string>
     <string name="vehicle_reg_num">Vehicle Reg.No : </string>
