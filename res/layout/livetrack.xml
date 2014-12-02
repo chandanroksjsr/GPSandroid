@@ -190,6 +190,24 @@
                         android1:paddingLeft="4dp"
                         android1:text="@string/idle_flag" />
                 </LinearLayout>
+                <LinearLayout
+                    android1:layout_width="wrap_content"
+                    android1:layout_height="wrap_content"
+                    android1:paddingBottom="4dp" >
+
+                    <ImageView
+                        android1:id="@+id/imageView1"
+                        android1:layout_width="15dp"
+                        android1:layout_height="15dp"
+                        android1:src="@drawable/notresponding" />
+
+                    <TextView
+                        android1:id="@+id/textView2"
+                        android1:layout_width="wrap_content"
+                        android1:layout_height="wrap_content"
+                        android1:paddingLeft="4dp"
+                        android1:text="@string/notresponding" />
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 

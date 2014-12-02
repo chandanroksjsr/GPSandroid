@@ -1,6 +1,5 @@
 package com.deemsysinc.gpsmobiletracking;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,8 +57,10 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
 public class LiveTrack extends Activity implements OnMapLongClickListener {
+	ArrayList<Integer> sleepindex;
+	ArrayList<Integer> colorarray;
 	RadioButton maprad, satrad;
-	int fromsleeptag;
+	int sleepcount = 0, previoussleepcount;
 	public static ArrayList<HashMap<String, String>> vehiclehistory1 = new ArrayList<HashMap<String, String>>();
 	ArrayList<HashMap<String, String>> vehiclehistory = new ArrayList<HashMap<String, String>>();
 	HashMap<String, String> map = new HashMap<String, String>();
@@ -80,14 +81,14 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	static String vehicle_reg_no1, routeno;
 	String userrole;
 	ToggleButton tgbutton;
-	MarkerOptions marker, expmarker;
+	Marker marker, expmarker;
 	static final LatLng TutorialsPoint = new LatLng(22.3512639, 78.9542827);
 	private GoogleMap googleMap;
 	public static Timer timer;
 	static TimerTask doAsynchronousTask;
 	final Context context = this;
 	int delaytime;
-	String issleep = "no", sleepstring = "no";
+	String issleep = "no", sleepstring, islocfound;
 	private static final String TAG_SRES = "serviceresponse";
 	private static final String TAG_VEHICLE_ARRAY = "VehicleHistory List";
 	static final String TAG_Vechicle_REG = "vechicle_reg_no";
@@ -97,7 +98,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 	private static final String TAG_Exceed_Speed = "exceed_speed_limit";
 	private static final String TAG_bus_tracking_timestamp = "bus_tracking_timestamp";
 	private static final String TAG_address = "address";
-	private static final String TAG_Sleep = "sleep";
+	private static final String TAG_Vehicle_Status = "vehicle_status";
+	private static final String TAG_locationfound = "locationfound";
 	String orgid;
 	static String vehicle_reg_no, devicestatus;
 	String speed;
@@ -171,7 +173,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 		lin2 = (RelativeLayout) findViewById(R.id.livelin2);
 		com = (LinearLayout) findViewById(R.id.commonlinear);
 		close = (Button) findViewById(R.id.close);
-
+		sleepindex = new ArrayList<Integer>();
+		colorarray = new ArrayList<Integer>();
 		close.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -207,7 +210,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 						// tgbutton.setBackgroundResource(R.drawable.earth);
 
-						Marker marker = googleMap.addMarker(new MarkerOptions()
+						marker = googleMap.addMarker(new MarkerOptions()
 								.position(TutorialsPoint).title(""));
 						CameraPosition cameraPosition = new CameraPosition.Builder()
 								.target(TutorialsPoint).zoom(4).build();
@@ -228,7 +231,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 						}
 						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 						// tgbutton.setBackgroundResource(R.drawable.aerial);
-						Marker marker = googleMap.addMarker(new MarkerOptions()
+						marker = googleMap.addMarker(new MarkerOptions()
 								.position(TutorialsPoint).title(""));
 						CameraPosition cameraPosition = new CameraPosition.Builder()
 								.target(TutorialsPoint).zoom(4).build();
@@ -431,7 +434,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 			googleMap.getUiSettings().setRotateGesturesEnabled(true);
 			googleMap.getUiSettings().setCompassEnabled(true);
 			googleMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
-			Marker marker = googleMap.addMarker(new MarkerOptions().position(
+			marker = googleMap.addMarker(new MarkerOptions().position(
 					TutorialsPoint).title(""));
 			CameraPosition cameraPosition = new CameraPosition.Builder()
 					.target(TutorialsPoint).zoom(4).build();
@@ -451,6 +454,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 
 	public void timercalling() {
 
+		sleepcount = 0;
 		timer = new Timer();
 		doAsynchronousTask = new TimerTask() {
 			@Override
@@ -528,7 +532,6 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 			cDialog.show();
 		}
 
-		@SuppressWarnings("deprecation")
 		@Override
 		protected String doInBackground(String... args) {
 			// TODO Auto-generated method stub
@@ -570,15 +573,30 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 						bus_tracking_timestamp = c2
 								.getString(TAG_bus_tracking_timestamp);
 						address = c2.getString(TAG_address);
+						sleepstring = c2.getString(TAG_Vehicle_Status);
+						islocfound = c2.getString(TAG_locationfound);
 						map.put(TAG_Latitude + p, latitude);
 						map.put(TAG_Longitude + p, longitude);
 						map.put(TAG_Speed + p, speed);
 						map.put(TAG_Exceed_Speed + p, exceed_speed_limit);
 						map.put(TAG_address + p, address);
+						map.put(TAG_Vehicle_Status + p, sleepstring);
 						map.put(TAG_bus_tracking_timestamp + p,
 								bus_tracking_timestamp);
+						map.put(TAG_locationfound + p, islocfound);
 
-						vehiclehistory.add(p, map);
+						if (vehiclehistory.size() != 0) {
+							if (bus_tracking_timestamp
+									.equalsIgnoreCase(vehiclehistory
+											.get((vehiclehistory.size() - 1))
+											.get(TAG_bus_tracking_timestamp
+													+ (vehiclehistory.size() - 1)))) {
+							} else {
+								vehiclehistory.add(p, map);
+							}
+						} else {
+							vehiclehistory.add(p, map);
+						}
 
 					}
 
@@ -592,38 +610,40 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 
 					alertDialog.dismiss();
 				}
-				alertDialog = new AlertDialog.Builder(LiveTrack.this).create();
-
-				alertDialog.setTitle("INFO!");
-
-				alertDialog.setMessage("No location's found.");
-
-				alertDialog.setIcon(R.drawable.delete);
-
-				alertDialog.setButton("OK",
-						new DialogInterface.OnClickListener() {
-
-							public void onClick(final DialogInterface dialog,
-									final int which) {
-
-							}
-						});
-
-				alertDialog.show();
-				e.printStackTrace();
+				System.out.println("exception:" + e);
+				// alertDialog = new
+				// AlertDialog.Builder(LiveTrack.this).create();
+				//
+				// alertDialog.setTitle("INFO!");
+				//
+				// alertDialog.setMessage("No location's found.");
+				//
+				// alertDialog.setIcon(R.drawable.delete);
+				//
+				// alertDialog.setButton("OK",
+				// new DialogInterface.OnClickListener() {
+				//
+				// public void onClick(final DialogInterface dialog,
+				// final int which) {
+				//
+				// }
+				// });
+				//
+				// alertDialog.show();
+				// e.printStackTrace();
 			}
 
 			cDialog.dismiss();
 			return null;
 		}
 
-		@SuppressWarnings("deprecation")
 		@Override
 		protected void onPostExecute(String file_url) {
 
 			super.onPostExecute(file_url);
 			try {
-
+				sleepindex.clear();
+				sleepcount = 0;
 				ArrayList<LatLng> points = null;
 				PolylineOptions polyLineOptions = null;
 				points = new ArrayList<LatLng>();
@@ -632,6 +652,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 
 				cDialog.dismiss();
 				int sizeminusone;
+				System.out
+						.println("vehicle list size:" + vehiclehistory.size());
 				sizeminusone = vehiclehistory.size() - 1;
 
 				for (int k = 0; k < vehiclehistory.size(); k++) {
@@ -652,122 +674,310 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					String snippetval = titlevalue + "\n" + "Address:"
 							+ vehiclehistory.get(k).get(TAG_address + k);
 
-					if (sizeminusone != k) {
+					// marker = new
+					// MarkerOptions().position(pinLocation).snippet(
+					// snippetval);
+					if (vehiclehistory.get(k).get(TAG_locationfound + k)
+							.equals("no")) {
+						marker = googleMap
+								.addMarker(new MarkerOptions()
+										.position(pinLocation)
 
-						marker = new MarkerOptions().position(pinLocation)
-								.snippet(snippetval);
-						marker.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.click));
-						marker.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.red_pin));
+										.snippet(snippetval)
+										.icon(BitmapDescriptorFactory
+												.fromResource(R.drawable.notresponding)));
+						// marker.icon(BitmapDescriptorFactory
+						// .fromResource(R.drawable.notresponding));
+						// googleMap.addMarker(marker);
+					} else if (sizeminusone != k) {
+						if (marker.isVisible()) {
+							marker.remove();
+						}
+						marker = googleMap.addMarker(new MarkerOptions()
+								.position(pinLocation)
 
-						googleMap.addMarker(marker);
-						// callone();
-
-					} else if (sizeminusone == k) {
-
-						marker = new MarkerOptions().position(pinLocation)
-								.snippet(snippetval);
-
-						marker.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.green_pin));
-						googleMap.addMarker(marker);
-
-						CameraPosition cameraPosition = new CameraPosition.Builder()
-								.target(pinLocation).zoom(18).build();
-
-						googleMap.animateCamera(CameraUpdateFactory
-								.newCameraPosition(cameraPosition));
+								.snippet(snippetval)
+								.icon(BitmapDescriptorFactory
+										.fromResource(R.drawable.red_pin)));
+						// marker.icon(BitmapDescriptorFactory
+						// .fromResource(R.drawable.red_pin));
+						//
+						// googleMap.addMarker(marker);
 
 					}
 
-					if (vehiclehistory.get(k).get(TAG_Exceed_Speed + k)
+					else if (sizeminusone == k) {
+						if (marker.isVisible()) {
+							marker.remove();
+						}
+						marker = googleMap.addMarker(new MarkerOptions()
+								.position(pinLocation)
+
+								.snippet(snippetval)
+								.icon(BitmapDescriptorFactory
+										.fromResource(R.drawable.green_pin)));
+						// marker.icon(BitmapDescriptorFactory
+						// .fromResource(R.drawable.green_pin));
+						// googleMap.addMarker(marker);
+
+					}
+
+					else if (vehiclehistory.get(k).get(TAG_Exceed_Speed + k)
 							.equals("1")) {
-						marker = new MarkerOptions().position(pinLocation)
-								.snippet(snippetval);
+						marker = googleMap.addMarker(new MarkerOptions()
+								.position(pinLocation)
 
-						marker.icon(BitmapDescriptorFactory
-								.fromResource(R.drawable.pink_pin));
-						googleMap.addMarker(marker);
+								.snippet(snippetval)
+								.icon(BitmapDescriptorFactory
+										.fromResource(R.drawable.pink_pin)));
+						// marker.icon(BitmapDescriptorFactory
+						// .fromResource(R.drawable.pink_pin));
+						// googleMap.addMarker(marker);
 					}
-					// Checking for sleep tag from tag need to change the
-					// condition based on index
-					if (sleepstring.equalsIgnoreCase("yes")) {
-						issleep = "yes";//
-						fromsleeptag = k;// get the k value to know from where
-											// the random color will get draw
+
+					if (vehiclehistory.get(k).get(TAG_Vehicle_Status + k)
+							.equals("3")) {
+						if (marker.isVisible()) {
+							marker.remove();
+						}
+						System.out.println("in checking status");
+						sleepcount++;
+						sleepindex.add(k);
+						marker = googleMap.addMarker(new MarkerOptions()
+								.position(pinLocation)
+
+								.snippet(snippetval)
+								.icon(BitmapDescriptorFactory
+										.fromResource(R.drawable.alarmicon)));
+						// marker = new MarkerOptions().position(pinLocation)
+						// .snippet(snippetval);
+						//
+						// marker.icon(BitmapDescriptorFactory
+						// .fromResource(R.drawable.alarmicon));
+						// googleMap.addMarker(marker);
+
 					}
+					CameraPosition cameraPosition = new CameraPosition.Builder()
+							.target(pinLocation).zoom(18).build();
+
+					googleMap.animateCamera(CameraUpdateFactory
+							.newCameraPosition(cameraPosition));
+				}
+
+				System.out.println("sleep count value::" + sleepcount);
+				System.out.println("sleep index array value::"
+						+ sleepindex.size());
+				if (sleepcount - previoussleepcount == 1) {
+					Random rnd = new Random();
+					int color = Color.argb(255, rnd.nextInt(256),
+							rnd.nextInt(256), rnd.nextInt(256));
+					colorarray.add(color);
 
 				}
-				if (sleepstring.equalsIgnoreCase("no")) {
-					polyLineOptions.addAll(points);
-					polyLineOptions.width(2);
-					polyLineOptions.color(Color.BLACK);
-					googleMap.addPolyline(polyLineOptions);
-				} else {
-					for (int o = fromsleeptag; o < vehiclehistory.size() - 1; o++) {
-						Random rnd = new Random();
-						int color = Color.argb(255, rnd.nextInt(256),
-								rnd.nextInt(256), rnd.nextInt(256));
+				if (sleepindex.size() == 1) {
 
+					for (int x = 0; x < sleepindex.get(0); x++) {
+						System.out.println("sleeping index size::"+sleepindex.get(0));
 						googleMap
 								.addPolyline((new PolylineOptions())
 										.add(new LatLng(
 												Double.parseDouble(vehiclehistory
-														.get(o).get(
+														.get(x).get(
 																TAG_Latitude
-																		+ o)),
+																		+ x)),
 												Double.parseDouble(vehiclehistory
-														.get(o).get(
+														.get(x).get(
 																TAG_Longitude
-																		+ o))),
+																		+ x))),
 												new LatLng(
 														Double.parseDouble(vehiclehistory
-																.get(o + 1)
+																.get(x + 1)
 																.get(TAG_Latitude
-																		+ (o + 1))),
+																		+ (x + 1))),
 														Double.parseDouble(vehiclehistory
-																.get(o + 1)
+																.get(x + 1)
 																.get(TAG_Longitude
-																		+ (o + 1)))))
-										.width(5).color(color).geodesic(true));
+																		+ (x + 1)))))
+										.width(5).color(Color.BLACK)
+										.geodesic(true));
+					}
+
+					for (int a = 0; a < vehiclehistory.size(); a++) {
+						for (int b = sleepindex.get(a); b < vehiclehistory
+								.size(); b++) {
+							System.out.println("sleeping index size if ::"+sleepindex.get(b));
+							googleMap
+									.addPolyline((new PolylineOptions())
+											.add(new LatLng(
+													Double.parseDouble(vehiclehistory
+															.get(b)
+															.get(TAG_Latitude
+																	+ b)),
+													Double.parseDouble(vehiclehistory
+															.get(b)
+															.get(TAG_Longitude
+																	+ b))),
+													new LatLng(
+															Double.parseDouble(vehiclehistory
+																	.get(b + 1)
+																	.get(TAG_Latitude
+																			+ (b + 1))),
+															Double.parseDouble(vehiclehistory
+																	.get(b + 1)
+																	.get(TAG_Longitude
+																			+ (b + 1)))))
+											.width(5).color(colorarray.get(b))
+											.geodesic(true));
+							System.out
+									.println("colorarray value if sleep count is 1::"
+											+ colorarray.get(b));
+						}
+
+					}
+				} else if (sleepindex.size() > 0) {
+					for (int x = 0; x < sleepindex.get(0); x++) {
+						googleMap
+								.addPolyline((new PolylineOptions())
+										.add(new LatLng(
+												Double.parseDouble(vehiclehistory
+														.get(x).get(
+																TAG_Latitude
+																		+ x)),
+												Double.parseDouble(vehiclehistory
+														.get(x).get(
+																TAG_Longitude
+																		+ x))),
+												new LatLng(
+														Double.parseDouble(vehiclehistory
+																.get(x + 1)
+																.get(TAG_Latitude
+																		+ (x + 1))),
+														Double.parseDouble(vehiclehistory
+																.get(x + 1)
+																.get(TAG_Longitude
+																		+ (x + 1)))))
+										.width(5).color(Color.BLACK)
+										.geodesic(true));
+					}
+					for (int a = 0; a < sleepindex.size() - 1; a++) {
+						for (int b = sleepindex.get(a); b < sleepindex
+								.get(a + 1); b++) {
+							googleMap
+									.addPolyline((new PolylineOptions())
+											.add(new LatLng(
+													Double.parseDouble(vehiclehistory
+															.get(b)
+															.get(TAG_Latitude
+																	+ b)),
+													Double.parseDouble(vehiclehistory
+															.get(b)
+															.get(TAG_Longitude
+																	+ b))),
+													new LatLng(
+															Double.parseDouble(vehiclehistory
+																	.get(b + 1)
+																	.get(TAG_Latitude
+																			+ (b + 1))),
+															Double.parseDouble(vehiclehistory
+																	.get(b + 1)
+																	.get(TAG_Longitude
+																			+ (b + 1)))))
+											.width(5).color(colorarray.get(b))
+											.geodesic(true));
+							System.out
+									.println("colorarray value in sleep index not equal to 1::"
+											+ colorarray.get(b));
+						}
 
 					}
 				}
 
+				else {
+					polyLineOptions.addAll(points);
+					polyLineOptions.width(2);
+					polyLineOptions.color(Color.BLACK);
+					googleMap.addPolyline(polyLineOptions);
+				}
+				System.out.println("succy value::" + succy);
 				if (succy.equalsIgnoreCase("fail")) {
-					alertcheck = alertDialog.isShowing();
+					// marker.icon(BitmapDescriptorFactory
+					// .fromResource(R.drawable.click));
+					LatLng pinLocation = new LatLng(
+							Double.parseDouble(vehiclehistory.get(
+									vehiclehistory.size()).get(
+									TAG_Latitude + vehiclehistory.size())),
+							Double.parseDouble(vehiclehistory.get(
+									vehiclehistory.size()).get(
+									TAG_Longitude + vehiclehistory.size())));
+					googleMap
+							.addMarker(new MarkerOptions()
+									.position(pinLocation)
+
+									.snippet(
+											"Speed:"
+													+ vehiclehistory
+															.get(vehiclehistory
+																	.size())
+															.get(TAG_Speed
+																	+ vehiclehistory
+																			.size())
+													+ " km/hr "
+													+ "Date:"
+													+ vehiclehistory
+															.get(vehiclehistory
+																	.size())
+															.get(TAG_bus_tracking_timestamp
+																	+ vehiclehistory
+																			.size()
+																	+ "\n"
+																	+ "Address:"
+																	+ vehiclehistory
+																			.get(vehiclehistory
+																					.size())
+																			.get(TAG_address
+																					+ vehiclehistory
+																							.size())))
+									.icon(BitmapDescriptorFactory
+											.fromResource(R.drawable.notresponding)));
+					// marker = new MarkerOptions()
+					// .position(pinLocation)
+					// .snippet(
+					// "Speed:"
+					// + vehiclehistory.get(
+					// vehiclehistory.size()).get(
+					// TAG_Speed
+					// + vehiclehistory
+					// .size())
+					// + " km/hr "
+					// + "Date:"
+					// + vehiclehistory
+					// .get(vehiclehistory.size())
+					// .get(TAG_bus_tracking_timestamp
+					// + vehiclehistory
+					// .size()
+					// + "\n"
+					// + "Address:"
+					// + vehiclehistory
+					// .get(vehiclehistory
+					// .size())
+					// .get(TAG_address
+					// + vehiclehistory
+					// .size())));
+					//
+					// marker.icon(BitmapDescriptorFactory
+					// .fromResource(R.drawable.notresponding));
+					// googleMap.addMarker(marker);
 
 					if (alertcheck.booleanValue() == true) {
 
 						alertDialog.dismiss();
 					}
-					alertDialog = new AlertDialog.Builder(LiveTrack.this)
-							.create();
-
-					alertDialog.setTitle("INFO!");
-
-					alertDialog.setMessage("No location's found.");
-
-					alertDialog.setIcon(R.drawable.delete);
-
-					alertDialog.setButton("OK",
-							new DialogInterface.OnClickListener() {
-
-								public void onClick(
-										final DialogInterface dialog,
-										final int which) {
-
-								}
-							});
-
-					alertDialog.show();
 
 				}
 			} catch (Exception e) {
 
 			}
-
+			previoussleepcount = sleepcount;
 		}
 
 	}

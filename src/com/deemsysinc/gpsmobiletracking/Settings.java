@@ -71,7 +71,8 @@ public class Settings extends Activity implements OnItemSelectedListener {
 				.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
 
 		alarmtypespin.setAdapter(dataAdapter1);
-		alreadyselected=alarmtypespin.getSelectedItemPosition();
+		alreadyselected = alarmtypespin.getSelectedItemPosition();
+		System.out.println("already selected" + alreadyselected);
 		alarmtypespin.setOnItemSelectedListener(this);
 		if (mPlayer != null && mPlayer.isPlaying()) {
 			mPlayer.stop();
@@ -100,16 +101,17 @@ public class Settings extends Activity implements OnItemSelectedListener {
 				onloadfalse = "nottoplay";
 				alarmtypespin.setSelection(dataAdapter1
 						.getPosition("Red Alert"));
+			} else {
+				onloadfalse = "nottoplay";
+
+				alarmtypespin.setSelection(dataAdapter1
+						.getPosition("Red Alert"));
 			}
 		} else {
 			onloadfalse = "nottoplay";
+			Config.alarmsoundtype = "Red Alert";
 			alarmtypespin.setSelection(dataAdapter1.getPosition("Red Alert"));
 		}
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, timingarr);
-
-		dataAdapter
-				.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
 
 		savesett.setOnClickListener(new View.OnClickListener() {
 
@@ -147,8 +149,6 @@ public class Settings extends Activity implements OnItemSelectedListener {
 				// editor.putString("refreshtime", Config.refreshtime);
 				editor.putString("alarmsoundtype", Config.alarmsoundtype);
 				editor.commit();
-				// System.out.println("refresh time" + Config.refreshtime);
-				System.out.println("alarm time" + Config.alarmsoundtype);
 
 			}
 		});
@@ -179,6 +179,9 @@ public class Settings extends Activity implements OnItemSelectedListener {
 			Intent myIntent2 = new Intent(Settings.this,
 					DashboardActivity.class);
 			Config.flag = "alreadyloggedin";
+			if (mPlayer != null && mPlayer.isPlaying()) {
+				mPlayer.stop();
+			}
 			myIntent2.putExtra("isalreadylogged", Config.flag);
 			Settings.this.startActivity(myIntent2);
 			overridePendingTransition(android.R.anim.slide_in_left,
@@ -196,46 +199,52 @@ public class Settings extends Activity implements OnItemSelectedListener {
 		if (mPlayer != null && mPlayer.isPlaying()) {
 			mPlayer.stop();
 		}
-		if (!onloadfalse.equalsIgnoreCase("nottoplay")) {
+		if (onloadfalse.equalsIgnoreCase("nottoplay")) {
+			if (mPlayer != null && mPlayer.isPlaying()) {
+				mPlayer.stop();
+			}
+		}
+
+		else {
+
 			if (arg2 == 0) {
-				onloadfalse="changed";
+				onloadfalse = "changed";
 				mPlayer = MediaPlayer.create(getApplicationContext(),
 						R.raw.type1);
 				mPlayer.start();
 			}
 			if (arg2 == 1) {
-				onloadfalse="changed";
+				onloadfalse = "changed";
 				mPlayer = MediaPlayer.create(getApplicationContext(),
 						R.raw.type2);
 				mPlayer.start();
 			}
 			if (arg2 == 2) {
-				onloadfalse="changed";
+				onloadfalse = "changed";
 				mPlayer = MediaPlayer.create(getApplicationContext(),
 						R.raw.type3);
 				mPlayer.start();
 			}
 			if (arg2 == 3) {
-				onloadfalse="changed";
+				onloadfalse = "changed";
 				mPlayer = MediaPlayer.create(getApplicationContext(),
 						R.raw.type4);
 				mPlayer.start();
 			}
 			if (arg2 == 4) {
-				onloadfalse="changed";
+				onloadfalse = "changed";
 				mPlayer = MediaPlayer.create(getApplicationContext(),
 						R.raw.alarmtone);
 				mPlayer.start();
 			}
-
 		}
-
+		onloadfalse = "changed";
 		System.out.println("selected postion::" + arg2);
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("item clicked two");
+		// System.out.println("item clicked two");
 	}
 }
