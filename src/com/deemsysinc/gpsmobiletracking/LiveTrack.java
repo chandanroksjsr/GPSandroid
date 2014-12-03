@@ -643,6 +643,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 			super.onPostExecute(file_url);
 			try {
 				sleepindex.clear();
+				// colorarray.clear();
 				sleepcount = 0;
 				ArrayList<LatLng> points = null;
 				PolylineOptions polyLineOptions = null;
@@ -674,89 +675,378 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					String snippetval = titlevalue + "\n" + "Address:"
 							+ vehiclehistory.get(k).get(TAG_address + k);
 
-					// marker = new
-					// MarkerOptions().position(pinLocation).snippet(
-					// snippetval);
-					if (vehiclehistory.get(k).get(TAG_locationfound + k)
-							.equals("no")) {
-						marker = googleMap
-								.addMarker(new MarkerOptions()
-										.position(pinLocation)
+					if (sizeminusone == k) {
 
-										.snippet(snippetval)
-										.icon(BitmapDescriptorFactory
-												.fromResource(R.drawable.notresponding)));
-						// marker.icon(BitmapDescriptorFactory
-						// .fromResource(R.drawable.notresponding));
-						// googleMap.addMarker(marker);
-					} else if (sizeminusone != k) {
-						if (marker.isVisible()) {
-							marker.remove();
+						if (vehiclehistory.get(k).get(TAG_locationfound + k)
+								.equals("no")
+								&& !(vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& !vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.notresponding)));
+
+						} else if (!vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& (vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& !vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.pink_pin)));
+
+						} else if (!vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& !(vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+
+							System.out.println("in checking status");
+
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.idlepoint)));
+							System.out
+									.println("sleep count value in if before ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if before::"
+											+ sleepindex);
+							sleepcount++;
+							sleepindex.add(k);
+							System.out
+									.println("sleep count value in if after ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if after::"
+											+ sleepindex);
+
 						}
-						marker = googleMap.addMarker(new MarkerOptions()
-								.position(pinLocation)
 
-								.snippet(snippetval)
-								.icon(BitmapDescriptorFactory
-										.fromResource(R.drawable.red_pin)));
-						// marker.icon(BitmapDescriptorFactory
-						// .fromResource(R.drawable.red_pin));
-						//
-						// googleMap.addMarker(marker);
+						else if (vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& (vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
 
-					}
+							System.out.println("in checking status");
 
-					else if (sizeminusone == k) {
-						if (marker.isVisible()) {
-							marker.remove();
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.idlepoint)));
+							System.out
+									.println("sleep count value in if before ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if before::"
+											+ sleepindex);
+							sleepcount++;
+							sleepindex.add(k);
+							System.out
+									.println("sleep count value in if after ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if after::"
+											+ sleepindex);
+
+						} else if (vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& (vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& !vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.pink_pin)));
+
+						} else if (vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& !(vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+							System.out.println("in checking status");
+
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.idlepoint)));
+							System.out
+									.println("sleep count value in if before ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if before::"
+											+ sleepindex);
+							sleepcount++;
+							sleepindex.add(k);
+							System.out
+									.println("sleep count value in if after ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if after::"
+											+ sleepindex);
+
 						}
-						marker = googleMap.addMarker(new MarkerOptions()
-								.position(pinLocation)
 
-								.snippet(snippetval)
-								.icon(BitmapDescriptorFactory
-										.fromResource(R.drawable.green_pin)));
-						// marker.icon(BitmapDescriptorFactory
-						// .fromResource(R.drawable.green_pin));
-						// googleMap.addMarker(marker);
+						else {
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
 
-					}
-
-					else if (vehiclehistory.get(k).get(TAG_Exceed_Speed + k)
-							.equals("1")) {
-						marker = googleMap.addMarker(new MarkerOptions()
-								.position(pinLocation)
-
-								.snippet(snippetval)
-								.icon(BitmapDescriptorFactory
-										.fromResource(R.drawable.pink_pin)));
-						// marker.icon(BitmapDescriptorFactory
-						// .fromResource(R.drawable.pink_pin));
-						// googleMap.addMarker(marker);
-					}
-
-					if (vehiclehistory.get(k).get(TAG_Vehicle_Status + k)
-							.equals("3")) {
-						if (marker.isVisible()) {
-							marker.remove();
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.green_pin)));
 						}
-						System.out.println("in checking status");
-						sleepcount++;
-						sleepindex.add(k);
-						marker = googleMap.addMarker(new MarkerOptions()
-								.position(pinLocation)
-
-								.snippet(snippetval)
-								.icon(BitmapDescriptorFactory
-										.fromResource(R.drawable.alarmicon)));
-						// marker = new MarkerOptions().position(pinLocation)
-						// .snippet(snippetval);
-						//
-						// marker.icon(BitmapDescriptorFactory
-						// .fromResource(R.drawable.alarmicon));
-						// googleMap.addMarker(marker);
 
 					}
+
+					else {
+						if (vehiclehistory.get(k).get(TAG_locationfound + k)
+								.equals("no")
+								&& !(vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& !vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.notresponding)));
+
+						} else if (!vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& (vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& !vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.pink_pin)));
+
+						} else if (!vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& !(vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+
+							System.out.println("in checking status");
+
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.idlepoint)));
+							System.out
+									.println("sleep count value in if before ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if before::"
+											+ sleepindex);
+							sleepcount++;
+							sleepindex.add(k);
+							System.out
+									.println("sleep count value in if after ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if after::"
+											+ sleepindex);
+
+						}
+
+						else if (vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& (vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+
+							System.out.println("in checking status");
+
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.idlepoint)));
+							System.out
+									.println("sleep count value in if before ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if before::"
+											+ sleepindex);
+							sleepcount++;
+							sleepindex.add(k);
+							System.out
+									.println("sleep count value in if after ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if after::"
+											+ sleepindex);
+
+						} else if (vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& (vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& !vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.pink_pin)));
+
+						} else if (vehiclehistory.get(k)
+								.get(TAG_locationfound + k).equals("no")
+								&& !(vehiclehistory.get(k).get(
+										TAG_Exceed_Speed + k).equals("1"))
+								&& vehiclehistory.get(k)
+										.get(TAG_Vehicle_Status + k)
+										.equals("3")) {
+							System.out.println("in checking status");
+
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.idlepoint)));
+							System.out
+									.println("sleep count value in if before ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if before::"
+											+ sleepindex);
+							sleepcount++;
+							sleepindex.add(k);
+							System.out
+									.println("sleep count value in if after ::"
+											+ sleepcount);
+							System.out
+									.println("sleep count value in if after::"
+											+ sleepindex);
+
+						}
+
+						else {
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.red_pin)));
+						}
+
+					}
+					// if (vehiclehistory.get(k).get(TAG_locationfound + k)
+					// .equals("no")) {
+					// // if (marker.isVisible()) {
+					// // marker.remove();
+					// // }
+					// marker = googleMap
+					// .addMarker(new MarkerOptions()
+					// .position(pinLocation)
+					//
+					// .snippet(snippetval)
+					// .icon(BitmapDescriptorFactory
+					// .fromResource(R.drawable.notresponding)));
+					//
+					// }
+					// if (vehiclehistory.get(k).get(TAG_Exceed_Speed + k)
+					// .equals("1")) {
+					// // if (marker.isVisible()) {
+					// // marker.remove();
+					// // }
+					// marker = googleMap.addMarker(new MarkerOptions()
+					// .position(pinLocation)
+					//
+					// .snippet(snippetval)
+					// .icon(BitmapDescriptorFactory
+					// .fromResource(R.drawable.pink_pin)));
+					// // marker.icon(BitmapDescriptorFactory
+					// // .fromResource(R.drawable.pink_pin));
+					// // googleMap.addMarker(marker);
+					// }
+					// if (vehiclehistory.get(k).get(TAG_Vehicle_Status + k)
+					// .equals("3")) {
+					// // if (marker.isVisible()) {
+					// // marker.remove();
+					// // }
+					// System.out.println("in checking status");
+					//
+					// marker = googleMap.addMarker(new MarkerOptions()
+					// .position(pinLocation)
+					//
+					// .snippet(snippetval)
+					// .icon(BitmapDescriptorFactory
+					// .fromResource(R.drawable.idlepoint)));
+					// System.out.println("sleep count value in if before ::"
+					// + sleepcount);
+					// System.out.println("sleep count value in if before::"
+					// + sleepindex);
+					// sleepcount++;
+					// sleepindex.add(k);
+					// System.out.println("sleep count value in if after ::"
+					// + sleepcount);
+					// System.out.println("sleep count value in if after::"
+					// + sleepindex);
+					//
+					// }
 					CameraPosition cameraPosition = new CameraPosition.Builder()
 							.target(pinLocation).zoom(18).build();
 
@@ -765,19 +1055,43 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 				}
 
 				System.out.println("sleep count value::" + sleepcount);
+				System.out.println("previous sleep count value::"
+						+ previoussleepcount);
 				System.out.println("sleep index array value::"
 						+ sleepindex.size());
-				if (sleepcount - previoussleepcount == 1) {
+				System.out.println("sleep index array value::" + sleepindex);
+
+				if (sleepcount > previoussleepcount) {
+					System.out.println("in random generation condition.");
 					Random rnd = new Random();
 					int color = Color.argb(255, rnd.nextInt(256),
 							rnd.nextInt(256), rnd.nextInt(256));
+					System.out.println("added color::" + color);
 					colorarray.add(color);
-
 				}
+				// if ((sleepcount - previoussleepcount) == 1) {
+				// System.out.println("in random generation condition.");
+				// Random rnd = new Random();
+				// int color = Color.argb(255, rnd.nextInt(256),
+				// rnd.nextInt(256), rnd.nextInt(256));
+				// System.out.println("added color::" + color);
+				// colorarray.add(color);
+				//
+				// } else if (sleepcount > 0) {
+				// if ((sleepcount - previoussleepcount) == 0) {
+				// // Random rnd = new Random();
+				// // int color = Color.argb(255, rnd.nextInt(256),
+				// // rnd.nextInt(256), rnd.nextInt(256));
+				// int color = -9013752;
+				// System.out.println("added color::" + color);
+				// colorarray.add(color);
+				// }
+				// }
 				if (sleepindex.size() == 1) {
 
 					for (int x = 0; x < sleepindex.get(0); x++) {
-						System.out.println("sleeping index size::"+sleepindex.get(0));
+						System.out.println("sleeping index value at 0::"
+								+ sleepindex.get(0));
 						googleMap
 								.addPolyline((new PolylineOptions())
 										.add(new LatLng(
@@ -802,10 +1116,19 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 										.geodesic(true));
 					}
 
-					for (int a = 0; a < vehiclehistory.size(); a++) {
+					for (int a = 0; a < vehiclehistory.size() - 1; a++) {
+						System.out.println("new value:" + sleepindex.get(a));
 						for (int b = sleepindex.get(a); b < vehiclehistory
-								.size(); b++) {
-							System.out.println("sleeping index size if ::"+sleepindex.get(b));
+								.size() - 1; b++) {
+							System.out.println("exact b value::" + b);
+							System.out.println("exact history size::"
+									+ vehiclehistory.size());
+							// System.out.println("sleeping index size if ::"
+							// + sleepindex.get(b));
+							// System.out.println("color array value at a::"
+							// + colorarray.get(a));
+							// System.out.println("color array value::"
+							// + colorarray);
 							googleMap
 									.addPolyline((new PolylineOptions())
 											.add(new LatLng(
@@ -826,11 +1149,11 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 																	.get(b + 1)
 																	.get(TAG_Longitude
 																			+ (b + 1)))))
-											.width(5).color(colorarray.get(b))
-											.geodesic(true));
-							System.out
-									.println("colorarray value if sleep count is 1::"
-											+ colorarray.get(b));
+											.width(5).color(colorarray.get(a)));
+
+							// System.out
+							// .println("colorarray value if sleep count is 1::"
+							// + colorarray.get(a));
 						}
 
 					}
@@ -858,10 +1181,18 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 																		+ (x + 1)))))
 										.width(5).color(Color.BLACK)
 										.geodesic(true));
+						// System.out
+						// .println("colorarray value in sleep index not equal to 1::"
+						// + colorarray.get(x));
 					}
 					for (int a = 0; a < sleepindex.size() - 1; a++) {
+						System.out.println("new value greater:"
+								+ sleepindex.get(a));
 						for (int b = sleepindex.get(a); b < sleepindex
 								.get(a + 1); b++) {
+							System.out.println("exact b value::" + b);
+							System.out.println("exact history size::"
+									+ vehiclehistory.size());
 							googleMap
 									.addPolyline((new PolylineOptions())
 											.add(new LatLng(
@@ -882,17 +1213,59 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 																	.get(b + 1)
 																	.get(TAG_Longitude
 																			+ (b + 1)))))
-											.width(5).color(colorarray.get(b))
+											.width(5).color(colorarray.get(a))
 											.geodesic(true));
-							System.out
-									.println("colorarray value in sleep index not equal to 1::"
-											+ colorarray.get(b));
+							// System.out
+							// .println("colorarray value in sleep index not equal to 1::"
+							// + colorarray.get(b));
+						}
+
+					}
+					for (int a = 0; a < vehiclehistory.size() - 1; a++) {
+						System.out.println("new value:" + sleepindex.get(a));
+						for (int b = sleepindex.get(a); b < vehiclehistory
+								.size() - 1; b++) {
+							System.out.println("exact b value::" + b);
+							System.out.println("exact history size::"
+									+ vehiclehistory.size());
+							// System.out.println("sleeping index size if ::"
+							// + sleepindex.get(b));
+							// System.out.println("color array value at a::"
+							// + colorarray.get(a));
+							// System.out.println("color array value::"
+							// + colorarray);
+							googleMap
+									.addPolyline((new PolylineOptions())
+											.add(new LatLng(
+													Double.parseDouble(vehiclehistory
+															.get(b)
+															.get(TAG_Latitude
+																	+ b)),
+													Double.parseDouble(vehiclehistory
+															.get(b)
+															.get(TAG_Longitude
+																	+ b))),
+													new LatLng(
+															Double.parseDouble(vehiclehistory
+																	.get(b + 1)
+																	.get(TAG_Latitude
+																			+ (b + 1))),
+															Double.parseDouble(vehiclehistory
+																	.get(b + 1)
+																	.get(TAG_Longitude
+																			+ (b + 1)))))
+											.width(5).color(colorarray.get(a)));
+
+							// System.out
+							// .println("colorarray value if sleep count is 1::"
+							// + colorarray.get(a));
 						}
 
 					}
 				}
 
 				else {
+					System.out.println("no sleep modes");
 					polyLineOptions.addAll(points);
 					polyLineOptions.width(2);
 					polyLineOptions.color(Color.BLACK);
