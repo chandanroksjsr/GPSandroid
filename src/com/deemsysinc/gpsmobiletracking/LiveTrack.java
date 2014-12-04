@@ -279,6 +279,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 									LiveTrack.class);
 							LiveTrack.this.startActivity(myIntent);
 						} else if (itemPosition == 1) {
+							sleepindex.clear();
+							colorarray.clear();
+							sleepcount = 0;
 							LiveTrack.timer.cancel();
 							vehiclehistory.clear();
 							vehiclehistory1.clear();
@@ -290,6 +293,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
 						} else if (itemPosition == 2) {
+							sleepindex.clear();
+							colorarray.clear();
+							sleepcount = 0;
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							VehichleArrayAdapter.data.clear();
@@ -303,6 +309,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
 						} else if (itemPosition == 3) {
+							sleepindex.clear();
+							colorarray.clear();
+							sleepcount = 0;
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							VehichleArrayAdapter.data.clear();
@@ -316,6 +325,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							overridePendingTransition(R.anim.slide_in,
 									R.anim.slide_out);
 						} else if (itemPosition == 4) {
+							sleepindex.clear();
+							colorarray.clear();
+							sleepcount = 0;
 							LiveTrack.timer.cancel();
 							LiveTrack.doAsynchronousTask.cancel();
 							VehichleArrayAdapter.data.clear();
@@ -367,6 +379,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 									LiveTrack.class);
 							LiveTrack.this.startActivity(myIntent);
 						} else if (itemPosition == 1) {
+							sleepindex.clear();
+							colorarray.clear();
+							sleepcount = 0;
 							LiveTrack.timer.cancel();
 							vehiclehistory.clear();
 							vehiclehistory1.clear();
@@ -380,6 +395,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 						} else if (itemPosition == 2) {
 							LiveTrack.timer.cancel();
 							vehiclehistory.clear();
+							sleepindex.clear();
+							colorarray.clear();
+							sleepcount = 0;
 							vehiclehistory1.clear();
 							LiveTrack.doAsynchronousTask.cancel();// Activity#3
 																	// Selected
@@ -390,6 +408,9 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 									R.anim.slide_out);
 						} else if (itemPosition == 3) { // Activity#3 Selected
 							LiveTrack.timer.cancel();
+							sleepindex.clear();
+							colorarray.clear();
+							sleepcount = 0;
 							LiveTrack.doAsynchronousTask.cancel();
 							VehichleArrayAdapter.data.clear();
 							DashboardActivity.vehicleall.clear();
@@ -675,8 +696,41 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					String snippetval = titlevalue + "\n" + "Address:"
 							+ vehiclehistory.get(k).get(TAG_address + k);
 
+					if (vehiclehistory.get(k).get(TAG_Vehicle_Status + k)
+							.equals("3")) {
+						if (marker.getPosition().equals(pinLocation)) {
+							 System.out.println("maker postion::"+marker.getPosition());
+							 System.out.println("maker latest postion::"+pinLocation);
+							marker.remove();
+						}
+						System.out.println("in status one");
+
+						marker = googleMap.addMarker(new MarkerOptions()
+								.position(pinLocation)
+
+								.snippet(snippetval)
+								.icon(BitmapDescriptorFactory
+										.fromResource(R.drawable.idlepoint)));
+						System.out.println("sleep count value in if before ::"
+								+ sleepcount);
+
+					//	sleepcount++;
+						//sleepindex.add(k);
+						System.out.println("sleep count value in if after ::"
+								+ sleepcount);
+
+					}
 					if (sizeminusone == k) {
 
+						System.out
+								.println("location found variable value in sizeminus one= k::"
+										+ vehiclehistory.get(k).get(
+												TAG_locationfound + k));
+						if (marker.getPosition().equals(pinLocation)) {
+							// System.out.println("maker postion::"+marker.getPosition());
+							// System.out.println("maker latest postion::"+pinLocation);
+							marker.remove();
+						}
 						if (vehiclehistory.get(k).get(TAG_locationfound + k)
 								.equals("no")
 								&& !(vehiclehistory.get(k).get(
@@ -684,6 +738,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								&& !vehiclehistory.get(k)
 										.get(TAG_Vehicle_Status + k)
 										.equals("3")) {
+							System.out.println("first if");
 
 							marker = googleMap
 									.addMarker(new MarkerOptions()
@@ -716,8 +771,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								&& vehiclehistory.get(k)
 										.get(TAG_Vehicle_Status + k)
 										.equals("3")) {
-
-							System.out.println("in checking status");
+							if (marker.getPosition().equals(pinLocation)) {
+								// System.out.println("maker postion::"+marker.getPosition());
+								// System.out.println("maker latest postion::"+pinLocation);
+								marker.remove();
+							}
+							System.out.println("in checking status one");
 
 							marker = googleMap
 									.addMarker(new MarkerOptions()
@@ -729,17 +788,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 							System.out
 									.println("sleep count value in if before ::"
 											+ sleepcount);
-							System.out
-									.println("sleep count value in if before::"
-											+ sleepindex);
+
 							sleepcount++;
 							sleepindex.add(k);
 							System.out
 									.println("sleep count value in if after ::"
 											+ sleepcount);
-							System.out
-									.println("sleep count value in if after::"
-											+ sleepindex);
 
 						}
 
@@ -750,8 +804,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								&& vehiclehistory.get(k)
 										.get(TAG_Vehicle_Status + k)
 										.equals("3")) {
-
-							System.out.println("in checking status");
+							if (marker.getPosition().equals(pinLocation)) {
+								// System.out.println("maker postion::"+marker.getPosition());
+								// System.out.println("maker latest postion::"+pinLocation);
+								marker.remove();
+							}
+							System.out.println("in checking status two");
 
 							marker = googleMap
 									.addMarker(new MarkerOptions()
@@ -797,8 +855,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								&& vehiclehistory.get(k)
 										.get(TAG_Vehicle_Status + k)
 										.equals("3")) {
-							System.out.println("in checking status");
-
+							System.out.println("in checking status three");
+							if (marker.getPosition().equals(pinLocation)) {
+								// System.out.println("maker postion::"+marker.getPosition());
+								// System.out.println("maker latest postion::"+pinLocation);
+								marker.remove();
+							}
 							marker = googleMap
 									.addMarker(new MarkerOptions()
 											.position(pinLocation)
@@ -824,18 +886,66 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 						}
 
 						else {
-							marker = googleMap
-									.addMarker(new MarkerOptions()
-											.position(pinLocation)
+							System.out.println("in last else");
+							if (marker.getPosition().equals(pinLocation)) {
 
-											.snippet(snippetval)
-											.icon(BitmapDescriptorFactory
-													.fromResource(R.drawable.green_pin)));
+								marker.remove();
+							}
+							if (vehiclehistory.get(k)
+									.get(TAG_locationfound + k)
+									.equalsIgnoreCase("no")) {
+								System.out.println("in last else");
+								System.out
+										.println("in last else for not respond");
+								marker = googleMap
+										.addMarker(new MarkerOptions()
+												.position(pinLocation)
+
+												.snippet(snippetval)
+												.icon(BitmapDescriptorFactory
+														.fromResource(R.drawable.notresponding)));
+							} else {
+								marker = googleMap
+										.addMarker(new MarkerOptions()
+												.position(pinLocation)
+
+												.snippet(snippetval)
+												.icon(BitmapDescriptorFactory
+														.fromResource(R.drawable.green_pin)));
+							}
+						}
+						if (vehiclehistory.get(k).get(TAG_Vehicle_Status + k)
+								.equals("3")) {
+							if (marker.getPosition().equals(pinLocation)) {
+								 System.out.println("maker postion::"+marker.getPosition());
+								 System.out.println("maker latest postion::"+pinLocation);
+								marker.remove();
+							}
+							System.out.println("in status one");
+
+							marker = googleMap.addMarker(new MarkerOptions()
+									.position(pinLocation)
+
+									.snippet(snippetval)
+									.icon(BitmapDescriptorFactory
+											.fromResource(R.drawable.idlepoint)));
+							System.out.println("sleep count value in if before ::"
+									+ sleepcount);
+
+						//	sleepcount++;
+							//sleepindex.add(k);
+							System.out.println("sleep count value in if after ::"
+									+ sleepcount);
+
 						}
 
 					}
 
 					else {
+						System.out
+								.println("location found variable value in sizeminus k::"
+										+ vehiclehistory.get(k).get(
+												TAG_locationfound + k));
 						if (vehiclehistory.get(k).get(TAG_locationfound + k)
 								.equals("no")
 								&& !(vehiclehistory.get(k).get(
@@ -876,7 +986,7 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 										.get(TAG_Vehicle_Status + k)
 										.equals("3")) {
 
-							System.out.println("in checking status");
+							System.out.println("in checking status else one");
 
 							marker = googleMap
 									.addMarker(new MarkerOptions()
@@ -885,6 +995,11 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 											.snippet(snippetval)
 											.icon(BitmapDescriptorFactory
 													.fromResource(R.drawable.idlepoint)));
+							if (marker.getPosition().equals(pinLocation)) {
+								// System.out.println("maker postion::"+marker.getPosition());
+								// System.out.println("maker latest postion::"+pinLocation);
+								marker.remove();
+							}
 							System.out
 									.println("sleep count value in if before ::"
 											+ sleepcount);
@@ -909,8 +1024,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								&& vehiclehistory.get(k)
 										.get(TAG_Vehicle_Status + k)
 										.equals("3")) {
-
-							System.out.println("in checking status");
+							if (marker.getPosition().equals(pinLocation)) {
+								// System.out.println("maker postion::"+marker.getPosition());
+								// System.out.println("maker latest postion::"+pinLocation);
+								marker.remove();
+							}
+							System.out.println("in checking status else two");
 
 							marker = googleMap
 									.addMarker(new MarkerOptions()
@@ -956,8 +1075,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 								&& vehiclehistory.get(k)
 										.get(TAG_Vehicle_Status + k)
 										.equals("3")) {
-							System.out.println("in checking status");
-
+							System.out.println("in checking status else three");
+							if (marker.getPosition().equals(pinLocation)) {
+								// System.out.println("maker postion::"+marker.getPosition());
+								// System.out.println("maker latest postion::"+pinLocation);
+								marker.remove();
+							}
 							marker = googleMap
 									.addMarker(new MarkerOptions()
 											.position(pinLocation)
@@ -983,70 +1106,36 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 						}
 
 						else {
-							marker = googleMap
-									.addMarker(new MarkerOptions()
-											.position(pinLocation)
+							System.out.println("in last last else");
+							if (marker.getPosition().equals(pinLocation)) {
 
-											.snippet(snippetval)
-											.icon(BitmapDescriptorFactory
-													.fromResource(R.drawable.red_pin)));
+								marker.remove();
+							}
+							if (vehiclehistory.get(k)
+									.get(TAG_locationfound + k)
+									.equalsIgnoreCase("no")) {
+								System.out.println("in last last else");
+								System.out
+										.println("in last else last for not respond");
+								marker = googleMap
+										.addMarker(new MarkerOptions()
+												.position(pinLocation)
+
+												.snippet(snippetval)
+												.icon(BitmapDescriptorFactory
+														.fromResource(R.drawable.notresponding)));
+							} else {
+								marker = googleMap
+										.addMarker(new MarkerOptions()
+												.position(pinLocation)
+
+												.snippet(snippetval)
+												.icon(BitmapDescriptorFactory
+														.fromResource(R.drawable.red_pin)));
+							}
 						}
-
 					}
-					// if (vehiclehistory.get(k).get(TAG_locationfound + k)
-					// .equals("no")) {
-					// // if (marker.isVisible()) {
-					// // marker.remove();
-					// // }
-					// marker = googleMap
-					// .addMarker(new MarkerOptions()
-					// .position(pinLocation)
-					//
-					// .snippet(snippetval)
-					// .icon(BitmapDescriptorFactory
-					// .fromResource(R.drawable.notresponding)));
-					//
-					// }
-					// if (vehiclehistory.get(k).get(TAG_Exceed_Speed + k)
-					// .equals("1")) {
-					// // if (marker.isVisible()) {
-					// // marker.remove();
-					// // }
-					// marker = googleMap.addMarker(new MarkerOptions()
-					// .position(pinLocation)
-					//
-					// .snippet(snippetval)
-					// .icon(BitmapDescriptorFactory
-					// .fromResource(R.drawable.pink_pin)));
-					// // marker.icon(BitmapDescriptorFactory
-					// // .fromResource(R.drawable.pink_pin));
-					// // googleMap.addMarker(marker);
-					// }
-					// if (vehiclehistory.get(k).get(TAG_Vehicle_Status + k)
-					// .equals("3")) {
-					// // if (marker.isVisible()) {
-					// // marker.remove();
-					// // }
-					// System.out.println("in checking status");
-					//
-					// marker = googleMap.addMarker(new MarkerOptions()
-					// .position(pinLocation)
-					//
-					// .snippet(snippetval)
-					// .icon(BitmapDescriptorFactory
-					// .fromResource(R.drawable.idlepoint)));
-					// System.out.println("sleep count value in if before ::"
-					// + sleepcount);
-					// System.out.println("sleep count value in if before::"
-					// + sleepindex);
-					// sleepcount++;
-					// sleepindex.add(k);
-					// System.out.println("sleep count value in if after ::"
-					// + sleepcount);
-					// System.out.println("sleep count value in if after::"
-					// + sleepindex);
-					//
-					// }
+
 					CameraPosition cameraPosition = new CameraPosition.Builder()
 							.target(pinLocation).zoom(18).build();
 
@@ -1069,29 +1158,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					System.out.println("added color::" + color);
 					colorarray.add(color);
 				}
-				// if ((sleepcount - previoussleepcount) == 1) {
-				// System.out.println("in random generation condition.");
-				// Random rnd = new Random();
-				// int color = Color.argb(255, rnd.nextInt(256),
-				// rnd.nextInt(256), rnd.nextInt(256));
-				// System.out.println("added color::" + color);
-				// colorarray.add(color);
-				//
-				// } else if (sleepcount > 0) {
-				// if ((sleepcount - previoussleepcount) == 0) {
-				// // Random rnd = new Random();
-				// // int color = Color.argb(255, rnd.nextInt(256),
-				// // rnd.nextInt(256), rnd.nextInt(256));
-				// int color = -9013752;
-				// System.out.println("added color::" + color);
-				// colorarray.add(color);
-				// }
-				// }
+
 				if (sleepindex.size() == 1) {
 
 					for (int x = 0; x < sleepindex.get(0); x++) {
-						System.out.println("sleeping index value at 0::"
-								+ sleepindex.get(0));
+						// System.out.println("sleeping index value at 0::"
+						// + sleepindex.get(0));
 						googleMap
 								.addPolyline((new PolylineOptions())
 										.add(new LatLng(
@@ -1117,12 +1189,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 					}
 
 					for (int a = 0; a < vehiclehistory.size() - 1; a++) {
-						System.out.println("new value:" + sleepindex.get(a));
+						// System.out.println("new value:" + sleepindex.get(a));
 						for (int b = sleepindex.get(a); b < vehiclehistory
 								.size() - 1; b++) {
-							System.out.println("exact b value::" + b);
-							System.out.println("exact history size::"
-									+ vehiclehistory.size());
+							// System.out.println("exact b value::" + b);
+							// System.out.println("exact history size::"
+							// + vehiclehistory.size());
 							// System.out.println("sleeping index size if ::"
 							// + sleepindex.get(b));
 							// System.out.println("color array value at a::"
@@ -1186,8 +1258,8 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 						// + colorarray.get(x));
 					}
 					for (int a = 0; a < sleepindex.size() - 1; a++) {
-						System.out.println("new value greater:"
-								+ sleepindex.get(a));
+						// System.out.println("new value greater:"
+						// + sleepindex.get(a));
 						for (int b = sleepindex.get(a); b < sleepindex
 								.get(a + 1); b++) {
 							System.out.println("exact b value::" + b);
@@ -1222,12 +1294,12 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 
 					}
 					for (int a = 0; a < vehiclehistory.size() - 1; a++) {
-						System.out.println("new value:" + sleepindex.get(a));
+						// System.out.println("new value:" + sleepindex.get(a));
 						for (int b = sleepindex.get(a); b < vehiclehistory
 								.size() - 1; b++) {
-							System.out.println("exact b value::" + b);
-							System.out.println("exact history size::"
-									+ vehiclehistory.size());
+							// System.out.println("exact b value::" + b);
+							// System.out.println("exact history size::"
+							// + vehiclehistory.size());
 							// System.out.println("sleeping index size if ::"
 							// + sleepindex.get(b));
 							// System.out.println("color array value at a::"

@@ -576,7 +576,7 @@ public class TheftAlarm extends Activity {
 			alertDialog.setMessage("Theft alarm turned off.");
 
 			// Setting Icon to Dialog
-			alertDialog.setIcon(R.drawable.delete);
+			alertDialog.setIcon(R.drawable.tick);
 
 			// Setting OK Button
 			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
@@ -701,7 +701,7 @@ public class TheftAlarm extends Activity {
 					alertDialog.setMessage("Theft alarm turned on.");
 
 					// Setting Icon to Dialog
-					alertDialog.setIcon(R.drawable.delete);
+					alertDialog.setIcon(R.drawable.tick);
 
 					// Setting OK Button
 					alertDialog.setButton("OK",
