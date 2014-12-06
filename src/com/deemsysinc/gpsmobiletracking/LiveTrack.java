@@ -1077,7 +1077,10 @@ public class LiveTrack extends Activity implements OnMapLongClickListener {
 //												+ sleepindex);
 //
 //							}
-//						
+//			
+						
+						
+					//	use bustrackingdb;update tbl_vechicle_tracking_history set latitude='12.906343333333' and longitude='80.204630000000' where bus_tracking_timestamp='2014-12-06 15:29:21';
 							else if (vehiclehistory.get(k)
 									.get(TAG_locationfound + k).equals("no")
 									&& (vehiclehistory.get(k).get(

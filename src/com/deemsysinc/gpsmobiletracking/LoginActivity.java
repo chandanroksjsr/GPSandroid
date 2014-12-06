@@ -266,6 +266,7 @@ public class LoginActivity extends Activity {
 					// System.out.println("username value:::" + username);
 					// System.out.println("password value::" + password);
 					// System.out.println("role value" + role);
+					Config.alarmsoundtype = "Red Alert";
 
 					Editor editor = sharedpreferences.edit();
 					editor.putString("username", Config.username);
@@ -275,6 +276,7 @@ public class LoginActivity extends Activity {
 					editor.putString("enabled", Config.enabled);
 					editor.putString("address", Config.address);
 					editor.putString("telephone", Config.telephone);
+					editor.putString("alarmsoundtype", Config.alarmsoundtype);
 
 					editor.commit();
 					Config.flag = "notloggedin";

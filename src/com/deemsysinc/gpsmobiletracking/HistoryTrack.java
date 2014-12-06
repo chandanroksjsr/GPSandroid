@@ -98,6 +98,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 	JsonParser jsonParser = new JsonParser();
 	JSONObject jArray;
 	JSONArray user = null;
+	Marker marker;
 	private GoogleMap googleMap;
 	TextView welcomeusername, welcome, distancetravelled;
 	Button signout, hmey, close;
@@ -208,7 +209,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 						googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 						// tgbutton.setBackgroundResource(R.drawable.earth);
 
-						Marker marker = googleMap.addMarker(new MarkerOptions()
+						marker = googleMap.addMarker(new MarkerOptions()
 								.position(TutorialsPoint).title(""));
 						CameraPosition cameraPosition = new CameraPosition.Builder()
 								.target(TutorialsPoint).zoom(4).build();
@@ -229,7 +230,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 						}
 						googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 						// tgbutton.setBackgroundResource(R.drawable.aerial);
-						Marker marker = googleMap.addMarker(new MarkerOptions()
+						marker = googleMap.addMarker(new MarkerOptions()
 								.position(TutorialsPoint).title(""));
 						CameraPosition cameraPosition = new CameraPosition.Builder()
 								.target(TutorialsPoint).zoom(4).build();
@@ -499,6 +500,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 									linear.setVisibility(View.GONE);
 									linear.startAnimation(animSlideUp);
 									if (isInternetPresent) {
+										vehiclehistory1.clear();
+
 										new VehiclePath().execute();
 									} else {
 										AlertDialog alertDialog = new AlertDialog.Builder(
@@ -529,6 +532,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 									linear.setVisibility(View.GONE);
 									linear.startAnimation(animSlideUp);
 									if (isInternetPresent) {
+										vehiclehistory1.clear();
 										new VehiclePath().execute();
 									} else {
 										AlertDialog alertDialog = new AlertDialog.Builder(
@@ -568,6 +572,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 							linear.setVisibility(View.GONE);
 							linear.startAnimation(animSlideUp);
 							if (isInternetPresent) {
+								vehiclehistory1.clear();
 								new VehiclePath().execute();
 							} else {
 								AlertDialog alertDialog = new AlertDialog.Builder(
@@ -601,7 +606,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 						linear.setVisibility(View.GONE);
 						linear.startAnimation(animSlideUp);
 						if (isInternetPresent) {
-
+							vehiclehistory1.clear();
 							new VehiclePath().execute();
 						} else {
 							AlertDialog alertDialog = new AlertDialog.Builder(
@@ -632,7 +637,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 						linear.setVisibility(View.GONE);
 						linear.startAnimation(animSlideUp);
 						if (isInternetPresent) {
-
+							vehiclehistory1.clear();
 							new VehiclePath().execute();
 						} else {
 							AlertDialog alertDialog = new AlertDialog.Builder(
@@ -697,7 +702,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 						.findFragmentById(R.id.map)).getMap();
 			}
 			googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-			Marker marker = googleMap.addMarker(new MarkerOptions().position(
+			marker = googleMap.addMarker(new MarkerOptions().position(
 					TutorialsPoint).title(""));
 			CameraPosition cameraPosition = new CameraPosition.Builder()
 					.target(TutorialsPoint).zoom(4).build();
@@ -785,7 +790,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 			// checkdate = date1.toString();
 			datebutton.setText(date1.toString());
 			System.out.println("check date value::" + date1.toString());
-			
+
 		}
 
 	};
@@ -900,7 +905,8 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 
 				} else {
 
-					// System.out.println("vehicle history list size"+vehiclehistory1.size());
+					System.out.println("size of list::"
+							+ vehiclehistory1.size());
 					for (int k = 0; k < vehiclehistory1.size(); k++) {
 
 						LatLng pinLocation = new LatLng(
@@ -909,7 +915,6 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 								Double.parseDouble(vehiclehistory1.get(k).get(
 										TAG_Longitude + k)));
 
-						MarkerOptions marker;
 						points.add(pinLocation);
 						String titlevalue = "Speed:"
 								+ vehiclehistory1.get(k).get(TAG_Speed + k)
@@ -921,33 +926,85 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 								+ vehiclehistory1.get(k).get(TAG_address + k);
 
 						if (k == 0 || k == vehiclehistory1.size() - 1) {
-							marker = new MarkerOptions().position(pinLocation)
-									.snippet(snippetval);
 
-							marker.icon(BitmapDescriptorFactory
-									.fromResource(R.drawable.startpoint));
-							googleMap.addMarker(marker);
-						} else if (vehiclehistory1.get(k)
+							System.out.println("in last point");
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
+
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.startpoint)));
+						}
+
+						else if (vehiclehistory1.get(k)
 								.get(TAG_Exceed_Speed + k).equals("1")) {
-							marker = new MarkerOptions().position(pinLocation)
-									.snippet(snippetval);
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
 
-							marker.icon(BitmapDescriptorFactory
-									.fromResource(R.drawable.pink_pin));
-							googleMap.addMarker(marker);
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.pink_pin)));
+
 						}
 
 						else {
-							marker = new MarkerOptions().position(pinLocation)
-									.snippet(snippetval);
-							marker.icon(BitmapDescriptorFactory
-									.fromResource(R.drawable.red_pin));
-							googleMap.addMarker(marker);
+							if (k == vehiclehistory1.size() - 1) {
+								if (marker.getPosition().equals(pinLocation)) {
+
+									marker.remove();
+									marker = googleMap
+											.addMarker(new MarkerOptions()
+													.position(pinLocation)
+
+													.snippet(snippetval)
+													.icon(BitmapDescriptorFactory
+															.fromResource(R.drawable.startpoint)));
+
+								}
+							} else {
+								LatLng pinLocation1 = new LatLng(
+										Double.parseDouble(vehiclehistory1.get(
+												k).get(TAG_Latitude + k)),
+										Double.parseDouble(vehiclehistory1.get(
+												k).get(TAG_Longitude + k)));
+								LatLng pinLocation2 = new LatLng(
+										Double.parseDouble(vehiclehistory1.get(
+												vehiclehistory1.size() - 1)
+												.get(TAG_Latitude
+														+ (vehiclehistory1
+																.size() - 1))),
+										Double.parseDouble(vehiclehistory1.get(
+												vehiclehistory1.size() - 1)
+												.get(TAG_Longitude
+														+ (vehiclehistory1
+																.size() - 1))));
+
+//								System.out.println("k val::" + k);
+//								System.out.println("in red");
+								if (!pinLocation1.equals(pinLocation2)) {
+									marker = googleMap
+											.addMarker(new MarkerOptions()
+													.position(pinLocation)
+
+													.snippet(snippetval)
+													.icon(BitmapDescriptorFactory
+															.fromResource(R.drawable.red_pin)));
+								}
+							}
 
 						}
+
 						int sizeminusone = vehiclehistory1.size() - 1;
 						if (sizeminusone == k) {
+							marker = googleMap
+									.addMarker(new MarkerOptions()
+											.position(pinLocation)
 
+											.snippet(snippetval)
+											.icon(BitmapDescriptorFactory
+													.fromResource(R.drawable.startpoint)));
 							CameraPosition cameraPosition = new CameraPosition.Builder()
 									.target(pinLocation).zoom(12).build();
 							googleMap.animateCamera(CameraUpdateFactory
@@ -963,28 +1020,6 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 
 				}
 				for (int o = 0; o < vehiclehistory1.size() - 1; o++) {
-					// Random rnd = new Random();
-					// int color = Color.argb(255, rnd.nextInt(256),
-					// rnd.nextInt(256), rnd.nextInt(256));
-					//
-					// googleMap
-					// .addPolyline((new PolylineOptions())
-					// .add(new LatLng(Double
-					// .parseDouble(vehiclehistory1.get(o)
-					// .get(TAG_Latitude + o)),
-					// Double.parseDouble(vehiclehistory1
-					// .get(o).get(
-					// TAG_Longitude + o))),
-					// new LatLng(
-					// Double.parseDouble(vehiclehistory1
-					// .get(o + 1)
-					// .get(TAG_Latitude
-					// + (o + 1))),
-					// Double.parseDouble(vehiclehistory1
-					// .get(o + 1)
-					// .get(TAG_Longitude
-					// + (o + 1)))))
-					// .width(5).color(color).geodesic(true));
 
 					totaldistance += distance(
 							Double.parseDouble(vehiclehistory1.get(o).get(
@@ -1007,6 +1042,65 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 			} catch (Exception e) {
 
 			}
+			if (vehiclehistory1.size() > 0) {
+				LatLng pinLocation = new LatLng(
+						Double.parseDouble(vehiclehistory1.get(0).get(
+								TAG_Latitude + 0)),
+						Double.parseDouble(vehiclehistory1.get(0).get(
+								TAG_Longitude + 0)));
+				String titlevalue = "Speed:"
+						+ vehiclehistory1.get(0).get(TAG_Speed + 0)
+						+ " km/hr "
+						+ "Date:"
+						+ vehiclehistory1.get(0).get(
+								TAG_bus_tracking_timestamp + 0);
+				String snippetval = titlevalue + "\n" + "Address:"
+						+ vehiclehistory1.get(0).get(TAG_address + 0);
+				if (marker.getPosition().equals(pinLocation)) {
+					System.out.println("in last point");
+					marker.remove();
+				}
+				marker = googleMap.addMarker(new MarkerOptions()
+						.position(pinLocation)
+
+						.snippet(snippetval)
+						.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.startpoint)));
+
+				LatLng pinLocation1 = new LatLng(
+						Double.parseDouble(vehiclehistory1.get(
+								vehiclehistory1.size() - 1).get(
+								TAG_Latitude + (vehiclehistory1.size() - 1))),
+						Double.parseDouble(vehiclehistory1.get(
+								vehiclehistory1.size() - 1).get(
+								TAG_Longitude + (vehiclehistory1.size() - 1))));
+				String titlevalue1 = "Speed:"
+						+ vehiclehistory1.get(vehiclehistory1.size() - 1).get(
+								TAG_Speed + (vehiclehistory1.size() - 1))
+						+ " km/hr "
+						+ "Date:"
+						+ vehiclehistory1.get(vehiclehistory1.size() - 1).get(
+								TAG_bus_tracking_timestamp
+										+ (vehiclehistory1.size() - 1));
+				String snippetval1 = titlevalue1
+						+ "\n"
+						+ "Address:"
+						+ vehiclehistory1.get(vehiclehistory1.size() - 1).get(
+								TAG_address + (vehiclehistory1.size() - 1));
+				if (marker.getPosition().equals(pinLocation1)) {
+
+					marker.remove();
+
+				}
+
+				marker = googleMap.addMarker(new MarkerOptions()
+						.position(pinLocation1)
+
+						.snippet(snippetval1)
+						.icon(BitmapDescriptorFactory
+								.fromResource(R.drawable.startpoint)));
+			}
+
 		}
 
 	}
@@ -1120,7 +1214,7 @@ public class HistoryTrack extends Activity implements OnMapLongClickListener,
 	}
 
 	private double distance(double lat1, double lat2, double lon1, double lon2) {
-		
+
 		final int R = 6371; // Radius of the earth
 		Double latDistance = deg2rad(lat2 - lat1);
 		Double lonDistance = deg2rad(lon2 - lon1);
